@@ -18,6 +18,9 @@
 (setq apropos-sort-by-scores t)
 (setq inhibit-startup-screen t)
 
+(global-linum-mode t)
+(column-number-mode t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
