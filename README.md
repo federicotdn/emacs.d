@@ -2,6 +2,7 @@
 Emacs configuration files and help.
 
 ## Navigation
+```
 <left>, <right>, ...: move around by char.
 C-<left>, C-<right>, ...: move around by words
 M-f, M-b: move forward, backwards by words
@@ -28,28 +29,37 @@ C-x 0: Close this window
 C-x 1: Close other windows
 C-x 2: Split horizontal
 C-x 3: Split vertical
+```
 
 ## Exec
+```
 C-x C-s: save buffer
 C-x k: kill buffer
 C-x b: switch window buffer
 C-x C-b: list buffers
 C-x C-c: exit
 M-x: execute command
+```
 
 ## Editing
+```
 C-/: undo
 C-x C-s: save buffer
 C-x C-f: open file
 C-d: kill char
 M-d: kill word
+```
 
 ## Help
+```
 <something> C-h: commands that start with <something>
 C-g: cancel command
 C-h s: syntax table for current mode
 C-h v: describe variable
+```
 
 ## Minor Modes
+```
 M-x subword-mode: CamelCase as distinct words
 M-x superword-mode: snake_case as distinct words
+```
