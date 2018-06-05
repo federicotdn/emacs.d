@@ -1,6 +1,12 @@
 # Emacs Configuration
 Emacs configuration files and help.
 
+```
+C = control
+M = meta, alt
+S = shift
+```
+
 ## Navigation
 ```
 <left>, <right>, ...: move around by char.
@@ -9,12 +15,14 @@ M-f, M-b: move forward, backwards by words
 C-f, C-b: move forward, backwards by char.
 C-n, C-p: next line, previous line
 C-e, C-a: end of line, start of line
+M-m: first non-wspc of line
 M-}, M-{: next, previous paragraph
 M-e, M-a: end of sentence, start of sentence
 C-M-e, C-M-a: end of defun, start of defun
 
 C-v, M-v: scroll down, up page
 C-x <, C-x >: scroll left, right page
+C-l: scroll to leave point at center
 
 C-M-f, C-M-b: forward, backwards S-expression
 C-M-d, C-M-u: into, out of S-expression
@@ -39,6 +47,7 @@ C-x b: switch window buffer
 C-x C-b: list buffers
 C-x C-c: exit
 M-x: execute command
+C-u <arg> <command>: exec <command> with <arg>
 ```
 
 ## Editing

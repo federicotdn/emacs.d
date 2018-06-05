@@ -1,12 +1,23 @@
 (require 'package)
-(package-initialize)
 
 (setq package-archives
  '(("gnu" . "http://elpa.gnu.org/packages/")
-  ("marmalade" . "http://marmalade-repo.org/packages/")
-  ("melpa" . "http://melpa.milkbox.net/packages/")))
+   ("marmalade" . "http://marmalade-repo.org/packages/")
+   ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+(package-initialize)
+
+;; neotree package
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+;; apagar toolbar
+(when (fboundp 'tool-bar-mode)
+ (tool-bar-mode -1))
 
 (setq apropos-sort-by-scores t)
+(setq inhibit-startup-screen t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
