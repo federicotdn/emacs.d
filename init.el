@@ -7,9 +7,8 @@
 
 (package-initialize)
 
-;; neotree package
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
+;; Installed packages:
+;; projectile
 
 ;; apagar toolbar
 (when (fboundp 'tool-bar-mode)
@@ -20,6 +19,7 @@
 
 (global-linum-mode t)
 (column-number-mode t)
+(projectile-global-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
