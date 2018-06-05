@@ -42,3 +42,9 @@
 
 ;; Moverse entre ventanas con S-<left> S-<right> etc.
 (windmove-default-keybindings)
+
+;; Activar side scroll
+(put 'scroll-left 'disabled nil)
+(put 'scroll-right 'disabled nil)
+(set-default 'truncate-lines t)
+
