@@ -11,3 +11,7 @@
 *.~undo-tree
 
 history
+*desktop*
+/elpa/
+ido.last
+*bookmarks*

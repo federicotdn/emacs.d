@@ -21,7 +21,7 @@ M-e, M-a: end of sentence, start of sentence
 C-M-e, C-M-a: end of defun, start of defun
 
 C-v, M-v: scroll down, up page
-C-x <, C-x >: scroll left, right page
+C-<, C->: scroll right, left page
 C-l: scroll to leave point at center
 
 C-M-f, C-M-b: forward, backwards S-expression
@@ -39,6 +39,42 @@ C-x 2: Split horizontal
 C-x 3: Split vertical
 ```
 
+## Regions
+```
+C-<spc>: set mark
+C-u C-<spc>: return to last mark
+
+M-@: mark next word
+M-h: mark next paragraph
+C-x h: mark the whole buffer
+C-M-<spc>: mark S-expression
+M-g M-g: go to line
+```
+
+## Bookmarks
+```
+C-x r m: set bookmark
+C-x r l: list bookmarks
+C-x r b: jump to bookmark
+```
+
+## Search
+```
+C-s: incremental search
+C-r: backward incremental search
+C-M-s: regexp incremental search
+C-M-r: backward regexp incremental search
+M-n: next item in search history
+M-p: previous item in search history
+C-w: add word at point to search string
+
+M-s o: Occur mode
+q: quit occur mode
+
+M-i: imenu
+
+```
+
 ## Exec
 ```
 C-x C-s: save buffer
@@ -48,6 +84,8 @@ C-x C-b: list buffers
 C-x C-c: exit
 M-x: execute command
 C-u <arg> <command>: exec <command> with <arg>
+
+C-x d: dired
 ```
 
 ## Editing
@@ -55,8 +93,19 @@ C-u <arg> <command>: exec <command> with <arg>
 C-/: undo
 C-x C-s: save buffer
 C-x C-f: open file
+
 C-d: kill char
 M-d: kill word
+C-k: kill rest of line
+C-S-<backspace>: kill line
+
+C-w: kill active region
+M-w: copy active region
+C-y: yank last kill
+
+C-t: transpose
+
+C-x C-;: comment/uncomment line
 ```
 
 ## Help
@@ -71,4 +120,16 @@ C-h v: describe variable
 ```
 M-x subword-mode: CamelCase as distinct words
 M-x superword-mode: snake_case as distinct words
+```
+
+## Elpy
+```
+M-.: goto definition on point
+M-x pyvenv-activate: activate environment
+```
+
+## Company
+```
+M-n, M-p: next, previous match
+M-x company-complete: initiate completion
 ```
