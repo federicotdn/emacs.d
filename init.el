@@ -10,17 +10,28 @@
 ;; Installed packages:
 ;; projectile
 
-;; apagar toolbar
+;; Apagar toolbar
 (when (fboundp 'tool-bar-mode)
  (tool-bar-mode -1))
 
+;; Apagar scrollbars
+(scroll-bar-mode -1)
+
+;; Ordenar help por relevancia
 (setq apropos-sort-by-scores t)
+
+;; Sacar welcome screen
 (setq inhibit-startup-screen t)
 
+;; Numero de linea y columna
 (global-linum-mode t)
 (column-number-mode t)
+(size-indication-mode t)
+
+;; Activar Projectile minor mode globalmente
 (projectile-global-mode)
 
+;; Cosas de Customize
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -50,3 +61,13 @@
 
 ;; Maximizar ventana al inicio
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; Mover backup y autosave a /tmp
+(setq backup-directory-alist
+ `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+ `((".*" ,temporary-file-directory t)))
+
+;; Subrayar linea activa
+(global-hl-line-mode +1)
+(set-face-attribute hl-line-face nil :underline nil)
