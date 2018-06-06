@@ -48,3 +48,5 @@
 (put 'scroll-right 'disabled nil)
 (set-default 'truncate-lines t)
 
+;; Maximizar ventana al inicio
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
