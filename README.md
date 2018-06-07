@@ -133,3 +133,8 @@ M-x pyvenv-activate: activate environment
 M-n, M-p: next, previous match
 M-x company-complete: initiate completion
 ```
+
+## Packages
+```
+M-x package-install-selected-packages: install listed packages in init.el
+```
