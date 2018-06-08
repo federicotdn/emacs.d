@@ -30,13 +30,19 @@ C-M-k: kill S-expression
 C-M-n, C-M-p: move next, previous S-expression
 
 M->, M-<: move to end, beggining of buffer
+```
 
+# Windows
+```
 M-o: cycle windows
 S-<left>, S-<right>, ...: move between windows
 C-x 0: Close this window
 C-x 1: Close other windows
 C-x 2: Split horizontal
 C-x 3: Split vertical
+
+C-c <left>: undo windows layout change
+C-c <right>: redo windows layout change
 ```
 
 ## Regions
@@ -86,11 +92,13 @@ M-x: execute command
 C-u <arg> <command>: exec <command> with <arg>
 
 C-x d: dired
+C-x z: repeat last command
 ```
 
 ## Editing
 ```
 C-/: undo
+C-z: undo
 C-x C-s: save buffer
 C-x C-f: open file
 
@@ -99,11 +107,12 @@ M-d: kill word
 C-k: kill rest of line
 C-S-<backspace>: kill line
 
-C-w: kill active region
-M-w: copy active region
-C-y: yank last kill
+C-w: kill active region (cut)
+M-w: copy active region (copy)
+C-y: yank last kill (paste)
 
 C-t: transpose
+C-o: insert on next line
 
 C-x C-;: comment/uncomment line
 ```
@@ -114,6 +123,14 @@ C-x C-;: comment/uncomment line
 C-g: cancel command
 C-h s: syntax table for current mode
 C-h v: describe variable
+```
+
+## Dired
+```
+<ret>: visit file or directory
+^: go up one directory
+q: quit dired
+n, p, C-n, C-p: move down/up
 ```
 
 ## Minor Modes

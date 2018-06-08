@@ -3,7 +3,7 @@
 (setq package-archives
  '(("gnu" . "http://elpa.gnu.org/packages/")
    ("marmalade" . "http://marmalade-repo.org/packages/")
-   ("melpa" . "http://melpa.milkbox.net/packages/")))
+   ("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (package-initialize)
 
@@ -31,6 +31,9 @@
 ;; Activar elpy
 (elpy-enable)
 
+;; Activar company mode
+(add-hook 'after-init-hook 'global-company-mode)
+
 ;; IDO
 (ido-mode 1)
 (setq ido-everywhere t)
@@ -44,19 +47,18 @@
 
 (global-set-key (kbd "C-x C-;") 'toggle-comment-on-line)
 
-;; Theme
-(load-theme 'monokai t)
-
 ;; Cosas de Customize
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(delete-selection-mode t)
- '(package-selected-packages
+ '(custom-enabled-themes (quote (monokai)))
+ '(custom-safe-themes
    (quote
-    (elpy monokai-theme projectile markdown-mode)))
+    ("c3d4af771cbe0501d5a865656802788a9a0ff9cf10a7df704ec8b8ef69017c68" default)))
+ '(delete-selection-mode t)
+ '(package-selected-packages (quote (elpy monokai-theme projectile markdown-mode)))
  '(winner-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -64,6 +66,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; Cambiar protocolo default para TRAMP
+(setq tramp-default-method "ssh")
 
 ;; Hacer undo/redo de layouts de ventanas
 (global-set-key (kbd "M-o") 'other-window)
