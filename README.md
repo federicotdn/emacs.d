@@ -74,23 +74,26 @@ M-n: next item in search history
 M-p: previous item in search history
 C-w: add word at point to search string
 
+M-%: search and replace (interactive)
+     y: replace, n: skip, <ret>: exit, !: replace all
+
 M-s o: Occur mode
 q: quit occur mode
 
 M-i: imenu
-
 ```
 
 ## Exec
 ```
 C-x C-s: save buffer
 C-x k: kill buffer
-C-x b: switch window buffer
+C-x b, C-<tab>: switch window buffer
 C-x C-b: list buffers
 C-x C-c: exit
 M-x: execute command
 C-u <arg> <command>: exec <command> with <arg>
 
+C-x <left>, C-x <right>: move to left, right buffer
 C-x d: dired
 C-x z: repeat last command
 ```
@@ -114,7 +117,7 @@ C-y: yank last kill (paste)
 C-t: transpose
 C-o: insert on next line
 
-C-x C-;: comment/uncomment line
+C-;: comment/uncomment line
 ```
 
 ## Help
@@ -154,4 +157,15 @@ M-x company-complete: initiate completion
 ## Packages
 ```
 M-x package-install-selected-packages: install listed packages in init.el
+```
+
+## Magit
+```
+C-x g: magit-status (main window)
+```
+
+## Projectile
+```
+C-c p f: open file in project
+C-c p s g: recursive grep in project
 ```
