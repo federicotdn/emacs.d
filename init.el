@@ -102,3 +102,6 @@
 
 ;; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;; Guardar posicion en buffer
+(save-place-mode 1)

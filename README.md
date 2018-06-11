@@ -32,7 +32,7 @@ C-M-n, C-M-p: move next, previous S-expression
 M->, M-<: move to end, beggining of buffer
 ```
 
-# Windows
+## Windows
 ```
 M-o: cycle windows
 S-<left>, S-<right>, ...: move between windows
@@ -142,6 +142,12 @@ M-x subword-mode: CamelCase as distinct words
 M-x superword-mode: snake_case as distinct words
 ```
 
+## Emacs Lisp
+```
+C-x C-e: eval last S-expression
+M-x ielm: interactive elisp CLI
+```
+
 ## Elpy
 ```
 M-.: goto definition on point
@@ -169,3 +175,10 @@ C-x g: magit-status (main window)
 C-c p f: open file in project
 C-c p s g: recursive grep in project
 ```
+
+# To Do
+- Org Mode
+- Helm
+- Better shell
+- Dedicated windows
+- Indent code
