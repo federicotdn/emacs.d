@@ -57,6 +57,11 @@ C-M-<spc>: mark S-expression
 M-g M-g: go to line
 ```
 
+## Symbols
+```
+M-.: go to definition of symbol on point
+```
+
 ## Bookmarks
 ```
 C-x r m: set bookmark
@@ -150,7 +155,6 @@ M-x ielm: interactive elisp CLI
 
 ## Elpy
 ```
-M-.: goto definition on point
 M-x pyvenv-activate: activate environment
 ```
 
@@ -168,12 +172,19 @@ M-x package-install-selected-packages: install listed packages in init.el
 ## Magit
 ```
 C-x g: magit-status (main window)
+C-c C-c: save commit message
 ```
 
 ## Projectile
 ```
 C-c p f: open file in project
 C-c p s g: recursive grep in project
+C-c p p: switch to project
+```
+
+## Shell
+```
+C-c M-o: clear screen
 ```
 
 # To Do

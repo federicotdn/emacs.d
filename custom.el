@@ -10,7 +10,9 @@
     ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "env" "venv" "build")))
  '(grep-find-template
    "find <D> <X> -type f <F> -exec grep <C> -C 3 -nH --null -e <R> \\{\\} +")
- '(package-selected-packages (quote (magit elpy monokai-theme projectile markdown-mode)))
+ '(package-selected-packages
+   (quote
+    (neotree magit elpy monokai-theme projectile markdown-mode)))
  '(projectile-use-git-grep nil)
  '(winner-mode t))
 (custom-set-faces

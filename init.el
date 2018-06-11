@@ -100,8 +100,48 @@
 ;; Insertar matching parenthesis
 (electric-pair-mode 1)
 
+;; Indentar autotmaticamente on RET
+(electric-indent-mode 1)
+
 ;; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; Guardar posicion en buffer
 (save-place-mode 1)
+
+;; Dedication
+(add-to-list 'load-path "~/.emacs.d/dedication")
+
+(require 'dedication)
+
+(bypass-window-dedicated #'ido-switch-buffer)
+(bypass-window-dedicated #'ido-find-file)
+(enable-dedication-mode-line)
+
+(global-set-key (kbd "C-c d") 'toggle-window-dedicated)
+
+;; Neotree
+(defun neotree-project-dir ()
+  "Open NeoTree using the git root."
+  (interactive)
+  (let ((project-dir (projectile-project-root))
+        (file-name (buffer-file-name)))
+    (neotree-toggle)
+    (if project-dir
+        (if (neo-global--window-exists-p)
+            (progn
+              (neotree-dir project-dir)
+              (neotree-find file-name)))
+      (message "Could not find git project root."))))
+
+(global-set-key [f8] 'neotree-project-dir)
+
+;; Disable GC when minibuffer is open
+(defun my-minibuffer-setup-hook ()
+  (setq gc-cons-threshold most-positive-fixnum))
+
+(defun my-minibuffer-exit-hook ()
+  (setq gc-cons-threshold 800000))
+
+(add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
+(add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
