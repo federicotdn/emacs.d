@@ -123,6 +123,9 @@ C-t: transpose
 C-o: insert on next line
 
 C-;: comment/uncomment line
+
+C-c <: indent region to left
+C-c >: indent region to right
 ```
 
 ## Help

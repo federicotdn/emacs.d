@@ -1,3 +1,5 @@
+;; Requires: Emacs 26+
+
 ;; Setear el GC threshold a 20 Mb como base
 (defconst gc-threshold 20000000)
 
@@ -15,6 +17,9 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
+;; Mostrar numero de lineas 
+(global-display-line-numbers-mode 1)
+
 ;; Apagar toolbar
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
@@ -28,10 +33,8 @@
 ;; Sacar welcome screen
 (setq inhibit-startup-screen t)
 
-;; Numero de linea y columna
-(global-linum-mode t)
+;; Numero de columna
 (column-number-mode t)
-(size-indication-mode t)
 
 ;; Activar Projectile minor mode globalmente
 (projectile-global-mode)
@@ -129,6 +132,9 @@
 (dedication-bypass-window-dedicated #'ido-switch-buffer)
 (dedication-bypass-window-dedicated #'ido-find-file)
 (dedication-bypass-window-dedicated #'ido-dired)
+(dedication-bypass-window-dedicated #'projectile-find-file)
+(dedication-bypass-window-dedicated #'ido-kill-buffer)
+(dedication-bypass-window-dedicated #'elpy-goto-definition)
 (dedication-enable-mode-line-indicator)
 
 (global-set-key (kbd "C-c d") 'dedication-toggle-window-dedicated)

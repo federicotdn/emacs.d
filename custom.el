@@ -5,6 +5,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode t)
+ '(elpy-remove-modeline-lighter t)
  '(grep-find-ignored-directories
    (quote
     ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "env" "venv" "build")))
@@ -13,7 +14,6 @@
  '(package-selected-packages
    (quote
     (neotree magit elpy monokai-theme projectile markdown-mode)))
- '(projectile-use-git-grep nil)
  '(winner-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
