@@ -193,3 +193,5 @@ C-c M-o: clear screen
 - Better shell
 - Dedicated windows
 - Indent code
+- Purpose
+

@@ -126,11 +126,12 @@
 
 (require 'dedication)
 
-(bypass-window-dedicated #'ido-switch-buffer)
-(bypass-window-dedicated #'ido-find-file)
-(enable-dedication-mode-line)
+(dedication-bypass-window-dedicated #'ido-switch-buffer)
+(dedication-bypass-window-dedicated #'ido-find-file)
+(dedication-bypass-window-dedicated #'ido-dired)
+(dedication-enable-mode-line-indicator)
 
-(global-set-key (kbd "C-c d") 'toggle-window-dedicated)
+(global-set-key (kbd "C-c d") 'dedication-toggle-window-dedicated)
 
 ;; Neotree
 (defun neotree-project-dir ()
