@@ -1,9 +1,14 @@
+;; Setear el GC threshold a 20 Mb como base
+(defconst gc-threshold 20000000)
+
+(setq gc-cons-threshold gc-threshold)
+
 (require 'package)
 
 (setq package-archives
- '(("gnu" . "http://elpa.gnu.org/packages/")
-   ("marmalade" . "http://marmalade-repo.org/packages/")
-   ("melpa-stable" . "https://stable.melpa.org/packages/")))
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+	("marmalade" . "http://marmalade-repo.org/packages/")
+	("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (package-initialize)
 
@@ -12,7 +17,7 @@
 
 ;; Apagar toolbar
 (when (fboundp 'tool-bar-mode)
- (tool-bar-mode -1))
+  (tool-bar-mode -1))
 
 ;; Apagar scrollbars
 (scroll-bar-mode -1)
@@ -31,6 +36,13 @@
 ;; Activar Projectile minor mode globalmente
 (projectile-global-mode)
 
+(setq-default projectile-mode-line
+	      '(:eval (format " Proj[%s]" (projectile-project-name)))
+	      )
+
+;; Desactivar sistemas VC dentro de Emacs
+(setq vc-handled-backends nil)
+
 ;; Activar elpy
 (elpy-enable)
 
@@ -46,9 +58,9 @@
 
 ;; Comment/uncomment line
 (defun toggle-comment-on-line ()
- "comment or uncomment current line"
- (interactive)
- (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+  "comment or uncomment current line"
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
 
@@ -86,9 +98,9 @@
 
 ;; Mover backup y autosave a /tmp
 (setq backup-directory-alist
- `((".*" . ,temporary-file-directory)))
+      `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
- `((".*" ,temporary-file-directory t)))
+      `((".*" ,temporary-file-directory t)))
 
 ;; Subrayar linea activa
 (global-hl-line-mode +1)
@@ -141,7 +153,7 @@
   (setq gc-cons-threshold most-positive-fixnum))
 
 (defun my-minibuffer-exit-hook ()
-  (setq gc-cons-threshold 800000))
+  (setq gc-cons-threshold gc-threshold))
 
 (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
 (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
