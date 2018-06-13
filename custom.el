@@ -12,7 +12,7 @@
    "find <D> <X> -type f <F> -exec grep <C> -C 3 -nH --null -e <R> \\{\\} +")
  '(package-selected-packages
    (quote
-    (neotree magit elpy monokai-theme projectile markdown-mode)))
+    (window-purpose neotree magit elpy monokai-theme projectile markdown-mode)))
  '(winner-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

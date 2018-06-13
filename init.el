@@ -1,8 +1,11 @@
 ;; Requires: Emacs 26+
 
-;; Setear el GC threshold a 20 Mb
-(defconst gc-threshold 20000000)
+;;----------------------------------------------------------------------------
+;; Emacs General Config
+;;----------------------------------------------------------------------------
 
+;; Set GC threshold at 20 Mb
+(defconst gc-threshold 20000000)
 (setq gc-cons-threshold gc-threshold)
 
 (require 'package)
@@ -14,43 +17,29 @@
 
 (package-initialize)
 
+;; Customize
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-;; Mostrar numero de lineas 
+;; Show line numbers using new mode (26+)
 (global-display-line-numbers-mode 1)
 
-;; Apagar toolbar
+;; Disable tool bar and scroll bar
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
-
-;; Apagar scrollbars
 (scroll-bar-mode -1)
 
-;; Ordenar help por relevancia
+;; Sort help by relevance
 (setq apropos-sort-by-scores t)
 
-;; Sacar welcome screen
+;; Disable welcome screen
 (setq inhibit-startup-screen t)
 
-;; Numero de columna
+;; Show column number
 (column-number-mode t)
 
-;; Activar Projectile minor mode globalmente
-(projectile-global-mode)
-
-(setq-default projectile-mode-line
-	      '(:eval (format " Proj[%s]" (projectile-project-name)))
-	      )
-
-;; Desactivar sistemas VC dentro de Emacs
+;; Deactivate VC utils
 (setq vc-handled-backends nil)
-
-;; Activar elpy
-(elpy-enable)
-
-;; Activar company mode
-(add-hook 'after-init-hook 'global-company-mode)
 
 ;; IDO
 (ido-mode 1)
@@ -59,79 +48,73 @@
 (setq ido-separator "\n")
 (setq ido-ignore-buffers '("^ " "*Completions*" "*Shell Command Output*" "*Messages*" "*Flymake log*" "*Compile-Log*" "*Help*"))
 
-;; Comment/uncomment line
-(defun toggle-comment-on-line ()
-  "comment or uncomment current line"
-  (interactive)
-  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
-
-(global-set-key (kbd "C-;") 'toggle-comment-on-line)
-
-;; Theme
-(load-theme 'monokai t)
-
-;; Cambiar protocolo default para TRAMP
-(setq tramp-default-method "ssh")
-
-;; Hacer undo/redo de layouts de ventanas
-(global-set-key (kbd "M-o") 'other-window)
-
-;; Moverse entre ventanas con S-<left> S-<right> etc.
+;; Move between windows using S-<left> S-<right> etc.
 (windmove-default-keybindings)
 
-;; IDO switch buffer con C-<tab>
-(global-set-key (kbd "C-<tab>") 'ido-switch-buffer)
+;; Set theme
+(load-theme 'monokai t)
 
-;; Activar side scroll
+;; Activate side scroll
 (put 'scroll-left 'disabled nil)
 (put 'scroll-right 'disabled nil)
 (set-default 'truncate-lines t)
 
-(global-set-key (kbd "C-<") 'scroll-right)
-(global-set-key (kbd "C->") 'scroll-left)
-
-;; Maximizar ventana al inicio
+;; Maximize at start
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; Mover backup y autosave a /tmp
+;; Move backup and autosave to /tmp
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-;; Subrayar linea activa
+;; Highlight current line
 (global-hl-line-mode +1)
 (set-face-attribute hl-line-face nil :underline nil)
 
-;; Mostrar matching parenthesis
+;; Show matching parenthesis
 (show-paren-mode 1)
 
-;; Insertar matching parenthesis
+;; Insert matching parenthesis
 (electric-pair-mode 1)
 
-;; Indentar autotmaticamente on RET
+;; Indent automatically on RET
 (electric-indent-mode 1)
 
-;; Magit
-(global-set-key (kbd "C-x g") 'magit-status)
-
-;; Guardar posicion en buffer
+;; Save position in buffer
 (save-place-mode 1)
 
-;; Dedication
-(add-to-list 'load-path "~/.emacs.d/dedication")
+;;----------------------------------------------------------------------------
+;; Package Initialization
+;;----------------------------------------------------------------------------
 
-(require 'dedication)
+;; Projectile
+(projectile-global-mode)
+(setq-default projectile-mode-line
+	      '(:eval (format " Proj[%s]" (projectile-project-name)))
+	      )
 
-(dedication-bypass-window-dedicated #'ido-switch-buffer)
-(dedication-bypass-window-dedicated #'ido-find-file)
-(dedication-bypass-window-dedicated #'ido-dired)
-(dedication-bypass-window-dedicated #'projectile-find-file)
-(dedication-bypass-window-dedicated #'ido-kill-buffer)
-(dedication-bypass-window-dedicated #'elpy-goto-definition)
-(dedication-enable-mode-line-indicator)
+;; Elpy
+(elpy-enable)
 
-(global-set-key (kbd "C-c d") 'dedication-toggle-window-dedicated)
+;; Company
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; Purpose
+(require 'window-purpose)
+(purpose-mode)
+(add-to-list 'purpose-user-mode-purposes '(python-mode . py))
+(purpose-compile-user-configuration)
+
+;;----------------------------------------------------------------------------
+;; Custom Functions
+;;----------------------------------------------------------------------------
+
+;; Comment/uncomment line
+(defun toggle-comment-on-line ()
+  "comment or uncomment current line"
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
 ;; Neotree
 (defun neotree-project-dir ()
@@ -147,7 +130,20 @@
               (neotree-find file-name)))
       (message "Could not find Projectile project root."))))
 
-(global-set-key [f8] 'neotree-project-dir)
 
-;; Desactivar comando similar a C-x C-f
+;;----------------------------------------------------------------------------
+;; Keybindings
+;;----------------------------------------------------------------------------
+
+(global-set-key (kbd "C-;") 'toggle-comment-on-line)
+(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "C-<tab>") 'ido-switch-buffer)
+(global-set-key (kbd "C-<") 'scroll-right)
+(global-set-key (kbd "C->") 'scroll-left)
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key [f8] 'neotree-project-dir)
+(global-set-key (kbd "C-c l") 'comint-clear-buffer)
+(global-set-key (kbd "C-c d") 'purpose-toggle-window-purpose-dedicated)
+(global-set-key (kbd "C-c D") 'purpose-toggle-window-buffer-dedicated)
+
 (global-unset-key (kbd "C-x f"))
