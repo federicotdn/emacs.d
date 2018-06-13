@@ -197,4 +197,3 @@ C-c M-o: clear screen
 - Dedicated windows
 - Indent code
 - Purpose
-

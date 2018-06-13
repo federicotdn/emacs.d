@@ -1,6 +1,6 @@
 ;; Requires: Emacs 26+
 
-;; Setear el GC threshold a 20 Mb como base
+;; Setear el GC threshold a 20 Mb
 (defconst gc-threshold 20000000)
 
 (setq gc-cons-threshold gc-threshold)
@@ -76,9 +76,6 @@
 ;; Hacer undo/redo de layouts de ventanas
 (global-set-key (kbd "M-o") 'other-window)
 
-;; Bindear imenu a M-i
-(global-set-key (kbd "M-i") 'imenu)
-
 ;; Moverse entre ventanas con S-<left> S-<right> etc.
 (windmove-default-keybindings)
 
@@ -95,9 +92,6 @@
 
 ;; Maximizar ventana al inicio
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-;; Guardar estado de ventanas
-(desktop-save-mode 1)
 
 ;; Mover backup y autosave a /tmp
 (setq backup-directory-alist
@@ -141,7 +135,7 @@
 
 ;; Neotree
 (defun neotree-project-dir ()
-  "Open NeoTree using the git root."
+  "Open NeoTree using the Projectile project root."
   (interactive)
   (let ((project-dir (projectile-project-root))
         (file-name (buffer-file-name)))
@@ -151,16 +145,9 @@
             (progn
               (neotree-dir project-dir)
               (neotree-find file-name)))
-      (message "Could not find git project root."))))
+      (message "Could not find Projectile project root."))))
 
 (global-set-key [f8] 'neotree-project-dir)
 
-;; Disable GC when minibuffer is open
-(defun my-minibuffer-setup-hook ()
-  (setq gc-cons-threshold most-positive-fixnum))
-
-(defun my-minibuffer-exit-hook ()
-  (setq gc-cons-threshold gc-threshold))
-
-(add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
-(add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
+;; Desactivar comando similar a C-x C-f
+(global-unset-key (kbd "C-x f"))
