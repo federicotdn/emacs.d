@@ -38,9 +38,6 @@
 ;; Show column number
 (column-number-mode t)
 
-;; Deactivate VC utils
-(setq vc-handled-backends nil)
-
 ;; IDO
 (ido-mode 1)
 (setq ido-everywhere t)
@@ -84,6 +81,10 @@
 ;; Save position in buffer
 (save-place-mode 1)
 
+(setq-default cursor-type 'bar)
+
+(desktop-save-mode 1)
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
@@ -106,17 +107,20 @@
 (add-to-list 'purpose-user-mode-purposes '(python-mode . py))
 (purpose-compile-user-configuration)
 
+;; Diff-hl on margins
+(require 'diff-hl)
+(diff-hl-margin-mode)
+(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
 
-;; Comment/uncomment line
 (defun toggle-comment-on-line ()
   "comment or uncomment current line"
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
-;; Neotree
 (defun neotree-project-dir ()
   "Open NeoTree using the Projectile project root."
   (interactive)
@@ -130,20 +134,45 @@
               (neotree-find file-name)))
       (message "Could not find Projectile project root."))))
 
+(defun move-line-up ()
+  "Move current line up."
+  (interactive)
+  (if (> (line-number-at-pos) 1)
+      (progn
+	(transpose-lines 1)
+	(previous-line)
+	(previous-line))))
+
+(defun move-line-down ()
+  "Move current line down."
+  (interactive)
+  (if (< (line-number-at-pos) (count-lines (point-min) (point-max)))
+      (progn
+	(next-line)
+	(transpose-lines 1)
+	(previous-line))))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
 
+(global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
-(global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "C-<tab>") 'ido-switch-buffer)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
-(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-<tab>") 'ido-switch-buffer)
+(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "M-<up>") 'move-line-up)
+(global-set-key (kbd "M-<down>") 'move-line-down)
 (global-set-key [f8] 'neotree-project-dir)
-(global-set-key (kbd "C-c l") 'comint-clear-buffer)
+
 (global-set-key (kbd "C-c d") 'purpose-toggle-window-purpose-dedicated)
 (global-set-key (kbd "C-c D") 'purpose-toggle-window-buffer-dedicated)
+(global-set-key (kbd "C-c l") 'comint-clear-buffer)
+(global-set-key (kbd "C-c n") 'display-line-numbers-mode)
+(global-set-key (kbd "C-c f") 'flymake-mode)
+(global-set-key (kbd "C-c g") 'diff-hl-mode)
+;; (global-set-key (kbd "C-c c") 'mode-line-other-buffer)
 
 (global-unset-key (kbd "C-x f"))
+
