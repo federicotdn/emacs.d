@@ -106,18 +106,19 @@ C-x z: repeat last command
 ## Editing
 ```
 C-/: undo
-C-z: undo
 C-x C-s: save buffer
-C-x C-f: open file
+C-x C-f: visit file
 
 C-d: kill char
 M-d: kill word
 C-k: kill rest of line
 C-S-<backspace>: kill line
+C-<backspace>: backwards kill word
 
 C-w: kill active region (cut)
 M-w: copy active region (copy)
 C-y: yank last kill (paste)
+M-y: cycle last yank
 
 C-t: transpose
 C-o: insert on next line
@@ -126,6 +127,8 @@ C-;: comment/uncomment line
 
 C-c <: indent region to left
 C-c >: indent region to right
+
+M-<down>, M-<up>: Move line down, up
 ```
 
 ## Help
@@ -185,9 +188,15 @@ C-c p s g: recursive grep in project
 C-c p p: switch to project
 ```
 
+### Purpose
+```
+C-, d: dedicate window to purpose
+C-, D: dedicate window to buffer
+```
+
 ## Shell
 ```
-C-c M-o: clear screen
+C-c M-o, C-c l: clear screen
 ```
 
 # To Do
@@ -198,4 +207,5 @@ C-c M-o: clear screen
 - Indent code
 - Purpose
 - YAML
+- General open file function (ido + projectile)
 
