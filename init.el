@@ -112,6 +112,9 @@
 (diff-hl-margin-mode)
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
+;; Spotify controls
+(load "~/.emacs.d/spotify.el")
+
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
@@ -172,7 +175,9 @@
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
 (global-set-key (kbd "C-c g") 'diff-hl-mode)
+(global-set-key (kbd "C-c s SPC") 'spotify-play-pause)
+(global-set-key (kbd "C-c s s") 'spotify-next)
+(global-set-key (kbd "C-c s p") 'spotify-previous)
 ;; (global-set-key (kbd "C-c c") 'mode-line-other-buffer)
 
 (global-unset-key (kbd "C-x f"))
-
