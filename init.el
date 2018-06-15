@@ -115,11 +115,6 @@
 ;; Spotify controls
 (load "~/.emacs.d/spotify.el")
 
-;; Elfeed
-(setq elfeed-feeds
-      '("http://planet.emacsen.org/atom.xml"
-	"http://0pointer.net/blog/index.atom"))
-
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
@@ -180,7 +175,6 @@
 (global-set-key (kbd "C-c l") 'comint-clear-buffer)
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
-(global-set-key (kbd "C-c e") 'elfeed)
 (global-set-key (kbd "C-c g") 'diff-hl-mode)
 (global-set-key (kbd "C-c s SPC") 'spotify-play-pause)
 (global-set-key (kbd "C-c s s") 'spotify-next)
