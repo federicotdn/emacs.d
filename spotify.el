@@ -12,14 +12,20 @@
 (defun spotify-play-pause ()
   "Play or pause Spotify."
   (interactive)
-  (spotify-call-method "PlayPause"))
+  (progn
+    (spotify-call-method "PlayPause")
+    (message "Music paused/resumed.")))
 
 (defun spotify-next ()
   "Skip to next Spotify track."
   (interactive)
-  (spotify-call-method "Next"))
+  (progn
+    (spotify-call-method "Next")
+    (message "Skipped to next track.")))
 
 (defun spotify-previous ()
   "Go to previous Spotify track."
   (interactive)
-  (spotify-call-method "Previous"))
+  (progn
+    (spotify-call-method "Previous")
+    (message "Back to previous track.")))

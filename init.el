@@ -155,6 +155,12 @@
 	(transpose-lines 1)
 	(previous-line))))
 
+(defun find-file-general ()
+  (interactive)
+  (if (projectile-project-p)
+      (projectile-find-file)
+    (purpose-friendly-find-file)))
+
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
@@ -168,6 +174,8 @@
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)
+(global-set-key (kbd "M-n") 'forward-paragraph)
+(global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key [f8] 'neotree-project-dir)
 
 (global-set-key (kbd "C-c d") 'purpose-toggle-window-purpose-dedicated)
@@ -179,6 +187,6 @@
 (global-set-key (kbd "C-c s SPC") 'spotify-play-pause)
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
-(global-set-key (kbd "C-c c") 'projectile-find-file)
+(global-set-key (kbd "C-c c") 'find-file-general)
 
 (global-unset-key (kbd "C-x f"))
