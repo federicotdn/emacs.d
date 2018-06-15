@@ -157,6 +157,7 @@ M-x superword-mode: snake_case as distinct words
 ```
 C-x C-e: eval last S-expression
 M-x ielm: interactive elisp CLI
+M-:: eval expression
 ```
 
 ## Elpy
@@ -203,9 +204,5 @@ C-c M-o, C-c l: clear screen
 - Org Mode
 - Helm
 - Better shell
-- Dedicated windows
 - Indent code
-- Purpose
 - YAML
-- General open file function (ido + projectile)
-

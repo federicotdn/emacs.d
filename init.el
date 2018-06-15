@@ -132,7 +132,7 @@
 (defun neotree-project-dir ()
   "Open NeoTree using the Projectile project root."
   (interactive)
-  (let ((project-dir (projectile-project-root))
+  (let ((project-dir (projectile-project-p))
         (file-name (buffer-file-name)))
     (neotree-toggle)
     (if project-dir
