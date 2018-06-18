@@ -187,6 +187,7 @@
 (global-set-key (kbd "C-c s SPC") 'spotify-play-pause)
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
+(global-set-key (kbd "C-c s m") 'spotify-now-playing)
 (global-set-key (kbd "C-c c") 'find-file-general)
 
 (global-unset-key (kbd "C-x f"))
