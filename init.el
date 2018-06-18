@@ -116,6 +116,10 @@
 ;; Spotify controls
 (load "~/.emacs.d/spotify.el")
 
+;; YAML mode
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
