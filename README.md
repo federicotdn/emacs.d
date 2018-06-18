@@ -16,13 +16,15 @@ C-f, C-b: move forward, backwards by char.
 C-n, C-p: next line, previous line
 C-e, C-a: end of line, start of line
 M-m: first non-wspc of line
+
 M-}, M-{: next, previous paragraph
+M-n, M-p: next, previous paragraph
 M-e, M-a: end of sentence, start of sentence
 C-M-e, C-M-a: end of defun, start of defun
 
 C-v, M-v: scroll down, up page
 C-<, C->: scroll right, left page
-C-l: scroll to leave point at center
+C-l: scroll to leave point at center, top, bottom
 
 C-M-f, C-M-b: forward, backwards S-expression
 C-M-d, C-M-u: into, out of S-expression
@@ -43,6 +45,9 @@ C-x 3: Split vertical
 
 C-c <left>: undo windows layout change
 C-c <right>: redo windows layout change
+
+C-c w: save window configuration
+C-c j: load window configuration
 ```
 
 ## Regions
@@ -187,12 +192,6 @@ C-c C-c: save commit message
 C-c p f: open file in project
 C-c p s g: recursive grep in project
 C-c p p: switch to project
-```
-
-### Purpose
-```
-C-, d: dedicate window to purpose
-C-, D: dedicate window to buffer
 ```
 
 ## Shell

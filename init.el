@@ -101,12 +101,6 @@
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; Purpose
-(require 'window-purpose)
-(purpose-mode)
-(add-to-list 'purpose-user-mode-purposes '(python-mode . py))
-(purpose-compile-user-configuration)
-
 ;; Diff-hl on margins
 (require 'diff-hl)
 (diff-hl-margin-mode)
@@ -159,7 +153,19 @@
   (interactive)
   (if (projectile-project-p)
       (projectile-find-file)
-    (purpose-friendly-find-file)))
+    (ido-find-file)))
+
+(defun save-window-configuration ()
+  "Save window configuration to register 'W'."
+  (interactive)
+  (window-configuration-to-register ?W)
+  (message "Window configuration saved to register 'W'."))
+
+(defun load-window-configuration ()
+  "Load window configuration from register 'W'."
+  (interactive)
+  (jump-to-register ?W)
+  (message "Loaded window configuration."))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings
@@ -178,8 +184,6 @@
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key [f8] 'neotree-project-dir)
 
-(global-set-key (kbd "C-c d") 'purpose-toggle-window-purpose-dedicated)
-(global-set-key (kbd "C-c D") 'purpose-toggle-window-buffer-dedicated)
 (global-set-key (kbd "C-c l") 'comint-clear-buffer)
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
@@ -189,5 +193,7 @@
 (global-set-key (kbd "C-c s p") 'spotify-previous)
 (global-set-key (kbd "C-c s m") 'spotify-now-playing)
 (global-set-key (kbd "C-c c") 'find-file-general)
+(global-set-key (kbd "C-c w") 'save-window-configuration)
+(global-set-key (kbd "C-c j") 'load-window-configuration)
 
 (global-unset-key (kbd "C-x f"))
