@@ -12,8 +12,10 @@
 
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
-	("marmalade" . "http://marmalade-repo.org/packages/")
-	("melpa-stable" . "https://stable.melpa.org/packages/")))
+	("marmalade" . "http://marmalade-repo.org/packages/")))
+
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
 
 (package-initialize)
 
@@ -81,9 +83,14 @@
 ;; Save position in buffer
 (save-place-mode 1)
 
+;; Smaller cursor
 (setq-default cursor-type 'bar)
 
+;; Save/load desktop automatically
 (desktop-save-mode 1)
+
+;; Disable truncate-lines when editing Markdown files
+(add-hook 'markdown-mode-hook 'visual-line-mode)
 
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
@@ -172,6 +179,7 @@
 ;;----------------------------------------------------------------------------
 
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x C-d") 'ido-dired)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
 (global-set-key (kbd "C-<") 'scroll-right)
