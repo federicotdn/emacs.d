@@ -124,10 +124,12 @@
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
 
-(defun toggle-comment-on-line ()
-  "comment or uncomment current line"
+(defun toggle-comment-smart ()
+  "Toggle comment on line or region if selected."
   (interactive)
-  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+  (if (use-region-p)
+      (comment-or-uncomment-region (region-beginning) (region-end))
+    (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
 
 (defun neotree-project-dir ()
   "Open NeoTree using the Projectile project root."
@@ -178,6 +180,13 @@
   (jump-to-register ?W)
   (message "Loaded window configuration."))
 
+(defun close-respose-and-request ()
+  (interactive)
+  (progn
+    (when (get-buffer "*HTTP Response*")
+      (kill-buffer "*HTTP Response*"))
+    (restclient-http-send-current-stay-in-window)))
+
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
@@ -185,7 +194,7 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-d") 'ido-dired)
 (global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "C-;") 'toggle-comment-on-line)
+(global-set-key (kbd "C-;") 'toggle-comment-smart)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
 (global-set-key (kbd "C-<tab>") 'ido-switch-buffer)
@@ -207,5 +216,8 @@
 (global-set-key (kbd "C-c c") 'find-file-general)
 (global-set-key (kbd "C-c w") 'save-window-configuration)
 (global-set-key (kbd "C-c j") 'load-window-configuration)
+(add-hook 'restclient-mode-hook
+	  (lambda ()
+	    (local-set-key (kbd "C-c C-v") 'close-respose-and-request)))
 
 (global-unset-key (kbd "C-x f"))

@@ -130,8 +130,7 @@ C-o: insert on next line
 
 C-;: comment/uncomment line
 
-C-c <: indent region to left
-C-c >: indent region to right
+C-x <tab>: enter indent region mode (use left-right)
 
 M-<down>, M-<up>: Move line down, up
 ```
@@ -150,6 +149,9 @@ C-h v: describe variable
 ^: go up one directory
 q: quit dired
 n, p, C-n, C-p: move down/up
+R: rename file
+d: flag file for deletion
+x: delete flagged files
 ```
 
 ## Minor Modes
@@ -167,7 +169,17 @@ M-:: eval expression
 
 ## Elpy
 ```
+C-c <: indent region to left
+C-c >: indent region to right
 M-x pyvenv-activate: activate environment
+```
+
+## GNU Bug Tracker
+```
+n, p: next, previous issue
+t: tag issue
+n, p: next unread, previous unread message
+N, P: next, previous message
 ```
 
 ## Company
