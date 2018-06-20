@@ -187,6 +187,20 @@
       (kill-buffer "*HTTP Response*"))
     (restclient-http-send-current-stay-in-window)))
 
+(defun yank-pop-verbose ()
+  "Call yank-pop and show kill ring pointer index value."
+  (interactive)
+  (progn
+    (call-interactively #'yank-pop)
+    (let ((ring-len (length kill-ring))
+	  (pos
+	  (+
+	   (-
+	    (length kill-ring)
+	    (length kill-ring-yank-pointer))
+	   1)))
+      (message "Yanked element %d of %d." pos ring-len))))
+
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
@@ -198,6 +212,8 @@
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
 (global-set-key (kbd "C-<tab>") 'ido-switch-buffer)
+(global-set-key (kbd "C-,") 'query-replace)
+(global-set-key (kbd "M-y") 'yank-pop-verbose)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)

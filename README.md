@@ -84,8 +84,8 @@ M-n: next item in search history
 M-p: previous item in search history
 C-w: add word at point to search string
 
-M-%: search and replace (interactive)
-     y: replace, n: skip, <ret>: exit, !: replace all
+M-%, C-,: search and replace (interactive)
+		  y: replace, n: skip, <ret>: exit, !: replace all
 
 M-s o: Occur mode
 q: quit occur mode
@@ -152,6 +152,9 @@ n, p, C-n, C-p: move down/up
 R: rename file
 d: flag file for deletion
 x: delete flagged files
+v: view selected file, read only (q to quit)
+C: copy selected file
+g: update dired buffer
 ```
 
 ## Minor Modes
