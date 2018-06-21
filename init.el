@@ -205,6 +205,7 @@
 ;; Keybindings
 ;;----------------------------------------------------------------------------
 
+(global-set-key (kbd "C-j") 'avy-goto-word-or-subword-1)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-d") 'ido-dired)
 (global-set-key (kbd "C-z") 'undo)
@@ -212,7 +213,7 @@
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
 (global-set-key (kbd "C-<tab>") 'ido-switch-buffer)
-(global-set-key (kbd "C-,") 'query-replace)
+(global-set-key (kbd "C-,") 'query-replace-regexp)
 (global-set-key (kbd "M-y") 'yank-pop-verbose)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)
