@@ -222,6 +222,7 @@
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key [f8] 'neotree-project-dir)
 
+(global-set-key (kbd "C-c o") 'occur)
 (global-set-key (kbd "C-c l") 'comint-clear-buffer)
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)

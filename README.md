@@ -22,8 +22,9 @@ M-n, M-p: next, previous paragraph
 M-e, M-a: end of sentence, start of sentence
 C-M-e, C-M-a: end of defun, start of defun
 
-C-v, M-v: scroll down, up page
-C-<, C->: scroll right, left page
+C-v, M-v: scroll down, up window
+C-M-v, C-M-S-v: scroll down, up other window
+C-<, C->: scroll right, left window
 C-l: scroll to leave point at center, top, bottom
 
 C-M-f, C-M-b: forward, backwards S-expression
