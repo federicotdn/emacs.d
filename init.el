@@ -168,18 +168,6 @@
       (projectile-find-file)
     (ido-find-file)))
 
-(defun save-window-configuration ()
-  "Save window configuration to register 'W'."
-  (interactive)
-  (window-configuration-to-register ?W)
-  (message "Window configuration saved to register 'W'."))
-
-(defun load-window-configuration ()
-  "Load window configuration from register 'W'."
-  (interactive)
-  (jump-to-register ?W)
-  (message "Loaded window configuration."))
-
 (defun close-respose-and-request ()
   (interactive)
   (progn
@@ -232,8 +220,6 @@
 (global-set-key (kbd "C-c s p") 'spotify-previous)
 (global-set-key (kbd "C-c s m") 'spotify-now-playing)
 (global-set-key (kbd "C-c c") 'find-file-general)
-(global-set-key (kbd "C-c w") 'save-window-configuration)
-(global-set-key (kbd "C-c j") 'load-window-configuration)
 (add-hook 'restclient-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "C-c C-v") 'close-respose-and-request)))
