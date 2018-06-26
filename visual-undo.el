@@ -15,7 +15,14 @@
 
 (defun visual-mode-init ()
   (edit-buffer
-   (insert "visual undo")))
+   (dolist (item undo-list)
+     (when (listp item)
+       (let
+	   ((first (car item)))
+	 (cond ((integerp first)
+		(insert (format "del %s\n" first)))
+	       ((stringp first)
+		(insert (format "ins %s\n" first)))))))))
 
 (defmacro edit-buffer (&rest body)
   `(let ((inhibit-read-only t))
