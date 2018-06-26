@@ -134,19 +134,6 @@
       (comment-or-uncomment-region (region-beginning) (region-end))
     (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
 
-(defun neotree-project-dir ()
-  "Open NeoTree using the Projectile project root."
-  (interactive)
-  (let ((project-dir (projectile-project-p))
-        (file-name (buffer-file-name)))
-    (neotree-toggle)
-    (if project-dir
-        (if (neo-global--window-exists-p)
-            (progn
-              (neotree-dir project-dir)
-              (neotree-find file-name)))
-      (message "Could not find Projectile project root."))))
-
 (defun move-line-up ()
   "Move current line up."
   (interactive)
@@ -211,7 +198,6 @@
 (global-set-key (kbd "M-<down>") 'move-line-down)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
-(global-set-key [f8] 'neotree-project-dir)
 
 (global-set-key (kbd "C-c o") 'occur)
 (global-set-key (kbd "C-c l") 'comint-clear-buffer)
@@ -224,6 +210,8 @@
 (global-set-key (kbd "C-c s m") 'spotify-now-playing)
 (global-set-key (kbd "C-c c") 'find-file-general)
 (global-set-key (kbd "C-c v") 'visualize-undo)
+(global-set-key (kbd "C-c k") 'bookmark-set)
+(global-set-key (kbd "C-c j") 'bookmark-jump)
 (add-hook 'restclient-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "C-c C-v") 'close-respose-and-request)))
