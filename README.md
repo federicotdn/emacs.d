@@ -7,6 +7,12 @@ M = meta, alt
 S = shift
 ```
 
+```
+a (beggining) <---> e (end)
+b (backward)  <---> f (forward)
+p (previous)  <---> n (next)
+```
+
 ## Navigation
 ```
 <left>, <right>, ...: move around by char.
@@ -77,7 +83,8 @@ C-x r b: jump to bookmark
 
 ## Search
 ```
-C-s: incremental search
+C-s: isearch
+C-s C-s: repeat last isearch
 C-r: backward incremental search
 C-M-s: regexp incremental search
 C-M-r: backward regexp incremental search
@@ -208,6 +215,7 @@ C-c C-c: save commit message
 C-c p f: open file in project
 C-c p s g: recursive grep in project
 C-c p p: switch to project
+C-c p D: project dired
 ```
 
 ## Shell

@@ -92,6 +92,9 @@
 ;; Disable truncate-lines when editing Markdown files
 (add-hook 'markdown-mode-hook 'visual-line-mode)
 
+;; Dired human readable sizes
+(setq dired-listing-switches "-alh")
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
@@ -122,6 +125,9 @@
 ;; YAML mode
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+;; Disable line numbers on Shell
+(add-hook 'shell-mode-hook (lambda () (display-line-numbers-mode -1)))
 
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
@@ -200,7 +206,6 @@
 (global-set-key (kbd "M-p") 'backward-paragraph)
 
 (global-set-key (kbd "C-c o") 'occur)
-(global-set-key (kbd "C-c l") 'comint-clear-buffer)
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
 (global-set-key (kbd "C-c g") 'diff-hl-mode)
@@ -210,8 +215,8 @@
 (global-set-key (kbd "C-c s m") 'spotify-now-playing)
 (global-set-key (kbd "C-c c") 'find-file-general)
 (global-set-key (kbd "C-c v") 'visualize-undo)
-(global-set-key (kbd "C-c k") 'bookmark-set)
-(global-set-key (kbd "C-c j") 'bookmark-jump)
+(global-set-key (kbd "C-c k") 'kill-current-buffer)
+(global-set-key (kbd "C-c l") 'comint-clear-buffer)
 (add-hook 'restclient-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "C-c C-v") 'close-respose-and-request)))
