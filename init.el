@@ -95,6 +95,10 @@
 ;; Dired human readable sizes
 (setq dired-listing-switches "-alh")
 
+;; Set up uniquify
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
@@ -158,17 +162,35 @@
 	(transpose-lines 1)
 	(previous-line))))
 
+(defun swap-window-pair-buffers ()
+  "When two windows are open, swap their buffers."
+  (interactive)
+  (if (eq (count-windows) 2)
+      (let* ((w1 (elt (window-list) 0))
+	     (w2 (elt (window-list) 1))
+	     (b1 (window-buffer w1))
+	     (b2 (window-buffer w2)))
+	(set-window-buffer w1 b2)
+	(set-window-buffer w2 b1))
+    (message "This function only works with exactly two windows.")))
+
 (defun find-file-general ()
+  "If in a projectile project, use projectile-find file. Otherwise use ido-find-file."
   (interactive)
   (if (projectile-project-p)
       (projectile-find-file)
     (ido-find-file)))
 
-(defun close-respose-and-request ()
+(defun delete-line-prefix ()
+  "Delete chars from line start to point."
   (interactive)
-  (progn
-    (when (get-buffer "*HTTP Response*")
-      (kill-buffer "*HTTP Response*"))
+  (delete-region (line-beginning-position) (point)))
+
+(defun close-respose-and-request ()
+  "Close last HTTP response buffer and send a new request."
+  (interactive)
+  (if (get-buffer "*HTTP Response*")
+      (kill-buffer "*HTTP Response*")
     (restclient-http-send-current-stay-in-window)))
 
 (defun yank-pop-verbose ()
@@ -189,10 +211,11 @@
 ;; Keybindings
 ;;----------------------------------------------------------------------------
 
-(global-set-key (kbd "C-j") 'avy-goto-word-or-subword-1)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x C-d") 'ido-dired)
 (global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-;") 'toggle-comment-smart)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
@@ -204,7 +227,10 @@
 (global-set-key (kbd "M-<down>") 'move-line-down)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
+(global-set-key (kbd "M-i") 'imenu)
 
+(global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
+(global-set-key (kbd "C-c DEL") 'delete-line-prefix)
 (global-set-key (kbd "C-c o") 'occur)
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
