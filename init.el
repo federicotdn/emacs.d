@@ -120,9 +120,6 @@
 (diff-hl-margin-mode)
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
-;; Visual undo
-(load "~/.emacs.d/visual-undo.el")
-
 ;; Spotify controls
 (load "~/.emacs.d/spotify.el")
 
@@ -240,7 +237,6 @@
 (global-set-key (kbd "C-c s p") 'spotify-previous)
 (global-set-key (kbd "C-c s m") 'spotify-now-playing)
 (global-set-key (kbd "C-c c") 'find-file-general)
-(global-set-key (kbd "C-c v") 'visualize-undo)
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c l") 'comint-clear-buffer)
 (add-hook 'restclient-mode-hook

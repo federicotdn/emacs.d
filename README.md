@@ -159,6 +159,7 @@ C-x d: dired
 <ret>: visit file or directory
 ^: go up one directory
 q: quit dired
++: create directory
 n, p, C-n, C-p: move down/up
 R: rename file
 d: flag file for deletion
