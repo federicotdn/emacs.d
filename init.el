@@ -187,8 +187,8 @@
   "Close last HTTP response buffer and send a new request."
   (interactive)
   (if (get-buffer "*HTTP Response*")
-      (kill-buffer "*HTTP Response*")
-    (restclient-http-send-current-stay-in-window)))
+      (kill-buffer "*HTTP Response*"))
+  (restclient-http-send-current-stay-in-window))
 
 (defun yank-pop-verbose ()
   "Call yank-pop and show kill ring pointer index value."
