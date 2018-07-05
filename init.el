@@ -96,6 +96,9 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
+;; Shrink left fringe
+(fringe-mode '(2 . nil))
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
@@ -103,19 +106,13 @@
 ;; Projectile
 (projectile-global-mode)
 (setq-default projectile-mode-line
-	      '(:eval (format " Proj[%s]" (projectile-project-name)))
-	      )
+	      '(:eval (format " Proj[%s]" (projectile-project-name))))
 
 ;; Elpy
 (elpy-enable)
 
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
-
-;; Diff-hl on margins
-(require 'diff-hl)
-(diff-hl-margin-mode)
-(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
 ;; Spotify controls
 (load "~/.emacs.d/spotify.el")
@@ -124,8 +121,8 @@
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
-;; Disable line numbers on Shell
-(add-hook 'shell-mode-hook (lambda () (display-line-numbers-mode -1)))
+;; Restclient mode
+(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
@@ -227,7 +224,6 @@
 (global-set-key (kbd "C-c DEL") 'delete-line-prefix)
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
-(global-set-key (kbd "C-c g") 'diff-hl-mode)
 (global-set-key (kbd "C-c s SPC") 'spotify-play-pause)
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)

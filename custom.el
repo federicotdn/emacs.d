@@ -5,6 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode t)
  '(desktop-restore-eager 2)
+ '(flymake-fringe-indicator-position (quote right-fringe))
  '(grep-find-ignored-directories
    (quote
     ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "env" "venv" "build")))
@@ -12,7 +13,7 @@
    "find <D> <X> -type f <F> -exec grep <C> -C 3 -nH --null -e <R> \\{\\} +")
  '(package-selected-packages
    (quote
-    (yaml-mode restclient debbugs diff-hl magit elpy monokai-theme projectile markdown-mode)))
+    (yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
  '(winner-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
