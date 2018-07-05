@@ -23,9 +23,6 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-;; Show line numbers using new mode (26+)
-(global-display-line-numbers-mode 1)
-
 ;; Disable tool bar and scroll bar
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
