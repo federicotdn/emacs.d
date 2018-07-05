@@ -206,6 +206,15 @@ M-x package-install-selected-packages: install listed packages in init.el
 ## Magit
 ```
 C-x g: magit-status (main window)
+c: commit
+l: log
+k: disacrd
+F: pull
+P: push
+s: stage
+u: unstage
+g: refresh
+h: help
 C-c C-c: save commit message
 ```
 
