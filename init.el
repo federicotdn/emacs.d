@@ -228,7 +228,6 @@
 
 (global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
 (global-set-key (kbd "C-c DEL") 'delete-line-prefix)
-(global-set-key (kbd "C-c o") 'occur)
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
 (global-set-key (kbd "C-c g") 'diff-hl-mode)
@@ -238,6 +237,7 @@
 (global-set-key (kbd "C-c s m") 'spotify-now-playing)
 (global-set-key (kbd "C-c c") 'find-file-general)
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
+(global-set-key (kbd "C-c j") 'json-pretty-print-buffer)
 (global-set-key (kbd "C-c l") 'comint-clear-buffer)
 (add-hook 'restclient-mode-hook
 	  (lambda ()

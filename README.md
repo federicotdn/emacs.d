@@ -58,7 +58,8 @@ C-c <right>: redo windows layout change
 ## Regions
 ```
 C-<spc>: set mark
-C-u C-<spc>: return to last mark
+C-u C-<spc>: pop mark
+C-x C-<spc>: pop mark (global)
 
 M-@: mark next word
 M-h: mark next paragraph
@@ -93,7 +94,7 @@ C-w: add word at point to search string
 M-%, C-,: search and replace (interactive)
 		  y: replace, n: skip, <ret>: exit, !: replace all
 
-M-s o, C-c o: Occur mode
+M-s o: Occur mode
 q: quit occur mode
 ```
 
