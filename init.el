@@ -236,4 +236,11 @@
 	  (lambda ()
 	    (local-set-key (kbd "C-c C-v") 'close-respose-and-request)))
 
+;;----------------------------------------------------------------------------
+;; Remove default keybindings
+;;----------------------------------------------------------------------------
+
 (global-unset-key (kbd "C-x f"))
+(add-hook 'elpy-mode-hook
+	  (lambda ()
+	    (define-key elpy-mode-map (kbd "<C-return>") nil)))
