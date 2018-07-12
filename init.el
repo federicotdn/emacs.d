@@ -209,7 +209,7 @@
   "Perform rgrep in the project, searching for TODOs, FIXMEs, etc."
   (interactive)
   (let ((current-prefix-arg "-"))
-    (projectile-grep "TODO")))
+    (projectile-grep "TODO\\|FIXME\\|todo\\|fixme")))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings

@@ -235,5 +235,3 @@ C-c M-o, C-c l: clear screen
 - Org Mode
 - Helm
 - Better shell
-- TODOs project rgrep
-- TODO search function
