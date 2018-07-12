@@ -235,6 +235,5 @@ C-c M-o, C-c l: clear screen
 - Org Mode
 - Helm
 - Better shell
-- Indent code
-- Regexp format
-
+- TODOs project rgrep
+- TODO search function
