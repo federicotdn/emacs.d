@@ -27,6 +27,7 @@
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 (scroll-bar-mode -1)
+(menu-bar-mode -1)
 
 ;; Sort help by relevance
 (setq apropos-sort-by-scores t)
@@ -204,12 +205,6 @@
   (let ((win (get-buffer-window)))
     (set-window-dedicated-p win (not (window-dedicated-p win)))
     (message "Window dedicated value is now: %s." (window-dedicated-p win))))
-
-(defun projectile-rgrep-todos ()
-  "Perform rgrep in the project, searching for TODOs, FIXMEs, etc."
-  (interactive)
-  (let ((current-prefix-arg "-"))
-    (projectile-grep "TODO\\|FIXME\\|todo\\|fixme")))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings

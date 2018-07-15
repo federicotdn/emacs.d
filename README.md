@@ -32,6 +32,7 @@ C-v, M-v: scroll down, up window
 C-M-v, C-M-S-v: scroll down, up other window
 C-<, C->: scroll right, left window
 C-l: scroll to leave point at center, top, bottom
+C-M-l: scroll to leave current func. definition at top
 
 C-M-f, C-M-b: forward, backwards S-expression
 C-M-d, C-M-u: into, out of S-expression
