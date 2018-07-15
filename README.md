@@ -232,6 +232,13 @@ C-c p D: project dired
 C-c M-o, C-c l: clear screen
 ```
 
+## Abbrev
+```
+C-x a g: add global abbrev
+M-x edit-abbrevs: edit abbrevs file
+M-x write-abbrev-file: manually save abbrev file
+```
+
 # To Do
 - Org Mode
 - Helm

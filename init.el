@@ -100,6 +100,10 @@
 ;; Shrink left fringe
 (fringe-mode '(2 . nil))
 
+;; Setup abbrev-mode
+(setq-default abbrev-mode t)
+(setq save-abbrevs 'silently)
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
