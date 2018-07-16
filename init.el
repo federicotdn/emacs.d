@@ -100,10 +100,6 @@
 ;; Shrink left fringe
 (fringe-mode '(2 . nil))
 
-;; Setup abbrev-mode
-(setq-default abbrev-mode t)
-(setq save-abbrevs 'silently)
-
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
@@ -194,11 +190,11 @@
   (interactive)
   (progn
     (call-interactively #'yank-pop)
-    (let ((ring-len (length kill-ring))
+    (let* ((ring-len (length kill-ring))
 	  (pos
 	  (+
 	   (-
-	    (length kill-ring)
+	    ring-len
 	    (length kill-ring-yank-pointer))
 	   1)))
       (message "Yanked element %d of %d." pos ring-len))))
@@ -247,6 +243,27 @@
 (add-hook 'restclient-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "C-c C-v") 'close-respose-and-request)))
+
+;;----------------------------------------------------------------------------
+;; Keys for quick Spanish letters insertion
+;;----------------------------------------------------------------------------
+
+(defmacro bind-key-spanish-letter (key letter)
+  `(global-set-key (kbd (concat "C-c ' " ,key))
+		   (lambda () (interactive) (insert ,letter))))
+
+(bind-key-spanish-letter "a" "á")
+(bind-key-spanish-letter "e" "é")
+(bind-key-spanish-letter "i" "í")
+(bind-key-spanish-letter "o" "ó")
+(bind-key-spanish-letter "u" "ú")
+(bind-key-spanish-letter "n" "ñ")
+(bind-key-spanish-letter "A" "Á")
+(bind-key-spanish-letter "E" "É")
+(bind-key-spanish-letter "I" "Í")
+(bind-key-spanish-letter "O" "Ó")
+(bind-key-spanish-letter "U" "Ú")
+(bind-key-spanish-letter "N" "Ñ")
 
 ;;----------------------------------------------------------------------------
 ;; Remove default keybindings
