@@ -11,6 +11,7 @@
     ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "env" "venv" "build" "elpa")))
  '(grep-find-template
    "find <D> <X> -type f <F> -exec grep <C> -C 3 -nH --null -e <R> \\{\\} +")
+ '(initial-scratch-message nil)
  '(package-selected-packages
    (quote
     (yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
