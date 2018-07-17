@@ -56,7 +56,13 @@ C-c <left>: undo windows layout change
 C-c <right>: redo windows layout change
 ```
 
-## Regions
+## Frames
+```
+C-x 5 2: create a new frame
+C-x 5 0: close selected frame
+```
+
+## Point, Mark and Regions
 ```
 C-<spc>: set mark
 C-u C-<spc>: pop mark
@@ -72,6 +78,7 @@ C-M-<spc>: mark S-expression
 ```
 M-i: imenu
 M-.: go to definition of symbol on point
+M-,: pop back to where M-. was last invoked
 ```
 
 ## Bookmarks
@@ -127,7 +134,7 @@ C-d: kill char
 M-d: kill word
 C-k: kill rest of line
 C-S-<backspace>: kill line
-C-<backspace>: backwards kill word
+C-<backspace>: backwards delete word
 
 C-w: kill active region (cut)
 M-w: copy active region (copy)
@@ -153,6 +160,7 @@ C-h v: describe variable
 C-h f: describe function
 C-h i: info documentation reader
 C-h k <key>: show documentation for key sequence
+C-h l: view lossage (key history)
 ```
 
 ## Dired
@@ -201,7 +209,9 @@ M-x company-complete: initiate completion
 
 ## Packages
 ```
-M-x package-install-selected-packages: install listed packages in init.el
+M-x package-install-selected-packages: install selected packages
+M-x package-delete: delete a package
+M-x package-install: install a package
 ```
 
 ## Magit
@@ -230,9 +240,18 @@ C-c p D: project dired
 ## Shell
 ```
 C-c M-o, C-c l: clear screen
+C-c C-c: send interrupt
+C-d: send EOF
+```
+
+## Man Mode
+```
+M-x man: enter man mode
+n, p: next, previous section
 ```
 
 # To Do
 - Org Mode
 - Helm
 - Better shell
+- Add lyrics to spotify.el

@@ -206,6 +206,24 @@
     (set-window-dedicated-p win (not (window-dedicated-p win)))
     (message "Window dedicated value is now: %s." (window-dedicated-p win))))
 
+(defun backward-delete-word ()
+  "Delete a word backwards. Delete text from previous line only when current line is empty."
+  (interactive)
+  (if (eq 0 (current-column))
+      (call-interactively #'backward-delete-char-untabify)
+    (let ((point-after-bw (save-excursion (backward-word) (point))))
+      (if (< (count-lines 1 point-after-bw) (count-lines 1 (point)))
+	  (delete-region (line-beginning-position) (point))
+	(delete-region (point) point-after-bw)))))
+
+(defun shell-with-name ()
+  "Create a shell with a specific name."
+  (interactive)
+  (let ((name (read-string "Shell name: " nil)))
+    (shell (concat "*shell"
+		   (if (string= name "") "" (concat " " name))
+		   "*"))))
+
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
@@ -240,6 +258,9 @@
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c j") 'json-pretty-print-buffer)
 (global-set-key (kbd "C-c l") 'comint-clear-buffer)
+(global-set-key (kbd "C-c i") 'indent-region)
+(global-set-key (kbd "C-c h") 'shell-with-name)
+(global-set-key [C-backspace] 'backward-delete-word)
 (add-hook 'restclient-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "C-c C-v") 'close-respose-and-request)))
