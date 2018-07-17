@@ -264,6 +264,8 @@
 (bind-key-spanish-letter "O" "Ó")
 (bind-key-spanish-letter "U" "Ú")
 (bind-key-spanish-letter "N" "Ñ")
+(bind-key-spanish-letter "v" "ü")
+(bind-key-spanish-letter "V" "Ü")
 
 ;;----------------------------------------------------------------------------
 ;; Remove default keybindings
