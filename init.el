@@ -225,6 +225,20 @@
 		   "*"))))
 
 ;;----------------------------------------------------------------------------
+;; Macros
+;;----------------------------------------------------------------------------
+
+(defmacro disable-mode-key (mode-hook mode-map key)
+  "Set a key to nil for a specific mode and mode map."
+  `(add-hook ,mode-hook (lambda ()
+			  (define-key ,mode-map (kbd ,key) nil))))
+
+(defmacro bind-key-spanish-letter (key letter)
+  "Insert a specific letter by using C-c [ and a specified key."
+  `(global-set-key (kbd (concat "C-c [ " ,key))
+		   (lambda () (interactive) (insert ,letter))))
+
+;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
 
@@ -269,10 +283,6 @@
 ;; Keys for quick Spanish letters insertion
 ;;----------------------------------------------------------------------------
 
-(defmacro bind-key-spanish-letter (key letter)
-  `(global-set-key (kbd (concat "C-c ' " ,key))
-		   (lambda () (interactive) (insert ,letter))))
-
 (bind-key-spanish-letter "a" "á")
 (bind-key-spanish-letter "e" "é")
 (bind-key-spanish-letter "i" "í")
@@ -293,6 +303,7 @@
 ;;----------------------------------------------------------------------------
 
 (global-unset-key (kbd "C-x f"))
-(add-hook 'elpy-mode-hook
-	  (lambda ()
-	    (define-key elpy-mode-map (kbd "<C-return>") nil)))
+
+(disable-mode-key 'elpy-mode-hook elpy-mode-map "<C-return>")
+(disable-mode-key 'org-mode-hook org-mode-map "C-<tab>")
+(disable-mode-key 'magit-mode-hook magit-mode-map "C-<tab>")
