@@ -109,7 +109,8 @@ q: quit occur mode
 ## Buffers
 ```
 C-x C-s: save buffer
-C-x k, C-c k: kill buffer
+C-x k: kill a buffer
+C-c k: kill active buffer
 C-x b, C-<tab>: switch window buffer
 C-x C-b: list buffers
 
@@ -231,6 +232,7 @@ C-c C-c: save commit message
 
 ## Projectile
 ```
+C-c p p: open project
 C-c p f: open file in project
 C-c p s g: recursive grep in project
 C-c p p: switch to project

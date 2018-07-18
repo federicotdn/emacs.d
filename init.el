@@ -219,7 +219,7 @@
 (defun shell-with-name ()
   "Create a shell with a specific name."
   (interactive)
-  (let ((name (read-string "Shell name: " nil)))
+  (let ((name (read-string "Shell name: ")))
     (shell (concat "*shell"
 		   (if (string= name "") "" (concat " " name))
 		   "*"))))
