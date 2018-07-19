@@ -15,7 +15,7 @@
  '(initial-scratch-message nil)
  '(package-selected-packages
    (quote
-    (yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
+    (avy yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
  '(winner-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

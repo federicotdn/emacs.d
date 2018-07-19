@@ -88,7 +88,7 @@ C-x r l: list bookmarks
 C-x r b: jump to bookmark
 ```
 
-## Search
+## Search and Replace
 ```
 C-s: isearch
 C-s C-s: repeat last isearch
@@ -98,11 +98,16 @@ C-M-r: backward regexp incremental search
 M-n: next item in search history
 M-p: previous item in search history
 C-w: add word at point to search string
+M-e: put cursor back on mini buffer
 
 M-%, C-,: search and replace (interactive)
-		  y: replace, n: skip, <ret>: exit, !: replace all
+y: replace
+n: skip
+.: replace one and exit
+<ret>: exit
+!: replace all
 
-M-s o: Occur mode
+M-s o: occur mode
 q: quit occur mode
 ```
 

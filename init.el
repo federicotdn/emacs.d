@@ -125,6 +125,10 @@
 ;; Restclient mode
 (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
+;; Avy
+(setq avy-all-windows nil)
+(setq avy-background t)
+
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
@@ -224,6 +228,11 @@
 		   (if (string= name "") "" (concat " " name))
 		   "*"))))
 
+(defun edit-init ()
+  "Edit init.el in a buffer."
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -247,6 +256,7 @@
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-j") 'avy-goto-char-2)
 (global-set-key (kbd "C-;") 'toggle-comment-smart)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
