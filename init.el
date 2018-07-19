@@ -128,6 +128,7 @@
 ;; Avy
 (setq avy-all-windows nil)
 (setq avy-background t)
+(setq avy-keys '(?a ?s ?d ?f ?j ?k ?l ?\;))
 
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
@@ -233,6 +234,16 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+(defun duplicate-line ()
+  "Duplicate a line."
+  (interactive)
+  (kill-ring-save (line-beginning-position) (line-end-position))
+  (save-excursion
+    (move-end-of-line 1)
+    (newline)
+    (yank))
+  (next-line))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -271,6 +282,7 @@
 (global-set-key (kbd "M-i") 'imenu)
 
 (global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
+(global-set-key (kbd "C-c d") 'duplicate-line)
 (global-set-key (kbd "C-c DEL") 'delete-line-prefix)
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
@@ -284,6 +296,8 @@
 (global-set-key (kbd "C-c l") 'comint-clear-buffer)
 (global-set-key (kbd "C-c i") 'indent-region)
 (global-set-key (kbd "C-c h") 'shell-with-name)
+(global-set-key (kbd "C-c e e") 'eval-buffer)
+(global-set-key (kbd "C-c e i") 'edit-init)
 (global-set-key [C-backspace] 'backward-delete-word)
 (add-hook 'restclient-mode-hook
 	  (lambda ()
