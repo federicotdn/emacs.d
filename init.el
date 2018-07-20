@@ -100,6 +100,12 @@
 ;; Shrink left fringe
 (fringe-mode '(2 . nil))
 
+;; Highlight long lines in python-mode
+(require 'whitespace)
+(setq-default whitespace-style '(face empty tabs lines-tail trailing spaces)
+	      whitespace-line-column 79)
+(add-hook 'python-mode-hook #'whitespace-mode)
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
@@ -262,9 +268,12 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "C-o") 'flymake-goto-next-error)
+(global-set-key (kbd "C-M-o") 'flymake-goto-prev-error)
+(global-set-key (kbd "C-M-SPC") 'company-complete)
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-j") 'avy-goto-char-2)
+(global-set-key (kbd "C-j") 'avy-goto-word-1)
 (global-set-key (kbd "C-;") 'toggle-comment-smart)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)

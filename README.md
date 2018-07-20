@@ -39,6 +39,8 @@ C-M-d, C-M-u: into, out of S-expression
 C-M-k: kill S-expression
 C-M-n, C-M-p: move next, previous S-expression
 
+C-o, C-M-o: next, previous flymake error
+
 M->, M-<: move to end, beggining of buffer
 M-g M-g: go to line
 ```
@@ -232,6 +234,8 @@ s: stage
 u: unstage
 g: refresh
 h: help
+z: stash
+b: branching
 C-c C-c: save commit message
 ```
 
