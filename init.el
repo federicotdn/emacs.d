@@ -196,12 +196,9 @@
   (progn
     (call-interactively #'yank-pop)
     (let* ((ring-len (length kill-ring))
-	  (pos
-	  (+
-	   (-
-	    ring-len
-	    (length kill-ring-yank-pointer))
-	   1)))
+	   (pos (+ (- ring-len
+		      (length kill-ring-yank-pointer))
+		   1)))
       (message "Yanked element %d of %d." pos ring-len))))
 
 (defun toggle-window-dedicated ()
