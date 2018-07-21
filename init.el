@@ -106,6 +106,8 @@
 	      whitespace-line-column 79)
 (add-hook 'python-mode-hook #'whitespace-mode)
 
+(setq frame-title-format "%b - Emacs 26")
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
