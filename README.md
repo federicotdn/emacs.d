@@ -40,6 +40,7 @@ C-M-k: kill S-expression
 C-M-n, C-M-p: move next, previous S-expression
 
 C-o, C-M-o: next, previous flymake error
+C-j: avy goto word 1 char
 
 M->, M-<: move to end, beggining of buffer
 M-g M-g: go to line
@@ -120,6 +121,7 @@ C-x k: kill a buffer
 C-c k: kill active buffer
 C-x b, C-<tab>: switch window buffer
 C-x C-b: list buffers
+C-c <tab>: ibuffer
 
 C-x <left>, C-x <right>: move to previous, next buffer
 ```
@@ -263,6 +265,13 @@ n, p: next, previous section
 
 # To Do
 - Org Mode
-- Helm
-- Better shell
-- Add lyrics to spotify.el
+- Ivy / Counsel / Swiper
+- Point ring internals
+- TRAMP
+
+# Free Keys
+```
+C-c SPC
+C-.
+M-DEL
+```

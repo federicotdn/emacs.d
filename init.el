@@ -106,7 +106,21 @@
 	      whitespace-line-column 79)
 (add-hook 'python-mode-hook #'whitespace-mode)
 
+;; Make frame title nicer
 (setq frame-title-format "%b - Emacs 26")
+
+;; Set ibuffer groups
+(setq ibuffer-saved-filter-groups
+      (quote (("default"
+	       ("Dired" (mode . dired-mode))
+	       ("Python" (mode . python-mode))
+	       ("Emacs Lisp" (mode . emacs-lisp-mode))
+	       ("REST" (mode . restclient-mode))
+	       ("Git" (name . "^magit"))))))
+
+(add-hook 'ibuffer-mode-hook
+	  (lambda ()
+	    (ibuffer-switch-to-saved-filter-groups "default")))
 
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
@@ -254,9 +268,14 @@
 ;;----------------------------------------------------------------------------
 
 (defmacro disable-mode-key (mode-hook mode-map key)
-  "Set a key to nil for a specific mode and mode map."
+  "Set a key to nil for a specific mode."
   `(add-hook ,mode-hook (lambda ()
 			  (define-key ,mode-map (kbd ,key) nil))))
+
+(defmacro set-mode-key (mode-hook key func)
+  "Set a key for a specific mode."
+  `(add-hook ,mode-hook (lambda ()
+			  (local-set-key (kbd ,key) ,func))))
 
 (defmacro bind-key-spanish-letter (key letter)
   "Insert a specific letter by using C-c [ and a specified key."
@@ -267,9 +286,7 @@
 ;; Keybindings
 ;;----------------------------------------------------------------------------
 
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-M-o") 'flymake-goto-prev-error)
 (global-set-key (kbd "C-M-SPC") 'company-complete)
@@ -288,7 +305,10 @@
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
+(global-set-key [C-backspace] 'backward-delete-word)
+(global-set-key [M-backspace] 'backward-delete-word)
 
+(global-set-key (kbd "C-c <tab>") 'ibuffer)
 (global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
 (global-set-key (kbd "C-c d") 'duplicate-line)
 (global-set-key (kbd "C-c DEL") 'delete-line-prefix)
@@ -306,10 +326,8 @@
 (global-set-key (kbd "C-c h") 'shell-with-name)
 (global-set-key (kbd "C-c e e") 'eval-buffer)
 (global-set-key (kbd "C-c e i") 'edit-init)
-(global-set-key [C-backspace] 'backward-delete-word)
-(add-hook 'restclient-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "C-c C-v") 'close-respose-and-request)))
+
+(set-mode-key 'restclient-mode-hook "C-c C-v" 'close-respose-and-request)
 
 ;;----------------------------------------------------------------------------
 ;; Keys for quick Spanish letters insertion
