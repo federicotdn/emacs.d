@@ -263,6 +263,15 @@
     (yank))
   (next-line))
 
+(defun parse-timestamp ()
+  "Read date and time from UNIX timestamp in region."
+  (interactive)
+  (let* ((selection (buffer-substring-no-properties (mark) (point)))
+	 (timestamp (string-to-number selection)))
+    (if (eq timestamp 0)
+	(message "Selected value is not an integer value.")
+      (message (format-time-string "%B %e, %Y - %T" timestamp)))))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -326,6 +335,7 @@
 (global-set-key (kbd "C-c h") 'shell-with-name)
 (global-set-key (kbd "C-c e e") 'eval-buffer)
 (global-set-key (kbd "C-c e i") 'edit-init)
+(global-set-key (kbd "C-c t") 'parse-timestamp)
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-respose-and-request)
 

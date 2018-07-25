@@ -12,6 +12,7 @@
     ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "env" "venv" "build" "elpa")))
  '(grep-find-template
    "find <D> <X> -type f <F> -exec grep <C> -C 3 -nH --null -e <R> \\{\\} +")
+ '(ibuffer-use-other-window t)
  '(initial-scratch-message nil)
  '(package-selected-packages
    (quote

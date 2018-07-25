@@ -181,11 +181,11 @@ C-x d: dired
 q: quit dired
 +: create directory
 n, p, C-n, C-p: move down/up
-R: rename file
+R: rename file (mv)
 d: flag file for deletion
 x: delete flagged files
 v: view selected file, read only (q to quit)
-C: copy selected file
+C: copy selected file (cp)
 g: update dired buffer
 ```
 
