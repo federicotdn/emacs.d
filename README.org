@@ -1,20 +1,20 @@
-# Emacs Configuration
+* Emacs Configuration
 Emacs configuration files and help.
 
-```
+#+begin_src
 C = control
 M = meta, alt
 S = shift
-```
+#+end_src
 
-```
+#+begin_src
 a (beggining) <---> e (end)
 b (backward)  <---> f (forward)
 p (previous)  <---> n (next)
-```
+#+end_src
 
-## Navigation
-```
+** Navigation
+#+begin_src
 <left>, <right>, ...: move around by char.
 C-<left>, C-<right>, ...: move around by words
 M-f, M-b: move forward, backwards by words
@@ -44,10 +44,10 @@ C-j: avy goto word 1 char
 
 M->, M-<: move to end, beggining of buffer
 M-g M-g: go to line
-```
+#+end_src
 
-## Windows
-```
+** Windows
+#+begin_src
 M-o: cycle windows
 S-<left>, S-<right>, ...: move between windows
 C-x 0: Close this window
@@ -57,16 +57,16 @@ C-x 3: Split vertical
 
 C-c <left>: undo windows layout change
 C-c <right>: redo windows layout change
-```
+#+end_src
 
-## Frames
-```
+** Frames
+#+begin_src
 C-x 5 2: create a new frame
 C-x 5 0: close selected frame
-```
+#+end_src
 
-## Point, Mark and Regions
-```
+** Point, Mark and Regions
+#+begin_src
 C-<spc>: set mark
 C-u C-<spc>: pop mark
 C-x C-<spc>: pop mark (global)
@@ -75,24 +75,24 @@ M-@: mark next word
 M-h: mark next paragraph
 C-x h: mark the whole buffer
 C-M-<spc>: mark S-expression
-```
+#+end_src
 
-## Symbols
-```
+** Symbols
+#+begin_src
 M-i: imenu
 M-.: go to definition of symbol on point
 M-,: pop back to where M-. was last invoked
-```
+#+end_src
 
-## Bookmarks
-```
+** Bookmarks
+#+begin_src
 C-x r m: set bookmark
 C-x r l: list bookmarks
 C-x r b: jump to bookmark
-```
+#+end_src
 
-## Search and Replace
-```
+** Search and Replace
+#+begin_src
 C-s: isearch
 C-s C-s: repeat last isearch
 C-r: backward incremental search
@@ -112,10 +112,10 @@ n: skip
 
 M-s o: occur mode
 q: quit occur mode
-```
+#+end_src
 
-## Buffers
-```
+** Buffers
+#+begin_src
 C-x C-s: save buffer
 C-x k: kill a buffer
 C-c k: kill active buffer
@@ -124,18 +124,18 @@ C-x C-b: list buffers
 C-c <tab>: ibuffer
 
 C-x <left>, C-x <right>: move to previous, next buffer
-```
+#+end_src
 
-## Commands
-```
+** Commands
+#+begin_src
 M-x: execute command
 C-x z: repeat last command
 C-x C-c: exit
 C-u <arg> <command>: exec <command> with <arg>
-```
+#+end_src
 
-## Editing
-```
+** Editing
+#+begin_src
 C-/: undo
 C-x C-s: save buffer
 C-x C-f: visit file
@@ -159,10 +159,10 @@ C-;: comment/uncomment line
 C-x <tab>: enter indent region mode (use left-right)
 
 M-<down>, M-<up>: Move line down, up
-```
+#+end_src
 
-## Help
-```
+** Help
+#+begin_src
 <something> C-h: commands that start with <something>
 C-g: cancel command
 C-h s: syntax table for current mode
@@ -171,10 +171,10 @@ C-h f: describe function
 C-h i: info documentation reader
 C-h k <key>: show documentation for key sequence
 C-h l: view lossage (key history)
-```
+#+end_src
 
-## Dired
-```
+** Dired
+#+begin_src
 C-x d: dired
 <ret>: visit file or directory
 ^: go up one directory
@@ -187,45 +187,45 @@ x: delete flagged files
 v: view selected file, read only (q to quit)
 C: copy selected file (cp)
 g: update dired buffer
-```
+#+end_src
 
-## Emacs Lisp
-```
+** Emacs Lisp
+#+begin_src
 C-x C-e: eval last S-expression
 M-x ielm: interactive elisp CLI
 M-:: eval expression
-```
+#+end_src
 
-## Elpy
-```
+** Elpy
+#+begin_src
 C-c <: indent region to left
 C-c >: indent region to right
 M-x pyvenv-activate: activate environment
-```
+#+end_src
 
-## GNU Bug Tracker
-```
+** GNU Bug Tracker
+#+begin_src
 n, p: next, previous issue
 t: tag issue
 n, p: next unread, previous unread message
 N, P: next, previous message
-```
+#+end_src
 
-## Company
-```
+** Company
+#+begin_src
 M-n, M-p: next, previous match
 M-x company-complete: initiate completion
-```
+#+end_src
 
-## Packages
-```
+** Packages
+#+begin_src
 M-x package-install-selected-packages: install selected packages
 M-x package-delete: delete a package
 M-x package-install: install a package
-```
+#+end_src
 
-## Magit
-```
+** Magit
+#+begin_src
 C-x g: magit-status (main window)
 c: commit
 l: log
@@ -239,39 +239,39 @@ h: help
 z: stash
 b: branching
 C-c C-c: save commit message
-```
+#+end_src
 
-## Projectile
-```
+** Projectile
+#+begin_src
 C-c p p: open project
 C-c p f: open file in project
 C-c p s g: recursive grep in project
 C-c p p: switch to project
 C-c p D: project dired
-```
+#+end_src
 
-## Shell
-```
+** Shell
+#+begin_src
 C-c M-o, C-c l: clear screen
 C-c C-c: send interrupt
 C-d: send EOF
-```
+#+end_src
 
-## Man Mode
-```
+** Man Mode
+#+begin_src
 M-x man: enter man mode
 n, p: next, previous section
-```
+#+end_src
 
-# To Do
+* To Do
 - Org Mode
 - Ivy / Counsel / Swiper
 - Point ring internals
 - TRAMP
 
-# Free Keys
-```
+* Free Keys
+#+begin_src
 C-c SPC
 C-.
 M-DEL
-```
+#+end_src
