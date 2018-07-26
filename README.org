@@ -205,6 +205,7 @@ M-x pyvenv-activate: activate environment
 
 ** GNU Bug Tracker
 #+begin_src
+M-x debbugs-gnu: open GNU bug tracker
 n, p: next, previous issue
 t: tag issue
 n, p: next unread, previous unread message

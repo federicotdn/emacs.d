@@ -4,6 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(bookmark-save-flag 1)
+ '(compilation-scroll-output (quote first-error))
  '(delete-selection-mode t)
  '(desktop-restore-eager 2)
  '(flymake-fringe-indicator-position (quote right-fringe))
