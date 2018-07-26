@@ -2,9 +2,15 @@
 Emacs configuration files and help.
 
 #+begin_src
+Active:
 C = control
-M = meta, alt
+M = meta (alt)
 S = shift
+
+Historical:
+s = super
+H = hyper
+A = alt
 #+end_src
 
 #+begin_src
@@ -275,4 +281,5 @@ n, p: next, previous section
 C-c SPC
 C-.
 M-DEL
+C-x C-x
 #+end_src

@@ -216,12 +216,13 @@
   "Call yank-pop and show kill ring pointer index value."
   (interactive)
   (progn
-    (call-interactively #'yank-pop)
-    (let* ((ring-len (length kill-ring))
-	   (pos (+ (- ring-len
-		      (length kill-ring-yank-pointer))
-		   1)))
-      (message "Yanked element %d of %d." pos ring-len))))
+    (call-interactively 'yank-pop)
+    (unless (window-minibuffer-p)
+      (let* ((ring-len (length kill-ring))
+	     (pos (+ (- ring-len
+			(length kill-ring-yank-pointer))
+		     1)))
+	(message "Yanked element %d of %d." pos ring-len)))))
 
 (defun toggle-window-dedicated ()
   "Toggles the selected window's dedicated flag."
@@ -363,6 +364,7 @@
 ;;----------------------------------------------------------------------------
 
 (global-unset-key (kbd "C-x f"))
+(global-unset-key (kbd "C-x C-x"))
 
 (disable-mode-key 'elpy-mode-hook elpy-mode-map "<C-return>")
 (disable-mode-key 'org-mode-hook org-mode-map "C-<tab>")
