@@ -116,7 +116,9 @@
 	       ("Python" (mode . python-mode))
 	       ("Emacs Lisp" (mode . emacs-lisp-mode))
 	       ("REST" (mode . restclient-mode))
-	       ("Git" (name . "^magit"))))))
+	       ("Git" (name . "^magit"))
+	       ("Shell" (mode . shell-mode))
+	       ("JSON" (name . "\\.json\\'"))))))
 
 (add-hook 'ibuffer-mode-hook
 	  (lambda ()

@@ -127,7 +127,6 @@ C-x k: kill a buffer
 C-c k: kill active buffer
 C-x b, C-<tab>: switch window buffer
 C-x C-b: list buffers
-C-c <tab>: ibuffer
 
 C-x <left>, C-x <right>: move to previous, next buffer
 #+end_src
@@ -268,6 +267,16 @@ C-d: send EOF
 #+begin_src
 M-x man: enter man mode
 n, p: next, previous section
+#+end_src
+
+** IBuffer
+#+begin_src
+C-c <tab>: enter IBuffer
+d: Mark buffer for deletion
+x: Kill all marked buffers
+U: Unmark all buffers
+q: Bury IBuffer
+n, p: next, previous line
 #+end_src
 
 * To Do
