@@ -169,10 +169,12 @@ M-<down>, M-<up>: Move line down, up
 ** Help
 #+begin_src
 <something> C-h: commands that start with <something>
+C-h C-h: list help commands
 C-g: cancel command
 C-h s: syntax table for current mode
 C-h v: describe variable
 C-h f: describe function
+C-h m: describe modes
 C-h i: info documentation reader
 C-h k <key>: show documentation for key sequence
 C-h l: view lossage (key history)
@@ -278,12 +280,6 @@ U: Unmark all buffers
 q: Bury IBuffer
 n, p: next, previous line
 #+end_src
-
-* To Do
-- Org Mode
-- Ivy / Counsel / Swiper
-- Point ring internals
-- TRAMP
 
 * Free Keys
 #+begin_src

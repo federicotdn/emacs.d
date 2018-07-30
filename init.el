@@ -118,11 +118,20 @@
 	       ("REST" (mode . restclient-mode))
 	       ("Git" (name . "^magit"))
 	       ("Shell" (mode . shell-mode))
-	       ("JSON" (name . "\\.json\\'"))))))
+	       ("JSON" (name . "\\.json\\'"))
+	       ("Org" (or (name . "\\.org\\'")
+			  (mode . org-mode)
+			  (mode . org-agenda-mode)))))))
 
 (add-hook 'ibuffer-mode-hook
 	  (lambda ()
 	    (ibuffer-switch-to-saved-filter-groups "default")))
+
+;;----------------------------------------------------------------------------
+;; Org Mode
+;;----------------------------------------------------------------------------
+
+(setq org-agenda-files '("~/Workspace/org"))
 
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
@@ -339,6 +348,7 @@
 (global-set-key (kbd "C-c e e") 'eval-buffer)
 (global-set-key (kbd "C-c e i") 'edit-init)
 (global-set-key (kbd "C-c t") 'parse-timestamp)
+(global-set-key (kbd "C-c o a") 'org-agenda)
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-respose-and-request)
 
