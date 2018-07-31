@@ -284,6 +284,16 @@
 	(message "Selected value is not an integer value.")
       (message (format-time-string "%B %e, %Y - %T" timestamp)))))
 
+(defun create-scratch-buffer ()
+  "Create a new scratch buffer in Org Mode."
+  (interactive)
+  (let* ((name (read-string "Scratch buffer name: "))
+	 (fullname (concat "*scratch"
+			   (if (string= name "") "" (concat " " name))
+			   "*")))
+    (switch-to-buffer (get-buffer-create fullname))
+    (org-mode)))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -349,6 +359,8 @@
 (global-set-key (kbd "C-c e i") 'edit-init)
 (global-set-key (kbd "C-c t") 'parse-timestamp)
 (global-set-key (kbd "C-c o a") 'org-agenda)
+(global-set-key (kbd "C-c b") 'create-scratch-buffer)
+(global-set-key (kbd "C-c e d") 'debbugs-gnu)
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-respose-and-request)
 
