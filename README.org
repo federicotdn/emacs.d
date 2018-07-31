@@ -1,8 +1,9 @@
 * Emacs Configuration
 Emacs configuration files and help.
 
+** General Reference
 #+begin_src
-Active:
+Current:
 C = control
 M = meta (alt)
 S = shift
@@ -127,6 +128,7 @@ C-x k: kill a buffer
 C-c k: kill active buffer
 C-x b, C-<tab>: switch window buffer
 C-x C-b: list buffers
+C-c b: open new scratch buffer
 
 C-x <left>, C-x <right>: move to previous, next buffer
 #+end_src
@@ -279,6 +281,15 @@ x: Kill all marked buffers
 U: Unmark all buffers
 q: Bury IBuffer
 n, p: next, previous line
+#+end_src
+
+** Org Mode
+#+begin_src
+C-c o a: view agenda
+<tab>: cycle selected tree visibility
+S-<tab>: cycle entire file tree visibility
+C-<left>, C-<right>: cycle 'thing' left or right (values)
+C-c C-j: org goto
 #+end_src
 
 * Free Keys
