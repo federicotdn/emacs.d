@@ -127,11 +127,25 @@
 	  (lambda ()
 	    (ibuffer-switch-to-saved-filter-groups "default")))
 
+;; Enable auto revert
+(global-auto-revert-mode)
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
 
-(setq org-agenda-files '("~/Workspace/org"))
+;; Configure directories
+(setq org-directory "~/Dropbox/org")
+(setq org-agenda-files (list org-directory))
+
+;; Quick capture file
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+
+;; TODO lists states, last state used as 'done'
+(setq org-todo-keywords '((sequence "TODO" "CANCELLED" "DONE")))
+
+;; Two week agenda
+(setq org-agenda-span 14)
 
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
@@ -359,6 +373,7 @@
 (global-set-key (kbd "C-c e i") 'edit-init)
 (global-set-key (kbd "C-c t") 'parse-timestamp)
 (global-set-key (kbd "C-c o a") 'org-agenda)
+(global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
 
@@ -392,5 +407,6 @@
 
 (disable-mode-key 'elpy-mode-hook elpy-mode-map "<C-return>")
 (disable-mode-key 'org-mode-hook org-mode-map "C-<tab>")
+(disable-mode-key 'org-mode-hook org-mode-map "C-c [")
 (disable-mode-key 'magit-mode-hook magit-mode-map "C-<tab>")
 (disable-mode-key 'python-mode-hook python-mode-map "C-c C-c")

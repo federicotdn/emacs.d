@@ -110,7 +110,8 @@ M-p: previous item in search history
 C-w: add word at point to search string
 M-e: put cursor back on mini buffer
 
-M-%, C-,: search and replace (interactive)
+M-%: replace interactive
+C-,: replace interactive regexp
 y: replace
 n: skip
 .: replace one and exit
@@ -239,7 +240,7 @@ M-x package-install: install a package
 C-x g: magit-status (main window)
 c: commit
 l: log
-k: disacrd
+k: discard
 F: pull
 P: push
 s: stage
@@ -286,10 +287,27 @@ n, p: next, previous line
 ** Org Mode
 #+begin_src
 C-c o a: view agenda
+f, b: forward, backward in time
+n, p: next, previous item
+.: go to today
+w: week view
+y: year view
+d: day view
+
 <tab>: cycle selected tree visibility
 S-<tab>: cycle entire file tree visibility
 C-<left>, C-<right>: cycle 'thing' left or right (values)
+C-c C-c: run 'thing' (run code, check checkbox, etc.)
 C-c C-j: org goto
+C-c /: org sparse tree
+C-,: cycle agenda files
+C-c .: insert timestamp
+C-c C-l: insert link
+
+C-c C-b, C-c C-f: previous, next heading (same level)
+C-c C-p, C-c C-n: previous, next heading (visible)
+
+M-S-<left>, M-S-<right>: promote, demote subtree
 #+end_src
 
 * Free Keys
