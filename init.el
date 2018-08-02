@@ -296,7 +296,7 @@
 	 (timestamp (string-to-number selection)))
     (if (eq timestamp 0)
 	(message "Selected value is not an integer value.")
-      (message (format-time-string "%B %e, %Y - %T" timestamp)))))
+      (message (format-time-string "%B %e, %Y - %T (UTC)" timestamp t)))))
 
 (defun create-scratch-buffer ()
   "Create a new scratch buffer in Org Mode."
@@ -338,6 +338,8 @@
 ;;----------------------------------------------------------------------------
 
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x C-x") 'eval-expression)
+
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-M-o") 'flymake-goto-prev-error)
 (global-set-key (kbd "C-M-SPC") 'company-complete)
@@ -349,6 +351,8 @@
 (global-set-key (kbd "C->") 'scroll-left)
 (global-set-key (kbd "C-<tab>") 'ido-switch-buffer)
 (global-set-key (kbd "C-,") 'query-replace-regexp)
+(global-set-key [C-backspace] 'backward-delete-word)
+
 (global-set-key (kbd "M-y") 'yank-pop-verbose)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)
@@ -356,7 +360,6 @@
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
-(global-set-key [C-backspace] 'backward-delete-word)
 (global-set-key [M-backspace] 'backward-delete-word)
 
 (global-set-key (kbd "C-c <tab>") 'ibuffer)
@@ -384,6 +387,7 @@
 (global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o a") 'org-agenda)
 (global-set-key (kbd "C-c o d") 'dired-org-agenda)
+(global-set-key (kbd "C-c o s") 'org-sort)
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-respose-and-request)
 
@@ -411,7 +415,6 @@
 ;;----------------------------------------------------------------------------
 
 (global-unset-key (kbd "C-x f"))
-(global-unset-key (kbd "C-x C-x"))
 
 (disable-mode-key 'elpy-mode-hook elpy-mode-map "<C-return>")
 (disable-mode-key 'elpy-mode-hook elpy-mode-map "C-c C-c")

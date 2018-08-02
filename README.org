@@ -205,7 +205,7 @@ g: update dired buffer
 #+begin_src
 C-x C-e: eval last S-expression
 M-x ielm: interactive elisp CLI
-M-:: eval expression
+M-:, C-x C-x: eval expression
 #+end_src
 
 ** Elpy
@@ -312,10 +312,19 @@ C-c C-p, C-c C-n: previous, next heading (visible)
 M-S-<left>, M-S-<right>: promote, demote subtree
 #+end_src
 
+** EWW
+#+begin_src
+M-x eww: open EWW on a specified URL
+l, r: previous, next page
+R: remove non-text content
+g: reload
+<tab>: cycle selected link
+q: quit
+#+end_src
+
 * Free Keys
 #+begin_src
 C-c SPC
 C-.
 M-DEL
-C-x C-x
 #+end_src
