@@ -192,6 +192,8 @@ q: quit dired
 +: create directory
 n, p, C-n, C-p: move down/up
 R: rename file (mv)
+D: delete file (rm)
+y: show file type
 d: flag file for deletion
 x: delete flagged files
 v: view selected file, read only (q to quit)

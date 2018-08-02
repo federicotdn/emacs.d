@@ -308,6 +308,12 @@
     (switch-to-buffer (get-buffer-create fullname))
     (org-mode)))
 
+(defun dired-org-agenda ()
+  "Open org-directory with dired."
+  (interactive)
+  (dired org-directory "-l")
+  (dired-hide-details-mode))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -372,10 +378,12 @@
 (global-set-key (kbd "C-c e e") 'eval-buffer)
 (global-set-key (kbd "C-c e i") 'edit-init)
 (global-set-key (kbd "C-c t") 'parse-timestamp)
-(global-set-key (kbd "C-c o a") 'org-agenda)
-(global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
+
+(global-set-key (kbd "C-c o c") 'org-capture)
+(global-set-key (kbd "C-c o a") 'org-agenda)
+(global-set-key (kbd "C-c o d") 'dired-org-agenda)
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-respose-and-request)
 
