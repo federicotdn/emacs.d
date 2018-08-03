@@ -322,6 +322,15 @@ g: reload
 q: quit
 #+end_src
 
+** Hi-Lock
+#+begin_src
+M-s h .: highlight symbol at point
+M-s h r: highlight regexp
+M-s h l: highlight lines matching regexp
+M-s h c: clear all highlights
+#+end_src
+
+
 * Free Keys
 #+begin_src
 C-c SPC

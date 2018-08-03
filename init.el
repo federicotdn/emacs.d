@@ -130,6 +130,9 @@
 ;; Enable auto revert
 (global-auto-revert-mode)
 
+;; Hi-Lock mode
+(global-hi-lock-mode 1)
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
@@ -314,6 +317,11 @@
   (dired org-directory "-l")
   (dired-hide-details-mode))
 
+(defun clear-all-highlights ()
+  "Clears all highlighted items using hi-lock-mode."
+  (interactive)
+  (unhighlight-regexp t))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -360,6 +368,7 @@
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
+(global-set-key (kbd "M-s h c") 'clear-all-highlights)
 (global-set-key [M-backspace] 'backward-delete-word)
 
 (global-set-key (kbd "C-c <tab>") 'ibuffer)
