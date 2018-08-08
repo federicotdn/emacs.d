@@ -133,6 +133,10 @@
 ;; Hi-Lock mode
 (global-hi-lock-mode 1)
 
+;; TRAMP
+;; Use C-x C-f /ssh:etc...
+(tramp-set-completion-function "ssh" '((tramp-parse-sconfig "~/.ssh/config")))
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
