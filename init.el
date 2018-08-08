@@ -135,6 +135,8 @@
 
 ;; TRAMP
 ;; Use C-x C-f /ssh:etc...
+(require 'tramp)
+(setq tramp-default-method "ssh")
 (tramp-set-completion-function "ssh" '((tramp-parse-sconfig "~/.ssh/config")))
 
 ;;----------------------------------------------------------------------------
