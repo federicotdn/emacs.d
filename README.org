@@ -15,9 +15,11 @@ A = alt
 #+end_src
 
 #+begin_src
+Common conventions:
 a (beggining) <---> e (end)
 b (backward)  <---> f (forward)
 p (previous)  <---> n (next)
+r (backward)  <---> l (forward)
 #+end_src
 
 ** Navigation
@@ -29,6 +31,7 @@ C-f, C-b: move forward, backwards by char.
 C-n, C-p: next line, previous line
 C-e, C-a: end of line, start of line
 M-m: first non-whitespace of line
+M-r: move point to center, top, bottom
 
 M-}, M-{: next, previous paragraph
 M-n, M-p: next, previous paragraph
@@ -127,7 +130,9 @@ q: quit occur mode
 C-x C-s: save buffer
 C-x k: kill a buffer
 C-c k: kill active buffer
+C-c K: kill active buffer on other window
 C-x b, C-<tab>: switch window buffer
+C-M-<tab>: switch buffer on other window
 C-x C-b: list buffers
 C-c b: open new scratch buffer
 
@@ -153,6 +158,7 @@ M-d: kill word
 C-k: kill rest of line
 C-S-<backspace>: kill line
 C-<backspace>: backwards delete word
+M-z: zap to char
 
 C-w: kill active region (cut)
 M-w: copy active region (copy)
@@ -205,7 +211,7 @@ g: update dired buffer
 #+begin_src
 C-x C-e: eval last S-expression
 M-x ielm: interactive elisp CLI
-M-:, C-x C-x: eval expression
+M-:: eval expression
 #+end_src
 
 ** Elpy
@@ -330,10 +336,20 @@ M-s h l: highlight lines matching regexp
 M-s h c: clear all highlights
 #+end_src
 
+** Info
+#+begin_src
+r, l: go backward, forward in history of visited nodes
+u: go to superior node of current node
+<tab>: next link
+S-<tab>: previous link
+I: look up something in the current manual's index
+#+end_src
 
 * Free Keys
 #+begin_src
 C-c SPC
 C-.
 M-DEL
+C-x C-x
+M-j
 #+end_src

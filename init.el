@@ -234,6 +234,28 @@
       (projectile-find-file)
     (ido-find-file)))
 
+(defun find-file-general-other-window ()
+  "If in a projectile project, use projectile-find file (on another window).
+Otherwise use ido-find-file (again, on another window)."
+  (interactive)
+  (save-selected-window
+    (if (projectile-project-p)
+	(projectile-find-file-other-window)
+      (ido-find-file-other-window))))
+
+(defun switch-buffer-other-window ()
+  "Switch buffer using IDO, on another window."
+  (interactive)
+  (save-selected-window
+    (ido-switch-buffer-other-window)))
+
+(defun kill-current-buffer-other-window ()
+  "Kill current buffer on other window."
+  (interactive)
+  (save-selected-window
+    (other-window 1)
+    (kill-current-buffer)))
+
 (defun delete-line-prefix ()
   "Delete chars from line start to point."
   (interactive)
@@ -352,7 +374,6 @@
 ;;----------------------------------------------------------------------------
 
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x C-x") 'eval-expression)
 
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-M-o") 'flymake-goto-prev-error)
@@ -364,6 +385,7 @@
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
 (global-set-key (kbd "C-<tab>") 'ido-switch-buffer)
+(global-set-key (kbd "C-M-<tab>") 'switch-buffer-other-window)
 (global-set-key (kbd "C-,") 'query-replace-regexp)
 (global-set-key [C-backspace] 'backward-delete-word)
 
@@ -388,7 +410,9 @@
 (global-set-key (kbd "C-c s p") 'spotify-previous)
 (global-set-key (kbd "C-c s m") 'spotify-now-playing)
 (global-set-key (kbd "C-c c") 'find-file-general)
+(global-set-key (kbd "C-c v") 'find-file-general-other-window)
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
+(global-set-key (kbd "C-c K") 'kill-current-buffer-other-window)
 (global-set-key (kbd "C-c j") 'json-pretty-print-buffer)
 (global-set-key (kbd "C-c l") 'comint-clear-buffer)
 (global-set-key (kbd "C-c i") 'indent-region)
