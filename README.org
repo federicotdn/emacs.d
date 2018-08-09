@@ -19,7 +19,7 @@ Common conventions:
 a (beggining) <---> e (end)
 b (backward)  <---> f (forward)
 p (previous)  <---> n (next)
-r (backward)  <---> l (forward)
+l (backward)  <---> r (forward)
 #+end_src
 
 ** Navigation
@@ -338,7 +338,7 @@ M-s h c: clear all highlights
 
 ** Info
 #+begin_src
-r, l: go backward, forward in history of visited nodes
+l, r: go backward, forward in history of visited nodes
 u: go to superior node of current node
 <tab>: next link
 S-<tab>: previous link

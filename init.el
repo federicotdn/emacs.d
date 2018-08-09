@@ -227,34 +227,36 @@
 	(set-window-buffer w2 b1))
     (message "This function only works with exactly two windows.")))
 
-(defun find-file-general ()
-  "If in a projectile project, use projectile-find file. Otherwise use ido-find-file."
-  (interactive)
-  (if (projectile-project-p)
-      (projectile-find-file)
-    (ido-find-file)))
+(defun find-file-general-maybe-other-window (&optional arg)
+  "If in a projectile project, use projectile-find file. Otherwise use ido-find-file.
+When passed a prefix argument, do it on the other window."
+  (interactive "P")
+  (if (null arg)
+      (if (projectile-project-p)
+	  (projectile-find-file)
+	(ido-find-file))
+    (save-selected-window
+      (if (projectile-project-p)
+	  (projectile-find-file-other-window)
+	(ido-find-file-other-window)))))
 
-(defun find-file-general-other-window ()
-  "If in a projectile project, use projectile-find file (on another window).
-Otherwise use ido-find-file (again, on another window)."
-  (interactive)
-  (save-selected-window
-    (if (projectile-project-p)
-	(projectile-find-file-other-window)
-      (ido-find-file-other-window))))
+(defun switch-buffer-maybe-other-window (&optional arg)
+  "Switch buffer using IDO. When passed a prefix argument, do it on the other window."
+  (interactive "P")
+  (if (null arg)
+      (ido-switch-buffer)
+    (save-selected-window
+      (ido-switch-buffer-other-window))))
 
-(defun switch-buffer-other-window ()
-  "Switch buffer using IDO, on another window."
-  (interactive)
-  (save-selected-window
-    (ido-switch-buffer-other-window)))
-
-(defun kill-current-buffer-other-window ()
-  "Kill current buffer on other window."
-  (interactive)
-  (save-selected-window
-    (other-window 1)
-    (kill-current-buffer)))
+(defun kill-current-buffer-maybe-other-window (&optional arg)
+  "Kill current buffer. When passed a prefix argument, do it on the other window."
+  (interactive "P")
+  (if (null arg)
+      (kill-current-buffer)
+    (when (> (count-windows) 1)
+      (save-selected-window
+	(other-window 1)
+	(kill-current-buffer)))))
 
 (defun delete-line-prefix ()
   "Delete chars from line start to point."
@@ -264,7 +266,7 @@ Otherwise use ido-find-file (again, on another window)."
 (defun close-respose-and-request ()
   "Close last HTTP response buffer and send a new request."
   (interactive)
-  (if (get-buffer "*HTTP Response*")
+  (while (get-buffer "*HTTP Response*")
       (kill-buffer "*HTTP Response*"))
   (restclient-http-send-current-stay-in-window))
 
@@ -272,7 +274,7 @@ Otherwise use ido-find-file (again, on another window)."
   "Call yank-pop and show kill ring pointer index value."
   (interactive)
   (progn
-    (call-interactively 'yank-pop)
+    (call-interactively #'yank-pop)
     (unless (window-minibuffer-p)
       (let* ((ring-len (length kill-ring))
 	     (pos (+ (- ring-len
@@ -288,7 +290,8 @@ Otherwise use ido-find-file (again, on another window)."
     (message "Window dedicated value is now: %s." (window-dedicated-p win))))
 
 (defun backward-delete-word ()
-  "Delete a word backwards. Delete text from previous line only when current line is empty."
+  "Delete a word backwards. Delete text from previous line only when current line is empty.
+This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
   (interactive)
   (if (eq 0 (current-column))
       (call-interactively #'backward-delete-char-untabify)
@@ -311,7 +314,7 @@ Otherwise use ido-find-file (again, on another window)."
   (find-file "~/.emacs.d/init.el"))
 
 (defun duplicate-line ()
-  "Duplicate a line."
+  "Duplicate a line, and move point to it (maintain current column)."
   (interactive)
   (kill-ring-save (line-beginning-position) (line-end-position))
   (save-excursion
@@ -342,7 +345,7 @@ Otherwise use ido-find-file (again, on another window)."
 (defun dired-org-agenda ()
   "Open org-directory with dired."
   (interactive)
-  (dired org-directory "-l")
+  (dired-other-window org-directory "-l")
   (dired-hide-details-mode))
 
 (defun clear-all-highlights ()
@@ -384,8 +387,7 @@ Otherwise use ido-find-file (again, on another window)."
 (global-set-key (kbd "C-;") 'toggle-comment-smart)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
-(global-set-key (kbd "C-<tab>") 'ido-switch-buffer)
-(global-set-key (kbd "C-M-<tab>") 'switch-buffer-other-window)
+(global-set-key (kbd "C-<tab>") 'switch-buffer-maybe-other-window)
 (global-set-key (kbd "C-,") 'query-replace-regexp)
 (global-set-key [C-backspace] 'backward-delete-word)
 
@@ -409,10 +411,8 @@ Otherwise use ido-find-file (again, on another window)."
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
 (global-set-key (kbd "C-c s m") 'spotify-now-playing)
-(global-set-key (kbd "C-c c") 'find-file-general)
-(global-set-key (kbd "C-c v") 'find-file-general-other-window)
-(global-set-key (kbd "C-c k") 'kill-current-buffer)
-(global-set-key (kbd "C-c K") 'kill-current-buffer-other-window)
+(global-set-key (kbd "C-c c") 'find-file-general-maybe-other-window)
+(global-set-key (kbd "C-c k") 'kill-current-buffer-maybe-other-window)
 (global-set-key (kbd "C-c j") 'json-pretty-print-buffer)
 (global-set-key (kbd "C-c l") 'comint-clear-buffer)
 (global-set-key (kbd "C-c i") 'indent-region)
