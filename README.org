@@ -84,7 +84,6 @@ C-x C-<spc>: pop mark (global)
 M-@: mark next word
 M-h: mark next paragraph
 C-x h: mark the whole buffer
-C-M-<spc>: mark S-expression
 #+end_src
 
 ** Symbols
@@ -104,13 +103,14 @@ C-x r b: jump to bookmark
 ** Search and Replace
 #+begin_src
 C-s: isearch
-C-s C-s: repeat last isearch
+C-s: repeat last isearch
+C-w: add word at point to search string
+
 C-r: backward incremental search
 C-M-s: regexp incremental search
 C-M-r: backward regexp incremental search
 M-n: next item in search history
 M-p: previous item in search history
-C-w: add word at point to search string
 M-e: put cursor back on mini buffer
 
 M-%: replace interactive
@@ -128,11 +128,13 @@ q: quit occur mode
 ** Buffers
 #+begin_src
 C-x C-s: save buffer
+C-x C-f: visit file (ido)
+C-x C-w: write buffer to file
+C-x C-f C-f: visit file (normal)
+C-c c: visit file in project, or anywhere
 C-x k: kill a buffer
 C-c k: kill active buffer
-C-c K: kill active buffer on other window
 C-x b, C-<tab>: switch window buffer
-C-M-<tab>: switch buffer on other window
 C-x C-b: list buffers
 C-c b: open new scratch buffer
 
@@ -150,9 +152,6 @@ C-u <arg> <command>: exec <command> with <arg>
 ** Editing
 #+begin_src
 C-/: undo
-C-x C-s: save buffer
-C-x C-f: visit file
-
 C-d: kill char
 M-d: kill word
 C-k: kill rest of line
@@ -166,8 +165,6 @@ C-y: yank last kill (paste)
 M-y: cycle last yank
 
 C-t: transpose
-C-o: insert on next line
-
 C-;: comment/uncomment line
 
 C-x <tab>: enter indent region mode (use left-right)
@@ -219,6 +216,7 @@ M-:: eval expression
 C-c <: indent region to left
 C-c >: indent region to right
 M-x pyvenv-activate: activate environment
+M-x elpy-config: configure elpy
 #+end_src
 
 ** GNU Bug Tracker
@@ -258,6 +256,7 @@ h: help
 z: stash
 b: branching
 C-c C-c: save commit message
+C-c C-k: abort commit
 #+end_src
 
 ** Projectile

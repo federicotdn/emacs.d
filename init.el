@@ -90,8 +90,9 @@
 ;; Disable truncate-lines when editing Markdown files
 (add-hook 'markdown-mode-hook 'visual-line-mode)
 
-;; Dired human readable sizes
+;; Dired
 (setq dired-listing-switches "-alh")
+(setq dired-auto-revert-buffer t)
 
 ;; Set up uniquify
 (require 'uniquify)
@@ -112,12 +113,12 @@
 ;; Set ibuffer groups
 (setq ibuffer-saved-filter-groups
       (quote (("default"
-	       ("Dired" (mode . dired-mode))
 	       ("Python" (mode . python-mode))
-	       ("Emacs Lisp" (mode . emacs-lisp-mode))
 	       ("REST" (mode . restclient-mode))
-	       ("Git" (name . "^magit"))
 	       ("Shell" (mode . shell-mode))
+	       ("Dired" (mode . dired-mode))
+	       ("Emacs Lisp" (mode . emacs-lisp-mode))
+	       ("Git" (name . "^magit"))
 	       ("JSON" (name . "\\.json\\'"))
 	       ("Org" (or (name . "\\.org\\'")
 			  (mode . org-mode)
@@ -353,6 +354,11 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
   (interactive)
   (unhighlight-regexp t))
 
+(defun print-buffer-file-name ()
+  "Print the current buffer's file name/path."
+  (interactive)
+  (message "%s" buffer-file-name))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -422,6 +428,7 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
 (global-set-key (kbd "C-c t") 'parse-timestamp)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
+(global-set-key (kbd "C-c e p") 'print-buffer-file-name)
 
 (global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o a") 'org-agenda)
