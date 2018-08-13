@@ -346,7 +346,7 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
 (defun dired-org-agenda ()
   "Open org-directory with dired."
   (interactive)
-  (dired-other-window org-directory "-l")
+  (dired org-directory "-l")
   (dired-hide-details-mode))
 
 (defun clear-all-highlights ()
