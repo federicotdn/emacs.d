@@ -140,6 +140,17 @@
 (setq tramp-default-method "ssh")
 (tramp-set-completion-function "ssh" '((tramp-parse-sconfig "~/.ssh/config")))
 
+;; Registers
+(setq register-preview-delay 0)
+
+(defun my-register-preview-function (r)
+  "A custom register-previewing function which tries to be more legible."
+  (format " %s  %s\n"
+	  (propertize (single-key-description (car r)) 'face '(:foreground "deep pink"))
+	  (register-describe-oneline (car r))))
+
+(setq register-preview-function 'my-register-preview-function)
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
@@ -359,6 +370,26 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
   (interactive)
   (message "%s" buffer-file-name))
 
+(defun thing-to-register-dwim (&optional arg)
+  "If region is active, copy it to a register. Otherwise, save point position and current
+buffer a register. If called with a prefix argument, prompt for register and delete it."
+  (interactive "P")
+  (if (null arg)
+      (if (use-region-p)
+	  (call-interactively #'copy-to-register)
+	(call-interactively #'point-to-register))
+    (let ((reg (register-read-with-preview "Delete register: ")))
+      (setq register-alist (assq-delete-all reg register-alist)))))
+
+(defun use-register-dwim (reg)
+  "Prompt for a register name. If the selected register contains text, insert its contents
+into the current buffer. If the register contains a point position, jump to it."
+  (interactive (list (register-read-with-preview "Register: ")))
+  (let ((contents (get-register reg)))
+    (cond ((stringp contents) (insert-register reg))
+	  ((markerp contents) (jump-to-register reg))
+	  (t (message "Register %s is neither text or a buffer position.")))))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -395,6 +426,7 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
 (global-set-key (kbd "C->") 'scroll-left)
 (global-set-key (kbd "C-<tab>") 'switch-buffer-maybe-other-window)
 (global-set-key (kbd "C-,") 'query-replace-regexp)
+(global-set-key (kbd "C-.") 'thing-to-register-dwim)
 (global-set-key [C-backspace] 'backward-delete-word)
 
 (global-set-key (kbd "M-y") 'yank-pop-verbose)
@@ -404,6 +436,7 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
+(global-set-key (kbd "M-j") 'use-register-dwim)
 (global-set-key (kbd "M-s h c") 'clear-all-highlights)
 (global-set-key [M-backspace] 'backward-delete-word)
 
