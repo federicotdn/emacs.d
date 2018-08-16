@@ -311,6 +311,8 @@ C-,: cycle agenda files
 C-c .: insert timestamp
 C-c C-l: insert link
 
+< s <tab>: insert code block
+
 C-c C-b, C-c C-f: previous, next heading (same level)
 C-c C-p, C-c C-n: previous, next heading (visible)
 
@@ -344,12 +346,16 @@ S-<tab>: previous link
 I: look up something in the current manual's index
 #+end_src
 
+** Macros
+#+BEGIN_SRC
+F3, F4: start, stop recording macro
+F4: playback last recorded macro
+#+END_SRC
+
 * Free Keys
 #+begin_src
 C-c SPC
 C-.
 M-DEL
-C-x C-x
-M-j
 C-c 0, C-c 1, etc.
 #+end_src

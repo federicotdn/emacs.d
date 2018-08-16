@@ -202,8 +202,8 @@
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
 
-(defun toggle-comment-smart ()
-  "Toggle comment on line or region if selected."
+(defun comment-really-dwim ()
+  "Toggle comment on line (or region if active)."
   (interactive)
   (if (use-region-p)
       (comment-or-uncomment-region (region-beginning) (region-end))
@@ -371,24 +371,28 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
   (message "%s" buffer-file-name))
 
 (defun thing-to-register-dwim (&optional arg)
-  "If region is active, copy it to a register. Otherwise, save point position and current
-buffer a register. If called with a prefix argument, prompt for register and delete it."
+  "If called with a prefix argument, prompt for register and clear its contents.
+If last executed action was defining a macro, prompt for a register and save it there.
+Otherwise, if region is active, copy it to a register.
+Otherwise save point position and current buffer a register."
   (interactive "P")
   (if (null arg)
-      (if (use-region-p)
-	  (call-interactively #'copy-to-register)
-	(call-interactively #'point-to-register))
+      (cond ((eq last-command 'kmacro-end-or-call-macro) (call-interactively #'kmacro-to-register))
+	    ((use-region-p) (call-interactively #'copy-to-register))
+	    (t (call-interactively #'point-to-register)))
     (let ((reg (register-read-with-preview "Delete register: ")))
       (setq register-alist (assq-delete-all reg register-alist)))))
 
 (defun use-register-dwim (reg)
-  "Prompt for a register name. If the selected register contains text, insert its contents
-into the current buffer. If the register contains a point position, jump to it."
+  "Prompt for a register name.
+If the selected register contains text, insert its contents into the current buffer.
+If the register contains a point position, jump to it.
+If the register contains a keyboard macro, execute it."
   (interactive (list (register-read-with-preview "Register: ")))
   (let ((contents (get-register reg)))
     (cond ((stringp contents) (insert-register reg))
-	  ((markerp contents) (jump-to-register reg))
-	  (t (message "Register %s is neither text or a buffer position.")))))
+	  ((or (markerp contents) (vectorp contents)) (jump-to-register reg))
+	  (t (message "Unknown type for register '%c'." reg)))))
 
 ;;----------------------------------------------------------------------------
 ;; Macros
@@ -414,6 +418,7 @@ into the current buffer. If the register contains a point position, jump to it."
 ;;----------------------------------------------------------------------------
 
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x C-x") 'thing-to-register-dwim)
 
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-M-o") 'flymake-goto-prev-error)
@@ -421,12 +426,11 @@ into the current buffer. If the register contains a point position, jump to it."
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-j") 'avy-goto-word-1)
-(global-set-key (kbd "C-;") 'toggle-comment-smart)
+(global-set-key (kbd "C-;") 'comment-really-dwim)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
 (global-set-key (kbd "C-<tab>") 'switch-buffer-maybe-other-window)
 (global-set-key (kbd "C-,") 'query-replace-regexp)
-(global-set-key (kbd "C-.") 'thing-to-register-dwim)
 (global-set-key [C-backspace] 'backward-delete-word)
 
 (global-set-key (kbd "M-y") 'yank-pop-verbose)
