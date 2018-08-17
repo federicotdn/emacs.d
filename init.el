@@ -345,14 +345,14 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
       (message (format-time-string "%B %e, %Y - %T (UTC)" timestamp t)))))
 
 (defun create-scratch-buffer ()
-  "Create a new scratch buffer in Org Mode."
+  "Create a new scratch buffer in Fundamental mode."
   (interactive)
   (let* ((name (read-string "Scratch buffer name: "))
 	 (fullname (concat "*scratch"
 			   (if (string= name "") "" (concat " " name))
 			   "*")))
     (switch-to-buffer (get-buffer-create fullname))
-    (org-mode)))
+    (fundamental-mode)))
 
 (defun dired-org-agenda ()
   "Open org-directory with dired."
@@ -386,12 +386,15 @@ Otherwise save point position and current buffer a register."
 (defun use-register-dwim (reg)
   "Prompt for a register name.
 If the selected register contains text, insert its contents into the current buffer.
-If the register contains a point position, jump to it.
+If the register contains a point position (or file query), jump to it.
 If the register contains a keyboard macro, execute it."
   (interactive (list (register-read-with-preview "Register: ")))
   (let ((contents (get-register reg)))
     (cond ((stringp contents) (insert-register reg))
-	  ((or (markerp contents) (vectorp contents)) (jump-to-register reg))
+	  ((or (markerp contents)
+	       (vectorp contents)
+	       (and (consp contents) (eq (car contents) 'file-query)))
+	   (jump-to-register reg))
 	  (t (message "Unknown type for register '%c'." reg)))))
 
 ;;----------------------------------------------------------------------------
