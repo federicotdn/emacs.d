@@ -391,10 +391,16 @@ If the register contains a keyboard macro, execute it."
   (interactive (list (register-read-with-preview "Register: ")))
   (let ((contents (get-register reg)))
     (cond ((stringp contents) (insert-register reg))
-	  ((or (markerp contents)
-	       (vectorp contents)
+	  ((or (vectorp contents)
 	       (and (consp contents) (eq (car contents) 'file-query)))
 	   (jump-to-register reg))
+	  ((markerp contents)
+	   (let ((w (get-buffer-window (marker-buffer contents) t)))
+	     (if w
+		 (progn
+		   (select-frame-set-input-focus (window-frame w))
+		   (select-window w))
+	       (jump-to-register reg))))
 	  (t (message "Unknown type for register '%c'." reg)))))
 
 ;;----------------------------------------------------------------------------
