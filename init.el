@@ -408,6 +408,23 @@ If the register contains a keyboard macro, execute it."
 	     (jump-to-register reg)))
 	  (t (message "Unknown type for register '%c'." reg)))))
 
+
+(defun rename-file-buffer ()
+  "Rename the current buffer's file, and the buffer itself to match the new
+file name."
+  (interactive)
+  (let ((current-file-name (buffer-file-name)))
+    (if (and current-file-name (not (buffer-modified-p)))
+	(let ((new-file-name (read-file-name "New file name:" nil current-file-name 'confirm)))
+	  (if (and (not (file-exists-p new-file-name))
+		   (not (get-file-buffer new-file-name)))
+	      (progn
+		(rename-file current-file-name new-file-name)
+		(set-visited-file-name new-file-name)
+		(set-buffer-modified-p nil))
+	    (message "File already exists!")))
+      (message "Current buffer is not visiting any file, or has unsaved changes."))))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -476,6 +493,7 @@ If the register contains a keyboard macro, execute it."
 (global-set-key (kbd "C-c h") 'shell-with-name)
 (global-set-key (kbd "C-c e e") 'eval-buffer)
 (global-set-key (kbd "C-c e i") 'edit-init)
+(global-set-key (kbd "C-c e r") 'rename-file-buffer)
 (global-set-key (kbd "C-c t") 'parse-timestamp)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
