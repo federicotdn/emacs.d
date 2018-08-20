@@ -186,6 +186,9 @@
 ;; Spotify controls
 (load "~/.emacs.d/spotify.el")
 
+;; rcirc
+(load "~/.emacs.d/rcirc.el" t)
+
 ;; YAML mode
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
