@@ -17,7 +17,9 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 
-(package-initialize)
+;; Call package-initialize on version 26 only
+(when (< emacs-major-version 27)
+  (package-initialize))
 
 ;; Customize
 (setq custom-file "~/.emacs.d/custom.el")
@@ -396,23 +398,12 @@ If the register contains a keyboard macro, execute it."
 	   (jump-to-register reg))
 	  ((markerp contents)
 	   (let ((w (get-buffer-window (marker-buffer contents) t)))
-	     (if w
+	     (when w
 		 (progn
 		   (select-frame-set-input-focus (window-frame w))
-		   (select-window w))
-	       (jump-to-register reg))))
+		   (select-window w)))
+	     (jump-to-register reg)))
 	  (t (message "Unknown type for register '%c'." reg)))))
-
-(defun move-beginning-of-line-dwim ()
-  "Move to the current line's first non-whitespace character. If the point
-is already at the current line's first non-whitespace character, move the point
-to the beginning of the line."
-  (interactive)
-  (when (> (current-column) 0)
-      (let ((point-after-bti (save-excursion (back-to-indentation) (point))))
-	(if (eq point-after-bti (point))
-	    (move-beginning-of-line nil)
-	  (goto-char point-after-bti)))))
 
 ;;----------------------------------------------------------------------------
 ;; Macros
@@ -439,7 +430,6 @@ to the beginning of the line."
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-x") 'thing-to-register-dwim)
-(global-set-key (kbd "C-a") 'move-beginning-of-line-dwim)
 
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-M-o") 'flymake-goto-prev-error)
