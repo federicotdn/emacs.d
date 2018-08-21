@@ -108,7 +108,7 @@
 (add-hook 'python-mode-hook #'whitespace-mode)
 
 ;; Make frame title nicer
-(setq frame-title-format "%b - Emacs 26")
+(setq frame-title-format (format "%%b - Emacs %s" emacs-version))
 
 ;; Set ibuffer groups
 (setq ibuffer-saved-filter-groups
@@ -405,7 +405,6 @@ If the register contains a keyboard macro, execute it."
 		   (select-window w)))
 	     (jump-to-register reg)))
 	  (t (message "Unknown type for register '%c'." reg)))))
-
 
 (defun rename-file-buffer ()
   "Rename the current buffer's file, and the buffer itself to match the new
