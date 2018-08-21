@@ -186,7 +186,8 @@
 ;; Spotify controls
 (load "~/.emacs.d/spotify.el")
 
-;; shellckeck.el
+;; flymake-shellcheck
+(add-to-list 'load-path "~/.emacs.d/flymake-shellcheck")
 (require 'flymake-shellcheck)
 (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
 
