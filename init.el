@@ -186,6 +186,9 @@
 ;; Spotify controls
 (load "~/.emacs.d/spotify.el")
 
+;; shellckeck.el
+(load "~/.emacs.d/shellcheck.el")
+
 ;; rcirc
 (load "~/.emacs.d/rcirc.el" t)
 
