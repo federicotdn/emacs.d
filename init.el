@@ -187,7 +187,8 @@
 (load "~/.emacs.d/spotify.el")
 
 ;; shellckeck.el
-(load "~/.emacs.d/shellcheck.el")
+(require 'flymake-shellcheck)
+(add-hook 'sh-mode-hook 'flymake-shellcheck-load)
 
 ;; rcirc
 (load "~/.emacs.d/rcirc.el" t)
