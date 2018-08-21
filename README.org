@@ -266,6 +266,7 @@ C-c p f: open file in project
 C-c p s g: recursive grep in project
 C-c p p: switch to project
 C-c p D: project dired
+C-c p r: find and replace in project
 #+end_src
 
 ** Shell
