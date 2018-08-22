@@ -220,6 +220,9 @@
 ;; Restclient mode
 (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
+;; Hy mode
+(add-to-list 'auto-mode-alist '("\\.hy\\'" . hy-mode))
+
 ;; Avy
 (setq avy-all-windows nil)
 (setq avy-background t)

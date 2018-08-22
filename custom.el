@@ -18,7 +18,7 @@
  '(initial-scratch-message nil)
  '(package-selected-packages
    (quote
-    (avy yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
+    (hy-mode avy yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
  '(projectile-use-git-grep t)
  '(winner-mode t))
 (custom-set-faces
