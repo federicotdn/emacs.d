@@ -285,7 +285,7 @@ n, p: next, previous section
 
 ** IBuffer
 #+begin_src
-<backtab>: enter IBuffer
+C-c <tab>: enter IBuffer
 d: Mark buffer for deletion
 x: Kill all marked buffers
 U: Unmark all buffers

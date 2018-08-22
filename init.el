@@ -43,7 +43,14 @@
 (setq ido-everywhere t)
 (setq ido-enable-flex-matching t)
 (setq ido-separator "\n")
-(setq ido-ignore-buffers '("^ " "*Completions*" "*Shell Command Output*" "*Messages*" "*Flymake log*" "*Compile-Log*" "*Help*"))
+(setq ido-ignore-buffers
+      '("^ "
+	"*Completions*"
+	"*Shell Command Output*"
+	"*Messages*"
+	"*Flymake log*"
+	"*Compile-Log*"
+	"*Help*"))
 
 ;; Move between windows using S-<left> S-<right> etc.
 (windmove-default-keybindings)
@@ -60,10 +67,8 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Move backup and autosave to /tmp
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 ;; Highlight current line
 (global-hl-line-mode +1)
@@ -107,6 +112,9 @@
 	      whitespace-line-column 79)
 (add-hook 'python-mode-hook #'whitespace-mode)
 
+;; Set fill-column for Python
+(add-hook 'python-mode-hook (lambda () (set-fill-column 79)))
+
 ;; Hideshow minor mode
 (defun enable-hs ()
   "Enable Hideshow mode context."
@@ -117,8 +125,6 @@
 	 '(python-mode-hook
 	   emacs-lisp-mode-hook))
   (add-hook hook #'enable-hs))
-
-(setq-default hs-showing-all t)
 
 ;; Make frame title nicer
 (setq frame-title-format (format "%%b - Emacs %s" emacs-version))
@@ -162,7 +168,7 @@
 	  (propertize (single-key-description (car r)) 'face '(:foreground "deep pink"))
 	  (register-describe-oneline (car r))))
 
-(setq register-preview-function 'my-register-preview-function)
+(setq register-preview-function #'my-register-preview-function)
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
@@ -251,7 +257,7 @@
 (defun swap-window-pair-buffers ()
   "When two windows are open, swap their buffers."
   (interactive)
-  (if (eq (count-windows) 2)
+  (if (= (count-windows) 2)
       (let* ((w1 (elt (window-list) 0))
 	     (w2 (elt (window-list) 1))
 	     (b1 (window-buffer w1))
@@ -296,11 +302,13 @@ When passed a prefix argument, do it on the other window."
   (interactive)
   (delete-region (line-beginning-position) (point)))
 
-(defun close-respose-and-request ()
+(defun close-response-and-request ()
   "Close last HTTP response buffer and send a new request."
   (interactive)
   (while (get-buffer "*HTTP Response*")
-      (kill-buffer "*HTTP Response*"))
+    (kill-buffer "*HTTP Response*"))
+  (when (= (count-windows) 1)
+    (split-window-right))
   (restclient-http-send-current-stay-in-window))
 
 (defun yank-pop-verbose ()
@@ -326,7 +334,7 @@ When passed a prefix argument, do it on the other window."
   "Delete a word backwards. Delete text from previous line only when current line is empty.
 This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
   (interactive)
-  (if (eq 0 (current-column))
+  (if (= 0 (current-column))
       (call-interactively #'backward-delete-char-untabify)
     (let ((point-after-bw (save-excursion (backward-word) (point))))
       (if (< (count-lines 1 point-after-bw) (count-lines 1 (point)))
@@ -361,7 +369,7 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
   (interactive)
   (let* ((selection (buffer-substring-no-properties (mark) (point)))
 	 (timestamp (string-to-number selection)))
-    (if (eq timestamp 0)
+    (if (= timestamp 0)
 	(message "Selected value is not an integer value.")
       (message (format-time-string "%B %e, %Y - %T (UTC)" timestamp t)))))
 
@@ -474,8 +482,6 @@ file name."
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-x") 'thing-to-register-dwim)
 
-(global-set-key (kbd "<backtab>") 'ibuffer)
-
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-M-o") 'flymake-goto-prev-error)
 (global-set-key (kbd "C-M-SPC") 'company-complete)
@@ -524,13 +530,14 @@ file name."
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
 (global-set-key (kbd "C-c a") 'hs-show-all-toggle)
 (global-set-key (kbd "C-c g") 'hs-toggle-hiding)
+(global-set-key (kbd "C-c <tab>") 'ibuffer)
 
 (global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o a") 'org-agenda)
 (global-set-key (kbd "C-c o d") 'dired-org-agenda)
 (global-set-key (kbd "C-c o s") 'org-sort)
 
-(set-mode-key 'restclient-mode-hook "C-c C-v" 'close-respose-and-request)
+(set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
 
 ;;----------------------------------------------------------------------------
 ;; Keys for quick Spanish letters insertion
