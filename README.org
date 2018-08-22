@@ -257,6 +257,7 @@ z: stash
 b: branching
 C-c C-c: save commit message
 C-c C-k: abort commit
+C-c M-g: file popup
 #+end_src
 
 ** Projectile
@@ -284,7 +285,7 @@ n, p: next, previous section
 
 ** IBuffer
 #+begin_src
-C-c <tab>: enter IBuffer
+<backtab>: enter IBuffer
 d: Mark buffer for deletion
 x: Kill all marked buffers
 U: Unmark all buffers

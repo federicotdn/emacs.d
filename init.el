@@ -107,6 +107,19 @@
 	      whitespace-line-column 79)
 (add-hook 'python-mode-hook #'whitespace-mode)
 
+;; Hideshow minor mode
+(defun enable-hs ()
+  "Enable Hideshow mode context."
+  (hs-minor-mode)
+  (setq-local hs-showing-all t))
+
+(dolist (hook
+	 '(python-mode-hook
+	   emacs-lisp-mode-hook))
+  (add-hook hook #'enable-hs))
+
+(setq-default hs-showing-all t)
+
 ;; Make frame title nicer
 (setq frame-title-format (format "%%b - Emacs %s" emacs-version))
 
@@ -427,6 +440,14 @@ file name."
 	    (message "File already exists!")))
       (message "Current buffer is not visiting any file, or has unsaved changes."))))
 
+(defun hs-show-all-toggle ()
+  "Toggle hiding all blocks with Hideshow."
+  (interactive)
+  (if hs-showing-all
+      (hs-hide-all)
+    (hs-show-all))
+  (setq-local hs-showing-all (not hs-showing-all)))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -453,6 +474,8 @@ file name."
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-x") 'thing-to-register-dwim)
 
+(global-set-key (kbd "<backtab>") 'ibuffer)
+
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-M-o") 'flymake-goto-prev-error)
 (global-set-key (kbd "C-M-SPC") 'company-complete)
@@ -477,7 +500,6 @@ file name."
 (global-set-key (kbd "M-s h c") 'clear-all-highlights)
 (global-set-key [M-backspace] 'backward-delete-word)
 
-(global-set-key (kbd "C-c <tab>") 'ibuffer)
 (global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
 (global-set-key (kbd "C-c d") 'duplicate-line)
 (global-set-key (kbd "C-c DEL") 'delete-line-prefix)
@@ -500,6 +522,8 @@ file name."
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
+(global-set-key (kbd "C-c a") 'hs-show-all-toggle)
+(global-set-key (kbd "C-c g") 'hs-toggle-hiding)
 
 (global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o a") 'org-agenda)
