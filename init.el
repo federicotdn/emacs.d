@@ -184,8 +184,8 @@
 ;; TODO lists states, last state used as 'done'
 (setq org-todo-keywords '((sequence "TODO" "CANCELLED" "DONE")))
 
-;; Two week agenda
-(setq org-agenda-span 14)
+;; important tag
+(setq org-tag-faces '(("imp" . (:foreground "red" :weight bold))))
 
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
@@ -499,6 +499,7 @@ file name."
 (global-set-key [C-backspace] 'backward-delete-word)
 
 (global-set-key (kbd "M-y") 'yank-pop-verbose)
+(global-set-key (kbd "M-h") 'mark-sexp)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)
@@ -539,6 +540,8 @@ file name."
 (global-set-key (kbd "C-c o a") 'org-agenda)
 (global-set-key (kbd "C-c o d") 'dired-org-agenda)
 (global-set-key (kbd "C-c o s") 'org-sort)
+(global-set-key (kbd "C-c o r") 'org-archive-to-archive-sibling)
+(global-set-key (kbd "C-c o t") 'org-force-cycle-archived)
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
 

@@ -314,6 +314,7 @@ C-,: cycle agenda files
 C-c .: insert timestamp
 S-<left>, S-<right>: move to previous, next calendar day
 <ret>: select calendar day
+C-c C-x c: clone tree with time shift
 
 C-c C-l: insert link
 
