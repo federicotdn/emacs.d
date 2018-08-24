@@ -24,13 +24,13 @@ l (backward)  <---> r (forward)
 
 ** Navigation
 #+begin_src
-<left>, <right>, ...: move around by char.
-C-<left>, C-<right>, ...: move around by words
-M-f, M-b: move forward, backwards by words
-C-f, C-b: move forward, backwards by char.
+<left>, <right>, ...: move around by char
+C-<left>, C-<right>, ...: move around by word
+M-f, M-b: move forward, backwards by word
+C-f, C-b: move forward, backwards by char
 C-n, C-p: next line, previous line
 C-e, C-a: end of line, start of line
-M-m: first non-whitespace of line
+M-m: first non-whitespace char of line
 M-r: move point to center, top, bottom
 
 M-}, M-{: next, previous paragraph
@@ -46,7 +46,6 @@ C-M-l: scroll to leave current func. definition at top
 
 C-M-f, C-M-b: forward, backwards S-expression
 C-M-d, C-M-u: into, out of S-expression
-C-M-k: kill S-expression
 C-M-n, C-M-p: move next, previous S-expression
 
 C-o, C-M-o: next, previous flymake error
@@ -156,6 +155,7 @@ C-d: kill char
 M-d: kill word
 C-k: kill rest of line
 C-S-<backspace>: kill line
+C-M-k: kill S-expression
 C-<backspace>: backwards delete word
 M-z: zap to char
 
@@ -177,6 +177,7 @@ M-<down>, M-<up>: Move line down, up
 <something> C-h: commands that start with <something>
 C-h C-h: list help commands
 C-g: cancel command
+ESC ESC ESC: cancel command (even recursive)
 C-h s: syntax table for current mode
 C-h v: describe variable
 C-h f: describe function
