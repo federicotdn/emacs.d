@@ -15,6 +15,7 @@
    "find <D> <X> -type f <F> -exec grep <C> -C 3 -nH --null -e <R> \\{\\} +")
  '(hs-hide-comments-when-hiding-all nil)
  '(ibuffer-use-other-window nil)
+ '(icalendar-import-format "%s%d%l")
  '(initial-scratch-message nil)
  '(package-selected-packages
    (quote

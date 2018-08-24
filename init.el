@@ -175,8 +175,11 @@
 ;;----------------------------------------------------------------------------
 
 ;; Configure directories
-(setq org-directory "~/Dropbox/org")
+(setq org-directory "~/Dropbox/org/")
 (setq org-agenda-files (list org-directory))
+
+;; Setup diary file
+(setq diary-file (concat org-directory "diary"))
 
 ;; Quick capture file
 (setq org-default-notes-file (concat org-directory "/notes.org"))
@@ -186,6 +189,9 @@
 
 ;; important tag
 (setq org-tag-faces '(("imp" . (:foreground "red" :weight bold))))
+
+;; Include diary file
+(setq org-agenda-include-diary t)
 
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
@@ -212,6 +218,9 @@
 
 ;; rcirc
 (load "~/.emacs.d/rcirc.el" t)
+
+;; secret values
+(load "~/.emacs.d/secrets.el" t)
 
 ;; YAML mode
 (require 'yaml-mode)
@@ -459,6 +468,30 @@ file name."
     (hs-show-all))
   (setq-local hs-showing-all (not hs-showing-all)))
 
+(defun import-icalendar-url (url)
+  "Download an iCalendar file from URL (asynchronously) and dump it into the Emacs
+agenda file, overwriting any previous contents."
+  (interactive "sEnter URL: ")
+  (setq async-buf
+	(url-retrieve url
+		      (lambda (status)
+			(when (get-buffer "diary")
+			  (kill-buffer "diary"))
+			(when (file-exists-p diary-file)
+			  (delete-file diary-file))
+			(with-current-buffer async-buf
+			  (let ((coding-system-require-warning nil)
+				(coding-system-for-write 'utf-8))
+			    (icalendar-import-buffer diary-file t)))
+			(kill-buffer async-buf)
+			(kill-buffer "diary"))
+		      nil t)))
+
+(defun import-google-calendar ()
+  "Import calendar from Google Calendar."
+  (interactive)
+  (import-icalendar-url gcal-url))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -542,6 +575,7 @@ file name."
 (global-set-key (kbd "C-c o s") 'org-sort)
 (global-set-key (kbd "C-c o r") 'org-archive-to-archive-sibling)
 (global-set-key (kbd "C-c o t") 'org-force-cycle-archived)
+(global-set-key (kbd "C-c o g") 'import-google-calendar)
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
 
