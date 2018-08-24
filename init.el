@@ -216,11 +216,8 @@
 (require 'flymake-shellcheck)
 (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
 
-;; rcirc
-(load "~/.emacs.d/rcirc.el" t)
-
 ;; secret values
-(load "~/.emacs.d/secrets.el" t)
+(load "~/Dropbox/emacs/secrets.el" t)
 
 ;; YAML mode
 (require 'yaml-mode)
