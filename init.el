@@ -234,6 +234,9 @@
 (setq avy-background t)
 (setq avy-keys '(?a ?s ?d ?f ?j ?k ?l ?\;))
 
+;; Expand Region
+(require 'expand-region)
+
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
@@ -526,6 +529,7 @@ agenda file, overwriting any previous contents."
 (global-set-key (kbd "C->") 'scroll-left)
 (global-set-key (kbd "C-<tab>") 'switch-buffer-maybe-other-window)
 (global-set-key (kbd "C-,") 'query-replace-regexp)
+(global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key [C-backspace] 'backward-delete-word)
 
 (global-set-key (kbd "M-y") 'yank-pop-verbose)
