@@ -198,7 +198,8 @@
 ;;----------------------------------------------------------------------------
 
 ;; Projectile
-(projectile-global-mode)
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (setq-default projectile-mode-line
 	      '(:eval (format " P[%s]" (projectile-project-name))))
 
@@ -221,7 +222,6 @@
 (load "~/Dropbox/emacs/secrets.el" t)
 
 ;; YAML mode
-(require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 ;; Restclient mode
@@ -234,9 +234,6 @@
 (setq avy-all-windows nil)
 (setq avy-background t)
 (setq avy-keys '(?a ?s ?d ?f ?j ?k ?l ?\;))
-
-;; Expand Region
-(require 'expand-region)
 
 ;;----------------------------------------------------------------------------
 ;; Custom Functions

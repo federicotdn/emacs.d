@@ -48,7 +48,7 @@ C-M-f, C-M-b: forward, backwards S-expression
 C-M-d, C-M-u: into, out of S-expression
 C-M-n, C-M-p: move next, previous S-expression
 
-C-o, C-M-o: next, previous flymake error
+C-o: next flymake error
 C-j: avy goto word 1 char
 
 M->, M-<: move to end, beggining of buffer
