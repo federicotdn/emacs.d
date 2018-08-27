@@ -200,7 +200,7 @@
 ;; Projectile
 (projectile-global-mode)
 (setq-default projectile-mode-line
-	      '(:eval (format " Proj[%s]" (projectile-project-name))))
+	      '(:eval (format " P[%s]" (projectile-project-name))))
 
 ;; Elpy
 (elpy-enable)
@@ -209,7 +209,8 @@
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; Spotify controls
-(load "~/.emacs.d/spotify.el")
+(add-to-list 'load-path "~/.emacs.d/spotify")
+(require 'spotify)
 
 ;; flymake-shellcheck
 (add-to-list 'load-path "~/.emacs.d/flymake-shellcheck")
@@ -519,8 +520,6 @@ agenda file, overwriting any previous contents."
 (global-set-key (kbd "C-x C-x") 'thing-to-register-dwim)
 
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
-(global-set-key (kbd "C-M-o") 'flymake-goto-prev-error)
-(global-set-key (kbd "C-M-SPC") 'company-complete)
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-j") 'avy-goto-word-1)
@@ -533,7 +532,6 @@ agenda file, overwriting any previous contents."
 (global-set-key [C-backspace] 'backward-delete-word)
 
 (global-set-key (kbd "M-y") 'yank-pop-verbose)
-(global-set-key (kbd "M-h") 'mark-sexp)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)

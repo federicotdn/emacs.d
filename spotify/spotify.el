@@ -50,3 +50,5 @@
   (message "'%s' by %s"
 	   (spotify--get-metadata "xesam:title")
 	   (car (spotify--get-metadata "xesam:artist"))))
+
+(provide 'spotify)
