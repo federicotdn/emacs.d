@@ -115,17 +115,6 @@
 ;; Set fill-column for Python
 (add-hook 'python-mode-hook (lambda () (set-fill-column 79)))
 
-;; Hideshow minor mode
-(defun enable-hs ()
-  "Enable Hideshow mode context."
-  (hs-minor-mode)
-  (setq-local hs-showing-all t))
-
-(dolist (hook
-	 '(python-mode-hook
-	   emacs-lisp-mode-hook))
-  (add-hook hook #'enable-hs))
-
 ;; Make frame title nicer
 (setq frame-title-format (format "%%b - Emacs %s" emacs-version))
 
@@ -458,14 +447,6 @@ file name."
 	    (message "File already exists!")))
       (message "Current buffer is not visiting any file, or has unsaved changes."))))
 
-(defun hs-show-all-toggle ()
-  "Toggle hiding all blocks with Hideshow."
-  (interactive)
-  (if hs-showing-all
-      (hs-hide-all)
-    (hs-show-all))
-  (setq-local hs-showing-all (not hs-showing-all)))
-
 (defun import-icalendar-url (url)
   "Download an iCalendar file from URL (asynchronously) and dump it into the Emacs
 agenda file, overwriting any previous contents."
@@ -561,8 +542,6 @@ agenda file, overwriting any previous contents."
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
-(global-set-key (kbd "C-c a") 'hs-show-all-toggle)
-(global-set-key (kbd "C-c g") 'hs-toggle-hiding)
 (global-set-key (kbd "C-c <tab>") 'ibuffer)
 
 (global-set-key (kbd "C-c o c") 'org-capture)
