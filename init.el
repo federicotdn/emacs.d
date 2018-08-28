@@ -4,12 +4,17 @@
 ;; Emacs General Config
 ;;----------------------------------------------------------------------------
 
-;; Set GC threshold at 20 Mb
-(defconst gc-threshold 20000000)
-(setq gc-cons-threshold gc-threshold)
+;; Configure GC
+(defconst gc-default-threshold gc-cons-threshold)
+(defconst gc-large-threshold (* gc-default-threshold 10))
 
+;; Set GC threshold to a large value during init
+(setq gc-cons-threshold gc-large-threshold)
+(add-hook 'after-init-hook
+	  (lambda () (setq gc-cons-threshold gc-default-threshold)))
+
+;; Configure package sources
 (require 'package)
-
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
 	("marmalade" . "http://marmalade-repo.org/packages/")
@@ -158,6 +163,10 @@
 	  (register-describe-oneline (car r))))
 
 (setq register-preview-function #'my-register-preview-function)
+
+;; Make scrolling quicker
+(setq auto-window-vscroll nil)
+(setq scroll-conservatively 100)
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
