@@ -166,7 +166,10 @@
 
 ;; Make scrolling quicker
 (setq auto-window-vscroll nil)
-(setq scroll-conservatively 100)
+(setq scroll-conservatively 1)
+
+;; Avoid quiting by hitting C-[ accidentally
+(bind-key "ESC ESC ESC" 'keyboard-quit)
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
