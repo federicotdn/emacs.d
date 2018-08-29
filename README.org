@@ -83,6 +83,8 @@ C-x C-<spc>: pop mark (global)
 M-@: mark next word
 M-h: mark next paragraph
 C-x h: mark the whole buffer
+
+C-x <spc>: activate rectangle region mode
 #+end_src
 
 ** Symbols

@@ -166,10 +166,6 @@
 
 ;; Make scrolling quicker
 (setq auto-window-vscroll nil)
-(setq scroll-conservatively 1)
-
-;; Avoid quiting by hitting C-[ accidentally
-(bind-key "ESC ESC ESC" 'keyboard-quit)
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
@@ -563,6 +559,8 @@ agenda file, overwriting any previous contents."
 (global-set-key (kbd "C-c o r") 'org-archive-to-archive-sibling)
 (global-set-key (kbd "C-c o t") 'org-force-cycle-archived)
 (global-set-key (kbd "C-c o g") 'import-google-calendar)
+
+(global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
 
