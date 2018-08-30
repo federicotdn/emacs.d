@@ -206,10 +206,6 @@
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; Spotify controls
-(add-to-list 'load-path "~/.emacs.d/spotify")
-(require 'spotify)
-
 ;; flymake-shellcheck
 (require 'flymake-shellcheck)
 (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
@@ -532,10 +528,10 @@ agenda file, overwriting any previous contents."
 (global-set-key (kbd "C-c DEL") 'delete-line-prefix)
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
-(global-set-key (kbd "C-c s SPC") 'spotify-play-pause)
+(global-set-key (kbd "C-c s SPC") 'spotify-playpause)
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
-(global-set-key (kbd "C-c s m") 'spotify-now-playing)
+(global-set-key (kbd "C-c s c") 'spotify-current)
 (global-set-key (kbd "C-c c") 'find-file-general-maybe-other-window)
 (global-set-key (kbd "C-c k") 'kill-current-buffer-maybe-other-window)
 (global-set-key (kbd "C-c j") 'json-pretty-print-buffer)
