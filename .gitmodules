@@ -1,3 +1,0 @@
-[submodule "flymake-shellcheck"]
-	path = flymake-shellcheck
-	url = git@github.com:federicotdn/flymake-shellcheck.git

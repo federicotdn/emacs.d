@@ -19,7 +19,7 @@
  '(initial-scratch-message nil)
  '(package-selected-packages
    (quote
-    (expand-region hy-mode avy yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
+    (flymake-shellcheck expand-region hy-mode avy yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
  '(projectile-use-git-grep t)
  '(winner-mode t))
 (custom-set-faces

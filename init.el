@@ -211,7 +211,6 @@
 (require 'spotify)
 
 ;; flymake-shellcheck
-(add-to-list 'load-path "~/.emacs.d/flymake-shellcheck")
 (require 'flymake-shellcheck)
 (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
 
