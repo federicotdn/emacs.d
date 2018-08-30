@@ -55,7 +55,9 @@
 	"*Messages*"
 	"*Flymake log*"
 	"*Compile-Log*"
-	"*Help*"))
+	"*Help*"
+	"magit-process"
+	"magit-diff"))
 
 ;; Move between windows using S-<left> S-<right> etc.
 (windmove-default-keybindings)
