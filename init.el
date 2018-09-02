@@ -1,3 +1,4 @@
+;; init.el -*- lexical-binding: t; -*-
 ;; Requires: Emacs 26+
 
 ;;----------------------------------------------------------------------------
@@ -403,38 +404,49 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
   (interactive)
   (message "%s" buffer-file-name))
 
-(defun thing-to-register-dwim (&optional arg)
-  "If called with a prefix argument, prompt for register and clear its contents.
+(defun thing-to-register-dwim (reg)
+  "If called with negative prefix argument, prompt for register and clear its contents.
+If called with prefix argument (4), prompt for a register and save window configuration into it.
+If called with prefix argument (16), prompt for a register and save frameset configuration into it.
 If last executed action was defining a macro, prompt for a register and save it there.
 Otherwise, if region is active, copy it to a register.
-Otherwise save point position and current buffer a register."
-  (interactive "P")
-  (if (null arg)
-      (cond ((eq last-command 'kmacro-end-or-call-macro) (call-interactively #'kmacro-to-register))
-	    ((use-region-p) (call-interactively #'copy-to-register))
-	    (t (call-interactively #'point-to-register)))
-    (let ((reg (register-read-with-preview "Delete register: ")))
-      (setq register-alist (assq-delete-all reg register-alist)))))
+Otherwise save point position and current buffer to a register."
+  (interactive (list (register-read-with-preview
+		      (if (equal current-prefix-arg '-)
+			  "Delete register: "
+			"Register: "))))
+  (cond ((null current-prefix-arg)
+	 (cond ((eq last-command 'kmacro-end-or-call-macro)
+		(kmacro-to-register reg))
+	       ((use-region-p)
+		(copy-to-register reg (region-beginning) (region-end)))
+	       (t
+		(point-to-register reg))))
+	((equal current-prefix-arg '-)
+	 (setq register-alist (assq-delete-all reg register-alist)))
+	((equal current-prefix-arg '(4))
+	 (window-configuration-to-register reg))
+	((equal current-prefix-arg '(16))
+	 (frameset-to-register reg))))
 
 (defun use-register-dwim (reg)
   "Prompt for a register name.
 If the selected register contains text, insert its contents into the current buffer.
 If the register contains a point position (or file query), jump to it.
-If the register contains a keyboard macro, execute it."
+If the register contains a keyboard macro, execute it.
+If the register contains a window or frameset configuration, apply it."
   (interactive (list (register-read-with-preview "Register: ")))
   (let ((contents (get-register reg)))
-    (cond ((stringp contents) (insert-register reg))
-	  ((or (vectorp contents)
-	       (and (consp contents) (eq (car contents) 'file-query)))
-	   (jump-to-register reg))
-	  ((markerp contents)
-	   (let ((w (get-buffer-window (marker-buffer contents) t)))
-	     (when w
-		 (progn
-		   (select-frame-set-input-focus (window-frame w))
-		   (select-window w)))
-	     (jump-to-register reg)))
-	  (t (message "Unknown type for register '%c'." reg)))))
+    (if (stringp contents)
+	(insert-register reg)
+      (progn
+	(when (markerp contents)
+	  (let ((w (get-buffer-window (marker-buffer contents) t)))
+	    (when w
+	      (progn
+		(select-frame-set-input-focus (window-frame w))
+		(select-window w)))))
+	(jump-to-register reg)))))
 
 (defun rename-file-buffer ()
   "Rename the current buffer's file, and the buffer itself to match the new
@@ -560,6 +572,20 @@ agenda file, overwriting any previous contents."
 (global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
+
+;;----------------------------------------------------------------------------
+;; Keys for quick register dwim use
+;;----------------------------------------------------------------------------
+
+(dotimes (i 10)
+  (let* ((num (number-to-string i))
+	 (key (concat "C-c " num))
+	 (reg (string-to-char num)))
+    (global-set-key (kbd key)
+		    (lambda () (interactive)
+		      (if (assoc reg register-alist)
+			  (use-register-dwim reg)
+			(thing-to-register-dwim reg))))))
 
 ;;----------------------------------------------------------------------------
 ;; Keys for quick Spanish letters insertion

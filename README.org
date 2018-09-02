@@ -83,6 +83,7 @@ C-x C-<spc>: pop mark (global)
 M-@: mark next word
 M-h: mark next paragraph
 C-x h: mark the whole buffer
+C-=: extend region
 
 C-x <spc>: activate rectangle region mode
 #+end_src
@@ -317,10 +318,9 @@ C-,: cycle agenda files
 C-c .: insert timestamp
 S-<left>, S-<right>: move to previous, next calendar day
 <ret>: select calendar day
+
 C-c C-x c: clone tree with time shift
-
 C-c C-l: insert link
-
 < s <tab>: insert code block
 
 C-c C-b, C-c C-f: previous, next heading (same level)
@@ -367,5 +367,4 @@ F4: playback last recorded macro
 C-c SPC
 C-.
 M-DEL
-C-c 0, C-c 1, etc.
 #+end_src
