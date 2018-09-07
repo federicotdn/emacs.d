@@ -193,6 +193,15 @@
 ;; Include diary file
 (setq org-agenda-include-diary t)
 
+;; Configure Babel
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   (emacs-lisp . t)
+   (shell . t)))
+
+(setq org-confirm-babel-evaluate nil)
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
