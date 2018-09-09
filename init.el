@@ -497,6 +497,26 @@ agenda file, overwriting any previous contents."
   (interactive)
   (import-icalendar-url gcal-url))
 
+(defun wrap-region (c)
+  "Wrap active region with character C and its corresponding pair."
+  (interactive (list (read-char-exclusive "Wrap region with: ")))
+  (when (use-region-p)
+    (let* ((region-end-pos (region-end))
+	   (char-pairs '(("{" . "}")
+			 ("(" . ")")
+			 ("[" . "]")
+			 ("¿" . "?")
+			 ("¡" . "!")))
+	   (s (char-to-string c))
+	   (pair (catch 'loop
+		   (dolist (p char-pairs)
+		     (when (or (string= s (car p))
+			       (string= s (cdr p)))
+		       (throw 'loop p)))
+		   (cons s s))))
+      (insert-pair nil (car pair) (cdr pair))
+      (goto-char (+ region-end-pos 2)))))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -533,6 +553,7 @@ agenda file, overwriting any previous contents."
 (global-set-key (kbd "C-<tab>") 'switch-buffer-maybe-other-window)
 (global-set-key (kbd "C-,") 'query-replace-regexp)
 (global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-'") 'wrap-region)
 (global-set-key [C-backspace] 'backward-delete-word)
 
 (global-set-key (kbd "M-y") 'yank-pop-verbose)
