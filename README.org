@@ -206,6 +206,8 @@ x: delete flagged files
 v: view selected file, read only (q to quit)
 C: copy selected file (cp)
 g: update dired buffer
+
+C-x C-q: writeable dired mode
 #+end_src
 
 ** Emacs Lisp
