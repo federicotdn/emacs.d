@@ -10,6 +10,7 @@
 # Undo-tree save-files
 *.~undo-tree
 
+# .emacs.d private files
 history
 *desktop*
 /elpa/
@@ -24,3 +25,4 @@ recentf
 abbrev_defs
 projectile.cache
 /request/
+ac-comphist.dat
