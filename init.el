@@ -579,7 +579,6 @@ agenda file, overwriting any previous contents."
 (global-set-key (kbd "C-c c") 'find-file-general-maybe-other-window)
 (global-set-key (kbd "C-c k") 'kill-current-buffer-maybe-other-window)
 (global-set-key (kbd "C-c j") 'json-pretty-print-buffer)
-(global-set-key (kbd "C-c l") 'comint-clear-buffer)
 (global-set-key (kbd "C-c i") 'indent-region)
 (global-set-key (kbd "C-c h") 'shell-with-name)
 (global-set-key (kbd "C-c e e") 'eval-buffer)
@@ -602,6 +601,8 @@ agenda file, overwriting any previous contents."
 (global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
+(set-mode-key 'shell-mode-hook "C-r" 'comint-history-isearch-backward-regexp)
+(set-mode-key 'shell-mode-hook "C-c l" 'comint-clear-buffer)
 
 ;;----------------------------------------------------------------------------
 ;; Keys for quick register dwim use

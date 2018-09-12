@@ -285,6 +285,7 @@ C-c p r: find and replace in project
 C-c M-o, C-c l: clear screen
 C-c C-c: send interrupt
 C-d: send EOF
+C-r: backwards history search
 #+end_src
 
 ** Man Mode
