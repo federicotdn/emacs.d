@@ -647,5 +647,6 @@ agenda file, overwriting any previous contents."
 (disable-mode-key 'elpy-mode-hook elpy-mode-map "C-c C-c")
 (disable-mode-key 'org-mode-hook org-mode-map "C-<tab>")
 (disable-mode-key 'org-mode-hook org-mode-map "C-c [")
+(disable-mode-key 'org-mode-hook org-mode-map "C-'")
 (disable-mode-key 'magit-mode-hook magit-mode-map "C-<tab>")
 (disable-mode-key 'python-mode-hook python-mode-map "C-c C-c")
