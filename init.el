@@ -541,12 +541,11 @@ agenda file, overwriting any previous contents."
 ;;----------------------------------------------------------------------------
 
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x C-x") 'thing-to-register-dwim)
 
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-j") 'avy-goto-word-1)
+(global-set-key (kbd "C-j") 'avy-goto-char-timer)
 (global-set-key (kbd "C-;") 'comment-really-dwim)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
@@ -563,7 +562,6 @@ agenda file, overwriting any previous contents."
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
-(global-set-key (kbd "M-j") 'use-register-dwim)
 (global-set-key (kbd "M-s h c") 'clear-all-highlights)
 (global-set-key [M-backspace] 'backward-delete-word)
 
@@ -648,5 +646,6 @@ agenda file, overwriting any previous contents."
 (disable-mode-key 'org-mode-hook org-mode-map "C-<tab>")
 (disable-mode-key 'org-mode-hook org-mode-map "C-c [")
 (disable-mode-key 'org-mode-hook org-mode-map "C-'")
+(disable-mode-key 'shell-mode-hook shell-mode-map "C-c C-l")
 (disable-mode-key 'magit-mode-hook magit-mode-map "C-<tab>")
 (disable-mode-key 'python-mode-hook python-mode-map "C-c C-c")

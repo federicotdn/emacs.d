@@ -374,4 +374,5 @@ F4: playback last recorded macro
 C-c SPC
 C-.
 M-DEL
+M-j
 #+end_src
