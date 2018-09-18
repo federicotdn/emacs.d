@@ -170,6 +170,9 @@
 ;; Make scrolling quicker
 (setq auto-window-vscroll nil)
 
+;; Dont jump when scrolling by line
+(setq scroll-conservatively 3)
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
@@ -238,6 +241,12 @@
 (setq avy-all-windows nil)
 (setq avy-background t)
 (setq avy-keys '(?a ?s ?d ?f ?j ?k ?l ?\;))
+
+;; Configure keyfreq
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+(setq keyfreq-file "~/.emacs.d/.emacs.keyfreq")
 
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
