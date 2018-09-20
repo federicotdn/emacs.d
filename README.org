@@ -225,6 +225,7 @@ M-:: eval expression
 #+begin_src
 C-c <: indent region to left
 C-c >: indent region to right
+C-c C-d: get documentation for symbol
 M-x pyvenv-activate: activate environment
 M-x elpy-config: configure elpy
 #+end_src
@@ -326,6 +327,7 @@ C-c .: insert timestamp
 S-<left>, S-<right>: move to previous, next calendar day
 <ret>: select calendar day
 
+C-c C-w: refile entry
 C-c C-x c: clone tree with time shift
 C-c C-l: insert link
 < s <tab>: insert code block

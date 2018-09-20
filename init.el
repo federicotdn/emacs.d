@@ -205,6 +205,15 @@
 
 (setq org-confirm-babel-evaluate nil)
 
+;; Refile to any agenda file
+(setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
+
+;; Save all Org buffers after refile
+(advice-add 'org-refile :after (lambda (&rest r) (org-save-all-org-buffers)))
+
+;; Always refile to top of entry
+(setq org-reverse-note-order t)
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
