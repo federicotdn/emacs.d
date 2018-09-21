@@ -329,11 +329,6 @@ When passed a prefix argument, do it on the other window."
 	(other-window 1)
 	(kill-current-buffer)))))
 
-(defun delete-line-prefix ()
-  "Delete chars from line start to point."
-  (interactive)
-  (delete-region (line-beginning-position) (point)))
-
 (defun close-response-and-request ()
   "Close last HTTP response buffer and send a new request."
   (interactive)
@@ -585,7 +580,6 @@ agenda file, overwriting any previous contents."
 
 (global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
 (global-set-key (kbd "C-c d") 'duplicate-line)
-(global-set-key (kbd "C-c DEL") 'delete-line-prefix)
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
 (global-set-key (kbd "C-c s SPC") 'spotify-playpause)

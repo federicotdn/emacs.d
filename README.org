@@ -3,23 +3,24 @@ Emacs configuration files and help.
 
 ** General Reference
 #+begin_src
-Current:
+Modifiers:
 C = control
 M = meta (alt)
 S = shift
 
-Historical:
+Historical (not used):
 s = super
 H = hyper
 A = alt
 #+end_src
 
 #+begin_src
-Common conventions:
+Common conventions across commands:
 a (beggining) <---> e (end)
 b (backward)  <---> f (forward)
 p (previous)  <---> n (next)
 l (backward)  <---> r (forward)
+k (kill/cut)  <---> y (yank/paste)
 #+end_src
 
 ** Navigation
@@ -105,26 +106,26 @@ C-x r b: jump to bookmark
 ** Search and Replace
 #+begin_src
 C-s: isearch
-C-s: repeat last isearch
-C-w: add word at point to search string
+| C-s: repeat last isearch (if pressed before entering text)
+| C-s: next result (after entering text)
+| C-r: previous result
+| C-w: add word at point to search string
+| M-n: next item in search history
+| M-p: previous item in search history
+| M-e: put cursor back on mini buffer
 
-C-r: backward incremental search
+C-r: backwards isearch
 C-M-s: regexp incremental search
 C-M-r: backward regexp incremental search
-M-n: next item in search history
-M-p: previous item in search history
-M-e: put cursor back on mini buffer
 
-M-%: replace interactive
 C-,: replace interactive regexp
-y: replace
-n: skip
-.: replace one and exit
-<ret>: exit
-!: replace all
+| y: replace
+| n: skip
+| .: replace one and exit
+| <ret>: exit
+| !: replace all
 
 M-s o: occur mode
-q: quit occur mode
 #+end_src
 
 ** Buffers
@@ -173,15 +174,15 @@ M-y: cycle last yank
 
 C-t: transpose
 C-;: comment/uncomment line
+C-x r t: replace rectangle contents with a string
 
 C-x <tab>: enter indent region mode (use left-right)
-
 M-<down>, M-<up>: Move line down, up
 #+end_src
 
 ** Help
 #+begin_src
-<something> C-h: commands that start with <something>
+<keys> C-h: commands that start with <something>
 C-h C-h: list help commands
 C-g: cancel command
 ESC ESC ESC: cancel command (even recursive)
@@ -197,21 +198,21 @@ C-h l: view lossage (key history)
 ** Dired
 #+begin_src
 C-x d: dired
-<ret>: visit file or directory
-^: go up one directory
-q: quit dired
-+: create directory
-n, p, C-n, C-p: move down/up
-R: rename file (mv)
-D: delete file (rm)
-y: show file type
-d: flag file for deletion
-x: delete flagged files
-v: view selected file, read only (q to quit)
-C: copy selected file (cp)
-g: update dired buffer
-
-C-x C-q: writeable dired mode
+| <ret>: visit file or directory on point
+| ^: go up one directory
+| q: quit dired
+| +: create directory
+| n, p, C-n, C-p: move down/up
+| R: rename file (mv)
+| D: delete file (rm)
+| y: show file type
+| d: flag file for deletion
+| u: unmark file
+| x: delete flagged files
+| v: view selected file, read only (q to quit)
+| C: copy selected file (cp)
+| g: update dired buffer
+| C-x C-q: writeable dired mode
 #+end_src
 
 ** Emacs Lisp
@@ -233,10 +234,11 @@ M-x elpy-config: configure elpy
 ** GNU Bug Tracker
 #+begin_src
 M-x debbugs-gnu: open GNU bug tracker
-n, p: next, previous issue
-t: tag issue
-n, p: next unread, previous unread message
-N, P: next, previous message
+| n, p: next, previous issue
+| t: tag issue
+| <ret>: read issue messages on point
+ | n, p: next unread, previous unread message
+ | N, P: next, previous message
 #+end_src
 
 ** Company
@@ -255,19 +257,19 @@ M-x package-install: install a package
 ** Magit
 #+begin_src
 C-x g: magit-status (main window)
-c: commit
-l: log
-k: discard
-F: pull
-P: push
-s: stage
-u: unstage
-g: refresh
-h: help
-z: stash
-b: branching
-C-c C-c: save commit message
-C-c C-k: abort commit
+| c: commit
+ | C-c C-c: save commit message
+ | C-c C-k: abort commit
+| l: log
+| k: discard
+| F: pull
+| P: push
+| s: stage
+| u: unstage
+| g: refresh
+| h: help
+| z: stash
+| b: branching
 C-c M-g: file popup
 #+end_src
 
@@ -292,28 +294,28 @@ C-r: backwards history search
 ** Man Mode
 #+begin_src
 M-x man: enter man mode
-n, p: next, previous section
+| n, p: next, previous section
 #+end_src
 
 ** IBuffer
 #+begin_src
 C-c <tab>: enter IBuffer
-d: Mark buffer for deletion
-x: Kill all marked buffers
-U: Unmark all buffers
-q: Bury IBuffer
-n, p: next, previous line
+| d: Mark buffer for deletion
+| x: Kill all marked buffers
+| U: Unmark all buffers
+| q: Bury IBuffer
+| n, p: next, previous line
 #+end_src
 
 ** Org Mode
 #+begin_src
 C-c o a: view agenda
-f, b: forward, backward in time
-n, p: next, previous item
-.: go to today
-w: week view
-y: year view
-d: day view
+| f, b: forward, backward in time
+| n, p: next, previous item
+| .: go to today
+| w: week view
+| y: year view
+| d: day view
 
 <tab>: cycle selected tree visibility
 S-<tab>: cycle entire file tree visibility
@@ -324,8 +326,8 @@ C-c /: org sparse tree
 C-,: cycle agenda files
 
 C-c .: insert timestamp
-S-<left>, S-<right>: move to previous, next calendar day
-<ret>: select calendar day
+| S-<left>, S-<right>: move to previous, next calendar day
+| <ret>: select calendar day
 
 C-c C-w: refile entry
 C-c C-x c: clone tree with time shift
@@ -341,11 +343,11 @@ M-S-<left>, M-S-<right>: promote, demote subtree
 ** EWW
 #+begin_src
 M-x eww: open EWW on a specified URL
-l, r: previous, next page
-R: remove non-text content
-g: reload
-<tab>: cycle selected link
-q: quit
+| l, r: previous, next page
+| R: remove non-text content
+| g: reload
+| <tab>: cycle selected link
+| q: quit
 #+end_src
 
 ** Hi-Lock
