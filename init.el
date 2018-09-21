@@ -181,9 +181,6 @@
 (setq org-directory "~/Dropbox/org/")
 (setq org-agenda-files (list org-directory))
 
-;; Setup diary file
-(setq diary-file (concat org-directory "diary"))
-
 ;; Quick capture file
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 
@@ -192,9 +189,6 @@
 
 ;; important tag
 (setq org-tag-faces '(("imp" . (:foreground "red" :weight bold))))
-
-;; Include diary file
-(setq org-agenda-include-diary t)
 
 ;; Configure Babel
 (org-babel-do-load-languages
@@ -486,29 +480,23 @@ file name."
 	    (message "File already exists!")))
       (message "Current buffer is not visiting any file, or has unsaved changes."))))
 
-(defun import-icalendar-url (url)
-  "Download an iCalendar file from URL (asynchronously) and dump it into the Emacs
-agenda file, overwriting any previous contents."
+(defun import-icalendar-url (url dest)
+  "Download an iCalendar file from URL (asynchronously) and convert it to a Org mode file,
+using ical2orgpy. The created file will be placed in file DEST, inside the current org-directory."
   (interactive "sEnter URL: ")
-  (setq async-buf
-	(url-retrieve url
-		      (lambda (status)
-			(when (get-buffer "diary")
-			  (kill-buffer "diary"))
-			(when (file-exists-p diary-file)
-			  (delete-file diary-file))
-			(with-current-buffer async-buf
-			  (let ((coding-system-require-warning nil)
-				(coding-system-for-write 'utf-8))
-			    (icalendar-import-buffer diary-file t)))
-			(kill-buffer async-buf)
-			(kill-buffer "diary"))
-		      nil t)))
+  (let ((ical-file (make-temp-file "emacs-ical"))
+	(org-file (expand-file-name (concat org-directory dest))))
+    (with-temp-file ical-file
+      (url-insert-file-contents url))
+    (if (= 0 (call-process "ical2orgpy" nil nil nil ical-file org-file))
+	(message "iCal exported to: %s" org-file)
+      (message "Process error."))
+    (delete-file ical-file)))
 
 (defun import-google-calendar ()
   "Import calendar from Google Calendar."
   (interactive)
-  (import-icalendar-url gcal-url))
+  (import-icalendar-url gcal-url "gcal.org"))
 
 (defun wrap-region (c)
   "Wrap active region with character C and its corresponding pair."

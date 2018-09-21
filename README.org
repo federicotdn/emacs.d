@@ -142,7 +142,7 @@ C-x C-b: list buffers
 C-c b: open new scratch buffer
 
 C-x C--: decrease font size
-C-x C-+: increase font size
+C-x C-=: increase font size
 C-x C-0: reset font size
 
 C-x <left>, C-x <right>: move to previous, next buffer
