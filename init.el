@@ -483,7 +483,9 @@ file name."
 (defun import-icalendar-url (url dest)
   "Download an iCalendar file from URL (asynchronously) and convert it to a Org mode file,
 using ical2orgpy. The created file will be placed in file DEST, inside the current org-directory."
-  (interactive "sEnter URL: ")
+  (interactive "sEnter URL: \nsEnter filename: ")
+  (unless (executable-find "ical2orgpy")
+    (error "Could not find ical2orgpy executable"))
   (let ((ical-file (make-temp-file "emacs-ical"))
 	(org-file (expand-file-name (concat org-directory dest))))
     (with-temp-file ical-file
