@@ -185,7 +185,7 @@
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 
 ;; TODO lists states, last state used as 'done'
-(setq org-todo-keywords '((sequence "TODO" "CANCELLED" "DONE")))
+(setq org-todo-keywords '((sequence "TODO" "CURRENT" "DONE")))
 
 ;; important tag
 (setq org-tag-faces '(("imp" . (:foreground "red" :weight bold))))
