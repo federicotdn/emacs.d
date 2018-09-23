@@ -44,6 +44,10 @@
 ;; Show column number
 (column-number-mode t)
 
+;; Customize scratch buffer
+(setq initial-scratch-message nil)
+(setq initial-major-mode 'fundamental-mode)
+
 ;; IDO
 (ido-mode 1)
 (setq ido-everywhere t)

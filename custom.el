@@ -13,7 +13,6 @@
  '(grep-find-template
    "find <D> <X> -type f <F> -exec grep <C> -C 3 -nH --null -e <R> \\{\\} +")
  '(icalendar-import-format "%s%d%l")
- '(initial-scratch-message nil)
  '(package-selected-packages
    (quote
     (keyfreq ein spotify flymake-shellcheck expand-region hy-mode avy yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
