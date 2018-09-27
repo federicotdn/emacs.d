@@ -177,6 +177,10 @@
 ;; Dont jump when scrolling by line
 (setq scroll-conservatively 3)
 
+;; Load per-PC configuration file
+;; local.el is gitignore'd
+(load "~/.emacs.d/local.el" t t)
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
