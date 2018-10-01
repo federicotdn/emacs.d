@@ -58,7 +58,7 @@ M-g M-g: go to line
 
 ** Windows
 #+begin_src
-M-o: cycle windows
+C-x o, M-o: cycle windows
 S-<left>, S-<right>, ...: move between windows
 C-x 0: Close this window
 C-x 1: Close other windows
@@ -73,6 +73,7 @@ C-c <right>: redo windows layout change
 #+begin_src
 C-x 5 2: create a new frame
 C-x 5 0: close selected frame
+C-x 5 1: close all frames except selected
 #+end_src
 
 ** Point, Mark and Regions

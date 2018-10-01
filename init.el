@@ -528,6 +528,12 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
       (insert-pair nil (car pair) (cdr pair))
       (goto-char (+ region-end-pos 2)))))
 
+(defun kill-ring-save-whole-buffer ()
+  "Save the entire buffer as if killed, but don't kill it."
+  (interactive)
+  (kill-ring-save (point-min) (point-max))
+  (message "Buffer copied to kill ring."))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -597,6 +603,7 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
 (global-set-key (kbd "C-c <tab>") 'ibuffer)
+(global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 
 (global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o a") 'org-agenda)
