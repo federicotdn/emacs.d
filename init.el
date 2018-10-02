@@ -273,20 +273,18 @@
 (defun move-line-up ()
   "Move current line up."
   (interactive)
-  (if (> (line-number-at-pos) 1)
-      (progn
-	(transpose-lines 1)
-	(previous-line)
-	(previous-line))))
+  (when (> (line-number-at-pos) 1)
+    (transpose-lines 1)
+    (previous-line)
+    (previous-line)))
 
 (defun move-line-down ()
   "Move current line down."
   (interactive)
-  (if (< (line-number-at-pos) (count-lines (point-min) (point-max)))
-      (progn
-	(next-line)
-	(transpose-lines 1)
-	(previous-line))))
+  (when (< (line-number-at-pos) (count-lines (point-min) (point-max)))
+    (next-line)
+    (transpose-lines 1)
+    (previous-line)))
 
 (defun swap-window-pair-buffers ()
   "When two windows are open, swap their buffers."
@@ -298,7 +296,7 @@
 	     (b2 (window-buffer w2)))
 	(set-window-buffer w1 b2)
 	(set-window-buffer w2 b1))
-    (message "This function only works with exactly two windows.")))
+    (error "This function only works with exactly two windows")))
 
 (defun find-file-general-maybe-other-window (&optional arg)
   "If in a projectile project, use projectile-find file. Otherwise use ido-find-file.
@@ -343,14 +341,13 @@ When passed a prefix argument, do it on the other window."
 (defun yank-pop-verbose ()
   "Call yank-pop and show kill ring pointer index value."
   (interactive)
-  (progn
-    (call-interactively #'yank-pop)
-    (unless (window-minibuffer-p)
-      (let* ((ring-len (length kill-ring))
-	     (pos (+ (- ring-len
-			(length kill-ring-yank-pointer))
-		     1)))
-	(message "Yanked element %d of %d." pos ring-len)))))
+  (call-interactively #'yank-pop)
+  (unless (window-minibuffer-p)
+    (let* ((ring-len (length kill-ring))
+	   (pos (+ (- ring-len
+		      (length kill-ring-yank-pointer))
+		   1)))
+      (message "Yanked element %d of %d." pos ring-len))))
 
 (defun toggle-window-dedicated ()
   "Toggles the selected window's dedicated flag."
@@ -399,7 +396,7 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
   (let* ((selection (buffer-substring-no-properties (mark) (point)))
 	 (timestamp (string-to-number selection)))
     (if (= timestamp 0)
-	(message "Selected value is not an integer value.")
+	(error "Selected value is not an integer value")
       (message (format-time-string "%B %e, %Y - %T (UTC)" timestamp t)))))
 
 (defun create-scratch-buffer ()
@@ -485,8 +482,8 @@ file name."
 		(rename-file current-file-name new-file-name)
 		(set-visited-file-name new-file-name)
 		(set-buffer-modified-p nil))
-	    (message "File already exists!")))
-      (message "Current buffer is not visiting any file, or has unsaved changes."))))
+	    (error "File already exists!")))
+      (error "Current buffer is not visiting any file or has unsaved changes"))))
 
 (defun import-icalendar-url (url dest)
   "Download an iCalendar file from URL (asynchronously) and convert it to a Org mode file,
@@ -500,7 +497,7 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
       (url-insert-file-contents url))
     (if (= 0 (call-process "ical2orgpy" nil nil nil ical-file org-file))
 	(message "iCal exported to: %s" org-file)
-      (message "Process error."))
+      (error "ical2orgpy process error"))
     (delete-file ical-file)))
 
 (defun import-google-calendar ()

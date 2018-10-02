@@ -27,6 +27,7 @@ projectile.cache
 /request/
 ac-comphist.dat
 .emacs.keyfreq
+/games/
 
 # per-PC configuration file
 local.el
