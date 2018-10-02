@@ -1,5 +1,5 @@
 * Emacs Configuration
-Emacs configuration files and help.
+Emacs configuration files and help. Standard and custom keybindings are listed below.
 
 ** General Reference
 #+begin_src
@@ -286,7 +286,7 @@ C-c p r: find and replace in project
 
 ** Shell
 #+begin_src
-C-c M-o, C-c l: clear screen
+C-c M-o, C-l: clear screen
 C-c C-c: send interrupt
 C-d: send EOF
 C-r: backwards history search

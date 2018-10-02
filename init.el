@@ -580,7 +580,6 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "M-s h c") 'clear-all-highlights)
-(global-set-key [M-backspace] 'backward-delete-word)
 
 (global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
 (global-set-key (kbd "C-c d") 'duplicate-line)
@@ -598,10 +597,10 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "C-c e e") 'eval-buffer)
 (global-set-key (kbd "C-c e i") 'edit-init)
 (global-set-key (kbd "C-c e r") 'rename-file-buffer)
-(global-set-key (kbd "C-c t") 'parse-timestamp)
-(global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
+(global-set-key (kbd "C-c t") 'parse-timestamp)
+(global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c <tab>") 'ibuffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 
@@ -617,7 +616,7 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
 (set-mode-key 'shell-mode-hook "C-r" 'comint-history-isearch-backward-regexp)
-(set-mode-key 'shell-mode-hook "C-c l" 'comint-clear-buffer)
+(set-mode-key 'shell-mode-hook "C-l" 'comint-clear-buffer)
 
 ;;----------------------------------------------------------------------------
 ;; Keys for quick register dwim use
