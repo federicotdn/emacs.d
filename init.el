@@ -181,6 +181,9 @@
 ;; local.el is gitignore'd
 (load "~/.emacs.d/local.el" t t)
 
+;; Allow auto-resizing windows horizontally on command
+(setq fit-window-to-buffer-horizontally t)
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
@@ -578,7 +581,9 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "M-s h c") 'clear-all-highlights)
 
-(global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
+(global-set-key (kbd "C-c w s") 'swap-window-pair-buffers)
+(global-set-key (kbd "C-c w f") 'fit-window-to-buffer)
+(global-set-key (kbd "C-c w w") 'balance-windows)
 (global-set-key (kbd "C-c d") 'duplicate-line)
 (global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
