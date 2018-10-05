@@ -534,6 +534,13 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
   (kill-ring-save (point-min) (point-max))
   (message "Buffer copied to kill ring."))
 
+(defun json-pretty-print-dwim ()
+  "Prettify JSON in region if it is active, otherwise on whole buffer."
+  (interactive)
+  (if (use-region-p)
+      (json-pretty-print (region-beginning) (region-end))
+    (json-pretty-print-buffer)))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -593,7 +600,7 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "C-c s c") 'spotify-current)
 (global-set-key (kbd "C-c c") 'find-file-general-maybe-other-window)
 (global-set-key (kbd "C-c k") 'kill-current-buffer-maybe-other-window)
-(global-set-key (kbd "C-c j") 'json-pretty-print-buffer)
+(global-set-key (kbd "C-c j") 'json-pretty-print-dwim)
 (global-set-key (kbd "C-c i") 'indent-region)
 (global-set-key (kbd "C-c h") 'shell-with-name)
 (global-set-key (kbd "C-c e e") 'eval-buffer)
