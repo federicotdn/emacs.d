@@ -262,8 +262,11 @@
 (keyfreq-autosave-mode 1)
 (setq keyfreq-file "~/.emacs.d/.emacs.keyfreq")
 
-;; Start server
+;; Start Emacs server
 (server-start)
+
+;; Edit Mutt emails using emacsclient
+(add-to-list 'auto-mode-alist '("mutt.*" . mail-mode))
 
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
@@ -544,6 +547,13 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
       (json-pretty-print (region-beginning) (region-end))
     (json-pretty-print-buffer)))
 
+(defun save-client-buffer-and-exit ()
+  "Save current client buffer and close it after prompting."
+  (interactive)
+  (when (yes-or-no-p "Save client buffer and exit? ")
+    (save-buffer)
+    (server-edit)))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -630,6 +640,7 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
 (set-mode-key 'shell-mode-hook "C-r" 'comint-history-isearch-backward-regexp)
 (set-mode-key 'shell-mode-hook "C-l" 'comint-clear-buffer)
+(set-mode-key 'mail-mode-hook "C-c C-c" 'save-client-buffer-and-exit)
 
 ;;----------------------------------------------------------------------------
 ;; Keys for quick register dwim use
