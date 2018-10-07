@@ -262,6 +262,9 @@
 (keyfreq-autosave-mode 1)
 (setq keyfreq-file "~/.emacs.d/.emacs.keyfreq")
 
+;; Start server
+(server-start)
+
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
@@ -558,6 +561,7 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 ;;----------------------------------------------------------------------------
 
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x C-d") 'ido-dired)
 
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
