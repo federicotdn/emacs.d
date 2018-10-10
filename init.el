@@ -175,7 +175,7 @@
 (setq auto-window-vscroll nil)
 
 ;; Dont jump when scrolling by line
-(setq scroll-conservatively 3)
+(setq scroll-conservatively 10)
 
 ;; Load per-PC configuration file
 ;; local.el is gitignore'd
@@ -183,6 +183,10 @@
 
 ;; Allow auto-resizing windows horizontally on command
 (setq fit-window-to-buffer-horizontally t)
+
+;; Start Emacs server
+;; This allows using emacsclient as an editor
+(server-start)
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
@@ -261,12 +265,6 @@
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 (setq keyfreq-file "~/.emacs.d/.emacs.keyfreq")
-
-;; Start Emacs server
-(server-start)
-
-;; Edit Mutt emails using emacsclient
-(add-to-list 'auto-mode-alist '("mutt.*" . mail-mode))
 
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
