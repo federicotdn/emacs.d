@@ -346,9 +346,11 @@ M-S-<left>, M-S-<right>: promote, demote subtree
 M-x eww: open EWW on a specified URL
 | l, r: previous, next page
 | R: remove non-text content
+| G: open another URL
 | g: reload
 | <tab>: cycle selected link
 | q: quit
+| <, >: top, bottom of page
 #+end_src
 
 ** Hi-Lock

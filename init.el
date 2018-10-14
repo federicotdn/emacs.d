@@ -428,9 +428,12 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
   (unhighlight-regexp t))
 
 (defun print-buffer-file-name ()
-  "Print the current buffer's file name/path."
+  "Print the current buffer's file path."
   (interactive)
-  (message "%s" buffer-file-name))
+  (let ((name (buffer-file-name)))
+    (if name
+	(message name)
+      (error "Buffer is not visiting any file"))))
 
 (defun thing-to-register-dwim (reg)
   "If called with negative prefix argument, prompt for register and clear its contents.
@@ -545,13 +548,6 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
       (json-pretty-print (region-beginning) (region-end))
     (json-pretty-print-buffer)))
 
-(defun save-client-buffer-and-exit ()
-  "Save current client buffer and close it after prompting."
-  (interactive)
-  (when (yes-or-no-p "Save client buffer and exit? ")
-    (save-buffer)
-    (server-edit)))
-
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -638,7 +634,6 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
 (set-mode-key 'shell-mode-hook "C-r" 'comint-history-isearch-backward-regexp)
 (set-mode-key 'shell-mode-hook "C-l" 'comint-clear-buffer)
-(set-mode-key 'mail-mode-hook "C-c C-c" 'save-client-buffer-and-exit)
 
 ;;----------------------------------------------------------------------------
 ;; Keys for quick register dwim use
