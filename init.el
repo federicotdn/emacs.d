@@ -6,13 +6,11 @@
 ;;----------------------------------------------------------------------------
 
 ;; Configure GC
-(defconst gc-default-threshold gc-cons-threshold)
+(defconst gc-default-threshold 800000)
 (defconst gc-large-threshold (* gc-default-threshold 10))
 
 ;; Set GC threshold to a large value during init
 (setq gc-cons-threshold gc-large-threshold)
-(add-hook 'after-init-hook
-	  (lambda () (setq gc-cons-threshold gc-default-threshold)))
 
 ;; Configure package sources
 (require 'package)
@@ -682,3 +680,10 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (disable-mode-key 'shell-mode-hook shell-mode-map "C-c C-l")
 (disable-mode-key 'magit-mode-hook magit-mode-map "C-<tab>")
 (disable-mode-key 'python-mode-hook python-mode-map "C-c C-c")
+
+;;----------------------------------------------------------------------------
+;; Cleanup
+;;----------------------------------------------------------------------------
+
+;; Restore GC threshold
+(setq gc-cons-threshold gc-default-threshold)
