@@ -579,12 +579,12 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "C-;") 'comment-really-dwim)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
-(global-set-key (kbd "C-<tab>") 'switch-buffer-maybe-other-window)
 (global-set-key (kbd "C-,") 'query-replace-regexp)
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C-'") 'wrap-region)
-(global-set-key [C-backspace] 'backward-delete-word)
+(global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 
+(global-set-key (kbd "M-l") 'switch-buffer-maybe-other-window)
 (global-set-key (kbd "M-y") 'yank-pop-verbose)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)
@@ -672,15 +672,15 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 ;; Remove default keybindings
 ;;----------------------------------------------------------------------------
 
+;; Disable some default keys that get hit by accident
+
 (global-unset-key (kbd "C-x f"))
 
 (disable-mode-key 'elpy-mode-hook elpy-mode-map "<C-return>")
 (disable-mode-key 'elpy-mode-hook elpy-mode-map "C-c C-c")
-(disable-mode-key 'org-mode-hook org-mode-map "C-<tab>")
 (disable-mode-key 'org-mode-hook org-mode-map "C-c [")
 (disable-mode-key 'org-mode-hook org-mode-map "C-'")
 (disable-mode-key 'shell-mode-hook shell-mode-map "C-c C-l")
-(disable-mode-key 'magit-mode-hook magit-mode-map "C-<tab>")
 (disable-mode-key 'python-mode-hook python-mode-map "C-c C-c")
 
 ;;----------------------------------------------------------------------------
