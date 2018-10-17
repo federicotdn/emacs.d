@@ -27,7 +27,7 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
 
-;; Disable tool bar and scroll bar
+;; Disable tool bar, scroll bar and menu bar
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 (scroll-bar-mode -1)
@@ -618,6 +618,8 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c <tab>") 'ibuffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
+(global-set-key (kbd "C-c l o") 'ein:notebooklist-open)
+(global-set-key (kbd "C-c l l") 'ein:notebooklist-login)
 
 (global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o a") 'org-agenda)

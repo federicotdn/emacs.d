@@ -21,6 +21,9 @@ b (backward)  <---> f (forward)
 p (previous)  <---> n (next)
 l (backward)  <---> r (forward)
 k (kill/cut)  <---> y (yank/paste)
+u (up)        <---> d (down)
+q (quit)
+g (refresh)
 #+end_src
 
 ** Navigation
@@ -141,6 +144,7 @@ C-c k: kill active buffer
 C-x b, C-<tab>: switch window buffer
 C-x C-b: list buffers
 C-c b: open new scratch buffer
+C-x #: finish editing server buffer
 
 C-x C--: decrease font size
 C-x C-=: increase font size
@@ -348,7 +352,8 @@ M-x eww: open EWW on a specified URL
 | R: remove non-text content
 | G: open another URL
 | g: reload
-| <tab>: cycle selected link
+| <tab>: next link
+| S-<tab>: previous link
 | q: quit
 | <, >: top, bottom of page
 #+end_src
