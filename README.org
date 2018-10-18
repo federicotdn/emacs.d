@@ -185,6 +185,16 @@ C-x <tab>: enter indent region mode (use left-right)
 M-<down>, M-<up>: Move line down, up
 #+end_src
 
+** Registers
+#+begin_src
+C-x r C-<spc>: point to register
+C-x r j: jump to register
+
+C-x r s: copy text to register
+C-x r i: insert text from register
+
+C-x r w: window configuration to register (restore with jump-to-register)
+#+end_src
 ** Help
 #+begin_src
 <keys> C-h: commands that start with <something>

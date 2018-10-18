@@ -101,6 +101,8 @@
 
 ;; Save/load desktop automatically
 (desktop-save-mode 1)
+(setq desktop-restore-eager 2)
+(setq desktop-save t)
 
 ;; Disable truncate-lines when editing Markdown files
 (add-hook 'markdown-mode-hook 'visual-line-mode)
@@ -185,6 +187,16 @@
 ;; Start Emacs server
 ;; This allows using emacsclient as an editor
 (server-start)
+
+;; Print yank pointer index after yank-pop
+(advice-add 'yank-pop :after
+	    (lambda (&rest r)
+	      (unless (window-minibuffer-p)
+		(let* ((ring-len (length kill-ring))
+		       (pos (+ (- ring-len
+				  (length kill-ring-yank-pointer))
+			       1)))
+		  (message "Yanked element %d of %d." pos ring-len)))))
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
@@ -343,17 +355,6 @@ When passed a prefix argument, do it on the other window."
     (split-window-right))
   (restclient-http-send-current-stay-in-window))
 
-(defun yank-pop-verbose ()
-  "Call yank-pop and show kill ring pointer index value."
-  (interactive)
-  (call-interactively #'yank-pop)
-  (unless (window-minibuffer-p)
-    (let* ((ring-len (length kill-ring))
-	   (pos (+ (- ring-len
-		      (length kill-ring-yank-pointer))
-		   1)))
-      (message "Yanked element %d of %d." pos ring-len))))
-
 (defun toggle-window-dedicated ()
   "Toggles the selected window's dedicated flag."
   (interactive)
@@ -459,7 +460,7 @@ Otherwise save point position and current buffer to a register."
 	 (frameset-to-register reg))))
 
 (defun use-register-dwim (reg)
-  "Prompt for a register name.
+  "Prompt for a register name if called interactively, otherwise use REG.
 If the selected register contains text, insert its contents into the current buffer.
 If the register contains a point position (or file query), jump to it.
 If the register contains a keyboard macro, execute it.
@@ -560,10 +561,10 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
   `(add-hook ,mode-hook (lambda ()
 			  (local-set-key (kbd ,key) ,func))))
 
-(defmacro bind-key-spanish-letter (key letter)
-  "Insert a specific letter by using C-c [ and a specified key."
-  `(global-set-key (kbd (concat "C-c [ " ,key))
-		   (lambda () (interactive) (insert ,letter))))
+(defmacro bind-key-insert-char (key char)
+  "Insert a specific character by using a specific key sequence."
+  `(global-set-key (kbd ,key)
+		   (lambda () (interactive) (insert ,char))))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings
@@ -585,7 +586,6 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 
 (global-set-key (kbd "M-l") 'switch-buffer-maybe-other-window)
-(global-set-key (kbd "M-y") 'yank-pop-verbose)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)
@@ -620,6 +620,8 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 (global-set-key (kbd "C-c l o") 'ein:notebooklist-open)
 (global-set-key (kbd "C-c l l") 'ein:notebooklist-login)
+(global-set-key (kbd "C-c r j") 'use-register-dwim)
+(global-set-key (kbd "C-c r r") 'thing-to-register-dwim)
 
 (global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o a") 'org-agenda)
@@ -636,37 +638,26 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (set-mode-key 'shell-mode-hook "C-l" 'comint-clear-buffer)
 
 ;;----------------------------------------------------------------------------
-;; Keys for quick register dwim use
-;;----------------------------------------------------------------------------
-
-(dotimes (i 10)
-  (let* ((num (number-to-string i))
-	 (key (concat "C-c " num))
-	 (reg (string-to-char num)))
-    (global-set-key (kbd key)
-		    (lambda () (interactive)
-		      (if (assoc reg register-alist)
-			  (use-register-dwim reg)
-			(thing-to-register-dwim reg))))))
-
-;;----------------------------------------------------------------------------
 ;; Keys for quick Spanish letters insertion
 ;;----------------------------------------------------------------------------
 
-(bind-key-spanish-letter "a" "á")
-(bind-key-spanish-letter "e" "é")
-(bind-key-spanish-letter "i" "í")
-(bind-key-spanish-letter "o" "ó")
-(bind-key-spanish-letter "u" "ú")
-(bind-key-spanish-letter "n" "ñ")
-(bind-key-spanish-letter "A" "Á")
-(bind-key-spanish-letter "E" "É")
-(bind-key-spanish-letter "I" "Í")
-(bind-key-spanish-letter "O" "Ó")
-(bind-key-spanish-letter "U" "Ú")
-(bind-key-spanish-letter "N" "Ñ")
-(bind-key-spanish-letter "v" "ü")
-(bind-key-spanish-letter "V" "Ü")
+;; I prefer using "C-c [ a" instead of "C-x 8 ' a" to insert "á"
+;; It's shorter and there's less finger movement involved
+
+(bind-key-insert-char "C-c [ a" "á")
+(bind-key-insert-char "C-c [ e" "é")
+(bind-key-insert-char "C-c [ i" "í")
+(bind-key-insert-char "C-c [ o" "ó")
+(bind-key-insert-char "C-c [ u" "ú")
+(bind-key-insert-char "C-c [ n" "ñ")
+(bind-key-insert-char "C-c [ A" "Á")
+(bind-key-insert-char "C-c [ E" "É")
+(bind-key-insert-char "C-c [ I" "Í")
+(bind-key-insert-char "C-c [ O" "Ó")
+(bind-key-insert-char "C-c [ U" "Ú")
+(bind-key-insert-char "C-c [ N" "Ñ")
+(bind-key-insert-char "C-c [ v" "ü")
+(bind-key-insert-char "C-c [ V" "Ü")
 
 ;;----------------------------------------------------------------------------
 ;; Remove default keybindings

@@ -5,7 +5,6 @@
  ;; If there is more than one, they won't work right.
  '(compilation-scroll-output (quote first-error))
  '(delete-selection-mode t)
- '(desktop-restore-eager 2)
  '(flymake-fringe-indicator-position (quote right-fringe))
  '(grep-find-ignored-directories
    (quote
