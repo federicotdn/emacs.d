@@ -53,7 +53,7 @@ C-M-d, C-M-u: into, out of S-expression
 C-M-n, C-M-p: move next, previous S-expression
 
 C-o: next flymake error
-C-j: avy goto word 1 char
+C-j: avy goto char timer
 
 M->, M-<: move to end, beggining of buffer
 M-g M-g: go to line
@@ -187,7 +187,7 @@ M-<down>, M-<up>: Move line down, up
 
 ** Registers
 #+begin_src
-C-x r C-<spc>: point to register
+C-x r <spc>: point to register
 C-x r j: jump to register
 
 C-x r s: copy text to register

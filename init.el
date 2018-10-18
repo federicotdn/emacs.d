@@ -198,6 +198,9 @@
 			       1)))
 		  (message "Yanked element %d of %d." pos ring-len)))))
 
+;; When scrolling by page, leave 1 line of continuity instead of 2
+(setq next-screen-context-lines 1)
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
