@@ -550,6 +550,18 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
       (json-pretty-print (region-beginning) (region-end))
     (json-pretty-print-buffer)))
 
+(defun goto-last-edit ()
+  "Go to the last edit made in the current buffer."
+  (interactive)
+  (let ((pos (catch 'loop
+	       (dolist (item buffer-undo-list)
+		 (when (and (consp item)
+			    (or (integerp (car item))
+				(stringp (car item))))
+		   (throw 'loop (abs (cdr item))))))))
+    (unless (null pos)
+      (goto-char pos))))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -596,6 +608,7 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "M-s h c") 'clear-all-highlights)
+(global-set-key (kbd "M-<backspace>") 'goto-last-edit)
 
 (global-set-key (kbd "C-c w s") 'swap-window-pair-buffers)
 (global-set-key (kbd "C-c w f") 'fit-window-to-buffer)
@@ -639,6 +652,11 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
 (set-mode-key 'shell-mode-hook "C-r" 'comint-history-isearch-backward-regexp)
 (set-mode-key 'shell-mode-hook "C-l" 'comint-clear-buffer)
+
+;; Free keys:
+;; C-c SPC
+;; C-.
+;; M-j
 
 ;;----------------------------------------------------------------------------
 ;; Keys for quick Spanish letters insertion

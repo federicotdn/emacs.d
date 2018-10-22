@@ -43,7 +43,8 @@ M-e, M-a: end of sentence, start of sentence
 C-M-e, C-M-a: end of defun, start of defun
 
 C-v, M-v: scroll down, up window
-C-M-v, C-M-S-v: scroll down, up other window
+C-M-v: scroll down other window
+C-- C-M-v, C-M-S-v: scroll up other window
 C-<, C->: scroll right, left window
 C-l: scroll to leave point at center, top, bottom
 C-M-l: scroll to leave current func. definition at top
@@ -195,6 +196,7 @@ C-x r i: insert text from register
 
 C-x r w: window configuration to register (restore with jump-to-register)
 #+end_src
+
 ** Help
 #+begin_src
 <keys> C-h: commands that start with <something>
@@ -391,10 +393,3 @@ F3, F4: start, stop recording macro
 F4: playback last recorded macro
 #+END_SRC
 
-* Free Keys
-#+begin_src
-C-c SPC
-C-.
-M-DEL
-M-j
-#+end_src
