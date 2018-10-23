@@ -247,9 +247,14 @@
 
 ;; Projectile
 (projectile-mode +1)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(setq-default projectile-mode-line
-	      '(:eval (format " P[%s]" (projectile-project-name))))
+
+(defun my-projectile-mode-line ()
+  "Report project name and type in the modeline."
+  (let ((project-name (projectile-project-name))
+        (project-type (projectile-project-type)))
+    (format " P[%s]" (or project-name "-"))))
+
+(setq projectile-mode-line-function 'my-projectile-mode-line)
 
 ;; Elpy
 (elpy-enable)
@@ -661,6 +666,8 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "C-c o g") 'import-google-calendar)
 
 (global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
+
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
 (set-mode-key 'shell-mode-hook "C-r" 'comint-history-isearch-backward-regexp)
