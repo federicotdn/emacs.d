@@ -559,7 +559,9 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 			    (or (integerp (car item))
 				(stringp (car item))))
 		   (throw 'loop (abs (cdr item))))))))
-    (unless (null pos)
+    (unless (or (null pos)
+		(= (point) pos))
+      (push-mark)
       (goto-char pos))))
 
 ;;----------------------------------------------------------------------------
