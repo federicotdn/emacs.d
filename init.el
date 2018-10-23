@@ -273,6 +273,7 @@
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 ;; Restclient mode
+(require 'restclient)
 (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
 ;; Hy mode
@@ -584,16 +585,6 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 ;; Macros
 ;;----------------------------------------------------------------------------
 
-(defmacro disable-mode-key (mode-hook mode-map key)
-  "Set a key to nil for a specific mode."
-  `(add-hook ,mode-hook (lambda ()
-			  (define-key ,mode-map (kbd ,key) nil))))
-
-(defmacro set-mode-key (mode-hook key func)
-  "Set a key for a specific mode."
-  `(add-hook ,mode-hook (lambda ()
-			  (local-set-key (kbd ,key) ,func))))
-
 (defmacro bind-key-insert-char (key char)
   "Insert a specific character by using a specific key sequence."
   `(global-set-key (kbd ,key)
@@ -668,11 +659,10 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
 
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-
-(set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
-(set-mode-key 'shell-mode-hook "C-r" 'comint-history-isearch-backward-regexp)
-(set-mode-key 'shell-mode-hook "C-l" 'recenter-top)
-(set-mode-key 'shell-mode-hook "C-M-l" 'comint-clear-buffer)
+(define-key restclient-mode-map (kbd "C-c C-v") 'close-response-and-request)
+(define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
+(define-key shell-mode-map (kbd "C-l") 'recenter-top)
+(define-key shell-mode-map (kbd "C-M-l") 'comint-clear-buffer)
 
 ;; Free keys:
 ;; C-c SPC
@@ -709,12 +699,12 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 
 (global-unset-key (kbd "C-x f"))
 
-(disable-mode-key 'elpy-mode-hook elpy-mode-map "<C-return>")
-(disable-mode-key 'elpy-mode-hook elpy-mode-map "C-c C-c")
-(disable-mode-key 'org-mode-hook org-mode-map "C-c [")
-(disable-mode-key 'org-mode-hook org-mode-map "C-'")
-(disable-mode-key 'shell-mode-hook shell-mode-map "C-c C-l")
-(disable-mode-key 'python-mode-hook python-mode-map "C-c C-c")
+(define-key elpy-mode-map (kbd "<C-return>") nil)
+(define-key elpy-mode-map (kbd "C-c C-c") nil)
+(define-key org-mode-map (kbd "C-[") nil)
+(define-key org-mode-map (kbd "C-'") nil)
+(define-key shell-mode-map (kbd "C-c C-l") nil)
+(define-key python-mode-map (kbd "C-c C-c") nil)
 
 ;;----------------------------------------------------------------------------
 ;; Cleanup
