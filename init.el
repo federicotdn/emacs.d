@@ -201,6 +201,11 @@
 ;; When scrolling by page, leave 1 line of continuity instead of 2
 (setq next-screen-context-lines 1)
 
+;; In shell mode, don't jump to position after output
+(add-hook 'shell-mode-hook
+	  (lambda ()
+	    (remove-hook 'comint-output-filter-functions 'comint-postoutput-scroll-to-bottom)))
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
@@ -564,6 +569,12 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
       (push-mark)
       (goto-char pos))))
 
+(defun recenter-top ()
+  "Move current buffer line to window line 0."
+  (interactive)
+  (end-of-buffer '(4))
+  (recenter-top-bottom 0))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -653,7 +664,8 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 
 (set-mode-key 'restclient-mode-hook "C-c C-v" 'close-response-and-request)
 (set-mode-key 'shell-mode-hook "C-r" 'comint-history-isearch-backward-regexp)
-(set-mode-key 'shell-mode-hook "C-l" 'comint-clear-buffer)
+(set-mode-key 'shell-mode-hook "C-l" 'recenter-top)
+(set-mode-key 'shell-mode-hook "C-M-l" 'comint-clear-buffer)
 
 ;; Free keys:
 ;; C-c SPC
