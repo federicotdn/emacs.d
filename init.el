@@ -35,6 +35,7 @@
 
 ;; Sort help by relevance
 (setq apropos-sort-by-scores t)
+(setq apropos-do-all t)
 
 ;; Disable welcome screen
 (setq inhibit-startup-screen t)
@@ -651,6 +652,7 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (global-set-key (kbd "C-c l l") 'ein:notebooklist-login)
 (global-set-key (kbd "C-c r j") 'use-register-dwim)
 (global-set-key (kbd "C-c r r") 'thing-to-register-dwim)
+(global-set-key (kbd "C-c z") 'apropos)
 
 (global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o a") 'org-agenda)

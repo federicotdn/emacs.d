@@ -142,7 +142,7 @@ C-x C-f C-f: visit file (normal)
 C-c c: visit file in project, or anywhere
 C-x k: kill a buffer
 C-c k: kill active buffer
-C-x b, C-<tab>: switch window buffer
+C-x b, M-l: switch window buffer
 C-x C-b: list buffers
 C-c b: open new scratch buffer
 C-x #: finish editing server buffer
@@ -346,8 +346,11 @@ C-c .: insert timestamp
 | S-<left>, S-<right>: move to previous, next calendar day
 | <ret>: select calendar day
 
-C-c C-w: refile entry
 C-c C-x c: clone tree with time shift
+C-c C-x C-w: kill subtree
+C-c C-x C-y: yank subtree
+
+C-c C-w: refile entry
 C-c C-l: insert link
 < s <tab>: insert code block
 
