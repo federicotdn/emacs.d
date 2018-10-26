@@ -331,8 +331,9 @@
     (error "This function only works with exactly two windows")))
 
 (defun find-file-general-maybe-other-window (&optional arg)
-  "If in a projectile project, use projectile-find file. Otherwise use ido-find-file.
-When passed a prefix argument, do it on the other window."
+  "If in a projectile project, use projectile-find file. Otherwise use
+ido-find-file. When passed a prefix argument ARG, do it on the other
+window."
   (interactive "P")
   (if (null arg)
       (if (projectile-project-p)
@@ -344,7 +345,8 @@ When passed a prefix argument, do it on the other window."
 	(ido-find-file-other-window)))))
 
 (defun switch-buffer-maybe-other-window (&optional arg)
-  "Switch buffer using IDO. When passed a prefix argument, do it on the other window."
+  "Switch buffer using IDO. When passed a prefix argument ARG, do it
+on the other window."
   (interactive "P")
   (if (null arg)
       (ido-switch-buffer)
@@ -352,7 +354,8 @@ When passed a prefix argument, do it on the other window."
       (ido-switch-buffer-other-window))))
 
 (defun kill-current-buffer-maybe-other-window (&optional arg)
-  "Kill current buffer. When passed a prefix argument, do it on the other window."
+  "Kill current buffer. When passed a prefix argument ARG, do it on
+the other window."
   (interactive "P")
   (if (null arg)
       (kill-current-buffer)
@@ -378,8 +381,9 @@ When passed a prefix argument, do it on the other window."
     (message "Window dedicated value is now: %s." (window-dedicated-p win))))
 
 (defun backward-delete-word ()
-  "Delete a word backwards. Delete text from previous line only when current line is empty.
-This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
+  "Delete a word backwards. Delete text from previous line only when
+current line is empty. This behaviour is similar to the one used by
+SublimeText/Atom/VSCode/etc."
   (interactive)
   (if (= 0 (current-column))
       (call-interactively #'backward-delete-char-untabify)
@@ -450,12 +454,14 @@ This behaviour is similar to the one used by SublimeText/Atom/VSCode/etc."
       (error "Buffer is not visiting any file"))))
 
 (defun thing-to-register-dwim (reg)
-  "If called with negative prefix argument, prompt for register and clear its contents.
-If called with prefix argument (4), prompt for a register and save window configuration into it.
-If called with prefix argument (16), prompt for a register and save frameset configuration into it.
-If last executed action was defining a macro, prompt for a register and save it there.
-Otherwise, if region is active, copy it to a register.
-Otherwise save point position and current buffer to a register."
+  "If called with negative prefix argument, prompt for register and
+clear its contents. If called with prefix argument (4), prompt for a
+register and save window configuration into it. If called with prefix
+argument (16), prompt for a register and save frameset configuration
+into it. If last executed action was defining a macro, prompt for a
+register and save it there. Otherwise, if region is active, copy it to
+a register. Otherwise save point position and current buffer to a
+register."
   (interactive (list (register-read-with-preview
 		      (if (equal current-prefix-arg '-)
 			  "Delete register: "
@@ -475,11 +481,12 @@ Otherwise save point position and current buffer to a register."
 	 (frameset-to-register reg))))
 
 (defun use-register-dwim (reg)
-  "Prompt for a register name if called interactively, otherwise use REG.
-If the selected register contains text, insert its contents into the current buffer.
-If the register contains a point position (or file query), jump to it.
-If the register contains a keyboard macro, execute it.
-If the register contains a window or frameset configuration, apply it."
+  "Prompt for a register name if called interactively, otherwise use
+REG. If the selected register contains text, insert its contents into
+the current buffer. If the register contains a point position (or file
+query), jump to it. If the register contains a keyboard macro, execute
+it. If the register contains a window or frameset configuration, apply
+it."
   (interactive (list (register-read-with-preview "Register: ")))
   (let ((contents (get-register reg)))
     (if (stringp contents)
@@ -494,8 +501,8 @@ If the register contains a window or frameset configuration, apply it."
 	(jump-to-register reg)))))
 
 (defun rename-file-buffer ()
-  "Rename the current buffer's file, and the buffer itself to match the new
-file name."
+  "Rename the current buffer's file, and the buffer itself to match
+the new file name."
   (interactive)
   (let ((current-file-name (buffer-file-name)))
     (if (and current-file-name (not (buffer-modified-p)))
@@ -510,8 +517,9 @@ file name."
       (error "Current buffer is not visiting any file or has unsaved changes"))))
 
 (defun import-icalendar-url (url dest)
-  "Download an iCalendar file from URL (asynchronously) and convert it to a Org mode file,
-using ical2orgpy. The created file will be placed in file DEST, inside the current org-directory."
+  "Download an iCalendar file from URL (asynchronously) and convert it
+to a Org mode file, using ical2orgpy. The created file will be placed
+in file DEST, inside the current org-directory."
   (interactive "sEnter URL: \nsEnter filename: ")
   (unless (executable-find "ical2orgpy")
     (error "Could not find ical2orgpy executable"))
@@ -530,15 +538,15 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
   (import-icalendar-url gcal-url "gcal.org"))
 
 (defun wrap-region (c)
-  "Wrap active region with character C and its corresponding pair."
+  "Wrap point or active region with character C and its corresponding
+pair."
   (interactive (list (read-char-exclusive "Wrap region with: ")))
   (let* ((char-pairs '(("{" . "}")
 		       ("(" . ")")
 		       ("[" . "]")
+		       ("<" . ">")
 		       ("¿" . "?")
-		       ("¡" . "!")
-		       ("`" . "'")
-		       ("<" . ">")))
+		       ("¡" . "!")))
 	 (s (char-to-string c))
 	 (pair (catch 'loop
 		 (dolist (p char-pairs)
@@ -580,8 +588,9 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
       (push-mark)
       (goto-char pos))))
 
-(defun recenter-top ()
-  "Move current buffer line to window line 0."
+(defun goto-end-clear-screen ()
+  "Go to the end of the buffer and then move current buffer line to
+window line 0."
   (interactive)
   (end-of-buffer '(4))
   (recenter-top-bottom 0))
@@ -667,7 +676,7 @@ using ical2orgpy. The created file will be placed in file DEST, inside the curre
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (define-key restclient-mode-map (kbd "C-c C-v") 'close-response-and-request)
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
-(define-key shell-mode-map (kbd "C-l") 'recenter-top)
+(define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
 (define-key shell-mode-map (kbd "C-M-l") 'comint-clear-buffer)
 
 ;; Free keys:
