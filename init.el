@@ -577,6 +577,9 @@ pair."
 (defun goto-last-edit ()
   "Go to the last edit made in the current buffer."
   (interactive)
+  (unless (or (consp buffer-undo-list)
+	      (not buffer-undo-list))
+    (error "Can't go to last edit: invalid undo list"))
   (let ((pos (catch 'loop
 	       (dolist (item buffer-undo-list)
 		 (when (and (consp item)
