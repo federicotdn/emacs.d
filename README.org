@@ -90,6 +90,7 @@ M-@: mark next word
 M-h: mark next paragraph
 C-x h: mark the whole buffer
 C-=: extend region
+C-x =: display character information of character after point
 
 C-x <spc>: activate rectangle region mode
 #+end_src

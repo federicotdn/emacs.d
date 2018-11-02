@@ -285,12 +285,6 @@
 (setq avy-background t)
 (setq avy-keys '(?a ?s ?d ?f ?j ?k ?l ?\;))
 
-;; Configure keyfreq
-(require 'keyfreq)
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
-(setq keyfreq-file "~/.emacs.d/.emacs.keyfreq")
-
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------

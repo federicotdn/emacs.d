@@ -14,7 +14,7 @@
  '(icalendar-import-format "%s%d%l")
  '(package-selected-packages
    (quote
-    (keyfreq ein spotify flymake-shellcheck expand-region hy-mode avy yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
+    (ein spotify flymake-shellcheck expand-region hy-mode avy yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
  '(projectile-use-git-grep t)
  '(vc-display-status nil)
  '(winner-mode t))
