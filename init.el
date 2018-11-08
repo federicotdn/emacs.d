@@ -592,6 +592,11 @@ window line 0."
   (end-of-buffer '(4))
   (recenter-top-bottom 0))
 
+(defun dired-default-directory ()
+  "Open dired on the directory contained by `default-directory'."
+  (interactive)
+  (dired default-directory))
+
 ;;----------------------------------------------------------------------------
 ;; Macros
 ;;----------------------------------------------------------------------------
@@ -606,7 +611,7 @@ window line 0."
 ;;----------------------------------------------------------------------------
 
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x C-d") 'ido-dired)
+(global-set-key (kbd "C-x C-d") 'dired-default-directory)
 
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
@@ -670,6 +675,8 @@ window line 0."
 
 (global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
 
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
+
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (define-key restclient-mode-map (kbd "C-c C-v") 'close-response-and-request)
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
@@ -680,12 +687,15 @@ window line 0."
 ;; C-c SPC
 ;; C-.
 ;; M-j
+;; M-'
+;; M-[
+;; M-]
 
 ;;----------------------------------------------------------------------------
-;; Keys for quick Spanish letters insertion
+;; Keys for quick Spanish/German letters insertion
 ;;----------------------------------------------------------------------------
 
-;; I prefer using "C-c [ a" instead of "C-x 8 ' a" to insert "á"
+;; I prefer using "C-c [ a" instead of "C-x 8 ' a" to insert "á" (for example)
 ;; It's shorter and there's less finger movement involved
 
 (bind-key-insert-char "C-c [ a" "á")
@@ -702,6 +712,14 @@ window line 0."
 (bind-key-insert-char "C-c [ N" "Ñ")
 (bind-key-insert-char "C-c [ v" "ü")
 (bind-key-insert-char "C-c [ V" "Ü")
+
+(bind-key-insert-char "C-c [ [ a" "ä")
+(bind-key-insert-char "C-c [ [ o" "ö")
+(bind-key-insert-char "C-c [ [ u" "ü")
+(bind-key-insert-char "C-c [ [ s" "ß")
+(bind-key-insert-char "C-c [ [ A" "Ä")
+(bind-key-insert-char "C-c [ [ O" "Ö")
+(bind-key-insert-char "C-c [ [ U" "Ü")
 
 ;;----------------------------------------------------------------------------
 ;; Remove default keybindings

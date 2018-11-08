@@ -319,11 +319,13 @@ M-x man: enter man mode
 ** IBuffer
 #+begin_src
 C-c <tab>: enter IBuffer
+M-x ibuffer: enter IBuffer
 | d: Mark buffer for deletion
 | x: Kill all marked buffers
 | U: Unmark all buffers
 | q: Bury IBuffer
 | n, p: next, previous line
+| <tab>: skip to next section
 #+end_src
 
 ** Org Mode
