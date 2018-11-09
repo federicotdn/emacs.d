@@ -277,9 +277,6 @@
 (require 'restclient)
 (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
-;; Hy mode
-(add-to-list 'auto-mode-alist '("\\.hy\\'" . hy-mode))
-
 ;; Avy
 (setq avy-all-windows nil)
 (setq avy-background t)
@@ -593,7 +590,7 @@ window line 0."
   (recenter-top-bottom 0))
 
 (defun dired-default-directory ()
-  "Open dired on the directory contained by `default-directory'."
+  "Open dired on the directory contained in `default-directory'."
   (interactive)
   (dired default-directory))
 
