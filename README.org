@@ -231,6 +231,7 @@ C-x d: dired
 | v: view selected file, read only (q to quit)
 | C: copy selected file (cp)
 | g: update dired buffer
+| !: run command on file at point
 | C-x C-q: writeable dired mode
 #+end_src
 

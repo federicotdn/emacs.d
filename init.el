@@ -257,6 +257,9 @@
 
 (setq projectile-mode-line-function 'my-projectile-mode-line)
 
+;; Magit
+(add-to-list 'magit-repository-directories '("~/Workspace/" . 2))
+
 ;; Elpy
 (elpy-enable)
 
@@ -656,8 +659,6 @@ window line 0."
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c <tab>") 'ibuffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
-(global-set-key (kbd "C-c l o") 'ein:notebooklist-open)
-(global-set-key (kbd "C-c l l") 'ein:notebooklist-login)
 (global-set-key (kbd "C-c r j") 'use-register-dwim)
 (global-set-key (kbd "C-c r r") 'thing-to-register-dwim)
 (global-set-key (kbd "C-c z") 'apropos)
@@ -679,6 +680,9 @@ window line 0."
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
 (define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
 (define-key shell-mode-map (kbd "C-M-l") 'comint-clear-buffer)
+
+(define-key org-mode-map (kbd "M-n") 'outline-next-visible-heading)
+(define-key org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
 
 ;; Free keys:
 ;; C-c SPC
