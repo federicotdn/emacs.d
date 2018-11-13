@@ -258,7 +258,8 @@
 (setq projectile-mode-line-function 'my-projectile-mode-line)
 
 ;; Magit
-(add-to-list 'magit-repository-directories '("~/Workspace/" . 2))
+(with-eval-after-load 'magit
+    (add-to-list 'magit-repository-directories '("~/Workspace/" . 2)))
 
 ;; Elpy
 (elpy-enable)
