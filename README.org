@@ -173,6 +173,8 @@ M-y: cycle last yank
 C-t: transpose
 C-x r t: replace rectangle contents with a string
 C-x <tab>: enter indent region mode (use left-right)
+
+C-x 8 <keys>: enter a character composition
 #+end_src
 
 ** Registers
@@ -200,6 +202,8 @@ C-h i: info documentation reader
 C-h k <key>: show documentation for key sequence
 C-h l: view lossage (key history)
 C-h b: show all keybindings
+C-h e: open *Messages* buffer
+C-h C-a: show information about Emacsl
 #+end_src
 
 ** Dired

@@ -207,6 +207,9 @@
 	  (lambda ()
 	    (remove-hook 'comint-output-filter-functions 'comint-postoutput-scroll-to-bottom)))
 
+;; Load iso-transl in order to change the C-x 8 prefix later
+(require 'iso-transl)
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
@@ -602,15 +605,6 @@ window line 0."
   (dired default-directory))
 
 ;;----------------------------------------------------------------------------
-;; Macros
-;;----------------------------------------------------------------------------
-
-(defmacro bind-key-insert-char (key char)
-  "Insert a specific character by using a specific key sequence."
-  `(global-set-key (kbd ,key)
-		   (lambda () (interactive) (insert ,char))))
-
-;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
 
@@ -685,6 +679,7 @@ window line 0."
 
 (define-key org-mode-map (kbd "M-n") 'outline-next-visible-heading)
 (define-key org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
+(define-key key-translation-map (kbd "M-'") iso-transl-ctl-x-8-map)
 
 ;; Free keys:
 ;; C-c SPC
@@ -695,42 +690,13 @@ window line 0."
 ;; M-]
 
 ;;----------------------------------------------------------------------------
-;; Keys for quick Spanish/German letters insertion
-;;----------------------------------------------------------------------------
-
-;; I prefer using "C-c [ a" instead of "C-x 8 ' a" to insert "á" (for example)
-;; It's shorter and there's less finger movement involved
-
-(bind-key-insert-char "C-c [ a" "á")
-(bind-key-insert-char "C-c [ e" "é")
-(bind-key-insert-char "C-c [ i" "í")
-(bind-key-insert-char "C-c [ o" "ó")
-(bind-key-insert-char "C-c [ u" "ú")
-(bind-key-insert-char "C-c [ n" "ñ")
-(bind-key-insert-char "C-c [ A" "Á")
-(bind-key-insert-char "C-c [ E" "É")
-(bind-key-insert-char "C-c [ I" "Í")
-(bind-key-insert-char "C-c [ O" "Ó")
-(bind-key-insert-char "C-c [ U" "Ú")
-(bind-key-insert-char "C-c [ N" "Ñ")
-(bind-key-insert-char "C-c [ v" "ü")
-(bind-key-insert-char "C-c [ V" "Ü")
-
-(bind-key-insert-char "C-c [ [ a" "ä")
-(bind-key-insert-char "C-c [ [ o" "ö")
-(bind-key-insert-char "C-c [ [ u" "ü")
-(bind-key-insert-char "C-c [ [ s" "ß")
-(bind-key-insert-char "C-c [ [ A" "Ä")
-(bind-key-insert-char "C-c [ [ O" "Ö")
-(bind-key-insert-char "C-c [ [ U" "Ü")
-
-;;----------------------------------------------------------------------------
 ;; Remove default keybindings
 ;;----------------------------------------------------------------------------
 
 ;; Disable some default keys that get hit by accident
 
 (global-unset-key (kbd "C-x f"))
+(global-unset-key (kbd "M-'"))
 
 (define-key elpy-mode-map (kbd "<C-return>") nil)
 (define-key elpy-mode-map (kbd "C-c C-c") nil)
