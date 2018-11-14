@@ -211,6 +211,9 @@
 ;; Org Mode
 ;;----------------------------------------------------------------------------
 
+;; Disable truncate-lines when editing Org files
+(add-hook 'org-mode-hook 'visual-line-mode)
+
 ;; Configure directories
 (setq org-directory "~/Dropbox/org/")
 (setq org-agenda-files (list org-directory))
@@ -615,8 +618,6 @@ window line 0."
 (global-set-key (kbd "C-x C-d") 'dired-default-directory)
 
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-j") 'avy-goto-char-timer)
 (global-set-key (kbd "C-;") 'comment-really-dwim)
 (global-set-key (kbd "C-<") 'scroll-right)

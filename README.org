@@ -1,30 +1,30 @@
 * Emacs Configuration
-Emacs configuration files and help. Standard and custom keybindings are listed below.
+Emacs configuration files and help. Only standard keybindings are listed. Emacs standard keybindings work with =emacs -q=, and package-specific standard keybindings work after installing the package and applying the default initial configuration.
 
 ** General Reference
-#+begin_src
-Modifiers:
-C = control
-M = meta (alt)
-S = shift
+ #+begin_src
+ Modifiers:
+ C = control
+ M = meta (alt)
+ S = shift
 
-Historical (not used):
-s = super
-H = hyper
-A = alt
-#+end_src
+ Historical (not used):
+ s = super
+ H = hyper
+ A = alt
+ #+end_src
 
-#+begin_src
-Common conventions across commands:
-a (beggining) <---> e (end)
-b (backward)  <---> f (forward)
-p (previous)  <---> n (next)
-l (backward)  <---> r (forward)
-k (kill/cut)  <---> y (yank/paste)
-u (up)        <---> d (down)
-q (quit)
-g (refresh)
-#+end_src
+ #+begin_src
+ Common conventions across commands:
+ a (beggining) <---> e (end)
+ b (backward)  <---> f (forward)
+ p (previous)  <---> n (next)
+ l (backward)  <---> r (forward)
+ k (kill/cut)  <---> y (yank/paste)
+ u (up)        <---> d (down)
+ q (quit)
+ g (refresh)
+ #+end_src
 
 ** Navigation
 #+begin_src
@@ -38,14 +38,12 @@ M-m: first non-whitespace char of line
 M-r: move point to center, top, bottom
 
 M-}, M-{: next, previous paragraph
-M-n, M-p: next, previous paragraph
 M-e, M-a: end of sentence, start of sentence
 C-M-e, C-M-a: end of defun, start of defun
 
 C-v, M-v: scroll down, up window
 C-M-v: scroll down other window
 C-- C-M-v, C-M-S-v: scroll up other window
-C-<, C->: scroll right, left window
 C-l: scroll to leave point at center, top, bottom
 C-M-l: scroll to leave current func. definition at top
 
@@ -53,16 +51,13 @@ C-M-f, C-M-b: forward, backwards S-expression
 C-M-d, C-M-u: into, out of S-expression
 C-M-n, C-M-p: move next, previous S-expression
 
-C-o: next flymake error
-C-j: avy goto char timer
-
 M->, M-<: move to end, beggining of buffer
 M-g M-g: go to line
 #+end_src
 
 ** Windows
 #+begin_src
-C-x o, M-o: cycle windows
+C-x o: cycle windows
 S-<left>, S-<right>, ...: move between windows
 C-x 0: Close this window
 C-x 1: Close other windows
@@ -89,7 +84,6 @@ C-x C-<spc>: pop mark (global)
 M-@: mark next word
 M-h: mark next paragraph
 C-x h: mark the whole buffer
-C-=: extend region
 C-x =: display character information of character after point
 
 C-x <spc>: activate rectangle region mode
@@ -97,7 +91,7 @@ C-x <spc>: activate rectangle region mode
 
 ** Symbols
 #+begin_src
-M-i: imenu
+M-x imenu: open imenu symbols buffer
 M-.: go to definition of symbol on point
 M-,: pop back to where M-. was last invoked
 #+end_src
@@ -121,17 +115,17 @@ C-s: isearch
 | M-e: put cursor back on mini buffer
 
 C-r: backwards isearch
-C-M-s: regexp incremental search
-C-M-r: backward regexp incremental search
 
-C-,: replace interactive regexp
+C-M-s: regexp isearch
+C-M-r: backward regexp isearch
+
+M-%: replace interactive
+C-M-%: replace interactive regexp
 | y: replace
 | n: skip
 | .: replace one and exit
 | <ret>: exit
 | !: replace all
-
-M-s o: occur mode
 #+end_src
 
 ** Buffers
@@ -140,19 +134,16 @@ C-x C-s: save buffer
 C-x C-f: visit file (ido)
 C-x C-w: write buffer to file
 C-x C-f C-f: visit file (normal)
-C-c c: visit file in project, or anywhere
 C-x k: kill a buffer
-C-c k: kill active buffer
-C-x b, M-l: switch window buffer
+C-x b: switch window buffer
 C-x C-b: list buffers
-C-c b: open new scratch buffer
 C-x #: finish editing server buffer
 
 C-x C--: decrease font size
 C-x C-=: increase font size
 C-x C-0: reset font size
 
-C-x <left>, C-x <right>: move to previous, next buffer
+C-x <left>, C-x <right>: switch to previous, next buffer
 #+end_src
 
 ** Commands
@@ -160,7 +151,7 @@ C-x <left>, C-x <right>: move to previous, next buffer
 M-x: execute command
 C-x z: repeat last command
 C-x C-c: exit
-C-u <arg> <command>: exec <command> with <arg>
+C-u <arg> <command>: execute <command> with <arg>
 #+end_src
 
 ** Editing
@@ -171,7 +162,7 @@ M-d: kill word
 C-k: kill rest of line
 C-S-<backspace>: kill line
 C-M-k: kill S-expression
-C-<backspace>: backwards delete word
+C-<backspace>: backwards kill word
 M-z: zap to char
 
 C-w: kill active region (cut)
@@ -180,11 +171,8 @@ C-y: yank last kill (paste)
 M-y: cycle last yank
 
 C-t: transpose
-C-;: comment/uncomment line
 C-x r t: replace rectangle contents with a string
-
 C-x <tab>: enter indent region mode (use left-right)
-M-<down>, M-<up>: Move line down, up
 #+end_src
 
 ** Registers
@@ -216,6 +204,7 @@ C-h b: show all keybindings
 
 ** Dired
 #+begin_src
+C-x C-d: list directory
 C-x d: dired
 | <ret>: visit file or directory on point
 | ^: go up one directory
@@ -276,7 +265,7 @@ M-x package-install: install a package
 
 ** Magit
 #+begin_src
-C-x g: magit-status (main window)
+M-x magit-status: magit main repository status panel
 | c: commit
  | C-c C-c: save commit message
  | C-c C-k: abort commit
@@ -294,6 +283,7 @@ C-c M-g: file popup
 #+end_src
 
 ** Projectile
+Using =C-c p= as the value for =projectile-command-map=:
 #+begin_src
 C-c p p: open project
 C-c p f: open file in project
@@ -305,10 +295,10 @@ C-c p r: find and replace in project
 
 ** Shell
 #+begin_src
-C-c M-o, C-l: clear screen
+C-c M-o: clear screen
 C-c C-c: send interrupt
+M-r: backward history isearch
 C-d: send EOF
-C-r: backwards history search
 #+end_src
 
 ** Man Mode
@@ -319,7 +309,6 @@ M-x man: enter man mode
 
 ** IBuffer
 #+begin_src
-C-c <tab>: enter IBuffer
 M-x ibuffer: enter IBuffer
 | d: Mark buffer for deletion
 | x: Kill all marked buffers
@@ -331,7 +320,7 @@ M-x ibuffer: enter IBuffer
 
 ** Org Mode
 #+begin_src
-C-c o a: view agenda
+M-x org-agenda: view Org agenda
 | f, b: forward, backward in time
 | n, p: next, previous item
 | .: go to today
@@ -383,7 +372,6 @@ M-x eww: open EWW on a specified URL
 M-s h .: highlight symbol at point
 M-s h r: highlight regexp
 M-s h l: highlight lines matching regexp
-M-s h c: clear all highlights
 #+end_src
 
 ** Info
