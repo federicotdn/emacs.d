@@ -679,7 +679,7 @@ window line 0."
 
 (define-key org-mode-map (kbd "M-n") 'outline-next-visible-heading)
 (define-key org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
-(define-key key-translation-map (kbd "M-'") iso-transl-ctl-x-8-map)
+(define-key global-map (kbd "M-'") iso-transl-ctl-x-8-map)
 
 ;; Free keys:
 ;; C-c SPC
@@ -696,7 +696,6 @@ window line 0."
 ;; Disable some default keys that get hit by accident
 
 (global-unset-key (kbd "C-x f"))
-(global-unset-key (kbd "M-'"))
 
 (define-key elpy-mode-map (kbd "<C-return>") nil)
 (define-key elpy-mode-map (kbd "C-c C-c") nil)
