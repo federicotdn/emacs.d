@@ -22,6 +22,7 @@ Emacs configuration files and help. Only standard keybindings are listed. Emacs 
  l (backward)  <---> r (forward)
  k (kill/cut)  <---> y (yank/paste)
  u (up)        <---> d (down)
+ r (reverse)   <---> s (forward)
  q (quit)
  g (refresh)
  #+end_src
@@ -152,6 +153,7 @@ M-x: execute command
 C-x z: repeat last command
 C-x C-c: exit
 C-u <arg> <command>: execute <command> with <arg>
+M-&: execute async shell command
 #+end_src
 
 ** Editing

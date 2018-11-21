@@ -109,7 +109,7 @@
 (add-hook 'markdown-mode-hook 'visual-line-mode)
 
 ;; Dired
-(setq dired-listing-switches "-alh")
+(setq dired-listing-switches "-alh --group-directories-first")
 (setq dired-auto-revert-buffer t)
 
 ;; Set up uniquify
