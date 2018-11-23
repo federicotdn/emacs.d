@@ -575,8 +575,8 @@ window line 0."
 
 (global-set-key (kbd "M-l") 'ido-switch-buffer)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "M-[") 'move-line-up)
-(global-set-key (kbd "M-]") 'move-line-down)
+(global-set-key (kbd "M-<up>") 'move-line-up)
+(global-set-key (kbd "M-<down>") 'move-line-down)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
@@ -637,6 +637,8 @@ window line 0."
 ;; C-c SPC
 ;; C-.
 ;; M-j
+;; M-[
+;; M-]
 
 ;;----------------------------------------------------------------------------
 ;; Remove default keybindings
