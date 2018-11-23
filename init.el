@@ -254,18 +254,11 @@
 
 ;; Projectile
 (projectile-mode +1)
-
-(defun my-projectile-mode-line ()
-  "Report project name and type in the modeline."
-  (let ((project-name (projectile-project-name))
-        (project-type (projectile-project-type)))
-    (format " P[%s]" (or project-name "-"))))
-
-(setq projectile-mode-line-function 'my-projectile-mode-line)
+(setq projectile-mode-line-prefix " P")
 
 ;; Magit
 (with-eval-after-load 'magit
-    (add-to-list 'magit-repository-directories '("~/Workspace/" . 2)))
+  (add-to-list 'magit-repository-directories '("~/Workspace/" . 2)))
 
 ;; Elpy
 (elpy-enable)
@@ -331,40 +324,6 @@
 	(set-window-buffer w2 b1))
     (error "This function only works with exactly two windows")))
 
-(defun find-file-general-maybe-other-window (&optional arg)
-  "If in a projectile project, use projectile-find file. Otherwise use
-ido-find-file. When passed a prefix argument ARG, do it on the other
-window."
-  (interactive "P")
-  (if (null arg)
-      (if (projectile-project-p)
-	  (projectile-find-file)
-	(ido-find-file))
-    (save-selected-window
-      (if (projectile-project-p)
-	  (projectile-find-file-other-window)
-	(ido-find-file-other-window)))))
-
-(defun switch-buffer-maybe-other-window (&optional arg)
-  "Switch buffer using IDO. When passed a prefix argument ARG, do it
-on the other window."
-  (interactive "P")
-  (if (null arg)
-      (ido-switch-buffer)
-    (save-selected-window
-      (ido-switch-buffer-other-window))))
-
-(defun kill-current-buffer-maybe-other-window (&optional arg)
-  "Kill current buffer. When passed a prefix argument ARG, do it on
-the other window."
-  (interactive "P")
-  (if (null arg)
-      (kill-current-buffer)
-    (when (> (count-windows) 1)
-      (save-selected-window
-	(other-window 1)
-	(kill-current-buffer)))))
-
 (defun close-response-and-request ()
   "Close last HTTP response buffer and send a new request."
   (interactive)
@@ -373,13 +332,6 @@ the other window."
   (when (= (count-windows) 1)
     (split-window-right))
   (restclient-http-send-current-stay-in-window))
-
-(defun toggle-window-dedicated ()
-  "Toggles the selected window's dedicated flag."
-  (interactive)
-  (let ((win (get-buffer-window)))
-    (set-window-dedicated-p win (not (window-dedicated-p win)))
-    (message "Window dedicated value is now: %s." (window-dedicated-p win))))
 
 (defun backward-delete-word ()
   "Delete a word backwards. Delete text from previous line only when
@@ -621,10 +573,10 @@ window line 0."
 (global-set-key (kbd "C-M-=") 'wrap-region)
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 
-(global-set-key (kbd "M-l") 'switch-buffer-maybe-other-window)
+(global-set-key (kbd "M-l") 'ido-switch-buffer)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "M-<up>") 'move-line-up)
-(global-set-key (kbd "M-<down>") 'move-line-down)
+(global-set-key (kbd "M-[") 'move-line-up)
+(global-set-key (kbd "M-]") 'move-line-down)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
@@ -641,8 +593,8 @@ window line 0."
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
 (global-set-key (kbd "C-c s c") 'spotify-current)
-(global-set-key (kbd "C-c c") 'find-file-general-maybe-other-window)
-(global-set-key (kbd "C-c k") 'kill-current-buffer-maybe-other-window)
+(global-set-key (kbd "C-c c") 'projectile-find-file-dwim)
+(global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c j") 'json-pretty-print-dwim)
 (global-set-key (kbd "C-c i") 'indent-region)
 (global-set-key (kbd "C-c h") 'shell-with-name)
@@ -685,9 +637,6 @@ window line 0."
 ;; C-c SPC
 ;; C-.
 ;; M-j
-;; M-'
-;; M-[
-;; M-]
 
 ;;----------------------------------------------------------------------------
 ;; Remove default keybindings
