@@ -556,6 +556,16 @@ window line 0."
   (interactive)
   (dired default-directory))
 
+(defun yank-pop-previous (arg)
+  (interactive "p")
+  (if (eq last-command 'yank)
+      (yank-pop arg)
+    (yank)))
+
+(defun yank-pop-next ()
+  (interactive)
+  (yank-pop-previous -1))
+
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
@@ -577,6 +587,8 @@ window line 0."
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)
+(global-set-key (kbd "M-[") 'yank-pop-next)
+(global-set-key (kbd "M-]") 'yank-pop-previous)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
@@ -604,6 +616,7 @@ window line 0."
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
 (global-set-key (kbd "C-c t") 'parse-timestamp)
+(global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c <tab>") 'ibuffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
