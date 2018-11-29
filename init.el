@@ -207,6 +207,9 @@
 	  (lambda ()
 	    (remove-hook 'comint-output-filter-functions 'comint-postoutput-scroll-to-bottom)))
 
+;; Ignore duplicate commands in shell mode
+(setq comint-input-ignoredups t)
+
 ;; Load iso-transl in order to change the C-x 8 prefix later
 (require 'iso-transl)
 
@@ -565,6 +568,11 @@ window line 0."
 (defun yank-pop-next ()
   (interactive)
   (yank-pop-previous -1))
+
+(define-derived-mode long-lines-mode fundamental-mode "Long-Lines"
+  "Simple mode to allow editing files with very long lines."
+  (setq bidi-display-reordering nil)
+  (buffer-disable-undo))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings

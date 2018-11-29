@@ -127,6 +127,8 @@ C-M-%: replace interactive regexp
 | .: replace one and exit
 | <ret>: exit
 | !: replace all
+
+M-s o: occur mode
 #+end_src
 
 ** Buffers
@@ -304,7 +306,9 @@ C-c p r: find and replace in project
 C-c M-o: clear screen
 C-c C-c: send interrupt
 M-r: backward history isearch
-C-d: send EOF
+C-d: send EOF to shell
+C-c C-p: move to the previous prompt
+C-c C-n: move to the next prompt
 #+end_src
 
 ** Man Mode
