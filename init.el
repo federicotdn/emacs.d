@@ -121,7 +121,7 @@
 
 ;; Highlight long lines in python-mode
 (require 'whitespace)
-(setq-default whitespace-style '(face empty tabs lines-tail trailing spaces)
+(setq-default whitespace-style '(face tabs lines-tail trailing spaces)
 	      whitespace-line-column 79)
 (add-hook 'python-mode-hook #'whitespace-mode)
 
