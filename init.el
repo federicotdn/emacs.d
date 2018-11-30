@@ -560,12 +560,16 @@ window line 0."
   (dired default-directory))
 
 (defun yank-pop-previous (arg)
+  "If previous command was not a yank, yank. If it was, call yank-pop
+with ARG (1 by default)."
   (interactive "p")
   (if (eq last-command 'yank)
       (yank-pop arg)
     (yank)))
 
 (defun yank-pop-next ()
+  "If previous command was not a yank, yank. If it was, call yank-pop
+with ARG -1."
   (interactive)
   (yank-pop-previous -1))
 
