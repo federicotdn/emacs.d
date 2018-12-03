@@ -56,7 +56,6 @@
       '("^ "
 	"*Completions*"
 	"*Shell Command Output*"
-	"*Messages*"
 	"*Flymake log*"
 	"*Compile-Log*"
 	"*Help*"
@@ -99,11 +98,6 @@
 
 ;; Smaller cursor
 (setq-default cursor-type 'bar)
-
-;; Save/load desktop automatically
-(desktop-save-mode 1)
-(setq desktop-restore-eager 2)
-(setq desktop-save t)
 
 ;; Disable truncate-lines when editing Markdown files
 (add-hook 'markdown-mode-hook 'visual-line-mode)

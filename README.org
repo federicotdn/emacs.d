@@ -309,6 +309,8 @@ M-r: backward history isearch
 C-d: send EOF to shell
 C-c C-p: move to the previous prompt
 C-c C-n: move to the next prompt
+M-p: previous input
+M-n: next input
 #+end_src
 
 ** Man Mode
