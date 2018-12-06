@@ -113,7 +113,7 @@ C-s: isearch
 | C-w: add word at point to search string
 | M-n: next item in search history
 | M-p: previous item in search history
-| M-e: put cursor back on mini buffer
+| M-e: edit search string
 
 C-r: backwards isearch
 

@@ -37,9 +37,6 @@
 (setq apropos-sort-by-scores t)
 (setq apropos-do-all t)
 
-;; Disable welcome screen
-(setq inhibit-startup-screen t)
-
 ;; Show column number
 (column-number-mode t)
 
