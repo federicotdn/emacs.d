@@ -100,7 +100,7 @@
 (add-hook 'markdown-mode-hook 'visual-line-mode)
 
 ;; Dired
-(setq dired-listing-switches "-alh --group-directories-first")
+(setq dired-listing-switches "-alhv --group-directories-first")
 (setq dired-auto-revert-buffer t)
 
 ;; Set up uniquify
@@ -241,6 +241,9 @@
 
 ;; Always refile to top of entry
 (setq org-reverse-note-order t)
+
+;; Don't allow TODOs to be completed unless all children tasks are marked as done
+(setq org-enforce-todo-dependencies t)
 
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
