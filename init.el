@@ -666,6 +666,7 @@ with ARG -1."
 ;; Disable some default keys that get hit by accident
 
 (global-unset-key (kbd "C-x f"))
+(global-unset-key (kbd "M-;"))
 
 (define-key elpy-mode-map (kbd "<C-return>") nil)
 (define-key elpy-mode-map (kbd "C-c C-c") nil)
