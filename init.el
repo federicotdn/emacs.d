@@ -561,20 +561,6 @@ window line 0."
   (interactive)
   (dired default-directory))
 
-(defun yank-pop-previous (arg)
-  "If previous command was not a yank, yank. If it was, call yank-pop
-with ARG (1 by default)."
-  (interactive "p")
-  (if (eq last-command 'yank)
-      (yank-pop arg)
-    (yank)))
-
-(defun yank-pop-next ()
-  "If previous command was not a yank, yank. If it was, call yank-pop
-with ARG -1."
-  (interactive)
-  (yank-pop-previous -1))
-
 (define-derived-mode long-lines-mode fundamental-mode "Long-Lines"
   "Simple mode to allow editing files with very long lines."
   (setq bidi-display-reordering nil)
@@ -601,8 +587,6 @@ with ARG -1."
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)
-(global-set-key (kbd "M-[") 'yank-pop-next)
-(global-set-key (kbd "M-]") 'yank-pop-previous)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
