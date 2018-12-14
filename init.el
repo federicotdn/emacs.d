@@ -196,13 +196,25 @@
 ;; In shell mode, don't jump to position after output
 (add-hook 'shell-mode-hook
 	  (lambda ()
-	    (remove-hook 'comint-output-filter-functions 'comint-postoutput-scroll-to-bottom)))
+	    (remove-hook 'comint-output-filter-functions
+			 'comint-postoutput-scroll-to-bottom)))
 
 ;; Ignore duplicate commands in shell mode
 (setq comint-input-ignoredups t)
 
 ;; Load iso-transl in order to change the C-x 8 prefix later
 (require 'iso-transl)
+
+;; Create templates using tempo.el
+(require 'tempo)
+(load "~/.emacs.d/templates.el")
+
+;; Allow hippie-expand to complete tempo tags
+(defun try-tempo-complete-tag (old)
+  (unless old
+    (tempo-complete-tag)))
+
+(add-to-list 'hippie-expand-try-functions-list 'try-tempo-complete-tag)
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
