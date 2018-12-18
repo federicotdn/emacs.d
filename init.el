@@ -107,9 +107,6 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-;; Shrink left fringe
-(fringe-mode '(2 . nil))
-
 ;; Highlight long lines in python-mode
 (require 'whitespace)
 (setq-default whitespace-style '(face tabs lines-tail trailing spaces)
@@ -293,6 +290,9 @@
 (setq avy-all-windows nil)
 (setq avy-background t)
 (setq avy-keys '(?a ?s ?d ?f ?j ?k ?l ?\;))
+
+;; Enable undo for EIN (Jupyter Notebooks)
+(setq ein:worksheet-enable-undo t)
 
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
