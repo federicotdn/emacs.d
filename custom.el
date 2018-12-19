@@ -5,7 +5,6 @@
  ;; If there is more than one, they won't work right.
  '(compilation-scroll-output (quote first-error))
  '(delete-selection-mode t)
- '(flymake-fringe-indicator-position (quote right-fringe))
  '(grep-find-ignored-directories
    (quote
     ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "env" "venv" "build" "elpa")))
