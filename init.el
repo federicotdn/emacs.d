@@ -107,11 +107,13 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-;; Highlight long lines in python-mode
+;; Highlight long lines in python-mode and sh-mode
 (require 'whitespace)
 (setq-default whitespace-style '(face tabs lines-tail trailing spaces)
 	      whitespace-line-column 79)
+
 (add-hook 'python-mode-hook #'whitespace-mode)
+(add-hook 'sh-mode-hook #'whitespace-mode)
 
 ;; Set fill-column for Python
 (add-hook 'python-mode-hook (lambda () (set-fill-column 79)))
