@@ -14,7 +14,7 @@
   (package-initialize))
 
 ;; Customize
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file "~/.emacs.d/init-custom.el")
 (load custom-file)
 
 ;; Disable tool bar, scroll bar and menu bar
@@ -192,7 +192,7 @@
 
 ;; Create templates using tempo.el
 (require 'tempo)
-(load "~/.emacs.d/templates.el")
+(load "~/.emacs.d/init-templates.el")
 
 ;; Allow hippie-expand to complete tempo tags
 (defun try-tempo-complete-tag (old)
