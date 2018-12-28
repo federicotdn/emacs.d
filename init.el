@@ -13,7 +13,6 @@
 (setq gc-cons-threshold gc-large-threshold)
 
 ;; Configure package sources
-(require 'package)
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
 	("marmalade" . "http://marmalade-repo.org/packages/")
@@ -33,8 +32,7 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
-;; Sort help by relevance
-(setq apropos-sort-by-scores t)
+;; More extensive apropos searches
 (setq apropos-do-all t)
 
 ;; Show column number
