@@ -78,7 +78,6 @@
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; flymake-shellcheck
-(require 'flymake-shellcheck)
 (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
 
 ;; secret values
