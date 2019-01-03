@@ -230,6 +230,7 @@ C-x d: dired
 | C: copy selected file (cp)
 | g: update dired buffer
 | !: run command on file at point
+| &: run command on file at point (asynchronously)
 | C-x C-q: writeable dired mode
 #+end_src
 
@@ -356,6 +357,7 @@ C-c .: insert timestamp
 C-c C-x c: clone tree with time shift
 C-c C-x C-w: kill subtree
 C-c C-x C-y: yank subtree
+C-c C-x C-v: toggle inline images
 
 C-c C-w: refile entry
 C-c C-l: insert link
