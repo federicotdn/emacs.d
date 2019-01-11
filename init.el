@@ -148,6 +148,7 @@ call ido-find-file."
 (defun close-response-and-request ()
   "Close last HTTP response buffer and send a new request."
   (interactive)
+  (save-buffer)
   (while (get-buffer "*HTTP Response*")
     (kill-buffer "*HTTP Response*"))
   (when (= (count-windows) 1)
