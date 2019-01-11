@@ -201,3 +201,6 @@
     (tempo-complete-tag)))
 
 (add-to-list 'hippie-expand-try-functions-list 'try-tempo-complete-tag)
+
+;; JS indent level
+(setq js-indent-level 2)
