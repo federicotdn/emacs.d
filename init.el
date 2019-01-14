@@ -33,7 +33,8 @@
 (setq org-todo-keywords '((sequence "TODO" "CURRENT" "DONE")))
 
 ;; important tag
-(setq org-tag-faces '(("imp" . (:foreground "red" :weight bold))))
+(setq org-tag-faces '(("imp" . (:foreground "red" :weight bold))
+		      ("easy" . (:foreground "green"))))
 
 ;; Configure Babel
 (org-babel-do-load-languages
