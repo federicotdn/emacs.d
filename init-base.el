@@ -204,3 +204,8 @@
 
 ;; JS indent level
 (setq js-indent-level 2)
+
+;; Configure Gnus
+(setq gnus-thread-sort-functions
+      '(gnus-thread-sort-by-most-recent-date
+        (not gnus-thread-sort-by-total-score)))

@@ -260,6 +260,22 @@ M-x debbugs-gnu: open GNU bug tracker
  | N, P: next, previous message
 #+end_src
 
+** Gnus
+Group buffer:
+#+begin_src
+<ret>: select current group
+C-u <ret>: select current group, fetch old articles
+m: start composing a mail
+#+end_src
+Summary Buffer:
+#+begin_src
+M-g: fetch new articles
+C-u M-g: fetch new articles and show old ones
+n: next unread article
+p: previous unread article
+q: back to Group buffer
+R: reply with original
+#+end_src
 ** Company
 #+begin_src
 M-n, M-p: next, previous match
