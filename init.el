@@ -271,9 +271,8 @@ it."
 	(when (markerp contents)
 	  (let ((w (get-buffer-window (marker-buffer contents) t)))
 	    (when w
-	      (progn
-		(select-frame-set-input-focus (window-frame w))
-		(select-window w)))))
+	      (select-frame-set-input-focus (window-frame w))
+	      (select-window w))))
 	(jump-to-register reg)))))
 
 (defun rename-file-buffer ()
