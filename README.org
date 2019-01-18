@@ -1,30 +1,32 @@
 * Emacs Configuration
-Emacs configuration files and help. Only standard keybindings are listed. Emacs standard keybindings work with =emacs -q=, and package-specific standard keybindings work after installing the package and applying the default initial configuration.
+Emacs configuration files and reference. Only standard keybindings are listed. Emacs standard keybindings work with =emacs -q=, and package-specific standard keybindings work after installing the package and applying the default initial configuration.
 
 ** General Reference
+Modifiers:
  #+begin_src
- Modifiers:
- C = control
- M = meta (alt)
- S = shift
+C = control
+M = meta (alt)
+S = shift
+#+end_src
 
- Historical (not used):
- s = super
- H = hyper
- A = alt
+Historical (not used):
+#+begin_src
+s = super
+H = hyper
+A = alt
  #+end_src
 
+Common conventions across commands:
  #+begin_src
- Common conventions across commands:
- a (beggining) <---> e (end)
- b (backward)  <---> f (forward)
- p (previous)  <---> n (next)
- l (backward)  <---> r (forward)
- k (kill/cut)  <---> y (yank/paste)
- u (up)        <---> d (down)
- r (reverse)   <---> s (forward)
- q (quit)
- g (refresh)
+a (beggining) <---> e (end)
+b (backward)  <---> f (forward)
+p (previous)  <---> n (next)
+l (backward)  <---> r (forward)
+k (kill/cut)  <---> y (yank/paste)
+u (up)        <---> d (down)
+r (reverse)   <---> s (forward)
+q (quit)
+g (refresh)
  #+end_src
 
 ** Navigation
