@@ -246,6 +246,8 @@ M-:: eval expression
 C-c <: indent region to left
 C-c >: indent region to right
 C-c C-d: get documentation for symbol
+C-c C-e: edit all usages of symbol at point
+C-c C-r f: format code
 M-x pyvenv-activate: activate environment
 M-x elpy-config: configure elpy
 #+end_src

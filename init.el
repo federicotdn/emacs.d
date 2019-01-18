@@ -384,6 +384,15 @@ window line 0."
   (setq bidi-display-reordering nil)
   (buffer-disable-undo))
 
+(defun open-file-external (filename)
+  "Open a file or directory using the user's preferred application."
+  (interactive "G")
+  (unless (executable-find "xdg-open")
+    (error "Could not find xdg-open executable"))
+  (unless (file-exists-p filename)
+    (error "Invalid file path"))
+  (start-process "xdg-open" nil "xdg-open" (file-truename filename)))
+
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
@@ -431,6 +440,7 @@ window line 0."
 (global-set-key (kbd "C-c e r") 'rename-file-buffer)
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
+(global-set-key (kbd "C-c e o") 'open-file-external)
 (global-set-key (kbd "C-c t") 'parse-timestamp)
 (global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
