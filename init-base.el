@@ -176,9 +176,6 @@
 			       1)))
 		  (message "Yanked element %d of %d." pos ring-len)))))
 
-;; When scrolling by page, leave 1 line of continuity instead of 2
-(setq next-screen-context-lines 1)
-
 ;; In shell mode, don't jump to position after output
 (add-hook 'shell-mode-hook
 	  (lambda ()
@@ -207,5 +204,5 @@
 
 ;; Configure Gnus
 (setq gnus-thread-sort-functions
-      '(gnus-thread-sort-by-most-recent-date
-        (not gnus-thread-sort-by-total-score)))
+      '(gnus-thread-sort-by-number
+        gnus-thread-sort-by-most-recent-date))
