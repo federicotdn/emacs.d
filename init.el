@@ -466,6 +466,8 @@ window line 0."
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
 (define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
 (define-key shell-mode-map (kbd "C-M-l") 'comint-clear-buffer)
+(define-key python-mode-map (kbd "M-[") 'python-indent-shift-left)
+(define-key python-mode-map (kbd "M-]") 'python-indent-shift-right)
 
 (define-key org-mode-map (kbd "M-n") 'outline-next-visible-heading)
 (define-key org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
