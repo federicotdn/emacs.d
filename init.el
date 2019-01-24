@@ -462,7 +462,7 @@ window line 0."
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(define-key restclient-mode-map (kbd "C-c C-v") 'close-response-and-request)
+(define-key restclient-mode-map (kbd "C-c C-c") 'close-response-and-request)
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
 (define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
 (define-key shell-mode-map (kbd "C-M-l") 'comint-clear-buffer)
@@ -488,6 +488,7 @@ window line 0."
 
 (global-unset-key (kbd "C-x f"))
 (global-unset-key (kbd "M-;"))
+(global-unset-key (kbd "C-z"))
 
 (define-key elpy-mode-map (kbd "<C-return>") nil)
 (define-key elpy-mode-map (kbd "C-c C-c") nil)
