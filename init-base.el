@@ -206,3 +206,6 @@
 (setq gnus-thread-sort-functions
       '(gnus-thread-sort-by-number
         gnus-thread-sort-by-most-recent-date))
+
+;; Always confirm quit
+(setq confirm-kill-emacs 'yes-or-no-p)
