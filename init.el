@@ -184,11 +184,11 @@ SublimeText/Atom/VSCode/etc."
 (defun duplicate-line ()
   "Duplicate a line, and move point to it (maintain current column)."
   (interactive)
-  (kill-ring-save (line-beginning-position) (line-end-position))
-  (save-excursion
-    (move-end-of-line 1)
-    (newline)
-    (yank))
+  (let ((val (buffer-substring (line-beginning-position) (line-end-position))))
+    (save-excursion
+      (move-end-of-line 1)
+      (newline)
+      (insert val)))
   (next-line))
 
 (defun parse-timestamp ()
