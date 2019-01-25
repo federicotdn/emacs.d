@@ -200,7 +200,7 @@
 (add-to-list 'hippie-expand-try-functions-list 'try-tempo-complete-tag)
 
 ;; JS indent level
-(setq js-indent-level 2)
+(setq js-indent-level 4)
 
 ;; Configure Gnus
 (setq gnus-thread-sort-functions

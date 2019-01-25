@@ -345,9 +345,10 @@ pair."
 (defun json-pretty-print-dwim ()
   "Prettify JSON in region if it is active, otherwise on whole buffer."
   (interactive)
-  (if (use-region-p)
-      (json-pretty-print (region-beginning) (region-end))
-    (json-pretty-print-buffer)))
+  (let ((json-encoding-default-indentation (make-string js-indent-level ? )))
+    (if (use-region-p)
+	(json-pretty-print (region-beginning) (region-end))
+      (json-pretty-print-buffer))))
 
 (defun goto-last-edit ()
   "Go to the last edit made in the current buffer."
