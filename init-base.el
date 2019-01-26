@@ -209,3 +209,6 @@
 
 ;; Always confirm quit
 (setq confirm-kill-emacs 'yes-or-no-p)
+
+;; Spell-check messages
+(add-hook 'message-mode-hook #'flyspell-mode)

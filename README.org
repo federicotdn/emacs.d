@@ -354,15 +354,24 @@ M-x man: enter man mode
 | n, p: next, previous section
 #+end_src
 
-** IBuffer
+** Ibuffer
 #+begin_src
-M-x ibuffer: enter IBuffer
+M-x ibuffer: enter Ibuffer
 | d: Mark buffer for deletion
 | x: Kill all marked buffers
 | U: Unmark all buffers
-| q: Bury IBuffer
+| q: Bury Ibuffer
 | n, p: next, previous line
 | <tab>: skip to next section
+#+end_src
+
+** Ispell
+#+begin_src
+M-x ispell: interactively check for spelling errors
+M-x ispell-change-dictionary: change Ispell dictionary
+M-x flyspell-mode: enable on-the-fly spell checking
+M-x flyspell-prog-mode: enable on-the-fly spell checking (comments only)
+M-$: spell check word on point
 #+end_src
 
 ** Org Mode

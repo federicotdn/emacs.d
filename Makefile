@@ -9,5 +9,5 @@ reinstall_packages:
 		--eval '(package-install-selected-packages)'
 
 install_external_tools:
-	sudo apt install python3-pip git figlet shellcheck
+	sudo apt install python3-pip git figlet shellcheck aspell-es
 	pip3 install ical2orgpy
