@@ -272,6 +272,8 @@ Group buffer:
 <ret>: select current group
 C-u <ret>: select current group, fetch old articles
 m: compose a new message (mail)
+G V: create new virtual group
+G v: add group on point to a virtual group
 #+end_src
 
 Summary Buffer:
