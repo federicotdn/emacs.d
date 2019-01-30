@@ -147,14 +147,23 @@ call ido-find-file."
     (error "This function only works with exactly two windows")))
 
 (defun close-response-and-request ()
-  "Close last HTTP response buffer and send a new request."
+  "Close last HTTP response buffer and send a new request from current
+restclient URL (if region isn't active) or from URL contained by the
+region (if it's active). Always display results on a separate window
+to the right."
   (interactive)
   (save-buffer)
-  (while (get-buffer "*HTTP Response*")
-    (kill-buffer "*HTTP Response*"))
+  (let ((name "*HTTP Response**"))
+    (while (get-buffer name)
+      (kill-buffer name)))
   (when (= (count-windows) 1)
     (split-window-right))
-  (restclient-http-send-current-stay-in-window))
+  (if (use-region-p)
+      (let ((text (buffer-substring (region-beginning) (region-end))))
+	(with-temp-buffer
+	  (insert text)
+	  (restclient-http-send-current-stay-in-window)))
+    (restclient-http-send-current-stay-in-window)))
 
 (defun backward-delete-word ()
   "Delete a word backwards. Delete text from previous line only when
@@ -393,6 +402,29 @@ window line 0."
     (error "Invalid file path"))
   (start-process "xdg-open" nil "xdg-open" (file-truename filename)))
 
+(defun url-encode-dwim (start end)
+  "Parse a URL contained in buffer substring START - END and url-quote
+its querystring component, if it has one. The results are inserted
+back on the current buffer."
+  (interactive "r")
+  (unless (use-region-p)
+    (user-error "Region is not active"))
+  (let* ((text (buffer-substring start end))
+	 (url-data (url-generic-parse-url text))
+	 (path (car (url-path-and-query url-data)))
+	 (querystring (cdr (url-path-and-query url-data)))
+	 (new-querystring ""))
+    (when (> (length querystring) 0)
+      (dolist (item (url-parse-query-string querystring))
+	(when (> (length new-querystring) 0)
+	  (setq new-querystring (concat new-querystring "&")))
+	(setq new-querystring (concat new-querystring
+				      (car item) "=" (url-hexify-string (cadr item)))))
+      (setf (url-filename url-data) (concat path "?" new-querystring))
+      (save-excursion
+	(delete-region start end)
+	(insert (url-recreate-url url-data))))))
+
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
@@ -449,6 +481,7 @@ window line 0."
 (global-set-key (kbd "C-c r j") 'use-register-dwim)
 (global-set-key (kbd "C-c r r") 'thing-to-register-dwim)
 (global-set-key (kbd "C-c z") 'apropos)
+(global-set-key (kbd "C-c u") 'url-encode-dwim)
 
 (global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o a") 'org-agenda)

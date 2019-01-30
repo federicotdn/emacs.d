@@ -212,3 +212,6 @@
 
 ;; Spell-check messages
 (add-hook 'message-mode-hook #'flyspell-mode)
+
+;; Always save bookmarks
+(setq bookmark-save-flag 1)
