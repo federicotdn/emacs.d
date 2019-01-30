@@ -415,7 +415,9 @@ back on the current buffer."
 	 (querystring (cdr (url-path-and-query url-data)))
 	 (new-querystring ""))
     (when (> (length querystring) 0)
-      (dolist (item (url-parse-query-string querystring))
+      ;; `url-parse-query-string' returns list of conses, one per
+      ;; parameter, in reverse order
+      (dolist (item (reverse (url-parse-query-string querystring)))
 	(when (> (length new-querystring) 0)
 	  (setq new-querystring (concat new-querystring "&")))
 	(setq new-querystring (concat new-querystring
