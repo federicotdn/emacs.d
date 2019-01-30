@@ -144,7 +144,7 @@ call ido-find-file."
 	     (b2 (window-buffer w2)))
 	(set-window-buffer w1 b2)
 	(set-window-buffer w2 b1))
-    (error "This function only works with exactly two windows")))
+    (user-error "This function only works with exactly two windows")))
 
 (defun close-response-and-request ()
   "Close last HTTP response buffer and send a new request from current
@@ -206,7 +206,7 @@ SublimeText/Atom/VSCode/etc."
   (let* ((selection (buffer-substring-no-properties (mark) (point)))
 	 (timestamp (string-to-number selection)))
     (if (= timestamp 0)
-	(error "Selected value is not an integer value")
+	(user-error "Selected value is not an integer value")
       (message (format-time-string "%B %e, %Y - %T (UTC)" timestamp t)))))
 
 (defun create-scratch-buffer ()
@@ -236,7 +236,7 @@ SublimeText/Atom/VSCode/etc."
   (let ((name (buffer-file-name)))
     (if name
 	(message name)
-      (error "Buffer is not visiting any file"))))
+      (user-error "Buffer is not visiting any file"))))
 
 (defun thing-to-register-dwim (reg)
   "If called with negative prefix argument, prompt for register and
@@ -297,8 +297,8 @@ the new file name."
 		(rename-file current-file-name new-file-name)
 		(set-visited-file-name new-file-name)
 		(set-buffer-modified-p nil))
-	    (error "File already exists!")))
-      (error "Current buffer is not visiting any file or has unsaved changes"))))
+	    (user-error "File already exists!")))
+      (user-error "Current buffer is not visiting any file or has unsaved changes"))))
 
 (defun import-icalendar-url (url dest)
   "Download an iCalendar file from URL (asynchronously) and convert it
@@ -306,7 +306,7 @@ to a Org mode file, using ical2orgpy. The created file will be placed
 in file DEST, inside the current org-directory."
   (interactive "sEnter URL: \nsEnter filename: ")
   (unless (executable-find "ical2orgpy")
-    (error "Could not find ical2orgpy executable"))
+    (user-error "Could not find ical2orgpy executable"))
   (let ((ical-file (make-temp-file "emacs-ical"))
 	(org-file (expand-file-name (concat org-directory dest))))
     (with-temp-file ical-file
@@ -364,7 +364,7 @@ pair."
   (interactive)
   (unless (or (consp buffer-undo-list)
 	      (not buffer-undo-list))
-    (error "Can't go to last edit: invalid undo list"))
+    (user-error "Can't go to last edit: invalid undo list"))
   (let ((pos (catch 'loop
 	       (dolist (item buffer-undo-list)
 		 (when (and (consp item)
@@ -397,9 +397,9 @@ window line 0."
   "Open a file or directory using the user's preferred application."
   (interactive "G")
   (unless (executable-find "xdg-open")
-    (error "Could not find xdg-open executable"))
+    (user-error "Could not find xdg-open executable"))
   (unless (file-exists-p filename)
-    (error "Invalid file path"))
+    (user-error "Invalid file path"))
   (start-process "xdg-open" nil "xdg-open" (file-truename filename)))
 
 (defun url-encode-dwim (start end)
