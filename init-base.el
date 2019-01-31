@@ -207,6 +207,9 @@
       '(gnus-thread-sort-by-number
         gnus-thread-sort-by-most-recent-date))
 
+;; Enable mails search (from https://www.emacswiki.org/emacs/GnusGmail#toc22)
+(require 'nnir)
+
 ;; Always confirm quit
 (setq confirm-kill-emacs 'yes-or-no-p)
 

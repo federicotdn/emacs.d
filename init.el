@@ -513,8 +513,6 @@ back on the current buffer."
 ;; C-c SPC
 ;; C-.
 ;; M-j
-;; M-[
-;; M-]
 
 ;;----------------------------------------------------------------------------
 ;; Remove default keybindings
