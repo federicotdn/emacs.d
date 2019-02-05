@@ -286,7 +286,10 @@ C-u M-g: fetch new articles and show old ones
 n: next unread article
 p: previous unread article
 q: back to Group buffer
-R: reply with original
+r: reply to author
+R: reply to author with original
+S w: wide reply (people in 'To', 'From' and 'Cc')
+S W: wide reply with original
 #+end_src
 
 Message mode:

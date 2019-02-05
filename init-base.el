@@ -223,3 +223,6 @@
 
 ;; Always save bookmarks
 (setq bookmark-save-flag 1)
+
+;; C/C++ indent level
+(setq-default c-basic-offset 4)
