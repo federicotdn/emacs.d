@@ -207,8 +207,13 @@
       '(gnus-thread-sort-by-number
         gnus-thread-sort-by-most-recent-date))
 
+(setq gnus-subthread-sort-functions
+      '(gnus-thread-sort-by-number
+        (not gnus-thread-sort-by-most-recent-date)))
+
 ;; Enable mails search (from https://www.emacswiki.org/emacs/GnusGmail#toc22)
-(require 'nnir)
+(with-eval-after-load 'gnus
+  (require 'nnir))
 
 ;; Always confirm quit
 (setq confirm-kill-emacs 'yes-or-no-p)

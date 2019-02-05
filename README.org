@@ -276,6 +276,7 @@ G V: create new virtual group
 G v: add group on point to a virtual group
 G G: make nnir group (search articles)
 C-u G G: make nnir group (search articles) with constraints
+L: list all groups
 #+end_src
 
 Summary Buffer:

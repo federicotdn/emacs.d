@@ -400,7 +400,7 @@ window line 0."
     (user-error "Could not find xdg-open executable"))
   (unless (file-exists-p filename)
     (user-error "Invalid file path"))
-  (start-process "xdg-open" nil "xdg-open" (file-truename filename)))
+  (call-process "xdg-open" nil nil nil (file-truename filename)))
 
 (defun url-encode-dwim (start end)
   "Parse a URL contained in buffer substring START - END and url-quote
