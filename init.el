@@ -464,6 +464,8 @@ back on the current buffer."
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
 (global-set-key (kbd "C-c s c") 'spotify-current)
+(global-set-key (kbd "C-c s n") 'pulseaudio-control-select-sink-by-name)
+(global-set-key (kbd "C-c s m") 'pulseaudio-control-toggle-current-sink-mute)
 (global-set-key (kbd "C-c c") 'find-file-general)
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c j") 'json-pretty-print-dwim)
@@ -484,6 +486,8 @@ back on the current buffer."
 (global-set-key (kbd "C-c r r") 'thing-to-register-dwim)
 (global-set-key (kbd "C-c z") 'apropos)
 (global-set-key (kbd "C-c u") 'url-encode-dwim)
+(global-set-key (kbd "C-c <up>") 'pulseaudio-control-increase-volume)
+(global-set-key (kbd "C-c <down>") 'pulseaudio-control-decrease-volume)
 
 (global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o a") 'org-agenda)
