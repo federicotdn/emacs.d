@@ -96,6 +96,9 @@
 ;; Enable undo for EIN (Jupyter Notebooks)
 (setq ein:worksheet-enable-undo t)
 
+;; Add highlighting for Python indentation
+(add-hook 'python-mode-hook 'highlight-indentation-mode)
+
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
