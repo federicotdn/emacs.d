@@ -72,9 +72,6 @@
 (with-eval-after-load 'magit
   (add-to-list 'magit-repository-directories '("~/Workspace/" . 2)))
 
-;; Elpy
-(elpy-enable)
-
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -427,6 +424,38 @@ back on the current buffer."
 	(delete-region start end)
 	(insert (url-recreate-url url-data))))))
 
+(defun ft-python-deactivate ()
+  "Disable the currently activated Python virtual environment, and
+shut down the current Eglot server."
+  (interactive)
+  ;; Disconnect any existing Eglot servers
+  (ignore-errors
+    (call-interactively #'eglot-shutdown))
+  ;; Disable any previously activated venv
+  (pyvenv-deactivate))
+
+(defun ft-python-activate (arg)
+  "Activate a Python virtual environment and Language Server using
+pyvenv and Eglot. By default, use virtual environment in
+(project-current)/env. If called with a prefix argument, prompt for
+virtual environment path instead."
+  (interactive "P")
+  (unless (derived-mode-p 'python-mode)
+    (user-error "Current buffer's major mode must be python-mode"))
+  ;; Disable any virtual environments and Eglot servers
+  (ft-python-deactivate)
+  (let* ((proj-dir (cdr (project-current)))
+	 (venv-name (if arg (read-from-minibuffer "Venv name: " "env") "env"))
+	 (venv-path (concat proj-dir venv-name)))
+    (message "venv: %s" venv-path)
+    (unless (file-exists-p venv-path)
+      (user-error "Path not found: %s" venv-path))
+    (pyvenv-activate (concat proj-dir venv-name))
+    (when (= (call-process "pip" nil nil nil "show" "python-language-server") 1)
+      (pyvenv-deactivate)
+      (user-error "Python Language Server (pyls) not installed in venv"))
+    (call-interactively #'eglot)))
+
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
@@ -528,8 +557,6 @@ back on the current buffer."
 (global-unset-key (kbd "M-;"))
 (global-unset-key (kbd "C-z"))
 
-(define-key elpy-mode-map (kbd "<C-return>") nil)
-(define-key elpy-mode-map (kbd "C-c C-c") nil)
 (define-key org-mode-map (kbd "C-c [") nil)
 (define-key org-mode-map (kbd "C-'") nil)
 (define-key shell-mode-map (kbd "C-c C-l") nil)
