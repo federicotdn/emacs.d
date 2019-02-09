@@ -158,6 +158,7 @@ C-x z: repeat last command
 C-x C-c: exit
 C-u <arg> <command>: execute <command> with <arg>
 M-&: execute async shell command
+M-|: shell command on region (prefix arg to replace)
 #+end_src
 
 ** Editing

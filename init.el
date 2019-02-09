@@ -66,7 +66,9 @@
 
 ;; Projectile
 (projectile-mode +1)
-(setq projectile-mode-line-prefix " P")
+(setq projectile-mode-line-function
+      (lambda ()
+	(format " P[%s]" (projectile-project-name))))
 
 ;; Magit
 (with-eval-after-load 'magit
