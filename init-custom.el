@@ -9,13 +9,13 @@
  '(delete-selection-mode t)
  '(grep-find-ignored-directories
    (quote
-    ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "env" "venv" "build" "elpa")))
+    ("SCCS" "RCS" "CVS" "MCVS" ".src" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "env" "envpp" "venv" "build" "elpa")))
  '(grep-find-template
    "find <D> <X> -type f <F> -exec grep <C> -C 3 -nH --null -e <R> \\{\\} +")
  '(icalendar-import-format "%s%d%l")
  '(package-selected-packages
    (quote
-    (pulseaudio-control ein spotify flymake-shellcheck expand-region avy yaml-mode restclient debbugs magit elpy monokai-theme projectile markdown-mode)))
+    (highlight-indentation company pyvenv eglot pulseaudio-control ein spotify flymake-shellcheck expand-region avy yaml-mode restclient debbugs magit monokai-theme projectile markdown-mode)))
  '(projectile-use-git-grep t)
  '(vc-display-status nil)
  '(winner-mode t))

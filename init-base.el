@@ -188,6 +188,9 @@
 ;; Load iso-transl in order to change the C-x 8 prefix later
 (require 'iso-transl)
 
+;; Load python-mode in order to change keymap later
+(require 'python)
+
 ;; Create templates using tempo.el
 (require 'tempo)
 (load "~/.emacs.d/init-templates.el")
