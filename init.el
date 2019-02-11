@@ -177,6 +177,13 @@ SublimeText/Atom/VSCode/etc."
 	  (delete-region (line-beginning-position) (point))
 	(delete-region (point) point-after-bw)))))
 
+(defun delete-whole-line ()
+  "Delete current line."
+  (interactive)
+  (goto-char (line-beginning-position))
+  (delete-region (point) (line-end-position))
+  (delete-forward-char 1))
+
 (defun shell-with-name ()
   "Create a shell with a specific name."
   (interactive)
@@ -443,6 +450,7 @@ back on the current buffer."
 (global-set-key (kbd "C-=") 'er/expand-region)
 (global-set-key (kbd "C-M-=") 'wrap-region)
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
+(global-set-key (kbd "C-S-<backspace>") 'delete-whole-line)
 
 (global-set-key (kbd "M-l") 'ido-switch-buffer)
 (global-set-key (kbd "M-o") 'other-window)
