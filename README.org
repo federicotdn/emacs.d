@@ -246,17 +246,6 @@ M-:: eval expression
 M-x ielm: interactive elisp REPL
 #+end_src
 
-** Elpy
-#+begin_src
-C-c <: indent region to left
-C-c >: indent region to right
-C-c C-d: get documentation for symbol
-C-c C-e: edit all usages of symbol at point
-C-c C-r f: format code
-M-x pyvenv-activate: activate environment
-M-x elpy-config: configure elpy
-#+end_src
-
 ** GNU Bug Tracker
 #+begin_src
 M-x debbugs-gnu: open GNU bug tracker
