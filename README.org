@@ -387,6 +387,7 @@ S-<tab>: cycle entire file tree visibility
 C-<left>, C-<right>: cycle 'thing' left or right (values)
 C-c C-c: run 'thing' (run code, check checkbox, etc.)
 C-c C-j: org goto
+C-c C-e: export file
 C-c /: org sparse tree
 C-,: cycle agenda files
 
