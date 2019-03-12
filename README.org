@@ -207,7 +207,8 @@ C-h v: describe variable
 C-h f: describe function
 C-h m: describe modes
 C-h i: info documentation reader
-C-h k <key>: show documentation for key sequence
+C-h k <key>: show full documentation for key sequence
+C-h c <key>: show command run for key sequence
 C-h l: view lossage (key history)
 C-h b: show all keybindings
 C-h e: open *Messages* buffer
@@ -280,6 +281,11 @@ r: reply to author
 R: reply to author with original
 S w: wide reply (people in 'To', 'From' and 'Cc')
 S W: wide reply with original
+#+end_src
+
+Article Buffer:
+#+begin_src
+K o: save MIME part (attachment)
 #+end_src
 
 Message mode:
