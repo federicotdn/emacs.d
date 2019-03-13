@@ -1,7 +1,7 @@
 reinstall_packages:
-	@echo "Deleting old packages..."
+	@echo "Backing up old packages..."
 	@rm -rf elpa.old
-	@mv elpa elpa.old
+	@(test -d elpa && mv elpa elpa.old) || true
 	@echo "Done."
 	@echo "Installing packages..."
 	@yes | emacs -q --batch --load init-base.el \
