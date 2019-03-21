@@ -72,7 +72,8 @@
 
 ;; Magit
 (with-eval-after-load 'magit
-  (add-to-list 'magit-repository-directories '("~/Workspace/" . 2)))
+  (add-to-list 'magit-repository-directories '("~/Workspace/" . 2))
+  (setq magit-slow-confirm t))
 
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
@@ -497,7 +498,6 @@ virtual environment path instead."
 (global-set-key (kbd "C-c w f") 'fit-window-to-buffer)
 (global-set-key (kbd "C-c w w") 'balance-windows)
 (global-set-key (kbd "C-c d") 'duplicate-line)
-(global-set-key (kbd "C-c n") 'display-line-numbers-mode)
 (global-set-key (kbd "C-c f") 'flymake-mode)
 (global-set-key (kbd "C-c s SPC") 'spotify-playpause)
 (global-set-key (kbd "C-c s s") 'spotify-next)
