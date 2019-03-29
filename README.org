@@ -325,6 +325,7 @@ M-x magit-status: magit main repository status panel
 | h: help
 | z: stash
 | b: branching
+| !: run git command
 C-c M-g: file popup
 #+end_src
 

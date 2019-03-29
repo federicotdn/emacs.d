@@ -229,3 +229,6 @@
 
 ;; C/C++ indent level
 (setq-default c-basic-offset 4)
+
+;; Ignore case in autocomplete
+(setq completion-ignore-case t)
