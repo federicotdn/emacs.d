@@ -176,6 +176,9 @@
 			       1)))
 		  (message "Yanked element %d of %d." pos ring-len)))))
 
+;; Deactivate mark before undo (never do selective undo in region)
+(advice-add 'undo :before (lambda (&rest r) (deactivate-mark)))
+
 ;; In shell mode, don't jump to position after output
 (add-hook 'shell-mode-hook
 	  (lambda ()
