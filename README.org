@@ -452,3 +452,10 @@ F3, F4: start, stop recording macro
 F4: playback last recorded macro
 #+END_SRC
 
+** SQL
+#+BEGIN_SRC
+M-x sql-mode: enable SQL mode
+M-x sql-postgres: login into PostgreSQL database
+C-c C-c: send current paragraph to the SQL process
+C-c C-r: send region to the SQL process
+#+END_SRC
