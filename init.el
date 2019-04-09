@@ -390,7 +390,7 @@ window line 0."
   (end-of-buffer '(4))
   (recenter-top-bottom 0))
 
-(defun dired-default-directory ()
+(defun dired-on-default-directory ()
   "Open dired on the directory contained in `default-directory'."
   (interactive)
   (dired default-directory))
@@ -471,7 +471,7 @@ virtual environment path instead."
 ;;----------------------------------------------------------------------------
 
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x C-d") 'dired-default-directory)
+(global-set-key (kbd "C-x C-d") 'dired-on-default-directory)
 
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-j") 'avy-goto-char-timer)
