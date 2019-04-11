@@ -518,6 +518,7 @@ virtual environment path instead."
 (global-set-key (kbd "C-c e o") 'open-file-external)
 (global-set-key (kbd "C-c t") 'parse-timestamp)
 (global-set-key (kbd "C-c q") 'quick-calc)
+(global-set-key (kbd "C-c y") 'browse-kill-ring)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c <tab>") 'ibuffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)

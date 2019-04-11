@@ -15,7 +15,7 @@
  '(icalendar-import-format "%s%d%l")
  '(package-selected-packages
    (quote
-    (htmlize highlight-indentation company pyvenv eglot pulseaudio-control spotify flymake-shellcheck expand-region avy yaml-mode restclient debbugs magit monokai-theme projectile markdown-mode)))
+    (browse-kill-ring htmlize highlight-indentation company pyvenv eglot pulseaudio-control spotify flymake-shellcheck expand-region avy yaml-mode restclient debbugs magit monokai-theme projectile markdown-mode)))
  '(projectile-use-git-grep t)
  '(vc-display-status nil)
  '(winner-mode t))
