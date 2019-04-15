@@ -30,6 +30,7 @@ ac-comphist.dat
 .emacs.keyfreq
 /games/
 /transient/
+.lsp-session-v1
 
 # per-PC configuration file
 local.el

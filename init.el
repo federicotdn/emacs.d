@@ -99,6 +99,14 @@
 ;; Add highlighting for Python indentation
 (add-hook 'python-mode-hook 'highlight-indentation-mode)
 
+;; LSP
+(require 'lsp)
+(add-hook 'python-mode-hook #'lsp)
+
+;; Company completion for LSP
+(require 'company-lsp)
+(push 'company-lsp company-backends)
+
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
@@ -434,26 +442,14 @@ back on the current buffer."
 	(delete-region start end)
 	(insert (url-recreate-url url-data))))))
 
-(defun ft-python-deactivate ()
-  "Disable the currently activated Python virtual environment, and
-shut down the current Eglot server."
-  (interactive)
-  ;; Disconnect any existing Eglot servers
-  (ignore-errors
-    (call-interactively #'eglot-shutdown))
-  ;; Disable any previously activated venv
-  (pyvenv-deactivate))
-
 (defun ft-python-activate (arg)
   "Activate a Python virtual environment and Language Server using
-pyvenv and Eglot. By default, use virtual environment in
+pyvenv and lsp-mode. By default, use virtual environment in
 (project-current)/env. If called with a prefix argument, prompt for
 virtual environment path instead."
   (interactive "P")
   (unless (derived-mode-p 'python-mode)
     (user-error "Current buffer's major mode must be python-mode"))
-  ;; Disable any virtual environments and Eglot servers
-  (ft-python-deactivate)
   (let* ((proj-dir (cdr (project-current)))
 	 (venv-name (if arg (read-from-minibuffer "Venv name: " "env") "env"))
 	 (venv-path (concat proj-dir venv-name)))
@@ -464,7 +460,7 @@ virtual environment path instead."
     (when (= (call-process "pip" nil nil nil "show" "python-language-server") 1)
       (pyvenv-deactivate)
       (user-error "Python Language Server (pyls) not installed in venv"))
-    (call-interactively #'eglot)))
+    (lsp)))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings
