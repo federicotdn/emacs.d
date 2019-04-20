@@ -215,15 +215,6 @@ SublimeText/Atom/VSCode/etc."
       (insert val)))
   (next-line))
 
-(defun parse-timestamp ()
-  "Read date and time from UNIX timestamp in region."
-  (interactive)
-  (let* ((selection (buffer-substring-no-properties (mark) (point)))
-	 (timestamp (string-to-number selection)))
-    (if (= timestamp 0)
-	(user-error "Selected value is not an integer value")
-      (message (format-time-string "%B %e, %Y - %T (UTC)" timestamp t)))))
-
 (defun create-scratch-buffer ()
   "Create a new scratch buffer in Fundamental mode."
   (interactive)
@@ -240,11 +231,6 @@ SublimeText/Atom/VSCode/etc."
   (dired org-directory "-l")
   (dired-hide-details-mode))
 
-(defun clear-all-highlights ()
-  "Clears all highlighted items using hi-lock-mode."
-  (interactive)
-  (unhighlight-regexp t))
-
 (defun print-buffer-file-name ()
   "Print the current buffer's file path."
   (interactive)
@@ -252,52 +238,6 @@ SublimeText/Atom/VSCode/etc."
     (if name
 	(message name)
       (user-error "Buffer is not visiting any file"))))
-
-(defun thing-to-register-dwim (reg)
-  "If called with negative prefix argument, prompt for register and
-clear its contents. If called with prefix argument (4), prompt for a
-register and save window configuration into it. If called with prefix
-argument (16), prompt for a register and save frameset configuration
-into it. If last executed action was defining a macro, prompt for a
-register and save it there. Otherwise, if region is active, copy it to
-a register. Otherwise save point position and current buffer to a
-register."
-  (interactive (list (register-read-with-preview
-		      (if (equal current-prefix-arg '-)
-			  "Delete register: "
-			"Register: "))))
-  (cond ((null current-prefix-arg)
-	 (cond ((eq last-command 'kmacro-end-or-call-macro)
-		(kmacro-to-register reg))
-	       ((use-region-p)
-		(copy-to-register reg (region-beginning) (region-end)))
-	       (t
-		(point-to-register reg))))
-	((equal current-prefix-arg '-)
-	 (setq register-alist (assq-delete-all reg register-alist)))
-	((equal current-prefix-arg '(4))
-	 (window-configuration-to-register reg))
-	((equal current-prefix-arg '(16))
-	 (frameset-to-register reg))))
-
-(defun use-register-dwim (reg)
-  "Prompt for a register name if called interactively, otherwise use
-REG. If the selected register contains text, insert its contents into
-the current buffer. If the register contains a point position (or file
-query), jump to it. If the register contains a keyboard macro, execute
-it. If the register contains a window or frameset configuration, apply
-it."
-  (interactive (list (register-read-with-preview "Register: ")))
-  (let ((contents (get-register reg)))
-    (if (stringp contents)
-	(insert-register reg)
-      (progn
-	(when (markerp contents)
-	  (let ((w (get-buffer-window (marker-buffer contents) t)))
-	    (when w
-	      (select-frame-set-input-focus (window-frame w))
-	      (select-window w))))
-	(jump-to-register reg)))))
 
 (defun rename-file-buffer ()
   "Rename the current buffer's file, and the buffer itself to match
@@ -417,32 +357,7 @@ window line 0."
     (user-error "Invalid file path"))
   (call-process "xdg-open" nil nil nil (file-truename filename)))
 
-(defun url-encode-dwim (start end)
-  "Parse a URL contained in buffer substring START - END and url-quote
-its querystring component, if it has one. The results are inserted
-back on the current buffer."
-  (interactive "r")
-  (unless (use-region-p)
-    (user-error "Region is not active"))
-  (let* ((text (buffer-substring start end))
-	 (url-data (url-generic-parse-url text))
-	 (path (car (url-path-and-query url-data)))
-	 (querystring (cdr (url-path-and-query url-data)))
-	 (new-querystring ""))
-    (when (> (length querystring) 0)
-      ;; `url-parse-query-string' returns list of conses, one per
-      ;; parameter, in reverse order
-      (dolist (item (reverse (url-parse-query-string querystring)))
-	(when (> (length new-querystring) 0)
-	  (setq new-querystring (concat new-querystring "&")))
-	(setq new-querystring (concat new-querystring
-				      (car item) "=" (url-hexify-string (cadr item)))))
-      (setf (url-filename url-data) (concat path "?" new-querystring))
-      (save-excursion
-	(delete-region start end)
-	(insert (url-recreate-url url-data))))))
-
-(defun ft-python-activate (arg)
+(defun activate-pyvenv-lsp (arg)
   "Activate a Python virtual environment and Language Server using
 pyvenv and lsp-mode. By default, use virtual environment in
 (project-current)/env. If called with a prefix argument, prompt for
@@ -487,7 +402,6 @@ virtual environment path instead."
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
-(global-set-key (kbd "M-s h c") 'clear-all-highlights)
 (global-set-key (kbd "M-<backspace>") 'goto-last-edit)
 
 (global-set-key (kbd "C-c w s") 'swap-window-pair-buffers)
@@ -518,8 +432,6 @@ virtual environment path instead."
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c <tab>") 'ibuffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
-(global-set-key (kbd "C-c r j") 'use-register-dwim)
-(global-set-key (kbd "C-c r r") 'thing-to-register-dwim)
 (global-set-key (kbd "C-c z") 'apropos)
 (global-set-key (kbd "C-c u") 'url-encode-dwim)
 (global-set-key (kbd "C-c <up>") 'pulseaudio-control-increase-volume)
