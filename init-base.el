@@ -6,7 +6,6 @@
 ;; Configure package sources
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
-	("marmalade" . "http://marmalade-repo.org/packages/")
 	("melpa" . "https://melpa.org/packages/")))
 
 ;; Call package-initialize on version 26 only
