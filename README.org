@@ -136,11 +136,13 @@ M-s o: occur mode
 ** Buffers
 #+begin_src
 C-x C-s: save buffer
-C-x C-f: visit file (ido)
+C-x C-f: find file (ido)
+C-x 4 f: find file on other window
 C-x C-w: write buffer to file
-C-x C-f C-f: visit file (normal)
+C-x C-f C-f: find file (normal)
 C-x k: kill a buffer
 C-x b: switch window buffer
+C-x 4 b: switch buffer on other window
 C-x C-b: list buffers
 C-x #: finish editing server buffer
 
@@ -236,6 +238,7 @@ C-x d: dired
 | !: run command on file at point
 | &: run command on file at point (asynchronously)
 | C-x C-q: writeable dired mode
+C-x 4 d: dired on other window
 #+end_src
 
 ** Emacs Lisp
