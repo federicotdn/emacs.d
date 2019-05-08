@@ -200,7 +200,7 @@ C-x r w: window configuration to register (restore with jump-to-register)
 
 ** Help
 #+begin_src
-<keys> C-h: commands that start with <something>
+<keys> C-h: commands that start with <keys>
 C-h C-h: list help commands
 C-g: cancel command
 ESC ESC ESC: cancel command (even recursive)
@@ -209,8 +209,8 @@ C-h v: describe variable
 C-h f: describe function
 C-h m: describe modes
 C-h i: info documentation reader
-C-h k <key>: show full documentation for key sequence
-C-h c <key>: show command run for key sequence
+C-h k <keys>: show full documentation for key sequence
+C-h c <keys>: show command run for key sequence
 C-h l: view lossage (key history)
 C-h b: show all keybindings
 C-h e: open *Messages* buffer
@@ -239,6 +239,7 @@ C-x d: dired
 | &: run command on file at point (asynchronously)
 | C-x C-q: writeable dired mode
 C-x 4 d: dired on other window
+M-x find-name-dired: search for files recursively
 #+end_src
 
 ** Emacs Lisp
@@ -396,6 +397,7 @@ M-x org-agenda: view Org agenda
 S-<tab>: cycle entire file tree visibility
 C-<left>, C-<right>: cycle 'thing' left or right (values)
 C-c C-c: run 'thing' (run code, check checkbox, etc.)
+C-c C-t: cycle TODO state
 C-c C-j: org goto
 C-c C-e: export file
 C-c /: org sparse tree

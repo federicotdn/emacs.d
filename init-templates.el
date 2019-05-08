@@ -1,4 +1,4 @@
-;;; init-templates.el --- Code templates created with tempo  -*- lexical-binding: t; -*-
+;;; init-templates.el --- Code templates for tempo.el  -*- lexical-binding: t; -*-
 
 (tempo-define-template "python-pdb"
 		       '("import pdb; pdb.set_trace()")
