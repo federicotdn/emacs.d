@@ -7,3 +7,9 @@
 (tempo-define-template "python-code-interact"
 		       '("import code; code.interact(local=locals())")
 		       "interact")
+
+(tempo-define-template "python-property"
+		       '("@property" n>
+			 "def " (P "Property: " prop) "(self):" n>
+			 "return self._" (s prop))
+		       "property")
