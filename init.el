@@ -377,6 +377,14 @@ virtual environment path instead."
       (user-error "Python Language Server (pyls) not installed in venv"))
     (lsp)))
 
+(defun deactivate-pyvenv-lsp ()
+  "Deactivate currently enabled Python virtual environment and LSP server."
+  (interactive)
+  (unless (derived-mode-p 'python-mode)
+    (user-error "Current buffer's major mode must be python-mode"))
+  (lsp-shutdown-workspace)
+  (pyvenv-deactivate))
+
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
