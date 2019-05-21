@@ -44,7 +44,6 @@
 	"*Shell Command Output*"
 	"*Flymake log*"
 	"*Compile-Log*"
-	"*Help*"
 	"magit-process"
 	"magit-diff"))
 
