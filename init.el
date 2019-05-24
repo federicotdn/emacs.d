@@ -412,9 +412,7 @@ virtual environment path instead."
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "M-<backspace>") 'goto-last-edit)
 
-(global-set-key (kbd "C-c w s") 'swap-window-pair-buffers)
-(global-set-key (kbd "C-c w f") 'fit-window-to-buffer)
-(global-set-key (kbd "C-c w w") 'balance-windows)
+(global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
 (global-set-key (kbd "C-c d") 'duplicate-line)
 (global-set-key (kbd "C-c f") 'flymake-mode)
 (global-set-key (kbd "C-c s SPC") 'spotify-playpause)
@@ -439,10 +437,8 @@ virtual environment path instead."
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 (global-set-key (kbd "C-c z") 'apropos)
 
-(global-set-key (kbd "C-c o c") 'org-capture)
 (global-set-key (kbd "C-c o a") 'org-agenda)
 (global-set-key (kbd "C-c o d") 'dired-org-agenda)
-(global-set-key (kbd "C-c o s") 'org-sort)
 (global-set-key (kbd "C-c o r") 'org-archive-to-archive-sibling)
 (global-set-key (kbd "C-c o t") 'org-force-cycle-archived)
 (global-set-key (kbd "C-c o g") 'import-google-calendar)
@@ -455,7 +451,7 @@ virtual environment path instead."
 (define-key restclient-mode-map (kbd "C-c C-c") 'close-response-and-request)
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
 (define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
-(define-key shell-mode-map (kbd "C-M-l") 'comint-clear-buffer)
+(define-key shell-mode-map (kbd "C-c C-l") 'comint-clear-buffer)
 (define-key python-mode-map (kbd "M-[") 'python-indent-shift-left)
 (define-key python-mode-map (kbd "M-]") 'python-indent-shift-right)
 

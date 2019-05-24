@@ -143,6 +143,7 @@ C-x C-f C-f: find file (normal)
 C-x k: kill a buffer
 C-x b: switch window buffer
 C-x 4 b: switch buffer on other window
+C-x 4 0: kill buffer and window
 C-x C-b: list buffers
 C-x #: finish editing server buffer
 
