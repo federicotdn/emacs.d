@@ -18,15 +18,16 @@ A = alt
 
 Common conventions across commands:
  #+begin_src
-a (beggining) <---> e (end)
-b (backward)  <---> f (forward)
-p (previous)  <---> n (next)
-l (backward)  <---> r (forward)
-k (kill/cut)  <---> y (yank/paste)
-u (up)        <---> d (down)
-r (reverse)   <---> s (forward)
+a (beggining)     <---> e (end)
+b (backward)      <---> f (forward)
+p (previous)      <---> n (next)
+l (left/backward) <---> r (right/forward)
+k (kill/cut)      <---> y (yank/paste)
+u (up)            <---> d (down)
+r (reverse)       <---> s (forward)
+4 (other window)  <---> 5 (other frame)
 q (quit)
-g (refresh)
+g (refresh/revert)
  #+end_src
 
 ** Navigation
