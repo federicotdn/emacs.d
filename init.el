@@ -92,9 +92,8 @@
 (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
 ;; Avy
-(setq avy-all-windows nil)
 (setq avy-background t)
-(setq avy-keys '(?a ?s ?d ?f ?j ?k ?l ?\;))
+(setq avy-style 'words)
 
 ;; Add highlighting for Python indentation
 (add-hook 'python-mode-hook 'highlight-indentation-mode)
