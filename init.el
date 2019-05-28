@@ -92,6 +92,7 @@
 (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 
 ;; Avy
+(setq avy-all-windows nil)
 (setq avy-background t)
 (setq avy-style 'words)
 
