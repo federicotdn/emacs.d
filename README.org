@@ -190,6 +190,7 @@ C-x <tab>: enter indent region mode (use left-right)
 
 C-x 8 <keys>: enter a character composition
 M-/: expand previous word using dabbrev
+C-x C-;: comment line or region
 #+end_src
 
 ** Registers

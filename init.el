@@ -119,13 +119,6 @@ call ido-find-file."
       (projectile-find-file)
     (ido-find-file)))
 
-(defun comment-really-dwim ()
-  "Toggle comment on line (or region if active)."
-  (interactive)
-  (if (use-region-p)
-      (comment-or-uncomment-region (region-beginning) (region-end))
-    (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
-
 (defun move-line-up ()
   "Move current line up."
   (interactive)
@@ -394,7 +387,7 @@ virtual environment path instead."
 
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-j") 'avy-goto-char-timer)
-(global-set-key (kbd "C-;") 'comment-really-dwim)
+(global-set-key (kbd "C-;") 'comment-line)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
 (global-set-key (kbd "C-,") 'query-replace-regexp)
