@@ -85,9 +85,11 @@ C-x 5 1: close all frames except selected
 C-<spc>: set mark
 C-u C-<spc>: pop mark
 C-x C-<spc>: pop mark (global)
+C-x C-x: exchange point and mark
 
 M-@: mark next word
 M-h: mark next paragraph
+C-M-@: mark next S-expression
 C-x h: mark the whole buffer
 C-x =: display character information of character after point
 

@@ -398,7 +398,7 @@ virtual environment path instead."
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
 (global-set-key (kbd "C-,") 'query-replace-regexp)
-(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-=") 'mark-word)
 (global-set-key (kbd "C-M-=") 'wrap-region)
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 (global-set-key (kbd "C-S-<backspace>") 'delete-whole-line)
