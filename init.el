@@ -111,14 +111,6 @@
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
 
-(defun find-file-general (&optional arg)
-  "If in a Projectile project, call projectile-find-file. Otherwise,
-call ido-find-file."
-  (interactive)
-  (if (projectile-project-p)
-      (projectile-find-file)
-    (ido-find-file)))
-
 (defun move-line-up ()
   "Move current line up."
   (interactive)
@@ -412,7 +404,7 @@ virtual environment path instead."
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
 (global-set-key (kbd "C-c s c") 'spotify-current)
-(global-set-key (kbd "C-c c") 'find-file-general)
+(global-set-key (kbd "C-c c") 'projectile-find-file-dwim)
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c j") 'json-pretty-print-dwim)
 (global-set-key (kbd "C-c i") 'indent-region)
