@@ -32,6 +32,7 @@ ac-comphist.dat
 /transient/
 .lsp-session-v1
 .elpalock
+eshell/
 
 # per-PC configuration file
 local.el
