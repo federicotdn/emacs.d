@@ -120,9 +120,7 @@ C-s: isearch
 | M-n: next item in search history
 | M-p: previous item in search history
 | M-e: edit search string
-
 C-r: backwards isearch
-
 C-M-s: regexp isearch
 C-M-r: backward regexp isearch
 
@@ -135,6 +133,10 @@ C-M-%: replace interactive regexp
 | !: replace all
 
 M-s o: occur mode
+| C-o: display occurance
+| q: quit occur
+| e: edit mode
+ | C-c C-c: exit edit mode
 #+end_src
 
 ** Buffers

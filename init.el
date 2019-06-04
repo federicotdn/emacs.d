@@ -382,7 +382,6 @@ virtual environment path instead."
 (global-set-key (kbd "C-;") 'comment-line)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
-(global-set-key (kbd "C-,") 'query-replace-regexp)
 (global-set-key (kbd "C-=") 'mark-word)
 (global-set-key (kbd "C-M-=") 'wrap-region)
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
@@ -443,7 +442,6 @@ virtual environment path instead."
 (define-key org-mode-map (kbd "M-n") 'outline-next-visible-heading)
 (define-key org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
 (define-key org-mode-map (kbd "C-j") 'avy-goto-char-timer)
-(define-key org-mode-map (kbd "C-,") 'query-replace-regexp)
 (define-key global-map (kbd "M-'") iso-transl-ctl-x-8-map)
 
 ;; Free keys:
