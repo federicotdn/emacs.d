@@ -382,11 +382,11 @@ virtual environment path instead."
 (global-set-key (kbd "C-;") 'comment-line)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
-(global-set-key (kbd "C-=") 'mark-word)
 (global-set-key (kbd "C-M-=") 'wrap-region)
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 (global-set-key (kbd "C-S-<backspace>") 'delete-whole-line)
 
+(global-set-key (kbd "M-_") 'negative-argument)
 (global-set-key (kbd "M-l") 'ido-switch-buffer)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)

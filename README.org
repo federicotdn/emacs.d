@@ -84,15 +84,15 @@ C-x 5 1: close all frames except selected
 #+begin_src
 C-<spc>: set mark
 C-u C-<spc>: pop mark
-C-x C-<spc>: pop mark (global)
+C-x C-<spc>: pop global mark
 C-x C-x: exchange point and mark
 
 M-@: mark next word
-M-h: mark next paragraph
 C-M-@: mark next S-expression
+M-h: mark next paragraph
 C-x h: mark the whole buffer
-C-x =: display character information of character after point
 
+C-x =: display character information of character after point
 C-x <spc>: activate rectangle region mode
 #+end_src
 

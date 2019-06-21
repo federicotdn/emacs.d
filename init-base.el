@@ -62,10 +62,6 @@
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
-;; Highlight current line
-(global-hl-line-mode +1)
-(set-face-attribute hl-line-face nil :underline nil)
-
 ;; Show matching parenthesis
 (show-paren-mode 1)
 
