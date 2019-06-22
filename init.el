@@ -19,9 +19,6 @@
 ;; Org Mode
 ;;----------------------------------------------------------------------------
 
-;; Disable truncate-lines when editing Org files
-(add-hook 'org-mode-hook 'visual-line-mode)
-
 ;; Configure directories
 (setq org-directory "~/Dropbox/org/")
 (setq org-agenda-files (list org-directory))
