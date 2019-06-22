@@ -91,7 +91,7 @@
 ;; Highlight long lines in python-mode and sh-mode
 (require 'whitespace)
 (setq-default whitespace-style '(face tabs lines-tail trailing spaces)
-	      whitespace-line-column 79)
+	      whitespace-line-column 88)
 
 (add-hook 'python-mode-hook #'whitespace-mode)
 (add-hook 'sh-mode-hook #'whitespace-mode)

@@ -1,6 +1,6 @@
 reinstall_packages:
 	@test ! -f .elpalock || \
-		(printf "Previous reinstall failed.\nBack up elpa.old, delete .elpalock and try again.\n" && false)
+		(printf "Previous reinstall failed.\nBack up elpa.old, delete .elpalock and try again.\n\n" && false)
 	@touch .elpalock
 	@echo "Backing up old packages..."
 	@rm -rf elpa.old

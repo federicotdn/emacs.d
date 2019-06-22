@@ -96,16 +96,8 @@
 (setq avy-background t)
 (setq avy-style 'words)
 
-;; Add highlighting for Python indentation
-(add-hook 'python-mode-hook 'highlight-indentation-mode)
-
-;; LSP
-(require 'lsp)
-(add-hook 'python-mode-hook #'lsp)
-
-;; Company completion for LSP
-(require 'company-lsp)
-(push 'company-lsp company-backends)
+;; Elpy
+(elpy-enable)
 
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
@@ -342,34 +334,6 @@ window line 0."
     (user-error "Invalid file path"))
   (call-process "xdg-open" nil nil nil (file-truename filename)))
 
-(defun activate-pyvenv-lsp (arg)
-  "Activate a Python virtual environment and Language Server using
-pyvenv and lsp-mode. By default, use virtual environment in
-(project-current)/env. If called with a prefix argument, prompt for
-virtual environment path instead."
-  (interactive "P")
-  (unless (derived-mode-p 'python-mode)
-    (user-error "Current buffer's major mode must be python-mode"))
-  (let* ((proj-dir (cdr (project-current)))
-	 (venv-name (if arg (read-from-minibuffer "Venv name: " "env") "env"))
-	 (venv-path (concat proj-dir venv-name)))
-    (message "venv: %s" venv-path)
-    (unless (file-exists-p venv-path)
-      (user-error "Path not found: %s" venv-path))
-    (pyvenv-activate (concat proj-dir venv-name))
-    (when (= (call-process "pip" nil nil nil "show" "python-language-server") 1)
-      (pyvenv-deactivate)
-      (user-error "Python Language Server (pyls) not installed in venv"))
-    (lsp)))
-
-(defun deactivate-pyvenv-lsp ()
-  "Deactivate currently enabled Python virtual environment and LSP server."
-  (interactive)
-  (unless (derived-mode-p 'python-mode)
-    (user-error "Current buffer's major mode must be python-mode"))
-  (lsp-shutdown-workspace)
-  (pyvenv-deactivate))
-
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
@@ -462,6 +426,7 @@ virtual environment path instead."
 (define-key org-mode-map (kbd "C-c [") nil)
 (define-key org-mode-map (kbd "C-'") nil)
 (define-key shell-mode-map (kbd "C-c C-l") nil)
+(define-key elpy-mode-map (kbd "C-c C-c") nil)
 (define-key python-mode-map (kbd "C-c C-c") nil)
 
 ;;----------------------------------------------------------------------------
