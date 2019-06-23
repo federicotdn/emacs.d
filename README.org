@@ -32,8 +32,8 @@ g (refresh/revert)
 
 ** Navigation
 #+begin_src
-<left>, <right>, ...: move around by char
-C-<left>, C-<right>, ...: move around by word
+<left>, <right>: move around by char
+C-<left>, C-<right>: move around by word
 M-f, M-b: move forward, backwards by word
 C-f, C-b: move forward, backwards by char
 C-n, C-p: next line, previous line
@@ -88,9 +88,12 @@ C-x C-<spc>: pop global mark
 C-x C-x: exchange point and mark
 
 M-@: mark next word
-C-M-@: mark next S-expression
+C-M-@, C-M-<spc>: mark next S-expression
 M-h: mark next paragraph
 C-x h: mark the whole buffer
+
+C-x n n: narrow to region
+C-x n w: disable narrow to region
 
 C-x =: display character information of character after point
 C-x <spc>: activate rectangle region mode

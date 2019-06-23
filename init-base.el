@@ -229,3 +229,6 @@
 
 ;; Ignore case in autocomplete
 (setq completion-ignore-case t)
+
+;; Enable narrow to region
+(put 'narrow-to-region 'disabled nil)
