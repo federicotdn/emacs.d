@@ -229,27 +229,6 @@ the new file name."
 	    (user-error "File already exists!")))
       (user-error "Current buffer is not visiting any file or has unsaved changes"))))
 
-(defun import-icalendar-url (url dest)
-  "Download an iCalendar file from URL (asynchronously) and convert it
-to a Org mode file, using ical2orgpy. The created file will be placed
-in file DEST, inside the current org-directory."
-  (interactive "sEnter URL: \nsEnter filename: ")
-  (unless (executable-find "ical2orgpy")
-    (user-error "Could not find ical2orgpy executable"))
-  (let ((ical-file (make-temp-file "emacs-ical"))
-	(org-file (expand-file-name (concat org-directory dest))))
-    (with-temp-file ical-file
-      (url-insert-file-contents url))
-    (if (= 0 (call-process "ical2orgpy" nil nil nil ical-file org-file))
-	(message "iCal exported to: %s" org-file)
-      (error "ical2orgpy process error"))
-    (delete-file ical-file)))
-
-(defun import-google-calendar ()
-  "Import calendar from Google Calendar."
-  (interactive)
-  (import-icalendar-url gcal-url "gcal.org"))
-
 (defun wrap-region (c)
   "Wrap point or active region with character C and its corresponding
 pair."
@@ -386,7 +365,6 @@ window line 0."
 (global-set-key (kbd "C-c o d") 'dired-org-agenda)
 (global-set-key (kbd "C-c o r") 'org-archive-to-archive-sibling)
 (global-set-key (kbd "C-c o t") 'org-force-cycle-archived)
-(global-set-key (kbd "C-c o g") 'import-google-calendar)
 
 (global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
 
