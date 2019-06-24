@@ -343,7 +343,7 @@ window line 0."
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
 (global-set-key (kbd "C-c s c") 'spotify-current)
-(global-set-key (kbd "C-c c") 'projectile-find-file-dwim)
+(global-set-key (kbd "C-c c") 'projectile-find-file)
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c j") 'json-pretty-print-dwim)
 (global-set-key (kbd "C-c i") 'indent-region)
