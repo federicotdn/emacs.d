@@ -15,7 +15,7 @@
  '(icalendar-import-format "%s%d%l")
  '(package-selected-packages
    (quote
-    (elpy browse-kill-ring htmlize company pyvenv spotify flymake-shellcheck avy yaml-mode restclient debbugs magit monokai-theme projectile markdown-mode)))
+    (olivetti elpy browse-kill-ring htmlize pyvenv spotify flymake-shellcheck avy yaml-mode restclient debbugs magit monokai-theme projectile markdown-mode)))
  '(projectile-use-git-grep t)
  '(vc-display-status nil)
  '(winner-mode t))

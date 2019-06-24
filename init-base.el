@@ -74,9 +74,6 @@
 ;; Save position in buffer
 (save-place-mode 1)
 
-;; Smaller cursor
-(setq-default cursor-type 'bar)
-
 ;; Disable truncate-lines when editing Markdown files
 (add-hook 'markdown-mode-hook 'visual-line-mode)
 
