@@ -357,7 +357,6 @@ window line 0."
 (global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c y") 'browse-kill-ring)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
-(global-set-key (kbd "C-c <tab>") 'ibuffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 (global-set-key (kbd "C-c z") 'apropos)
 

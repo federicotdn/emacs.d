@@ -47,9 +47,6 @@
 	"magit-process"
 	"magit-diff"))
 
-;; Move between windows using S-<left> S-<right> etc.
-(windmove-default-keybindings)
-
 ;; Activate side scroll
 (put 'scroll-left 'disabled nil)
 (put 'scroll-right 'disabled nil)
@@ -97,31 +94,10 @@
 (add-hook 'python-mode-hook (lambda () (set-fill-column 79)))
 
 ;; Make frame title nicer
-(setq frame-title-format (format "%%b - Emacs %s" emacs-version))
-
-;; Set ibuffer groups
-(setq ibuffer-saved-filter-groups
-      (quote (("default"
-	       ("Python" (mode . python-mode))
-	       ("REST" (mode . restclient-mode))
-	       ("Shell" (mode . shell-mode))
-	       ("Dired" (mode . dired-mode))
-	       ("Emacs Lisp" (mode . emacs-lisp-mode))
-	       ("Git" (name . "^magit"))
-	       ("JSON" (name . "\\.json\\'"))
-	       ("Org" (or (name . "\\.org\\'")
-			  (mode . org-mode)
-			  (mode . org-agenda-mode)))))))
-
-(add-hook 'ibuffer-mode-hook
-	  (lambda ()
-	    (ibuffer-switch-to-saved-filter-groups "default")))
+(setq frame-title-format (format "%%b - GNU Emacs %s" emacs-version))
 
 ;; Enable auto revert
 (global-auto-revert-mode)
-
-;; Hi-Lock mode
-(global-hi-lock-mode 1)
 
 ;; TRAMP
 ;; Use C-x C-f /ssh:etc...

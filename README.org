@@ -153,7 +153,6 @@ C-x k: kill a buffer
 C-x b: switch window buffer
 C-x 4 b: switch buffer on other window
 C-x 4 0: kill buffer and window
-C-x C-b: list buffers
 C-x #: finish editing server buffer
 
 C-x C--: decrease font size
@@ -161,6 +160,14 @@ C-x C-=: increase font size
 C-x C-0: reset font size
 
 C-x <left>, C-x <right>: switch to previous, next buffer
+
+C-x C-b: list buffers
+| d: mark buffer for deletion
+| g: update buffer list
+| x: delete selected buffers
+| T: toggle display of only file buffers
+| u: unmark buffer
+| U: unmark all buffers
 #+end_src
 
 ** Commands
