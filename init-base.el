@@ -215,6 +215,10 @@
   (require 'ls-lisp)
   (setq ls-lisp-dirs-first t
 	ls-lisp-use-insert-directory-program nil)
+  (setq dired-listing-switches "-alhv")
 
   ;; Add brew binaries to PATH
-  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin")))
+  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+
+  ;; Disable bell
+  (setq ring-bell-function 'ignore))
