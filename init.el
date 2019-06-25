@@ -291,11 +291,6 @@ window line 0."
   (end-of-buffer '(4))
   (recenter-top-bottom 0))
 
-(defun dired-on-default-directory ()
-  "Open dired on the directory contained in `default-directory'."
-  (interactive)
-  (dired default-directory))
-
 (define-derived-mode long-lines-mode fundamental-mode "Long-Lines"
   "Simple mode to allow editing files with very long lines."
   (setq bidi-display-reordering nil)
@@ -318,7 +313,7 @@ window line 0."
 ;;----------------------------------------------------------------------------
 
 (global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x C-d") 'dired-on-default-directory)
+(global-set-key (kbd "C-x C-d") 'dired-jump)
 
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-j") 'avy-goto-char-timer)
