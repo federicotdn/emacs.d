@@ -304,11 +304,14 @@ window line 0."
 (defun open-file-external (filename)
   "Open a file or directory using the user's preferred application."
   (interactive "G")
-  (unless (executable-find "xdg-open")
-    (user-error "Could not find xdg-open executable"))
-  (unless (file-exists-p filename)
-    (user-error "Invalid file path"))
-  (call-process "xdg-open" nil nil nil (file-truename filename)))
+  (let ((executable (if (string= system-type "darwin")
+			"open"
+		      "xdg-open")))
+    (unless (executable-find executable)
+      (user-error (format "Could not find the %s executable" executable)))
+    (unless (file-exists-p filename)
+      (user-error "Invalid file path"))
+    (call-process executable nil nil nil (file-truename filename))))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings
