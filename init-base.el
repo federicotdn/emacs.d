@@ -205,3 +205,16 @@
 
 ;; Enable narrow to region
 (put 'narrow-to-region 'disabled nil)
+
+;; Setup stuff on macOS
+(when (string= system-type "darwin")
+  ;; Change behavior of left command key
+  (setq mac-command-modifier 'meta)
+
+  ;; Fix dired not working
+  (require 'ls-lisp)
+  (setq ls-lisp-dirs-first t
+	ls-lisp-use-insert-directory-program nil)
+
+  ;; Add brew binaries to PATH
+  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin")))
