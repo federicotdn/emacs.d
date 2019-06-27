@@ -299,9 +299,8 @@ window line 0."
 (defun open-file-external (filename)
   "Open a file or directory using the user's preferred application."
   (interactive "G")
-  (let ((executable (if (string= system-type "darwin")
-			"open"
-		      "xdg-open")))
+  (let ((executable "xdg-open"))
+    (if-macos (setq executable "open"))
     (unless (executable-find executable)
       (user-error (format "Could not find the %s executable" executable)))
     (unless (file-exists-p filename)
