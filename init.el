@@ -297,7 +297,8 @@ window line 0."
   (buffer-disable-undo))
 
 (defun open-file-external (filename)
-  "Open a file or directory using the user's preferred application."
+  "Open file or directory FILENAME using the user's preferred
+application."
   (interactive "G")
   (let ((executable "xdg-open"))
     (when-system darwin (setq executable "open"))
@@ -322,6 +323,7 @@ window line 0."
 (global-set-key (kbd "C-M-=") 'wrap-region)
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 (global-set-key (kbd "C-S-<backspace>") 'delete-whole-line)
+(global-set-key (kbd "C-M-_") 'negative-argument)
 
 (global-set-key (kbd "M-_") 'negative-argument)
 (global-set-key (kbd "M-l") 'ido-switch-buffer)

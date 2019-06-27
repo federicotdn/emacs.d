@@ -87,12 +87,14 @@ C-u C-<spc>: pop mark
 C-x C-<spc>: pop global mark
 C-x C-x: exchange point and mark
 
-M-@: mark next word
-C-M-@, C-M-<spc>: mark next S-expression
-M-h: mark next paragraph
+M-@: mark word
+C-M-@, C-M-<spc>: mark S-expression
+M-h: mark paragraph
+C-M-h: mark defun
 C-x h: mark the whole buffer
 
 C-x n n: narrow to region
+C-x n d: narrow to defun
 C-x n w: disable narrow to region
 
 C-x =: display character information of character after point
