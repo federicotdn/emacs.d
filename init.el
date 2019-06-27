@@ -333,15 +333,11 @@ window line 0."
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "M-<backspace>") 'goto-last-edit)
 (when-system darwin
- (global-set-key (kbd "M-`") 'other-frame))
+  (global-set-key (kbd "M-`") 'other-frame))
 
 (global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
 (global-set-key (kbd "C-c d") 'duplicate-line)
 (global-set-key (kbd "C-c f") 'flymake-mode)
-(global-set-key (kbd "C-c s SPC") 'spotify-playpause)
-(global-set-key (kbd "C-c s s") 'spotify-next)
-(global-set-key (kbd "C-c s p") 'spotify-previous)
-(global-set-key (kbd "C-c s c") 'spotify-current)
 (global-set-key (kbd "C-c c") 'projectile-find-file)
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c j") 'json-pretty-print-dwim)
@@ -358,6 +354,11 @@ window line 0."
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 (global-set-key (kbd "C-c z") 'apropos)
+(global-set-key (kbd "C-c s SPC") 'spotify-playpause)
+(global-set-key (kbd "C-c s s") 'spotify-next)
+(global-set-key (kbd "C-c s p") 'spotify-previous)
+(when-system gnu/linux
+  (global-set-key (kbd "C-c s c") 'spotify-current))
 
 (global-set-key (kbd "C-c o a") 'org-agenda)
 (global-set-key (kbd "C-c o d") 'dired-org-agenda)

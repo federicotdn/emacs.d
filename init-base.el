@@ -19,6 +19,7 @@
 ;; Helper macro for different operating systems
 (defmacro when-system (os &rest body)
   "Execute the forms in BODY only on operating system OS."
+  (declare (indent 1))
   `(when (eq system-type ',os)
      ,@body))
 
