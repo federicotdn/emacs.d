@@ -400,6 +400,7 @@ window line 0."
 (define-key org-mode-map (kbd "C-'") nil)
 (define-key shell-mode-map (kbd "C-c C-l") nil)
 (define-key elpy-mode-map (kbd "C-c C-c") nil)
+(define-key elpy-mode-map (kbd "<C-return>") nil)
 (define-key python-mode-map (kbd "C-c C-c") nil)
 
 ;;----------------------------------------------------------------------------
