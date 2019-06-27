@@ -166,14 +166,6 @@ SublimeText/Atom/VSCode/etc."
   (delete-region (point) (line-end-position))
   (delete-forward-char 1))
 
-(defun shell-with-name ()
-  "Create a shell with a specific name."
-  (interactive)
-  (let ((name (read-string "Shell name: ")))
-    (shell (concat "*shell"
-		   (if (string= name "") "" (concat " " name))
-		   "*"))))
-
 (defun edit-init ()
   "Edit init.el in a buffer."
   (interactive)
@@ -344,7 +336,6 @@ application."
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c j") 'json-pretty-print-dwim)
 (global-set-key (kbd "C-c i") 'indent-region)
-(global-set-key (kbd "C-c h") 'shell-with-name)
 (global-set-key (kbd "C-c e e") 'eval-buffer)
 (global-set-key (kbd "C-c e i") 'edit-init)
 (global-set-key (kbd "C-c e r") 'rename-file-buffer)
