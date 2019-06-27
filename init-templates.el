@@ -13,3 +13,7 @@
 			 "def " (P "Property: " prop) "(self):" n>
 			 "return self._" (s prop))
 		       "property")
+
+(tempo-define-template "python-traceback"
+		       '("import traceback; traceback.print_stack()")
+		       "traceback")

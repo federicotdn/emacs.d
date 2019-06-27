@@ -333,6 +333,8 @@ window line 0."
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "M-<backspace>") 'goto-last-edit)
+(if-macos
+ (global-set-key (kbd "M-`") 'other-frame))
 
 (global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
 (global-set-key (kbd "C-c d") 'duplicate-line)

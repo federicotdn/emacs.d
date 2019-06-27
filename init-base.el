@@ -16,6 +16,12 @@
 (setq custom-file "~/.emacs.d/init-custom.el")
 (load custom-file)
 
+;; Helper macro for macOS
+(defmacro if-macos (&rest body)
+  "Execute the forms in BODY only on macOS."
+  `(when (string= system-type "darwin")
+     ,@body))
+
 ;; Disable tool bar, scroll bar and menu bar
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
@@ -207,7 +213,7 @@
 (put 'narrow-to-region 'disabled nil)
 
 ;; Setup stuff on macOS
-(when (string= system-type "darwin")
+(if-macos
   ;; Change behavior of left command key
   (setq mac-command-modifier 'meta)
 
