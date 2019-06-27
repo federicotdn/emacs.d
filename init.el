@@ -300,7 +300,7 @@ window line 0."
   "Open a file or directory using the user's preferred application."
   (interactive "G")
   (let ((executable "xdg-open"))
-    (if-macos (setq executable "open"))
+    (when-system darwin (setq executable "open"))
     (unless (executable-find executable)
       (user-error (format "Could not find the %s executable" executable)))
     (unless (file-exists-p filename)
@@ -332,7 +332,7 @@ window line 0."
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "M-<backspace>") 'goto-last-edit)
-(if-macos
+(when-system darwin
  (global-set-key (kbd "M-`") 'other-frame))
 
 (global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
