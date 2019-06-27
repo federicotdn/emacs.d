@@ -228,4 +228,7 @@
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 
   ;; Disable bell
-  (setq ring-bell-function 'ignore))
+  (setq ring-bell-function 'ignore)
+
+  ;; Setup ispell
+  (setq ispell-program-name "/usr/local/bin/aspell"))
