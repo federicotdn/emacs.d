@@ -14,3 +14,6 @@ reinstall_packages:
 
 install_external_tools:
 	sudo apt install python3-pip git figlet shellcheck aspell-es
+
+clean:
+	rm -rf auto-save-list/ url/ tramp
