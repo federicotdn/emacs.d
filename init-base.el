@@ -50,9 +50,7 @@
 	"*Completions*"
 	"*Shell Command Output*"
 	"*Flymake log*"
-	"*Compile-Log*"
-	"magit-process"
-	"magit-diff"))
+	"*Compile-Log*"))
 
 ;; Activate side scroll
 (put 'scroll-left 'disabled nil)
@@ -132,9 +130,6 @@
 ;; Load per-PC configuration file
 ;; local.el is gitignore'd
 (load "~/.emacs.d/local.el" t t)
-
-;; Allow auto-resizing windows horizontally on command
-(setq fit-window-to-buffer-horizontally t)
 
 ;; Start Emacs server
 ;; This allows using emacsclient as an editor
