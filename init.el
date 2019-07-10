@@ -307,6 +307,7 @@ application."
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-d") 'dired-jump)
 
+(global-set-key (kbd "C-h a") 'apropos)
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-j") 'avy-goto-char-timer)
 (global-set-key (kbd "C-;") 'comment-line)

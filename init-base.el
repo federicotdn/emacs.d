@@ -226,4 +226,7 @@
   (setq ring-bell-function 'ignore)
 
   ;; Setup ispell
-  (setq ispell-program-name "/usr/local/bin/aspell"))
+  (setq ispell-program-name "/usr/local/bin/aspell")
+
+  ;; Fix Gnus
+  (custom-set-variables '(epg-gpg-program  "/usr/local/bin/gpg")))
