@@ -7,7 +7,7 @@ reinstall_packages:
 	@(test -d elpa && mv elpa elpa.old) || true
 	@echo "Done."
 	@echo "Installing packages..."
-	@yes | emacs -q --batch --load init-base.el \
+	@yes | emacs -q --batch --load init-package.el \
 		--eval '(package-refresh-contents)' \
 		--eval '(package-install-selected-packages)'
 	@rm .elpalock
