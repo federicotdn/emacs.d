@@ -234,6 +234,9 @@
 ;; Enable narrow to region
 (put 'narrow-to-region 'disabled nil)
 
+;; Disable VC mode
+(setq vc-handled-backends nil)
+
 ;; Setup stuff on macOS
 (when-system darwin
   ;; Change behavior of left command key
@@ -349,17 +352,21 @@
   "Move current line up."
   (interactive)
   (when (> (line-number-at-pos) 1)
-    (transpose-lines 1)
-    (previous-line)
-    (previous-line)))
+    (let ((col (current-column)))
+      (transpose-lines 1)
+      (previous-line)
+      (previous-line)
+      (move-to-column col))))
 
 (defun move-line-down ()
   "Move current line down."
   (interactive)
   (when (< (line-number-at-pos) (count-lines (point-min) (point-max)))
-    (next-line)
-    (transpose-lines 1)
-    (previous-line)))
+    (let ((col (current-column)))
+      (next-line)
+      (transpose-lines 1)
+      (previous-line)
+      (move-to-column col))))
 
 (defun swap-window-pair-buffers ()
   "When two windows are open, swap their buffers."
