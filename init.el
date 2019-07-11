@@ -247,6 +247,7 @@
 
   ;; Add brew binaries to PATH
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+  (add-to-list 'exec-path "/usr/local/bin")
 
   ;; Disable bell
   (setq ring-bell-function 'ignore)
