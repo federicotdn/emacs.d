@@ -448,29 +448,35 @@ SublimeText/Atom/VSCode/etc."
   (dired org-directory "-l")
   (dired-hide-details-mode))
 
-(defun print-buffer-file-name ()
-  "Print the current buffer's file path."
-  (interactive)
+(defun print-buffer-file-name (&optional arg)
+  "Print the current buffer's file path.
+If ARG is non-nil, make the file path the latest kill in the kill
+ring."
+  (interactive "P")
   (let ((name (buffer-file-name)))
-    (if name
-	(message name)
-      (user-error "Buffer is not visiting any file"))))
+    (unless name
+      (user-error "Buffer is not visiting any file"))
+    (message name)
+    (when arg
+      (kill-new name))))
 
 (defun rename-file-buffer ()
   "Rename the current buffer's file, and the buffer itself to match
 the new file name."
   (interactive)
   (let ((current-file-name (buffer-file-name)))
-    (if (and current-file-name (not (buffer-modified-p)))
-	(let ((new-file-name (read-file-name "New file name:" nil current-file-name 'confirm)))
-	  (if (and (not (file-exists-p new-file-name))
-		   (not (get-file-buffer new-file-name)))
-	      (progn
-		(rename-file current-file-name new-file-name)
-		(set-visited-file-name new-file-name)
-		(set-buffer-modified-p nil))
-	    (user-error "File already exists!")))
-      (user-error "Current buffer is not visiting any file or has unsaved changes"))))
+    (unless current-file-name
+      (user-error "Current buffer is not visiting any file"))
+    (when (buffer-modified-p)
+      (user-error "Current buffer has unsaved changes"))
+    (let ((new-file-name (read-file-name "New file name:" nil current-file-name 'confirm)))
+      (when (or (file-exists-p new-file-name)
+		(get-file-buffer new-file-name))
+	(user-error "File already exists!"))
+      (rename-file current-file-name new-file-name)
+      (set-visited-file-name new-file-name)
+      (let ((inhibit-message t))
+	(save-buffer)))))
 
 (defun wrap-region (c)
   "Wrap point or active region with character C and its corresponding
