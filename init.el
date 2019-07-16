@@ -303,7 +303,8 @@
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
 
-;; Set theme
+;; Set theme, but make comments a bit brighter (original value: #75715E)
+(setq monokai-comments "#908E80")
 (load-theme 'monokai t)
 
 ;; Projectile
