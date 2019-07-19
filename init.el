@@ -255,10 +255,7 @@
   (setq ring-bell-function 'ignore)
 
   ;; Setup ispell
-  (setq ispell-program-name "/usr/local/bin/aspell")
-
-  ;; Fix Gnus
-  (custom-set-variables '(epg-gpg-program  "/usr/local/bin/gpg")))
+  (setq ispell-program-name "/usr/local/bin/aspell"))
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
@@ -602,7 +599,6 @@ application."
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
 (global-set-key (kbd "C-c e o") 'open-file-external)
 (global-set-key (kbd "C-c q") 'quick-calc)
-(global-set-key (kbd "C-c y") 'browse-kill-ring)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 (global-set-key (kbd "C-c z") 'apropos)
