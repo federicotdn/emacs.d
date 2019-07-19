@@ -65,9 +65,11 @@ M-<: go to beggining of buffer
 M-m: first non-whitespace char of line
 M-r: move point to center, top, bottom
 
-C-v, M-v: scroll down, up window
-C-M-v: scroll down other window
-C-- C-M-v, C-M-S-v: scroll up other window
+C-v: scroll window up
+M-v: scroll window down
+C-M-v: scroll other window up
+C-- C-M-v, C-M-S-v: scroll other window down
+
 C-l: scroll to leave point at center, top, bottom
 C-M-l: scroll to leave current func. definition at top
 
