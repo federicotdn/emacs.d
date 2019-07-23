@@ -80,14 +80,12 @@ C-u M-g M-g: go to line on previous buffer
 ** Windows
 #+begin_src
 C-x o: cycle windows
-S-<left>, S-<right>, ...: move between windows
 C-x 0: Close this window
 C-x 1: Close other windows
 C-x 2: Split horizontal
 C-x 3: Split vertical
 
-C-c <left>: undo windows layout change
-C-c <right>: redo windows layout change
+C-x +: balance windows
 #+end_src
 
 ** Frames
@@ -232,6 +230,7 @@ C-x r j: jump to register
 
 C-x r s: copy text to register
 C-x r i: insert text from register
+C-x r +: append to register
 
 C-x r w: window configuration to register (restore with jump-to-register)
 #+end_src
@@ -297,6 +296,12 @@ M-x debbugs-gnu: open GNU bug tracker
 | <ret>: read issue messages on point
  | n, p: next unread, previous unread message
  | N, P: next, previous message
+#+end_src
+
+** Winner Mode
+#+begin_src
+C-c <left>: undo windows layout change
+C-c <right>: redo windows layout change
 #+end_src
 
 ** Gnus
