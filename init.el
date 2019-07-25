@@ -314,8 +314,15 @@
 
 ;; Magit
 (with-eval-after-load 'magit
+  ;; Register all directories in Workspace
   (add-to-list 'magit-repository-directories '("~/Workspace/" . 2))
-  (setq magit-slow-confirm t))
+
+  ;; Always confirm with yes/no when discarding changes
+  (setq magit-slow-confirm t)
+
+  ;; Remove ":" from magit buffer names to search them more easily
+  (setq magit-buffer-name-format
+	(replace-regexp-in-string ":" "" magit-buffer-name-format)))
 
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
