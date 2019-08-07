@@ -57,7 +57,8 @@
 	"*Completions*"
 	"*Shell Command Output*"
 	"*Flymake log*"
-	"*Compile-Log*"))
+	"*Compile-Log*"
+	"magit-process*"))
 
 ;; Activate side scroll
 (put 'scroll-left 'disabled nil)
