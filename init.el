@@ -364,6 +364,12 @@
                           (set (make-local-variable 'company-backends) '(company-go))
                           (company-mode)))
 
+;; Fix https://github.com/dominikh/go-mode.el/issues/286
+(advice-add 'godef--call :around
+	    (lambda (fn &rest args)
+	      (let ((default-directory "~"))
+		(apply fn args))))
+
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
