@@ -445,6 +445,7 @@ C-c C-j: org goto
 C-c C-e: export file
 C-c /: org sparse tree
 C-,: cycle agenda files
+C-c ^: sort entries
 
 C-c .: insert timestamp
 | S-<left>, S-<right>: move to previous, next calendar day
