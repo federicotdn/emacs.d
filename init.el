@@ -610,6 +610,7 @@ application."
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-i") 'imenu)
+(global-set-key (kbd "M-j") 'mode-line-other-buffer)
 (global-set-key (kbd "M-<backspace>") 'goto-last-edit)
 (when-system darwin
   (global-set-key (kbd "M-`") 'other-frame))
@@ -660,11 +661,6 @@ application."
 (define-key go-mode-map (kbd "M-.") 'godef-jump)
 (define-key global-map (kbd "M-'") iso-transl-ctl-x-8-map)
 
-;; Free keys:
-;; C-c SPC
-;; C-.
-;; M-j
-
 ;;----------------------------------------------------------------------------
 ;; Remove default keybindings
 ;;----------------------------------------------------------------------------
@@ -673,6 +669,7 @@ application."
 
 (global-unset-key (kbd "C-x f"))
 (global-unset-key (kbd "M-;"))
+(global-unset-key (kbd "M-k"))
 (global-unset-key (kbd "C-z"))
 
 (define-key org-mode-map (kbd "C-c [") nil)
