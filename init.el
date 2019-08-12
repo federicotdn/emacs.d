@@ -297,6 +297,9 @@
 ;; Don't allow TODOs to be completed unless all children tasks are marked as done
 (setq org-enforce-todo-dependencies t)
 
+;; Record time when TODOs are completed
+(setq org-log-done 'time)
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
