@@ -100,7 +100,7 @@
 (setq-default whitespace-style '(face tabs lines-tail trailing)
 	      whitespace-line-column 88)
 
-(add-hook 'python-mode-hook #'whitespace-mode)
+(add-hook 'python-mode-hook 'whitespace-mode)
 
 ;; Set fill-column for Python
 (add-hook 'python-mode-hook (lambda () (set-fill-column 79)))
@@ -220,7 +220,7 @@
 (setq confirm-kill-emacs 'yes-or-no-p)
 
 ;; Spell-check messages
-(add-hook 'message-mode-hook #'flyspell-mode)
+(add-hook 'message-mode-hook 'flyspell-mode)
 
 ;; Always save bookmarks
 (setq bookmark-save-flag 1)
@@ -299,6 +299,18 @@
 
 ;; Record time when TODOs are completed
 (setq org-log-done 'time)
+
+(defun on-org-todo-done ()
+  "Add a small note after CLOSED property when a TODO is completed."
+  (when (string= org-state "DONE")
+    (let ((note (read-from-minibuffer "Note: ")))
+      (when (> (length note) 0)
+	(outline-show-subtree)
+	(next-line)
+	(end-of-line)
+	(insert " // " note)))))
+
+(add-hook 'org-after-todo-state-change-hook 'on-org-todo-done)
 
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
