@@ -297,24 +297,11 @@
 ;; Don't allow TODOs to be completed unless all children tasks are marked as done
 (setq org-enforce-todo-dependencies t)
 
-;; Record time when TODOs are completed
-(setq org-log-done 'time)
+;; Record time and not when TODOs are completed
+(setq org-log-done 'note)
 
-(defun on-org-todo-done ()
-  "Add a small note after CLOSED property when a TODO is completed."
-  (when (string= org-state "DONE")
-    (let ((note (read-from-minibuffer "Note: "))
-	  (invisible (outline-invisible-p (point-at-eol))))
-      (when (> (length note) 0)
-	(save-excursion
-	  (outline-show-subtree)
-	  (next-line)
-	  (end-of-line)
-	  (insert " // " note)))
-      (when invisible
-	(outline-hide-subtree)))))
-
-(add-hook 'org-after-todo-state-change-hook 'on-org-todo-done)
+;; Don't repeat date when note is added ("NOTE CLOSED %t")
+(setf (cdr (assq 'done org-log-note-headings)) "NOTE:")
 
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
