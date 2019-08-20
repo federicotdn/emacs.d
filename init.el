@@ -2,15 +2,12 @@
 ;; Requires: Emacs 26+
 
 ;;----------------------------------------------------------------------------
-;; Emacs General Config
+;; GC Config
 ;;----------------------------------------------------------------------------
 
-;; Configure GC
-(defconst gc-default-threshold 800000)
-(defconst gc-large-threshold (* gc-default-threshold 10))
-
 ;; Set GC threshold to a large value during init
-(setq gc-cons-threshold gc-large-threshold)
+(defconst gc-default-threshold gc-cons-threshold)
+(setq gc-cons-threshold (* gc-default-threshold 100))
 
 ;;----------------------------------------------------------------------------
 ;; Base Initialization
