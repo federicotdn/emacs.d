@@ -673,7 +673,9 @@ application."
 (global-unset-key (kbd "C-x f"))
 (global-unset-key (kbd "M-;"))
 (global-unset-key (kbd "M-k"))
+(global-unset-key (kbd "M-t"))
 (global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-t"))
 
 (define-key org-mode-map (kbd "C-c [") nil)
 (define-key org-mode-map (kbd "C-'") nil)
