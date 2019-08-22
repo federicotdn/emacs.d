@@ -671,6 +671,7 @@ application."
 ;; Disable some default keys that get hit by accident
 
 (global-unset-key (kbd "C-x f"))
+(global-unset-key (kbd "C-x s"))
 (global-unset-key (kbd "M-;"))
 (global-unset-key (kbd "M-k"))
 (global-unset-key (kbd "M-t"))
