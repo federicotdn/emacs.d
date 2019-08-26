@@ -55,7 +55,9 @@
 	"*Shell Command Output*"
 	"*Flymake log*"
 	"*Compile-Log*"
-	"magit-process*"))
+	"magit-process*"
+	"magit-revision*"
+	"magit-reflog*"))
 
 ;; Activate side scroll
 (put 'scroll-left 'disabled nil)
@@ -669,9 +671,9 @@ application."
 ;;----------------------------------------------------------------------------
 
 ;; Disable some default keys that get hit by accident
-
 (global-unset-key (kbd "C-x f"))
 (global-unset-key (kbd "C-x s"))
+(global-unset-key (kbd "C-x C-n"))
 (global-unset-key (kbd "M-;"))
 (global-unset-key (kbd "M-k"))
 (global-unset-key (kbd "M-t"))
