@@ -354,27 +354,6 @@
 ;; Elpy
 (elpy-enable)
 
-;; Golang
-(require 'go-mode)
-
-;; Add go binaries
-(add-to-list 'exec-path "~/Workspace/go/bin")
-
-;; Setup GOPATH
-(setenv "GOPATH" "~/Workspace/go")
-
-;; Setup company-go
-(add-hook 'go-mode-hook (lambda ()
-			  (require 'company-go)
-                          (set (make-local-variable 'company-backends) '(company-go))
-                          (company-mode)))
-
-;; Fix https://github.com/dominikh/go-mode.el/issues/286
-(advice-add 'godef--call :around
-	    (lambda (fn &rest args)
-	      (let ((default-directory "~"))
-		(apply fn args))))
-
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
@@ -663,7 +642,6 @@ application."
 (define-key org-mode-map (kbd "M-n") 'outline-next-visible-heading)
 (define-key org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
 (define-key org-mode-map (kbd "C-j") 'avy-goto-char-timer)
-(define-key go-mode-map (kbd "M-.") 'godef-jump)
 (define-key global-map (kbd "M-'") iso-transl-ctl-x-8-map)
 
 ;;----------------------------------------------------------------------------
