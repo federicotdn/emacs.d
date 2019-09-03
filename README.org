@@ -283,9 +283,19 @@ M-x find-name-dired: search for files recursively
 #+begin_src
 C-x C-e: eval last S-expression
 C-M-x: eval defun
-C-u C-M-x: instrument defun for edebug
 M-:: eval expression
 M-x ielm: interactive elisp REPL
+#+end_src
+
+** Edebug
+#+begin_src
+C-u M-x eval-defun: instrument function for Edebug
+| ?: show Edebug keys
+| c: continue
+| <spc>: step (next)
+| i: step into
+| e: evaluate expression
+| q: quit to top level
 #+end_src
 
 ** GNU Bug Tracker
