@@ -18,7 +18,7 @@ install_external_tools:
 clean:
 	rm -rf auto-save-list/ url/ tramp
 
-time-startup:
+time_startup:
 	python3 -m timeit \
 		-r 1 -n 5 \
 		'__import__("subprocess").call("emacs --eval (kill-emacs)".split())'
