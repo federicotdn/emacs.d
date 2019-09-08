@@ -11,7 +11,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (olivetti elpy pyvenv spotify flymake-shellcheck avy yaml-mode restclient debbugs magit monokai-theme projectile markdown-mode))))
+    (use-package olivetti elpy pyvenv spotify flymake-shellcheck avy yaml-mode restclient debbugs magit monokai-theme projectile markdown-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

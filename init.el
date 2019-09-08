@@ -10,12 +10,16 @@
 (setq gc-cons-threshold (* gc-default-threshold 100))
 
 ;;----------------------------------------------------------------------------
-;; Base Initialization
+;; Initialization
 ;;----------------------------------------------------------------------------
 
 ;; Initialize package management and custom variables
 (setq custom-file "~/.emacs.d/init-package.el")
 (load custom-file)
+
+;; Enable use-package
+(eval-when-compile
+  (require 'use-package))
 
 ;; Enable delete selection mode
 (delete-selection-mode t)
@@ -33,31 +37,12 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
-;; More extensive apropos searches
-(setq apropos-do-all t)
-
 ;; Show column number
 (column-number-mode t)
 
 ;; Customize scratch buffer
 (setq initial-scratch-message nil)
 (setq initial-major-mode 'fundamental-mode)
-
-;; IDO
-(ido-mode 1)
-(setq ido-everywhere t)
-(setq ido-enable-flex-matching t)
-(setq ido-default-buffer-method 'selected-window)
-(setq ido-separator "\n")
-(setq ido-ignore-buffers
-      '("^ "
-	"*Completions*"
-	"*Shell Command Output*"
-	"*Flymake log*"
-	"*Compile-Log*"
-	"magit-process*"
-	"magit-revision*"
-	"magit-reflog*"))
 
 ;; Activate side scroll
 (put 'scroll-left 'disabled nil)
@@ -71,50 +56,8 @@
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
-;; Show matching parenthesis
-(show-paren-mode 1)
-
-;; Insert matching parenthesis
-(electric-pair-mode 1)
-
-;; Indent automatically on RET
-(electric-indent-mode 1)
-
-;; Save position in buffer
-(save-place-mode 1)
-
-;; Disable truncate-lines when editing Markdown files
-(add-hook 'markdown-mode-hook 'visual-line-mode)
-
-;; Dired
-(setq dired-listing-switches "-alhv --group-directories-first")
-(setq dired-auto-revert-buffer t)
-
-;; Set up uniquify
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
-
-;; Highlight long lines in python-mode
-(require 'whitespace)
-(setq-default whitespace-style '(face tabs lines-tail trailing)
-	      whitespace-line-column 88)
-
-(add-hook 'python-mode-hook 'whitespace-mode)
-
-;; Set fill-column for Python
-(add-hook 'python-mode-hook (lambda () (set-fill-column 79)))
-
 ;; Make frame title nicer
 (setq frame-title-format (format "%%b - GNU Emacs %s" emacs-version))
-
-;; Enable auto revert
-(global-auto-revert-mode)
-
-;; TRAMP
-;; Use C-x C-f /ssh:etc...
-(require 'tramp)
-(setq tramp-default-method "ssh")
-(tramp-set-completion-function "ssh" '((tramp-parse-sconfig "~/.ssh/config")))
 
 ;; Registers
 (setq register-preview-delay 0)
@@ -137,6 +80,9 @@
 ;; local.el is gitignore'd
 (load "~/.emacs.d/local.el" t t)
 
+;; Load synced secret values
+(load "~/Dropbox/emacs/secrets.el" t t)
+
 ;; Start Emacs server
 ;; This allows using emacsclient as an editor
 (server-start)
@@ -154,84 +100,14 @@
 ;; Deactivate mark before undo (never do selective undo in region)
 (advice-add 'undo :before (lambda (&rest r) (deactivate-mark)))
 
-;; In shell mode, don't jump to position after output
-(add-hook 'shell-mode-hook
-	  (lambda ()
-	    (remove-hook 'comint-output-filter-functions
-			 'comint-postoutput-scroll-to-bottom)))
-
-;; Ignore duplicate commands in shell mode
-(setq comint-input-ignoredups t)
-
-;; Load iso-transl in order to change the C-x 8 prefix later
-(require 'iso-transl)
-
-;; Load python-mode in order to change keymap later
-(require 'python)
-
-;; Create templates using tempo.el
-(require 'tempo)
-
-;; Tempo templates for Python
-
-(tempo-define-template "python-pdb"
-		       '("import pdb; pdb.set_trace()")
-		       "pdb")
-
-(tempo-define-template "python-code-interact"
-		       '("import code; code.interact(local=locals())")
-		       "interact")
-
-(tempo-define-template "python-property"
-		       '("@property" n>
-			 "def " (P "Property: " prop) "(self):" n>
-			 "return self._" (s prop))
-		       "property")
-
-(tempo-define-template "python-traceback"
-		       '("import traceback; traceback.print_stack()")
-		       "traceback")
-
-;; Allow hippie-expand to complete tempo tags
-(defun try-tempo-complete-tag (old)
-  (unless old
-    (tempo-complete-tag)))
-
-(add-to-list 'hippie-expand-try-functions-list 'try-tempo-complete-tag)
-
-;; JS indent level
-(setq js-indent-level 4)
-
-;; Configure Gnus
-(setq gnus-thread-sort-functions
-      '(gnus-thread-sort-by-number
-        gnus-thread-sort-by-most-recent-date))
-
-(setq gnus-subthread-sort-functions
-      '(gnus-thread-sort-by-number
-        (not gnus-thread-sort-by-most-recent-date)))
-
-;; Enable mails search (from https://www.emacswiki.org/emacs/GnusGmail#toc22)
-(with-eval-after-load 'gnus
-  (require 'nnir))
-
 ;; Always confirm quit
 (setq confirm-kill-emacs 'yes-or-no-p)
-
-;; Spell-check messages
-(add-hook 'message-mode-hook 'flyspell-mode)
 
 ;; Always save bookmarks
 (setq bookmark-save-flag 1)
 
-;; C/C++ indent level
-(setq-default c-basic-offset 4)
-
 ;; Ignore case in autocomplete
 (setq completion-ignore-case t)
-
-;; Enable narrow to region
-(put 'narrow-to-region 'disabled nil)
 
 ;; Disable VC mode
 (setq vc-handled-backends nil)
@@ -240,12 +116,6 @@
 (when-system darwin
   ;; Change behavior of left command key
   (setq mac-command-modifier 'meta)
-
-  ;; Fix dired not working
-  (require 'ls-lisp)
-  (setq ls-lisp-dirs-first t
-	ls-lisp-use-insert-directory-program nil)
-  (setq dired-listing-switches "-alhv")
 
   ;; Add brew binaries to PATH
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
@@ -257,69 +127,295 @@
   ;; Setup ispell
   (setq ispell-program-name "/usr/local/bin/aspell"))
 
-;;----------------------------------------------------------------------------
-;; Org Mode
-;;----------------------------------------------------------------------------
-
-;; Configure directories
-(setq org-directory "~/Dropbox/org/")
-(setq org-agenda-files (list org-directory))
-
-;; Quick capture file
-(setq org-default-notes-file (concat org-directory "/notes.org"))
-
-;; TODO lists states, last state used as 'done'
-(setq org-todo-keywords '((sequence "TODO" "CURRENT" "DONE")))
-
-;; important tag
-(setq org-tag-faces '(("imp" . (:foreground "red" :weight bold))
-		      ("easy" . (:foreground "green"))))
-
-;; Configure Babel
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((python . t)
-   (emacs-lisp . t)
-   (shell . t)))
-
-(setq org-confirm-babel-evaluate nil)
-
-;; Refile to any agenda file
-(setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
-
-;; Save all Org buffers after refile
-(advice-add 'org-refile :after (lambda (&rest r) (org-save-all-org-buffers)))
-
-;; Always refile to top of entry
-(setq org-reverse-note-order t)
-
-;; Don't allow TODOs to be completed unless all children tasks are marked as done
-(setq org-enforce-todo-dependencies t)
-
-;; Record time and not when TODOs are completed
-(setq org-log-done 'note)
-
-;; Don't repeat date when note is added ("NOTE CLOSED %t")
-(setf (cdr (assq 'done org-log-note-headings)) "NOTE:")
-
-;;----------------------------------------------------------------------------
-;; Package Initialization
-;;----------------------------------------------------------------------------
-
 ;; Set theme, but make comments a bit brighter (original value: #75715E)
-(setq monokai-comments "#908E80")
-(load-theme 'monokai t)
+(use-package monokai-theme
+  :config
+  (setq monokai-comments "#908E80")
+  (load-theme 'monokai t))
+
+;; Save position in buffer
+(use-package saveplace
+  :config
+  (save-place-mode 1))
+
+;; Show matching parenthesis
+(use-package paren
+  :config
+  (show-paren-mode 1))
+
+;; Insert matching parenthesis
+(use-package elec-pair
+  :config
+  (electric-pair-mode 1))
+
+;; Indent automatically on RET
+(use-package electric
+  :config
+  (electric-indent-mode 1))
+
+;; Dired
+(use-package dired
+  :config
+  (setq dired-listing-switches "-alhv --group-directories-first"
+        dired-auto-revert-buffer t))
+
+;; Dired-X
+(use-package dired-x
+  :bind ("C-x C-d" . dired-jump))
+
+;; IDO
+(use-package ido
+  :config
+  (ido-mode 1)
+  (setq ido-everywhere t
+	ido-enable-flex-matching t
+	ido-default-buffer-method 'selected-window
+	ido-separator "\n"
+	ido-ignore-buffers
+	'("^ "
+	  "*Completions*"
+	  "*Shell Command Output*"
+	  "*Flymake log*"
+	  "*Compile-Log*"
+	  "magit-process*"
+	  "magit-revision*"
+	  "magit-reflog*")))
+
+;; Uniquify buffer names
+(use-package uniquify
+  :config
+  (setq uniquify-buffer-name-style 'forward))
+
+;; Apropos
+(use-package apropos
+  :bind ("C-h a" . 'apropos)
+  :config
+  ;; More extensive apropos searches
+  (setq apropos-do-all t))
+
+;; Whitespace
+(use-package whitespace
+  :config
+  (setq-default whitespace-style '(face tabs lines-tail trailing)
+		whitespace-line-column 88))
+
+;; Python
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :bind (:map python-mode-map
+	 ("M-[" . python-indent-shift-left)
+	 ("M-]" . python-indent-shift-right)
+	 ("C-c C-c" . nil))
+  :config
+  (add-hook 'python-mode-hook 'whitespace-mode)
+  ;; Set fill-column for Python
+  (add-hook 'python-mode-hook (lambda () (set-fill-column 79))))
+
+;; Elpy
+(use-package elpy
+  :after python
+  :bind (:map elpy-mode-map
+	 ("C-c C-c" . nil)
+	 ("<C-return>" . nil))
+  :config
+  (elpy-enable))
+
+;; Markdown
+(use-package markdown-mode
+  :mode "\\.md\\'"
+  :config
+  (add-hook 'markdown-mode-hook 'visual-line-mode))
+
+;; Auto revert files
+(use-package autorevert
+  :config
+  (global-auto-revert-mode))
+
+;; TRAMP
+(use-package tramp
+  :commands (find-file ido-find-file)
+  :config
+  ;; Use C-x C-f /ssh:etc...
+  (setq tramp-default-method "ssh")
+  (tramp-set-completion-function "ssh" '((tramp-parse-sconfig "~/.ssh/config"))))
+
+;; Shell
+(use-package shell
+  :demand
+  :bind (:map shell-mode-map
+	 ("C-r" . comint-history-isearch-backward-regexp)
+	 ("C-l" . goto-end-clear-screen))
+  :config
+  ;; In shell mode, don't jump to position after output
+  (add-hook 'shell-mode-hook
+	    (lambda ()
+	      (remove-hook 'comint-output-filter-functions
+			   'comint-postoutput-scroll-to-bottom)))
+
+  ;; Ignore duplicate commands in shell mode
+  (setq comint-input-ignoredups t)
+
+  (defun goto-end-clear-screen ()
+    "Go to the end of the buffer and then move current buffer line to
+window line 0."
+    (interactive)
+    (end-of-buffer '(4))
+    (recenter-top-bottom 0)))
+
+;; Input keys for different languages
+(use-package iso-transl
+  :bind-keymap ("M-'" . iso-transl-ctl-x-8-map))
+
+;; Tempo templates
+(use-package tempo
+  :after python
+  :config
+  (tempo-define-template "python-pdb"
+			 '("import pdb; pdb.set_trace()")
+			 "pdb")
+
+  (tempo-define-template "python-code-interact"
+			 '("import code; code.interact(local=locals())")
+			 "interact")
+
+  (tempo-define-template "python-property"
+			 '("@property" n>
+			   "def " (P "Property: " prop) "(self):" n>
+			   "return self._" (s prop))
+			 "property")
+
+  (tempo-define-template "python-traceback"
+			 '("import traceback; traceback.print_stack()")
+			 "traceback")
+
+  ;; Allow hippie-expand to complete tempo tags
+  (defun try-tempo-complete-tag (old)
+    (unless old
+      (tempo-complete-tag)))
+
+  (add-to-list 'hippie-expand-try-functions-list 'try-tempo-complete-tag))
+
+;; JavaScript / JSON
+(use-package js
+  :mode (("\\.js\\'" . js-mode)
+	 ("\\.json\\'" . js-mode))
+  :bind ("C-c j" . json-pretty-print-dwim)
+  :config
+  (setq js-indent-level 4)
+
+  (defun json-pretty-print-dwim ()
+    "Prettify JSON in region if it is active, otherwise on whole buffer."
+    (interactive)
+    (let ((json-encoding-default-indentation (make-string js-indent-level ? )))
+      (if (use-region-p)
+	  (json-pretty-print (region-beginning) (region-end))
+	(json-pretty-print-buffer)))))
+
+;; GNUS
+(use-package gnus
+  :commands gnus
+  :config
+  (setq gnus-thread-sort-functions
+	'(gnus-thread-sort-by-number
+	  gnus-thread-sort-by-most-recent-date))
+
+  (setq gnus-subthread-sort-functions
+	'(gnus-thread-sort-by-number
+	  (not gnus-thread-sort-by-most-recent-date)))
+
+  (use-package nnir))
+
+;; Spell-check messages
+(use-package flyspell
+  :hook (message-mode . flyspell-mode))
+
+;; Configure ls-lisp (macOS only)
+(when-system darwin
+  (use-package ls-lisp
+    :config
+    (setq ls-lisp-dirs-first t
+	  ls-lisp-use-insert-directory-program nil)
+    (setq dired-listing-switches "-alhv")))
+
+;; Org Mode
+(use-package org
+  :mode "\\.org\\'"
+  :bind (("C-c o a" . org-agenda)
+	 ("C-c o d" . dired-org-agenda)
+	 :map org-mode-map
+	 ("M-n" . outline-next-visible-heading)
+	 ("M-p" . outline-previous-visible-heading)
+	 ("C-j" . avy-goto-char-timer)
+	 ("C-c o r" . org-archive-to-archive-sibling)
+	 ("C-c o t" . org-force-cycle-archived)
+	 ("C-c [" . nil)
+	 ("C-'" . nil))
+  :config
+  ;; Configure directories
+  (setq org-directory "~/Dropbox/org/")
+  (setq org-agenda-files (list org-directory))
+
+  ;; Quick capture file
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+
+  ;; TODO lists states, last state used as 'done'
+  (setq org-todo-keywords '((sequence "TODO" "CURRENT" "DONE")))
+
+  ;; important tag
+  (setq org-tag-faces '(("imp" . (:foreground "red" :weight bold))
+			("easy" . (:foreground "green"))))
+
+  ;; Configure Babel
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)
+     (emacs-lisp . t)
+     (shell . t)))
+
+  (setq org-confirm-babel-evaluate nil)
+
+  ;; Refile to any agenda file
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
+
+  ;; Save all Org buffers after refile
+  (advice-add 'org-refile :after (lambda (&rest r) (org-save-all-org-buffers)))
+
+  ;; Always refile to top of entry
+  (setq org-reverse-note-order t)
+
+  ;; Don't allow TODOs to be completed unless all children tasks are marked as done
+  (setq org-enforce-todo-dependencies t)
+
+  ;; Record time and not when TODOs are completed
+  (setq org-log-done 'note)
+
+  ;; Don't repeat date when note is added ("NOTE CLOSED %t")
+  (setf (cdr (assq 'done org-log-note-headings)) "NOTE:")
+
+  (defun dired-org-agenda ()
+    "Open org-directory with dired."
+    (interactive)
+    (dired org-directory "-l")
+    (dired-hide-details-mode)))
 
 ;; Projectile
-(projectile-mode +1)
-(setq projectile-mode-line-function
-      (lambda ()
-	(format " P[%s]" (projectile-project-name))))
+(use-package projectile
+  :bind-keymap ("C-c p" . projectile-command-map)
+  :bind (:map projectile-mode-map
+	 ("C-c c" . projectile-find-file))
+  :config
+  (projectile-mode 1)
+  (setq projectile-mode-line-function
+	(lambda ()
+	  (format " P[%s]" (projectile-project-name))))
 
-(setq projectile-use-git-grep t)
+  (setq projectile-use-git-grep t))
 
 ;; Magit
-(with-eval-after-load 'magit
+(use-package magit
+  :bind (("C-x g" . magit-status)
+	 ("C-c M-g" . magit-file-dispatch))
+  :config
   ;; Register all directories in Workspace
   (add-to-list 'magit-repository-directories '("~/Workspace/" . 2))
 
@@ -330,32 +426,83 @@
   (setq magit-buffer-name-format
 	(replace-regexp-in-string ":" "" magit-buffer-name-format)))
 
-;; Company
-(add-hook 'after-init-hook 'global-company-mode)
+;; Company completion
+(use-package company
+  :config
+  (global-company-mode 1))
 
-;; flymake-shellcheck
-(add-hook 'sh-mode-hook 'flymake-shellcheck-load)
+;; Flymake-Shellcheck
+(use-package flymake-shellcheck
+  :commands flymake-shellcheck-load
+  :init
+  (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
 
-;; secret values
-(load "~/Dropbox/emacs/secrets.el" t)
-
-;; YAML mode
-(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+;; YAML
+(use-package yaml-mode
+  :mode (("\\.yml\\'" . yaml-mode)
+	 ("\\.yaml\\'" . yaml-mode)))
 
 ;; Restclient mode
-(require 'restclient)
-(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
+(use-package restclient
+  :mode ("\\.http\\'" . restclient-mode)
+  :bind (:map restclient-mode-map
+	 ("C-c C-c" . close-response-and-request))
+  :config
+  (defun close-response-and-request ()
+    "Close last HTTP response buffer and send a new request from current
+restclient URL (if region isn't active) or from URL contained by the
+region (if it's active). Always display results on a separate window
+to the right."
+    (interactive)
+    (save-buffer)
+    (let ((name "*HTTP Response**"))
+      (while (get-buffer name)
+	(kill-buffer name)))
+    (when (= (count-windows) 1)
+      (split-window-right))
+    (if (use-region-p)
+	(let ((text (buffer-substring (region-beginning) (region-end))))
+	  (with-temp-buffer
+	    (insert text)
+	    (restclient-http-send-current-stay-in-window)))
+      (restclient-http-send-current-stay-in-window))))
 
 ;; Avy
-(setq avy-all-windows nil)
-(setq avy-background t)
-(setq avy-style 'words)
+(use-package avy
+  :bind (("C-j" . avy-goto-char-timer))
+  :config
+  (setq avy-all-windows nil
+        avy-background t
+	avy-style 'words))
 
-;; Elpy
-(elpy-enable)
+;; Imenu
+(use-package imenu
+  :bind ("M-i" . imenu))
+
+;; Debbugs
+(use-package debbugs
+  :bind ("C-c e d" . debbugs-gnu))
+
+;; Spotify controls
+(use-package spotify
+  :bind (("C-c s SPC" . spotify-playpause)
+	 ("C-c s s" . spotify-next)
+	 ("C-c s p" . spotify-previous))
+  :config
+  (when-system gnu/linux
+    (global-set-key (kbd "C-c s c") 'spotify-current)))
+
+;; Toggle Flymake
+(use-package flymake
+  :bind (("C-c f" . flymake-mode)
+	 ("C-o" . flymake-goto-next-error)))
+
+;; Calculator
+(use-package calc
+  :bind ("C-c q" . quick-calc))
 
 ;;----------------------------------------------------------------------------
-;; Custom Functions
+;; Global Functions
 ;;----------------------------------------------------------------------------
 
 (defun move-line-up ()
@@ -377,37 +524,6 @@
       (transpose-lines 1)
       (previous-line)
       (move-to-column col))))
-
-(defun swap-window-pair-buffers ()
-  "When two windows are open, swap their buffers."
-  (interactive)
-  (if (= (count-windows) 2)
-      (let* ((w1 (elt (window-list) 0))
-	     (w2 (elt (window-list) 1))
-	     (b1 (window-buffer w1))
-	     (b2 (window-buffer w2)))
-	(set-window-buffer w1 b2)
-	(set-window-buffer w2 b1))
-    (user-error "This function only works with exactly two windows")))
-
-(defun close-response-and-request ()
-  "Close last HTTP response buffer and send a new request from current
-restclient URL (if region isn't active) or from URL contained by the
-region (if it's active). Always display results on a separate window
-to the right."
-  (interactive)
-  (save-buffer)
-  (let ((name "*HTTP Response**"))
-    (while (get-buffer name)
-      (kill-buffer name)))
-  (when (= (count-windows) 1)
-    (split-window-right))
-  (if (use-region-p)
-      (let ((text (buffer-substring (region-beginning) (region-end))))
-	(with-temp-buffer
-	  (insert text)
-	  (restclient-http-send-current-stay-in-window)))
-    (restclient-http-send-current-stay-in-window)))
 
 (defun backward-delete-word ()
   "Delete a word backwards. Delete text from previous line only when
@@ -452,12 +568,6 @@ SublimeText/Atom/VSCode/etc."
 			   "*")))
     (switch-to-buffer (get-buffer-create fullname))
     (fundamental-mode)))
-
-(defun dired-org-agenda ()
-  "Open org-directory with dired."
-  (interactive)
-  (dired org-directory "-l")
-  (dired-hide-details-mode))
 
 (defun print-buffer-file-name (&optional arg)
   "Print the current buffer's file path.
@@ -519,14 +629,6 @@ pair."
   (kill-ring-save (point-min) (point-max))
   (message "Buffer copied to kill ring."))
 
-(defun json-pretty-print-dwim ()
-  "Prettify JSON in region if it is active, otherwise on whole buffer."
-  (interactive)
-  (let ((json-encoding-default-indentation (make-string js-indent-level ? )))
-    (if (use-region-p)
-	(json-pretty-print (region-beginning) (region-end))
-      (json-pretty-print-buffer))))
-
 (defun goto-last-edit ()
   "Go to the last edit made in the current buffer."
   (interactive)
@@ -543,13 +645,6 @@ pair."
 		(= (point) pos))
       (push-mark)
       (goto-char pos))))
-
-(defun goto-end-clear-screen ()
-  "Go to the end of the buffer and then move current buffer line to
-window line 0."
-  (interactive)
-  (end-of-buffer '(4))
-  (recenter-top-bottom 0))
 
 (define-derived-mode long-lines-mode fundamental-mode "Long-Lines"
   "Simple mode to allow editing files with very long lines."
@@ -569,15 +664,9 @@ application."
     (call-process executable nil nil nil (file-truename filename))))
 
 ;;----------------------------------------------------------------------------
-;; Keybindings
+;; Global keybindings
 ;;----------------------------------------------------------------------------
 
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x C-d") 'dired-jump)
-
-(global-set-key (kbd "C-h a") 'apropos)
-(global-set-key (kbd "C-o") 'flymake-goto-next-error)
-(global-set-key (kbd "C-j") 'avy-goto-char-timer)
 (global-set-key (kbd "C-;") 'comment-line)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
@@ -593,59 +682,28 @@ application."
 (global-set-key (kbd "M-<down>") 'move-line-down)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
-(global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "M-j") 'mode-line-other-buffer)
 (global-set-key (kbd "M-<backspace>") 'goto-last-edit)
 (when-system darwin
   (global-set-key (kbd "M-`") 'other-frame))
 
-(global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
 (global-set-key (kbd "C-c d") 'duplicate-line)
-(global-set-key (kbd "C-c f") 'flymake-mode)
-(global-set-key (kbd "C-c c") 'projectile-find-file)
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
-(global-set-key (kbd "C-c j") 'json-pretty-print-dwim)
 (global-set-key (kbd "C-c i") 'indent-region)
 (global-set-key (kbd "C-c e e") 'eval-buffer)
 (global-set-key (kbd "C-c e i") 'edit-init)
 (global-set-key (kbd "C-c e r") 'rename-file-buffer)
-(global-set-key (kbd "C-c e d") 'debbugs-gnu)
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
 (global-set-key (kbd "C-c e o") 'open-file-external)
-(global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
-(global-set-key (kbd "C-c z") 'apropos)
-(global-set-key (kbd "C-c s SPC") 'spotify-playpause)
-(global-set-key (kbd "C-c s s") 'spotify-next)
-(global-set-key (kbd "C-c s p") 'spotify-previous)
-(when-system gnu/linux
-  (global-set-key (kbd "C-c s c") 'spotify-current))
-
-(global-set-key (kbd "C-c o a") 'org-agenda)
-(global-set-key (kbd "C-c o d") 'dired-org-agenda)
-(global-set-key (kbd "C-c o r") 'org-archive-to-archive-sibling)
-(global-set-key (kbd "C-c o t") 'org-force-cycle-archived)
 
 (global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(define-key restclient-mode-map (kbd "C-c C-c") 'close-response-and-request)
-(define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
-(define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
-(define-key shell-mode-map (kbd "C-c C-l") 'comint-clear-buffer)
-(define-key python-mode-map (kbd "M-[") 'python-indent-shift-left)
-(define-key python-mode-map (kbd "M-]") 'python-indent-shift-right)
-
-(define-key org-mode-map (kbd "M-n") 'outline-next-visible-heading)
-(define-key org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
-(define-key org-mode-map (kbd "C-j") 'avy-goto-char-timer)
-(define-key global-map (kbd "M-'") iso-transl-ctl-x-8-map)
-
 ;;----------------------------------------------------------------------------
-;; Remove default keybindings
+;; Remove Global Keybindings
 ;;----------------------------------------------------------------------------
 
 ;; Disable some default keys that get hit by accident
@@ -657,13 +715,6 @@ application."
 (global-unset-key (kbd "M-t"))
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-t"))
-
-(define-key org-mode-map (kbd "C-c [") nil)
-(define-key org-mode-map (kbd "C-'") nil)
-(define-key shell-mode-map (kbd "C-c C-l") nil)
-(define-key elpy-mode-map (kbd "C-c C-c") nil)
-(define-key elpy-mode-map (kbd "<C-return>") nil)
-(define-key python-mode-map (kbd "C-c C-c") nil)
 
 ;;----------------------------------------------------------------------------
 ;; Cleanup
