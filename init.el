@@ -90,6 +90,9 @@
 (setq dired-listing-switches "-alhv --group-directories-first")
 (setq dired-auto-revert-buffer t)
 
+;; Dired-x
+(require 'dired-x)
+
 ;; Set up uniquify
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
