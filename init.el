@@ -137,6 +137,9 @@
 ;; local.el is gitignore'd
 (load "~/.emacs.d/local.el" t t)
 
+;; secret values
+(load "~/Dropbox/emacs/secrets.el" t t)
+
 ;; Start Emacs server
 ;; This allows using emacsclient as an editor
 (server-start)
@@ -224,14 +227,8 @@
 ;; Always save bookmarks
 (setq bookmark-save-flag 1)
 
-;; C/C++ indent level
-(setq-default c-basic-offset 4)
-
 ;; Ignore case in autocomplete
 (setq completion-ignore-case t)
-
-;; Enable narrow to region
-(put 'narrow-to-region 'disabled nil)
 
 ;; Disable VC mode
 (setq vc-handled-backends nil)
@@ -336,9 +333,6 @@
 ;; flymake-shellcheck
 (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
 
-;; secret values
-(load "~/Dropbox/emacs/secrets.el" t)
-
 ;; YAML mode
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
@@ -377,18 +371,6 @@
       (transpose-lines 1)
       (previous-line)
       (move-to-column col))))
-
-(defun swap-window-pair-buffers ()
-  "When two windows are open, swap their buffers."
-  (interactive)
-  (if (= (count-windows) 2)
-      (let* ((w1 (elt (window-list) 0))
-	     (w2 (elt (window-list) 1))
-	     (b1 (window-buffer w1))
-	     (b2 (window-buffer w2)))
-	(set-window-buffer w1 b2)
-	(set-window-buffer w2 b1))
-    (user-error "This function only works with exactly two windows")))
 
 (defun close-response-and-request ()
   "Close last HTTP response buffer and send a new request from current
@@ -599,7 +581,6 @@ application."
 (when-system darwin
   (global-set-key (kbd "M-`") 'other-frame))
 
-(global-set-key (kbd "C-c w") 'swap-window-pair-buffers)
 (global-set-key (kbd "C-c d") 'duplicate-line)
 (global-set-key (kbd "C-c f") 'flymake-mode)
 (global-set-key (kbd "C-c c") 'projectile-find-file)
@@ -615,7 +596,6 @@ application."
 (global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
-(global-set-key (kbd "C-c z") 'apropos)
 (global-set-key (kbd "C-c s SPC") 'spotify-playpause)
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
@@ -635,7 +615,6 @@ application."
 (define-key restclient-mode-map (kbd "C-c C-c") 'close-response-and-request)
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
 (define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
-(define-key shell-mode-map (kbd "C-c C-l") 'comint-clear-buffer)
 (define-key python-mode-map (kbd "M-[") 'python-indent-shift-left)
 (define-key python-mode-map (kbd "M-]") 'python-indent-shift-right)
 
@@ -660,7 +639,6 @@ application."
 
 (define-key org-mode-map (kbd "C-c [") nil)
 (define-key org-mode-map (kbd "C-'") nil)
-(define-key shell-mode-map (kbd "C-c C-l") nil)
 (define-key elpy-mode-map (kbd "C-c C-c") nil)
 (define-key elpy-mode-map (kbd "<C-return>") nil)
 (define-key python-mode-map (kbd "C-c C-c") nil)
