@@ -321,9 +321,11 @@ window line 0."
 
   (setq gnus-subthread-sort-functions
 	'(gnus-thread-sort-by-number
-	  (not gnus-thread-sort-by-most-recent-date)))
+	  (not gnus-thread-sort-by-most-recent-date))))
 
-  (use-package nnir))
+;; Enable mails search (from https://www.emacswiki.org/emacs/GnusGmail#toc22)
+(use-package nnir
+  :after gnus)
 
 ;; Spell-check messages
 (use-package flyspell
