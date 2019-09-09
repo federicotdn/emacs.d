@@ -26,7 +26,12 @@
 ;; Configure package sources
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
-	("melpa" . "https://melpa.org/packages/")))
+        ("melpa stable" . "https://stable.melpa.org/packages/")
+        ("melpa" . "https://melpa.org/packages/"))
+      package-archive-priorities
+      '(("melpa stable" . 10)
+        ("gnu" . 5)
+        ("melpa" . 0)))
 
 ;; Call package-initialize on version 26 only
 (when (< emacs-major-version 27)

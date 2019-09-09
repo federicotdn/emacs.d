@@ -339,7 +339,7 @@ window line 0."
 
 ;; Org Mode
 (use-package org
-  :mode "\\.org\\'"
+  :mode ("\\.org\\'" . org-mode)
   :bind (("C-c o a" . org-agenda)
 	 ("C-c o d" . dired-org-agenda)
 	 :map org-mode-map
@@ -401,8 +401,7 @@ window line 0."
 ;; Projectile
 (use-package projectile
   :bind-keymap ("C-c p" . projectile-command-map)
-  :bind (:map projectile-mode-map
-	 ("C-c c" . projectile-find-file))
+  :bind ("C-c c" . projectile-find-file)
   :config
   (projectile-mode 1)
   (setq projectile-mode-line-function
