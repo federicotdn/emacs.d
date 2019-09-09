@@ -138,6 +138,7 @@ C-s: isearch
 | C-s: next result (after entering text)
 | C-r: previous result
 | C-w: add word at point to search string
+| C-M-w: delete search string's last char
 | M-n: next item in search history
 | M-p: previous item in search history
 | M-e: edit search string
