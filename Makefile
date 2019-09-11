@@ -3,13 +3,13 @@ BACKUP_DIR=elpa-backups
 reinstall_packages:
 	$(eval target_dir := $(BACKUP_DIR)/$(shell cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1))
 	@mkdir -p $(BACKUP_DIR)
-	@echo "Backing up old packages to $(target_dir)..."
+	@(test -d elpa && echo "Backing up old packages to $(target_dir)...") || true
 	@(test -d elpa && mv elpa $(target_dir)) || true
-	@echo "Done."
 	@echo "Installing packages..."
 	@yes | emacs -q --batch --load init-package.el \
 		--eval '(package-refresh-contents)' \
 		--eval '(package-install-selected-packages)'
+	@echo $(shell git describe --always) > elpa/commit.txt
 	@echo "All done."
 
 install_external_tools:
