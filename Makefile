@@ -1,16 +1,16 @@
+BACKUP_DIR=elpa-backups
+
 reinstall_packages:
-	@test ! -f .elpalock || \
-		(printf "Previous reinstall failed.\nBack up elpa.old, delete .elpalock and try again.\n\n" && false)
-	@touch .elpalock
-	@echo "Backing up old packages..."
-	@rm -rf elpa.old
-	@(test -d elpa && mv elpa elpa.old) || true
+	$(eval target_dir := $(BACKUP_DIR)/$(shell cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1))
+	@mkdir -p $(BACKUP_DIR)
+	@echo "Backing up old packages to $(target_dir)..."
+	@(test -d elpa && mv elpa $(target_dir)) || true
 	@echo "Done."
 	@echo "Installing packages..."
 	@yes | emacs -q --batch --load init-package.el \
 		--eval '(package-refresh-contents)' \
 		--eval '(package-install-selected-packages)'
-	@rm .elpalock
+	@echo "All done."
 
 install_external_tools:
 	sudo apt install python3-pip git figlet shellcheck aspell-es

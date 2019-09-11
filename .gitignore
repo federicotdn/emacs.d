@@ -14,7 +14,7 @@
 history
 *desktop*
 /elpa/
-/elpa.old/
+/elpa-backups/
 ido.last
 *bookmarks*
 network-security.data
@@ -31,7 +31,6 @@ ac-comphist.dat
 /games/
 /transient/
 .lsp-session-v1
-.elpalock
 eshell/
 
 # per-PC configuration file
