@@ -188,15 +188,10 @@
 		       '("import code; code.interact(local=locals())")
 		       "interact")
 
-(tempo-define-template "python-property"
-		       '("@property" n>
-			 "def " (P "Property: " prop) "(self):" n>
-			 "return self._" (s prop))
-		       "property")
-
-(tempo-define-template "python-traceback"
-		       '("import traceback; traceback.print_stack()")
-		       "traceback")
+(tempo-define-template "python-pprint"
+		       '("from pprint import pprint" n>
+			 "pprint(" (P "Expression: ") ")")
+		       "pprint")
 
 ;; Allow hippie-expand to complete tempo tags
 (defun try-tempo-complete-tag (old)
