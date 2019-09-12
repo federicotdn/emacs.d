@@ -594,16 +594,17 @@ application."
 (global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
+(global-set-key (kbd "C-c o a") 'org-agenda)
+(global-set-key (kbd "C-c o d") 'dired-org-agenda)
+(global-set-key (kbd "C-c o r") 'org-archive-to-archive-sibling)
+(global-set-key (kbd "C-c o t") 'org-force-cycle-archived)
+(global-set-key (kbd "C-c y t") 'elpy-test-pytest-runner)
+(global-set-key (kbd "C-c y b") 'elpy-black-fix-code)
 (global-set-key (kbd "C-c s SPC") 'spotify-playpause)
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
 (when-system gnu/linux
   (global-set-key (kbd "C-c s c") 'spotify-current))
-
-(global-set-key (kbd "C-c o a") 'org-agenda)
-(global-set-key (kbd "C-c o d") 'dired-org-agenda)
-(global-set-key (kbd "C-c o r") 'org-archive-to-archive-sibling)
-(global-set-key (kbd "C-c o t") 'org-force-cycle-archived)
 
 (global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
 
