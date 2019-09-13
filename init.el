@@ -297,6 +297,9 @@
 ;; Don't repeat date when note is added ("NOTE CLOSED %t")
 (setf (cdr (assq 'done org-log-note-headings)) "NOTE:")
 
+;; Align tags further right
+(setq org-tags-column 85)
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
