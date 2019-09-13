@@ -1,5 +1,8 @@
 BACKUP_DIR=elpa-backups
 
+update:
+	git pull origin master
+
 reinstall_packages:
 	$(eval target_dir := $(BACKUP_DIR)/$(shell cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1))
 	@mkdir -p $(BACKUP_DIR)
