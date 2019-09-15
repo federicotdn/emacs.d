@@ -586,7 +586,6 @@ application."
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c j") 'json-pretty-print-dwim)
 (global-set-key (kbd "C-c i") 'indent-region)
-(global-set-key (kbd "C-c e e") 'eval-buffer)
 (global-set-key (kbd "C-c e i") 'edit-init)
 (global-set-key (kbd "C-c e r") 'rename-file-buffer)
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
@@ -597,10 +596,6 @@ application."
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 (global-set-key (kbd "C-c o a") 'org-agenda)
 (global-set-key (kbd "C-c o d") 'dired-org-agenda)
-(global-set-key (kbd "C-c o r") 'org-archive-to-archive-sibling)
-(global-set-key (kbd "C-c o t") 'org-force-cycle-archived)
-(global-set-key (kbd "C-c y t") 'elpy-test-pytest-runner)
-(global-set-key (kbd "C-c y b") 'elpy-black-fix-code)
 (global-set-key (kbd "C-c s SPC") 'spotify-playpause)
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
@@ -608,20 +603,24 @@ application."
   (global-set-key (kbd "C-c s c") 'spotify-current))
 
 (global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
-
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
+
+(define-key global-map (kbd "M-'") iso-transl-ctl-x-8-map)
 
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (define-key restclient-mode-map (kbd "C-c C-c") 'close-response-and-request)
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
 (define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
+(define-key elpy-mode-map (kbd "C-c y t") 'elpy-test-pytest-runner)
+(define-key elpy-mode-map (kbd "C-c y b") 'elpy-black-fix-code)
 (define-key python-mode-map (kbd "M-[") 'python-indent-shift-left)
 (define-key python-mode-map (kbd "M-]") 'python-indent-shift-right)
 
 (define-key org-mode-map (kbd "M-n") 'outline-next-visible-heading)
 (define-key org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
 (define-key org-mode-map (kbd "C-j") 'avy-goto-char-timer)
-(define-key global-map (kbd "M-'") iso-transl-ctl-x-8-map)
+(define-key org-mode-map (kbd "C-c o r") 'org-archive-to-archive-sibling)
+(define-key org-mode-map (kbd "C-c o t") 'org-force-cycle-archived)
 
 ;;----------------------------------------------------------------------------
 ;; Remove default keybindings
