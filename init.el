@@ -18,7 +18,7 @@
 (load custom-file)
 
 ;; Enable delete selection mode
-(delete-selection-mode t)
+(delete-selection-mode)
 
 ;; Helper macro for different operating systems
 (defmacro when-system (os &rest body)
@@ -37,14 +37,14 @@
 (setq apropos-do-all t)
 
 ;; Show column number
-(column-number-mode t)
+(column-number-mode)
 
 ;; Customize scratch buffer
 (setq initial-scratch-message nil)
 (setq initial-major-mode 'fundamental-mode)
 
 ;; IDO
-(ido-mode 1)
+(ido-mode)
 (setq ido-everywhere t)
 (setq ido-enable-flex-matching t)
 (setq ido-default-buffer-method 'selected-window)
@@ -72,16 +72,16 @@
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
 ;; Show matching parenthesis
-(show-paren-mode 1)
+(show-paren-mode)
 
 ;; Insert matching parenthesis
-(electric-pair-mode 1)
+(electric-pair-mode)
 
 ;; Indent automatically on RET
-(electric-indent-mode 1)
+(electric-indent-mode)
 
 ;; Save position in buffer
-(save-place-mode 1)
+(save-place-mode)
 
 ;; Disable truncate-lines when editing Markdown files
 (add-hook 'markdown-mode-hook 'visual-line-mode)
@@ -309,7 +309,8 @@
 (load-theme 'monokai t)
 
 ;; Projectile
-(projectile-mode +1)
+(projectile-mode)
+
 (setq projectile-mode-line-function
       (lambda ()
 	(format " P[%s]" (projectile-project-name))))
@@ -318,9 +319,6 @@
 
 ;; Magit
 (with-eval-after-load 'magit
-  ;; Register all directories in Workspace
-  (add-to-list 'magit-repository-directories '("~/Workspace/" . 2))
-
   ;; Always confirm with yes/no when discarding changes
   (setq magit-slow-confirm t)
 
