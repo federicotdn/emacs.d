@@ -390,10 +390,11 @@ C-c M-g: file popup
 ** Projectile
 Using =C-c p= as the value for =projectile-command-map=:
 #+begin_src
-C-c p p: open project
-C-c p f: open file in project
-C-c p s g: recursive grep in project
 C-c p p: switch to project
+C-u C-c p p: run command in project
+C-c p f: find file in project
+C-c p d: find directory in project
+C-c p s g: recursive grep in project
 C-c p D: project dired
 C-c p r: find and replace in project
 C-c p x s: run shell in project
