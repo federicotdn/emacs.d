@@ -231,6 +231,9 @@
 ;; Disable VC mode
 (setq vc-handled-backends nil)
 
+;; Add a newline at the end of file on save
+(setq require-final-newline t)
+
 ;; Setup stuff on macOS
 (when-system darwin
   ;; Change behavior of left command key
@@ -548,6 +551,15 @@ application."
     (unless (file-exists-p filename)
       (user-error "Invalid file path"))
     (call-process executable nil nil nil (file-truename filename))))
+
+(defun describe-original-key (key)
+  "Display documentation of the function invoked by KEY, when using
+Emacs' original keybindings."
+  (interactive "sKey: ")
+  (message "%s"
+	   (shell-command-to-string
+	    (format "emacs -Q --batch --eval '(describe-key-briefly (kbd \"%s\"))'"
+		    key))))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings
