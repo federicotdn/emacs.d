@@ -299,6 +299,13 @@ C-u M-x eval-defun: instrument function for Edebug
 | q: quit to top level
 #+end_src
 
+** Compilation Mode
+#+begin_src
+g: recompile
+M-p: go to previous error
+M-n: go to next error
+#+end_src
+
 ** GNU Bug Tracker
 #+begin_src
 M-x debbugs-gnu: open GNU bug tracker
@@ -453,7 +460,7 @@ S-<tab>: cycle entire file tree visibility
 C-<left>, C-<right>: cycle 'thing' left or right (values)
 C-c C-c: run 'thing' (run code, check checkbox, etc.)
 C-c C-t: cycle TODO state
-C-c C-j: org goto
+C-c C-j: org go to
 C-c C-e: export file
 C-c /: org sparse tree
 C-,: cycle agenda files
