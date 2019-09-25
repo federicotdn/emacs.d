@@ -350,6 +350,9 @@
 ;; Elpy
 (elpy-enable)
 
+;; Install Python tools in currently active venv
+(setq elpy-rpc-virtualenv-path 'current)
+
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
