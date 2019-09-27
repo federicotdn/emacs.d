@@ -155,7 +155,7 @@
 		       (pos (+ (- ring-len
 				  (length kill-ring-yank-pointer))
 			       1)))
-		  (message "Yanked element %d of %d." pos ring-len)))))
+		  (message "Yanked element %d of %d" pos ring-len)))))
 
 ;; Deactivate mark before undo (never do selective undo in region)
 (advice-add 'undo :before (lambda (&rest r) (deactivate-mark)))
@@ -504,7 +504,7 @@ pair."
   "Save the entire buffer as if killed, but don't kill it."
   (interactive)
   (kill-ring-save (point-min) (point-max))
-  (message "Buffer copied to kill ring."))
+  (message "Buffer copied to kill ring"))
 
 (defun json-pretty-print-dwim ()
   "Prettify JSON in region if it is active, otherwise on whole buffer."
