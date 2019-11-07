@@ -208,6 +208,7 @@ C-k: kill rest of line
 C-S-<backspace>: kill line
 C-M-k: kill S-expression
 C-<backspace>: backwards kill word
+M-\: delete horizontal whitespace
 M-z: zap to char
 
 C-w: kill active region (cut)

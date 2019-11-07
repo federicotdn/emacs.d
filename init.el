@@ -430,16 +430,6 @@ SublimeText/Atom/VSCode/etc."
       (insert val)))
   (next-line))
 
-(defun create-scratch-buffer ()
-  "Create a new scratch buffer in Fundamental mode."
-  (interactive)
-  (let* ((name (read-string "Scratch buffer name: "))
-	 (fullname (concat "*scratch"
-			   (if (string= name "") "" (concat " " name))
-			   "*")))
-    (switch-to-buffer (get-buffer-create fullname))
-    (fundamental-mode)))
-
 (defun dired-org-agenda ()
   "Open org-directory with dired."
   (interactive)
@@ -607,7 +597,6 @@ Emacs' original keybindings."
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
 (global-set-key (kbd "C-c e o") 'open-file-external)
 (global-set-key (kbd "C-c q") 'quick-calc)
-(global-set-key (kbd "C-c b") 'create-scratch-buffer)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 (global-set-key (kbd "C-c o a") 'org-agenda)
 (global-set-key (kbd "C-c o d") 'dired-org-agenda)
