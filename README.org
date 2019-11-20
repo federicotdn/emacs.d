@@ -517,8 +517,12 @@ I: look up something in the current manual's index
 
 ** Macros
 #+BEGIN_SRC
-F3, F4: start, stop recording macro
-F4: playback last recorded macro
+F3: start recording keyboard macro
+F4: stop recording keyboard macro (if recording a macro)
+F4: playback last recorded keyboard macro
+C-x C-k r: apply last keyboard macro to all lines in region
+C-x C-k <ret>: edit last keyboard macro
+C-x C-k x: store last keyboard macro in a register
 #+END_SRC
 
 ** SQL
