@@ -193,6 +193,10 @@
 			 "pprint(" (P "Expression: ") ")")
 		       "pprint")
 
+(tempo-define-template "python-traceback"
+		       '("import traceback; traceback.print_stack()")
+		       "traceback")
+
 ;; Allow hippie-expand to complete tempo tags
 (defun try-tempo-complete-tag (old)
   (unless old
