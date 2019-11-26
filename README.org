@@ -189,6 +189,16 @@ C-x C-b: list buffers
 | U: unmark all buffers
 #+end_src
 
+** Minibuffer
+#+begin_src
+M-p: previous history item
+M-n: next history item
+M-r: previous matching history item (regexp)
+M-s: next matching history item (regexp)
+C-s: isearch forwards on history
+C-r: isearch backwards on history
+#+end_src
+
 ** Commands
 #+begin_src
 M-x: execute command
@@ -364,7 +374,8 @@ C-x m: compose a new message (mail)
 
 ** Company
 #+begin_src
-M-n, M-p: next, previous match
+M-n: next match
+M-p: previous match
 M-x company-complete: initiate completion
 #+end_src
 
