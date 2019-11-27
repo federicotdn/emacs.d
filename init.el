@@ -562,7 +562,7 @@ Emacs' original keybindings."
   (interactive)
   (if (eq system-type 'darwin)
       (call-process "pmset" nil nil nil "displaysleepnow")
-    (user-error "Not implemented.")))
+    (call-process "gnome-screensaver-command" nil nil nil "--lock")))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings

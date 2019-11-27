@@ -16,7 +16,7 @@ reinstall_packages:
 	@echo "All done."
 
 install_external_tools:
-	sudo apt install python3-pip git figlet shellcheck aspell-es
+	sudo apt install python3-pip git figlet shellcheck aspell-es gnome-screensaver
 
 clean:
 	rm -rf auto-save-list/ url/ tramp
