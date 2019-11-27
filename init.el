@@ -541,8 +541,7 @@ window line 0."
   "Open file or directory FILENAME using the user's preferred
 application."
   (interactive "G")
-  (let ((executable "xdg-open"))
-    (when-system darwin (setq executable "open"))
+  (let ((executable (if (eq system-type 'darwin) "open" "xdg-open")))
     (unless (executable-find executable)
       (user-error (format "Could not find the %s executable" executable)))
     (unless (file-exists-p filename)
@@ -557,6 +556,13 @@ Emacs' original keybindings."
 	   (shell-command-to-string
 	    (format "emacs -Q --batch --eval '(describe-key-briefly (kbd \"%s\"))'"
 		    key))))
+
+(defun lock-screen ()
+  "Lock the OS screen."
+  (interactive)
+  (if (eq system-type 'darwin)
+      (call-process "pmset" nil nil nil "displaysleepnow")
+    (user-error "Not implemented.")))
 
 ;;----------------------------------------------------------------------------
 ;; Keybindings
@@ -600,6 +606,7 @@ Emacs' original keybindings."
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
 (global-set-key (kbd "C-c e o") 'open-file-external)
+(global-set-key (kbd "C-c e l") 'lock-screen)
 (global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 (global-set-key (kbd "C-c o a") 'org-agenda)
