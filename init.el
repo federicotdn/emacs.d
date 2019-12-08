@@ -20,13 +20,6 @@
 ;; Enable delete selection mode
 (delete-selection-mode)
 
-;; Helper macro for different operating systems
-(defmacro when-system (os &rest body)
-  "Execute the forms in BODY only on operating system OS."
-  (declare (indent 1))
-  `(when (eq system-type ',os)
-     ,@body))
-
 ;; Disable tool bar, scroll bar and menu bar
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
@@ -234,7 +227,7 @@
 (setq require-final-newline t)
 
 ;; Setup stuff on macOS
-(when-system darwin
+(when (eq system-type 'darwin)
   ;; Change behavior of left command key
   (setq mac-command-modifier 'meta)
 
@@ -568,6 +561,7 @@ Emacs' original keybindings."
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-d") 'dired-jump)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (global-set-key (kbd "C-h a") 'apropos)
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
@@ -590,7 +584,7 @@ Emacs' original keybindings."
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "M-j") 'mode-line-other-buffer)
 (global-set-key (kbd "M-<backspace>") 'goto-last-edit)
-(when-system darwin
+(when (eq system-type 'darwin)
   (global-set-key (kbd "M-`") 'other-frame))
 
 (global-set-key (kbd "C-c d") 'duplicate-line)
@@ -612,8 +606,7 @@ Emacs' original keybindings."
 (global-set-key (kbd "C-c s SPC") 'spotify-playpause)
 (global-set-key (kbd "C-c s s") 'spotify-next)
 (global-set-key (kbd "C-c s p") 'spotify-previous)
-(when-system gnu/linux
-  (global-set-key (kbd "C-c s c") 'spotify-current))
+(global-set-key (kbd "C-c s c") 'spotify-current)
 
 (global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
