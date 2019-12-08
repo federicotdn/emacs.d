@@ -59,11 +59,6 @@
 	"magit-revision*"
 	"magit-reflog*"))
 
-;; Activate side scroll
-(put 'scroll-left 'disabled nil)
-(put 'scroll-right 'disabled nil)
-(set-default 'truncate-lines t)
-
 ;; Maximize at start
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
@@ -83,7 +78,7 @@
 ;; Save position in buffer
 (save-place-mode)
 
-;; Disable truncate-lines when editing Markdown files
+;; Visual line mode when editing Markdown files
 (add-hook 'markdown-mode-hook 'visual-line-mode)
 
 ;; Dired
@@ -353,6 +348,9 @@
 
 ;; Elpy
 (elpy-enable)
+
+;; Set default env name for pyvenv
+(setq pyvenv-default-virtual-env-name "env")
 
 ;; Install Python tools in currently active venv
 (setq elpy-rpc-virtualenv-path 'current)
