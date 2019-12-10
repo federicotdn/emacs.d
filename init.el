@@ -52,6 +52,11 @@
 	"magit-revision*"
 	"magit-reflog*"))
 
+;; Activate side scroll
+(put 'scroll-left 'disabled nil)
+(put 'scroll-right 'disabled nil)
+(set-default 'truncate-lines t)
+
 ;; Maximize at start
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
@@ -561,7 +566,6 @@ Emacs' original keybindings."
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-d") 'dired-jump)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (global-set-key (kbd "C-h a") 'apropos)
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
