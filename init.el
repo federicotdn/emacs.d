@@ -335,10 +335,6 @@
 ;; YAML mode
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
-;; Restclient mode
-(require 'restclient)
-(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
-
 ;; Avy
 (setq avy-all-windows nil)
 (setq avy-background t)
@@ -376,25 +372,6 @@
       (transpose-lines 1)
       (previous-line)
       (move-to-column col))))
-
-(defun close-response-and-request ()
-  "Close last HTTP response buffer and send a new request from current
-restclient URL (if region isn't active) or from URL contained by the
-region (if it's active). Always display results on a separate window
-to the right."
-  (interactive)
-  (save-buffer)
-  (let ((name "*HTTP Response**"))
-    (while (get-buffer name)
-      (kill-buffer name)))
-  (when (= (count-windows) 1)
-    (split-window-right))
-  (if (use-region-p)
-      (let ((text (buffer-substring (region-beginning) (region-end))))
-	(with-temp-buffer
-	  (insert text)
-	  (restclient-http-send-current-stay-in-window)))
-    (restclient-http-send-current-stay-in-window)))
 
 (defun backward-delete-word ()
   "Delete a word backwards. Delete text from previous line only when
@@ -618,7 +595,6 @@ Emacs' original keybindings."
 (define-key global-map (kbd "M-'") iso-transl-ctl-x-8-map)
 
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(define-key restclient-mode-map (kbd "C-c C-c") 'close-response-and-request)
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
 (define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
 (define-key elpy-mode-map (kbd "C-c y t") 'elpy-test-pytest-runner)

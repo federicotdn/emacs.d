@@ -118,7 +118,7 @@ C-x <spc>: activate rectangle region mode
 
 ** Symbols
 #+begin_src
-M-x imenu: open imenu symbols buffer
+M-x imenu: open Imenu symbols buffer
 M-.: go to definition of symbol on point
 C-x 4 .: go to definition of symbol on point, on another window
 M-,: pop back to where M-. was last invoked
