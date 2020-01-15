@@ -350,6 +350,7 @@
 (setq elpy-rpc-virtualenv-path 'current)
 
 ;; Configure Verb package
+(require 'verb)
 (setq verb-auto-kill-response-buffers t)
 
 ;;----------------------------------------------------------------------------
