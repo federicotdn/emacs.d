@@ -350,7 +350,6 @@
 (setq elpy-rpc-virtualenv-path 'current)
 
 ;; Configure Verb package
-(require 'verb)
 (setq verb-auto-kill-response-buffers t)
 
 ;;----------------------------------------------------------------------------
@@ -601,8 +600,6 @@ Emacs' original keybindings."
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
 (define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
-(define-key verb-mode-map (kbd "M-p") 'outline-previous-visible-heading)
-(define-key verb-mode-map (kbd "M-n") 'outline-next-visible-heading)
 (define-key elpy-mode-map (kbd "C-c y t") 'elpy-test-pytest-runner)
 (define-key elpy-mode-map (kbd "C-c y b") 'elpy-black-fix-code)
 (define-key python-mode-map (kbd "M-[") 'python-indent-shift-left)
