@@ -275,7 +275,8 @@
  'org-babel-load-languages
  '((python . t)
    (emacs-lisp . t)
-   (shell . t)))
+   (shell . t)
+   (verb . t)))
 
 (setq org-confirm-babel-evaluate nil)
 
