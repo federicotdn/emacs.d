@@ -354,7 +354,7 @@
 (setq verb-auto-kill-response-buffers t)
 
 (with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c C-r") verb-mode-prefix-map))
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
