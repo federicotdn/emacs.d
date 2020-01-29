@@ -634,6 +634,7 @@ Emacs' original keybindings."
 (define-key elpy-mode-map (kbd "C-c C-c") nil)
 (define-key elpy-mode-map (kbd "<C-return>") nil)
 (define-key python-mode-map (kbd "C-c C-c") nil)
+(define-key c-mode-map (kbd "M-j") nil)
 
 ;;----------------------------------------------------------------------------
 ;; Cleanup
