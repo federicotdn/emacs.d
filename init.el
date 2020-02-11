@@ -549,6 +549,7 @@ Emacs' original keybindings."
 ;;----------------------------------------------------------------------------
 
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x s") 'save-buffer)
 (global-set-key (kbd "C-x C-d") 'dired-jump)
 
 (global-set-key (kbd "C-h a") 'apropos)
@@ -621,7 +622,6 @@ Emacs' original keybindings."
 
 ;; Disable some default keys that get hit by accident
 (global-unset-key (kbd "C-x f"))
-(global-unset-key (kbd "C-x s"))
 (global-unset-key (kbd "C-x C-n"))
 (global-unset-key (kbd "M-;"))
 (global-unset-key (kbd "M-k"))
