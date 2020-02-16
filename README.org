@@ -333,6 +333,11 @@ C-c <left>: undo windows layout change
 C-c <right>: redo windows layout change
 #+end_src
 
+** ChangeLog
+#+begin_src
+C-x 4 a: Add change log entry on another window
+#+end_src
+
 ** Gnus
 Group buffer:
 #+begin_src
