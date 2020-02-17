@@ -250,7 +250,10 @@
   (setq ring-bell-function 'ignore)
 
   ;; Setup ispell
-  (setq ispell-program-name "/usr/local/bin/aspell"))
+  (setq ispell-program-name "/usr/local/bin/aspell")
+
+  ;; Fix GPG problem
+  (setq epa-pinentry-mode 'loopback))
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
