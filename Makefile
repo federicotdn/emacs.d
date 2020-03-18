@@ -3,7 +3,7 @@ BACKUP_DIR=elpa-backups
 update:
 	git pull origin master
 
-reinstall_packages:
+reinstall:
 	$(eval target_dir := $(BACKUP_DIR)/$(shell date +%Y%m%d_%H%M%S))
 	@mkdir -p $(BACKUP_DIR)
 	@(test -d elpa && echo "Backing up old packages to $(target_dir)...") || true
