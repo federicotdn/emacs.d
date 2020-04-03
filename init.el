@@ -136,10 +136,6 @@
 ;; secret values
 (load "~/Dropbox/emacs/secrets.el" t t)
 
-;; Start Emacs server
-;; This allows using emacsclient as an editor
-(server-start)
-
 ;; Print yank pointer index after yank-pop
 (advice-add 'yank-pop :after
 	    (lambda (&rest r)
