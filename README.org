@@ -445,10 +445,10 @@ M-x man: enter man mode
 ** Ibuffer
 #+begin_src
 M-x ibuffer: enter Ibuffer
-| d: Mark buffer for deletion
-| x: Kill all marked buffers
-| U: Unmark all buffers
-| q: Bury Ibuffer
+| d: mark buffer for deletion
+| x: kill all marked buffers
+| U: unmark all buffers
+| q: bury Ibuffer
 | n, p: next, previous line
 | <tab>: skip to next section
 #+end_src
@@ -460,6 +460,15 @@ M-x ispell-change-dictionary: change Ispell dictionary
 M-x flyspell-mode: enable on-the-fly spell checking
 M-x flyspell-prog-mode: enable on-the-fly spell checking (comments only)
 M-$: spell check word on point
+#+end_src
+
+** RE-Builder
+#+begin_src
+M-x re-builder: open the regular expression builder
+| C-c C-q: quit
+| C-c C-w: copy current regular expression
+| C-c C-b: change target buffer
+| C-c C-u: force update
 #+end_src
 
 ** Org Mode
