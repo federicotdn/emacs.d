@@ -173,6 +173,7 @@ C-x b: switch window buffer
 C-x 4 b: switch buffer on other window
 C-x 4 0: kill buffer and window
 C-x #: finish editing server buffer
+M-~: mark buffer as not modified
 
 C-x C--: decrease font size
 C-x C-=: increase font size
