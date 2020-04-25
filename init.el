@@ -129,10 +129,6 @@
 ;; Dont jump when scrolling by line
 (setq scroll-conservatively 10)
 
-;; Load per-PC configuration file
-;; local.el is gitignore'd
-(load "~/.emacs.d/local.el" t t)
-
 ;; secret values
 (load "~/Dropbox/emacs/secrets.el" t t)
 
@@ -634,6 +630,13 @@ Emacs' original keybindings."
 (define-key elpy-mode-map (kbd "<C-return>") nil)
 (define-key python-mode-map (kbd "C-c C-c") nil)
 (define-key c-mode-map (kbd "M-j") nil)
+
+;;----------------------------------------------------------------------------
+;; Per-PC configuration file
+;;----------------------------------------------------------------------------
+
+;; local.el is gitignore'd
+(load "~/.emacs.d/local.el" t t)
 
 ;;----------------------------------------------------------------------------
 ;; Cleanup
