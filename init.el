@@ -228,24 +228,26 @@
   ;; Change behavior of left command key
   (setq mac-command-modifier 'meta)
 
-  ;; Fix dired not working
-  (require 'ls-lisp)
-  (setq ls-lisp-dirs-first t
-	ls-lisp-use-insert-directory-program nil)
-  (setq dired-listing-switches "-alhv")
-
   ;; Add brew binaries to PATH
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
   (add-to-list 'exec-path "/usr/local/bin")
-
-  ;; Disable bell
-  (setq ring-bell-function 'ignore)
 
   ;; Setup ispell
   (setq ispell-program-name "/usr/local/bin/aspell")
 
   ;; Fix GPG problem
   (setq epa-pinentry-mode 'loopback))
+
+;; Setup stuff on macOS and Windows
+(when (member system-type '(darwin windows-nt))
+  ;; Better dired
+  (require 'ls-lisp)
+  (setq ls-lisp-dirs-first t
+	ls-lisp-use-insert-directory-program nil)
+  (setq dired-listing-switches "-alhv")
+
+  ;; Disable bell
+  (setq ring-bell-function 'ignore))
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
