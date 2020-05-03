@@ -260,6 +260,8 @@ C-h f: describe function
 C-h m: describe modes
 C-h k <keys>: show full documentation for key sequence
 C-h c <keys>: show command run for key sequence
+C-h o: describe symbol
+C-h S: show symbol information in manual
 C-h l: view lossage (key history)
 C-h b: show all keybindings
 C-h e: open *Messages* buffer
