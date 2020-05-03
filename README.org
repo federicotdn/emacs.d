@@ -258,7 +258,6 @@ C-h s: syntax table for current mode
 C-h v: describe variable
 C-h f: describe function
 C-h m: describe modes
-C-h i: info documentation reader
 C-h k <keys>: show full documentation for key sequence
 C-h c <keys>: show command run for key sequence
 C-h l: view lossage (key history)
@@ -534,11 +533,14 @@ M-s h l: highlight lines matching regexp
 
 ** Info
 #+begin_src
-l, r: go backward, forward in history of visited nodes
-u: go to superior node of current node
-<tab>: next link
-S-<tab>: previous link
-I: look up something in the current manual's index
+M-x info-apropos: search for text in all manuals
+C-h i: info documentation reader
+| l, r: go backward, forward in history of visited nodes
+| u: go to superior node of current node
+| <tab>: next link
+| S-<tab>: previous link
+| I: look up something in the current manual's index
+| s: search for regexp in the current manual
 #+end_src
 
 ** Macros

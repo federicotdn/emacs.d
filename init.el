@@ -348,7 +348,8 @@
 (setq elpy-rpc-virtualenv-path 'current)
 
 ;; Configure Verb package
-(setq verb-auto-kill-response-buffers t)
+(setq verb-auto-kill-response-buffers t
+      verb-enable-elisp-completion t)
 
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
