@@ -223,6 +223,9 @@
 ;; Add a newline at the end of file on save
 (setq require-final-newline t)
 
+;; Disable bell
+(setq ring-bell-function 'ignore)
+
 ;; Setup stuff on macOS
 (when (eq system-type 'darwin)
   ;; Change behavior of left command key
@@ -244,10 +247,7 @@
   (require 'ls-lisp)
   (setq ls-lisp-dirs-first t
 	ls-lisp-use-insert-directory-program nil)
-  (setq dired-listing-switches "-alhv")
-
-  ;; Disable bell
-  (setq ring-bell-function 'ignore))
+  (setq dired-listing-switches "-alhv"))
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
