@@ -115,14 +115,6 @@
 ;; Registers
 (setq register-preview-delay 0)
 
-(defun my-register-preview-function (r)
-  "A custom register-previewing function which tries to be more legible."
-  (format " %s  %s\n"
-	  (propertize (single-key-description (car r)) 'face '(:foreground "deep pink"))
-	  (register-describe-oneline (car r))))
-
-(setq register-preview-function #'my-register-preview-function)
-
 ;; Make scrolling quicker
 (setq auto-window-vscroll nil)
 
@@ -137,9 +129,7 @@
 	    (lambda (&rest r)
 	      (unless (window-minibuffer-p)
 		(let* ((ring-len (length kill-ring))
-		       (pos (+ (- ring-len
-				  (length kill-ring-yank-pointer))
-			       1)))
+		       (pos (- ring-len (length kill-ring-yank-pointer) -1)))
 		  (message "Yanked element %d of %d" pos ring-len)))))
 
 ;; Deactivate mark before undo (never do selective undo in region)
@@ -264,8 +254,7 @@
 (setq org-todo-keywords '((sequence "TODO" "CURRENT" "DONE")))
 
 ;; important tag
-(setq org-tag-faces '(("imp" . (:foreground "red" :weight bold))
-		      ("easy" . (:foreground "green"))))
+(setq org-tag-faces '(("imp" . (:foreground "red" :weight bold))))
 
 ;; Configure Babel
 (org-babel-do-load-languages
@@ -333,11 +322,6 @@
 ;; YAML mode
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
-;; Avy
-(setq avy-all-windows nil)
-(setq avy-background t)
-(setq avy-style 'words)
-
 ;; Elpy
 (elpy-enable)
 
@@ -348,8 +332,7 @@
 (setq elpy-rpc-virtualenv-path 'current)
 
 ;; Configure Verb package
-(setq verb-auto-kill-response-buffers t
-      verb-enable-elisp-completion t)
+(setq verb-auto-kill-response-buffers t)
 
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
@@ -526,15 +509,6 @@ application."
       (user-error "Invalid file path"))
     (call-process executable nil nil nil (file-truename filename))))
 
-(defun describe-original-key (key)
-  "Display documentation of the function invoked by KEY, when using
-Emacs' original keybindings."
-  (interactive "sKey: ")
-  (message "%s"
-	   (shell-command-to-string
-	    (format "emacs -Q --batch --eval '(describe-key-briefly (kbd \"%s\"))'"
-		    key))))
-
 (defun lock-screen ()
   "Lock the OS screen."
   (interactive)
@@ -552,7 +526,6 @@ Emacs' original keybindings."
 
 (global-set-key (kbd "C-h a") 'apropos)
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
-(global-set-key (kbd "C-j") 'avy-goto-char-timer)
 (global-set-key (kbd "C-;") 'comment-line)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
@@ -571,6 +544,7 @@ Emacs' original keybindings."
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "M-j") 'mode-line-other-buffer)
 (global-set-key (kbd "M-<backspace>") 'goto-last-edit)
+(global-set-key (kbd "M-'") iso-transl-ctl-x-8-map)
 (when (eq system-type 'darwin)
   (global-set-key (kbd "M-`") 'other-frame))
 
@@ -598,8 +572,6 @@ Emacs' original keybindings."
 (global-set-key (kbd "ESC ESC ESC") 'keyboard-quit)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
-(define-key global-map (kbd "M-'") iso-transl-ctl-x-8-map)
-
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
 (define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
@@ -610,7 +582,6 @@ Emacs' original keybindings."
 
 (define-key org-mode-map (kbd "M-n") 'outline-next-visible-heading)
 (define-key org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
-(define-key org-mode-map (kbd "C-j") 'avy-goto-char-timer)
 (define-key org-mode-map (kbd "C-c o r") 'org-archive-to-archive-sibling)
 (define-key org-mode-map (kbd "C-c o t") 'org-force-cycle-archived)
 
