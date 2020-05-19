@@ -362,12 +362,11 @@
       (move-to-column col))))
 
 (defun backward-delete-word ()
-  "Delete a word backwards. Delete text from previous line only when
-current line is empty. This behaviour is similar to the one used by
-SublimeText/Atom/VSCode/etc."
+  "Delete (at most) a word backwards, avoid changing the current line.
+If the current line is empty, call `backward-delete-char'."
   (interactive)
-  (if (= 0 (current-column))
-      (call-interactively #'backward-delete-char-untabify)
+  (if (zerop (current-column))
+      (call-interactively #'backward-delete-char)
     (let ((point-after-bw (save-excursion (backward-word) (point))))
       (if (< (count-lines 1 point-after-bw) (count-lines 1 (point)))
 	  (delete-region (line-beginning-position) (point))
@@ -381,9 +380,9 @@ SublimeText/Atom/VSCode/etc."
   (delete-forward-char 1))
 
 (defun edit-init ()
-  "Edit init.el in a buffer."
+  "Edit the user Emacs initialization file."
   (interactive)
-  (find-file "~/.emacs.d/init.el"))
+  (find-file (concat user-emacs-directory "init.el")))
 
 (defun duplicate-line ()
   "Duplicate a line, and move point to it (maintain current column)."
@@ -396,7 +395,7 @@ SublimeText/Atom/VSCode/etc."
   (next-line))
 
 (defun dired-org-agenda ()
-  "Open org-directory with dired."
+  "Open `org-directory' with `dired'."
   (interactive)
   (dired org-directory "-l")
   (dired-hide-details-mode))
