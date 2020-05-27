@@ -44,13 +44,13 @@
 (setq ido-separator "\n")
 (setq ido-ignore-buffers
       '("^ "
-	"*Completions*"
-	"*Shell Command Output*"
-	"*Flymake log*"
-	"*Compile-Log*"
-	"magit-process*"
-	"magit-revision*"
-	"magit-reflog*"))
+        "*Completions*"
+        "*Shell Command Output*"
+        "*Flymake log*"
+        "*Compile-Log*"
+        "magit-process*"
+        "magit-revision*"
+        "magit-reflog*"))
 
 ;; Activate side scroll
 (put 'scroll-left 'disabled nil)
@@ -93,7 +93,7 @@
 ;; Highlight long lines in python-mode
 (require 'whitespace)
 (setq-default whitespace-style '(face tabs lines-tail trailing)
-	      whitespace-line-column 88)
+              whitespace-line-column 88)
 
 (add-hook 'python-mode-hook 'whitespace-mode)
 
@@ -129,20 +129,20 @@
 
 ;; Print yank pointer index after yank-pop
 (advice-add 'yank-pop :after
-	    (lambda (&rest r)
-	      (unless (window-minibuffer-p)
-		(let* ((ring-len (length kill-ring))
-		       (pos (- ring-len (length kill-ring-yank-pointer) -1)))
-		  (message "Yanked element %d of %d" pos ring-len)))))
+            (lambda (&rest r)
+              (unless (window-minibuffer-p)
+                (let* ((ring-len (length kill-ring))
+                       (pos (- ring-len (length kill-ring-yank-pointer) -1)))
+                  (message "Yanked element %d of %d" pos ring-len)))))
 
 ;; Deactivate mark before undo (never do selective undo in region)
 (advice-add 'undo :before (lambda (&rest r) (deactivate-mark)))
 
 ;; In shell mode, don't jump to position after output
 (add-hook 'shell-mode-hook
-	  (lambda ()
-	    (remove-hook 'comint-output-filter-functions
-			 'comint-postoutput-scroll-to-bottom)))
+          (lambda ()
+            (remove-hook 'comint-output-filter-functions
+                         'comint-postoutput-scroll-to-bottom)))
 
 ;; Ignore duplicate commands in shell mode
 (setq comint-input-ignoredups t)
@@ -159,21 +159,21 @@
 ;; Tempo templates for Python
 
 (tempo-define-template "python-pdb"
-		       '("import pdb; pdb.set_trace()")
-		       "pdb")
+                       '("import pdb; pdb.set_trace()")
+                       "pdb")
 
 (tempo-define-template "python-code-interact"
-		       '("import code; code.interact(local=locals())")
-		       "interact")
+                       '("import code; code.interact(local=locals())")
+                       "interact")
 
 (tempo-define-template "python-pprint"
-		       '("from pprint import pprint" n>
-			 "pprint(" (P "Expression: ") ")")
-		       "pprint")
+                       '("from pprint import pprint" n>
+                         "pprint(" (P "Expression: ") ")")
+                       "pprint")
 
 (tempo-define-template "python-traceback"
-		       '("import traceback; traceback.print_stack()")
-		       "traceback")
+                       '("import traceback; traceback.print_stack()")
+                       "traceback")
 
 ;; Allow hippie-expand to complete tempo tags
 (defun try-tempo-complete-tag (old)
@@ -239,7 +239,7 @@
   ;; Better dired
   (require 'ls-lisp)
   (setq ls-lisp-dirs-first t
-	ls-lisp-use-insert-directory-program nil)
+        ls-lisp-use-insert-directory-program nil)
   (setq dired-listing-switches "-alhv"))
 
 ;;----------------------------------------------------------------------------
@@ -303,7 +303,7 @@
 
 (setq projectile-mode-line-function
       (lambda ()
-	(format " P[%s]" (projectile-project-name))))
+        (format " P[%s]" (projectile-project-name))))
 
 (setq projectile-use-git-grep t)
 
@@ -314,7 +314,7 @@
 
   ;; Remove ":" from magit buffer names to search them more easily
   (setq magit-buffer-name-format
-	(replace-regexp-in-string ":" "" magit-buffer-name-format)))
+        (replace-regexp-in-string ":" "" magit-buffer-name-format)))
 
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
@@ -372,8 +372,8 @@ If the current line is empty, call `backward-delete-char'."
       (call-interactively #'backward-delete-char)
     (let ((point-after-bw (save-excursion (backward-word) (point))))
       (if (< (count-lines 1 point-after-bw) (count-lines 1 (point)))
-	  (delete-region (line-beginning-position) (point))
-	(delete-region (point) point-after-bw)))))
+          (delete-region (line-beginning-position) (point))
+        (delete-region (point) point-after-bw)))))
 
 (defun delete-whole-line ()
   "Delete current line."
@@ -426,34 +426,34 @@ the new file name."
       (user-error "Current buffer has unsaved changes"))
     (let ((new-file-name (read-file-name "New file name:" nil current-file-name 'confirm)))
       (when (or (file-exists-p new-file-name)
-		(get-file-buffer new-file-name))
-	(user-error "File already exists!"))
+                (get-file-buffer new-file-name))
+        (user-error "File already exists!"))
       (rename-file current-file-name new-file-name)
       (set-visited-file-name new-file-name)
       (let ((inhibit-message t))
-	(save-buffer)))))
+        (save-buffer)))))
 
 (defun wrap-region (c)
   "Wrap point or active region with character C and its corresponding
 pair."
   (interactive (list (read-char-exclusive "Wrap region with: ")))
   (let* ((char-pairs '(("{" . "}")
-		       ("(" . ")")
-		       ("[" . "]")
-		       ("<" . ">")
-		       ("¿" . "?")
-		       ("¡" . "!")))
-	 (s (char-to-string c))
-	 (pair (catch 'loop
-		 (dolist (p char-pairs)
-		   (when (or (string= s (car p))
-			     (string= s (cdr p)))
-		     (throw 'loop p)))
-		 (cons s s))))
+                       ("(" . ")")
+                       ("[" . "]")
+                       ("<" . ">")
+                       ("¿" . "?")
+                       ("¡" . "!")))
+         (s (char-to-string c))
+         (pair (catch 'loop
+                 (dolist (p char-pairs)
+                   (when (or (string= s (car p))
+                             (string= s (cdr p)))
+                     (throw 'loop p)))
+                 (cons s s))))
     (if (use-region-p)
-	(let ((region-end-pos (region-end)))
-	  (insert-pair nil (car pair) (cdr pair))
-	  (goto-char (+ region-end-pos 2)))
+        (let ((region-end-pos (region-end)))
+          (insert-pair nil (car pair) (cdr pair))
+          (goto-char (+ region-end-pos 2)))
       (insert (car pair) (cdr pair))
       (backward-char))))
 
@@ -468,23 +468,23 @@ pair."
   (interactive)
   (let ((json-encoding-default-indentation (make-string js-indent-level ? )))
     (if (use-region-p)
-	(json-pretty-print (region-beginning) (region-end))
+        (json-pretty-print (region-beginning) (region-end))
       (json-pretty-print-buffer))))
 
 (defun goto-last-edit ()
   "Go to the last edit made in the current buffer."
   (interactive)
   (unless (or (consp buffer-undo-list)
-	      (not buffer-undo-list))
+              (not buffer-undo-list))
     (user-error "Can't go to last edit: invalid undo list"))
   (let ((pos (catch 'loop
-	       (dolist (item buffer-undo-list)
-		 (when (and (consp item)
-			    (or (integerp (car item))
-				(stringp (car item))))
-		   (throw 'loop (abs (cdr item))))))))
+               (dolist (item buffer-undo-list)
+                 (when (and (consp item)
+                            (or (integerp (car item))
+                                (stringp (car item))))
+                   (throw 'loop (abs (cdr item))))))))
     (unless (or (null pos)
-		(= (point) pos))
+                (= (point) pos))
       (push-mark)
       (goto-char pos))))
 
