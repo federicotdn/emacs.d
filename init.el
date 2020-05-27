@@ -121,6 +121,9 @@
 ;; Dont jump when scrolling by line
 (setq scroll-conservatively 10)
 
+;; Indent with spaces
+(setq-default indent-tabs-mode nil)
+
 ;; secret values
 (load "~/Dropbox/emacs/secrets.el" t t)
 
