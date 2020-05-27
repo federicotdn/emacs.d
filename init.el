@@ -123,6 +123,7 @@
 
 ;; Indent with spaces
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 ;; secret values
 (load "~/Dropbox/emacs/secrets.el" t t)
@@ -183,7 +184,7 @@
 (add-to-list 'hippie-expand-try-functions-list 'try-tempo-complete-tag)
 
 ;; JS indent level
-(setq js-indent-level 4)
+(setq js-indent-level tab-width)
 
 ;; Configure Gnus
 (setq gnus-thread-sort-functions
