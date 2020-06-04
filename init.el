@@ -323,9 +323,6 @@
 ;; flymake-shellcheck
 (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
 
-;; YAML mode
-(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-
 ;; Elpy
 (elpy-enable)
 
