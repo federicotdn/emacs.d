@@ -464,6 +464,12 @@ pair."
   (kill-ring-save (point-min) (point-max))
   (message "Buffer copied to kill ring"))
 
+(defun kill-active-region ()
+  "Invoke `kill-region' only if region is active."
+  (interactive)
+  (when (use-region-p)
+    (call-interactively #'kill-region)))
+
 (defun json-pretty-print-dwim ()
   "Prettify JSON in region if it is active, otherwise on whole buffer."
   (interactive)
@@ -529,6 +535,7 @@ application."
 
 (global-set-key (kbd "C-h a") 'apropos)
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
+(global-set-key (kbd "C-w") 'kill-active-region)
 (global-set-key (kbd "C-;") 'comment-line)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
