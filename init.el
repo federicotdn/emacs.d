@@ -507,17 +507,6 @@ window line 0."
   (setq bidi-display-reordering nil)
   (buffer-disable-undo))
 
-(defun open-file-external (filename)
-  "Open file or directory FILENAME using the user's preferred
-application."
-  (interactive "G")
-  (let ((executable (if (eq system-type 'darwin) "open" "xdg-open")))
-    (unless (executable-find executable)
-      (user-error (format "Could not find the %s executable" executable)))
-    (unless (file-exists-p filename)
-      (user-error "Invalid file path"))
-    (call-process executable nil nil nil (file-truename filename))))
-
 (defun lock-screen ()
   "Lock the OS screen."
   (interactive)
@@ -568,7 +557,6 @@ application."
 (global-set-key (kbd "C-c e r") 'rename-file-buffer)
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
-(global-set-key (kbd "C-c e o") 'open-file-external)
 (global-set-key (kbd "C-c e l") 'lock-screen)
 (global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
