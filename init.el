@@ -461,6 +461,11 @@ pair."
   (kill-ring-save (point-min) (point-max))
   (message "Buffer copied to kill ring"))
 
+(defun unpropertize-buffer ()
+  "Remove all text properties from current buffer."
+  (interactive)
+  (set-text-properties (point-min) (point-max) nil))
+
 (defun kill-active-region ()
   "Invoke `kill-region' only if region is active."
   (interactive)
@@ -557,6 +562,7 @@ window line 0."
 (global-set-key (kbd "C-c e l") 'lock-screen)
 (global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
+(global-set-key (kbd "C-c u") 'unpropertize-buffer)
 (global-set-key (kbd "C-c o a") 'org-agenda)
 (global-set-key (kbd "C-c o d") 'dired-org-agenda)
 (global-set-key (kbd "C-c s SPC") 'spotify-playpause)
