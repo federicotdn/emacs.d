@@ -1,4 +1,4 @@
-;; init.el -*- lexical-binding: t; -*-
+;; init.el  -*- lexical-binding: t; -*-
 ;; Requires: Emacs 26+
 
 ;;----------------------------------------------------------------------------
@@ -326,11 +326,14 @@
 ;; Elpy
 (elpy-enable)
 
-;; Set default env name for pyvenv
-(setq pyvenv-default-virtual-env-name "env")
-
 ;; Install Python tools in currently active venv
 (setq elpy-rpc-virtualenv-path 'current)
+
+;; Increase RPC timeout (better for large projects)
+(setq elpy-rpc-timeout 10)
+
+;; Set default env name for pyvenv
+(setq pyvenv-default-virtual-env-name "env")
 
 ;; Configure Verb package
 (setq verb-auto-kill-response-buffers t)
