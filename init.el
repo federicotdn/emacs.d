@@ -243,6 +243,12 @@
         ls-lisp-use-insert-directory-program nil)
   (setq dired-listing-switches "-alhv"))
 
+;; Isearch show match count (Emacs 27+)
+(setq isearch-lazy-count t)
+
+;; Enable So Long mode (Emacs 27+)
+(global-so-long-mode 1)
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
@@ -290,12 +296,6 @@
 
 ;; Align tags further right
 (setq org-tags-column 85)
-
-;; Isearch show match count (Emacs 27+)
-(setq isearch-lazy-count t)
-
-;; Enable So Long mode (Emacs 27+)
-(global-so-long-mode 1)
 
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
