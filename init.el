@@ -291,6 +291,12 @@
 ;; Align tags further right
 (setq org-tags-column 85)
 
+;; Isearch show match count (Emacs 27+)
+(setq isearch-lazy-count t)
+
+;; Enable So Long mode (Emacs 27+)
+(global-so-long-mode 1)
+
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
@@ -506,11 +512,6 @@ window line 0."
   (interactive)
   (end-of-buffer '(4))
   (recenter-top-bottom 0))
-
-(define-derived-mode long-lines-mode fundamental-mode "Long-Lines"
-  "Simple mode to allow editing files with very long lines."
-  (setq bidi-display-reordering nil)
-  (buffer-disable-undo))
 
 (defun lock-screen ()
   "Lock the OS screen."
