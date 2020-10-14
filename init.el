@@ -79,6 +79,9 @@
 ;; Visual line mode when editing Markdown files
 (add-hook 'markdown-mode-hook 'visual-line-mode)
 
+;; Use markdown-mode for MDX
+(add-to-list 'auto-mode-alist '("\\.mdx\\'" . markdown-mode))
+
 ;; Dired
 (setq dired-listing-switches "-alhv --group-directories-first")
 (setq dired-auto-revert-buffer t)
