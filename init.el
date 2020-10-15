@@ -350,6 +350,8 @@
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
+(add-to-list 'verb-content-type-handlers '(".+/yaml" yaml-mode))
+
 ;;----------------------------------------------------------------------------
 ;; Custom Functions
 ;;----------------------------------------------------------------------------
