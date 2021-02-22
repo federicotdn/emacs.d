@@ -99,6 +99,7 @@
               whitespace-line-column 88)
 
 (add-hook 'python-mode-hook 'whitespace-mode)
+(add-hook 'python-mode-hook 'highlight-indentation-mode)
 
 ;; Set fill-column for Python
 (add-hook 'python-mode-hook (lambda () (set-fill-column 79)))
@@ -214,8 +215,8 @@
 ;; Ignore case in autocomplete
 (setq completion-ignore-case t)
 
-;; Disable VC mode
-(setq vc-handled-backends nil)
+;; Hide VC mode line information
+(setq-default mode-line-format (remove '(vc-mode vc-mode) mode-line-format))
 
 ;; Add a newline at the end of file on save
 (setq require-final-newline t)
@@ -332,14 +333,20 @@
 ;; flymake-shellcheck
 (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
 
-;; Elpy
-(elpy-enable)
+;; Eglot
+(defun python-contact-venv (interactive?)
+  "Custom Eglot LSP server contact function for Python + virtual environments."
+  (unless interactive?
+    (user-error "Contact function can only be used interactively"))
+  (if (bound-and-true-p pyvenv-virtual-env)
+      (unless (yes-or-no-p (format "Current virtual environment is: '%s', continue? "
+                                   pyvenv-virtual-env))
+        (user-error "Operation cancelled by user"))
+    (call-interactively #'pyvenv-activate))
+  (list (concat pyvenv-virtual-env "bin/pyls")))
 
-;; Install Python tools in currently active venv
-(setq elpy-rpc-virtualenv-path 'current)
-
-;; Increase RPC timeout (better for large projects)
-(setq elpy-rpc-timeout 10)
+(require 'eglot)
+(add-to-list 'eglot-server-programs '(python-mode . python-contact-venv))
 
 ;; Set default env name for pyvenv
 (setq pyvenv-default-virtual-env-name "env")
@@ -525,6 +532,29 @@ window line 0."
       (call-process "pmset" nil nil nil "displaysleepnow")
     (call-process "gnome-screensaver-command" nil nil nil "--lock")))
 
+(defun clean-mark-ring ()
+  "Remove all markers with position 1 from `mark-ring'."
+  (interactive)
+  (setq mark-ring
+        (seq-filter (lambda (m)
+                      (not (= (marker-position m) 1)))
+                    mark-ring)))
+
+(defun pytest-run-test ()
+  "Run a Python test using pytest and `compilation-mode'."
+  (interactive)
+  (let* ((buffer-name (format "*pytest %s*"
+                              (projectile-project-name)))
+         (function-name (symbol-at-point))
+         (buf (compile (format "pytest -s -vvv %s%s"
+                               (buffer-file-name)
+                               (if function-name
+                                   (format "::%s" function-name)
+                                 "")))))
+    (ignore-errors (kill-buffer buffer-name))
+    (with-current-buffer buf
+      (rename-buffer buffer-name))))
+
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
@@ -569,6 +599,8 @@ window line 0."
 (global-set-key (kbd "C-c e d") 'debbugs-gnu)
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
 (global-set-key (kbd "C-c e l") 'lock-screen)
+(global-set-key (kbd "C-c y r") 'eglot-rename)
+(global-set-key (kbd "C-c y t") 'pytest-run-test)
 (global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 (global-set-key (kbd "C-c u") 'unpropertize-buffer)
@@ -585,8 +617,6 @@ window line 0."
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (define-key shell-mode-map (kbd "C-r") 'comint-history-isearch-backward-regexp)
 (define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
-(define-key elpy-mode-map (kbd "C-c y t") 'elpy-test-pytest-runner)
-(define-key elpy-mode-map (kbd "C-c y b") 'elpy-black-fix-code)
 (define-key python-mode-map (kbd "M-[") 'python-indent-shift-left)
 (define-key python-mode-map (kbd "M-]") 'python-indent-shift-right)
 
@@ -610,8 +640,6 @@ window line 0."
 
 (define-key org-mode-map (kbd "C-c [") nil)
 (define-key org-mode-map (kbd "C-'") nil)
-(define-key elpy-mode-map (kbd "C-c C-c") nil)
-(define-key elpy-mode-map (kbd "<C-return>") nil)
 (define-key python-mode-map (kbd "C-c C-c") nil)
 (define-key c-mode-map (kbd "M-j") nil)
 
