@@ -555,6 +555,14 @@ window line 0."
     (with-current-buffer buf
       (rename-buffer buffer-name))))
 
+(defun black-format-file ()
+  "Format a Python file using black."
+  (interactive)
+  (when (buffer-modified-p)
+    (user-error "Buffer contains unsaved changes"))
+  (call-process "black" nil nil nil (buffer-file-name))
+  (revert-buffer t t))
+
 ;;----------------------------------------------------------------------------
 ;; Keybindings
 ;;----------------------------------------------------------------------------
@@ -601,6 +609,7 @@ window line 0."
 (global-set-key (kbd "C-c e l") 'lock-screen)
 (global-set-key (kbd "C-c y r") 'eglot-rename)
 (global-set-key (kbd "C-c y t") 'pytest-run-test)
+(global-set-key (kbd "C-c y b") 'black-format-file)
 (global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
 (global-set-key (kbd "C-c u") 'unpropertize-buffer)
