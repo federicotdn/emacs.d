@@ -280,6 +280,7 @@ C-x d: dired
 | n, p, C-n, C-p: move down/up
 | R: rename file (mv)
 | D: delete file (rm)
+| S: create symbolic link
 | y: show file type
 | d: flag file for deletion
 | u: unmark file
