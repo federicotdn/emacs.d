@@ -334,7 +334,7 @@
 (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
 
 ;; Eglot
-(setq pyls-binary "~/Applications/pyls/bin/pyls")
+(setq pyls-binary "~/Applications/bin/pyls")
 
 (defun python-contact-venv (interactive?)
   "Custom Eglot LSP server contact function for Python + virtual environments."
