@@ -547,7 +547,7 @@ window line 0."
   (interactive)
   (let* ((buffer-name (format "*pytest %s*"
                               (projectile-project-name)))
-         (function-name (symbol-at-point))
+         (function-name (which-function))
          (buf (compile (format "pytest -s -vvv %s%s"
                                (buffer-file-name)
                                (if function-name
