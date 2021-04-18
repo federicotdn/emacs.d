@@ -163,9 +163,9 @@
 
 ;; Tempo templates for Python
 
-(tempo-define-template "python-pdb"
-                       '("import pdb; pdb.set_trace()")
-                       "pdb")
+(tempo-define-template "python-brk"
+                       '("breakpoint()")
+                       "brk")
 
 (tempo-define-template "python-code-interact"
                        '("import code; code.interact(local=locals())")
@@ -454,40 +454,11 @@ the new file name."
       (let ((inhibit-message t))
         (save-buffer)))))
 
-(defun wrap-region (c)
-  "Wrap point or active region with character C and its corresponding
-pair."
-  (interactive (list (read-char-exclusive "Wrap region with: ")))
-  (let* ((char-pairs '(("{" . "}")
-                       ("(" . ")")
-                       ("[" . "]")
-                       ("<" . ">")
-                       ("¿" . "?")
-                       ("¡" . "!")))
-         (s (char-to-string c))
-         (pair (catch 'loop
-                 (dolist (p char-pairs)
-                   (when (or (string= s (car p))
-                             (string= s (cdr p)))
-                     (throw 'loop p)))
-                 (cons s s))))
-    (if (use-region-p)
-        (let ((region-end-pos (region-end)))
-          (insert-pair nil (car pair) (cdr pair))
-          (goto-char (+ region-end-pos 2)))
-      (insert (car pair) (cdr pair))
-      (backward-char))))
-
 (defun kill-ring-save-whole-buffer ()
   "Save the entire buffer as if killed, but don't kill it."
   (interactive)
   (kill-ring-save (point-min) (point-max))
   (message "Buffer copied to kill ring"))
-
-(defun unpropertize-buffer ()
-  "Remove all text properties from current buffer."
-  (interactive)
-  (set-text-properties (point-min) (point-max) nil))
 
 (defun kill-active-region ()
   "Invoke `kill-region' only if region is active."
@@ -534,14 +505,6 @@ window line 0."
       (call-process "pmset" nil nil nil "displaysleepnow")
     (call-process "gnome-screensaver-command" nil nil nil "--lock")))
 
-(defun clean-mark-ring ()
-  "Remove all markers with position 1 from `mark-ring'."
-  (interactive)
-  (setq mark-ring
-        (seq-filter (lambda (m)
-                      (not (= (marker-position m) 1)))
-                    mark-ring)))
-
 (defun pytest-run-test ()
   "Run a Python test using pytest and `compilation-mode'."
   (interactive)
@@ -581,7 +544,6 @@ window line 0."
 (global-set-key (kbd "C->") 'scroll-left)
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 (global-set-key (kbd "C-S-<backspace>") 'delete-whole-line)
-(global-set-key (kbd "C-M-#") 'wrap-region)
 (global-set-key (kbd "C-M-_") 'negative-argument)
 
 (global-set-key (kbd "M-_") 'negative-argument)
