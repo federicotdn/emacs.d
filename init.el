@@ -610,6 +610,7 @@ window line 0."
 (global-unset-key (kbd "M-t"))
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-t"))
+(global-unset-key (kbd "C-x DEL"))
 
 (define-key org-mode-map (kbd "C-c [") nil)
 (define-key org-mode-map (kbd "C-'") nil)
