@@ -592,6 +592,7 @@ window line 0."
 (define-key shell-mode-map (kbd "C-l") 'goto-end-clear-screen)
 (define-key python-mode-map (kbd "M-[") 'python-indent-shift-left)
 (define-key python-mode-map (kbd "M-]") 'python-indent-shift-right)
+(define-key dired-mode-map [mouse-2] 'dired-find-file)
 
 (define-key org-mode-map (kbd "M-n") 'outline-next-visible-heading)
 (define-key org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
