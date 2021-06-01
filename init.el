@@ -247,6 +247,9 @@
         ls-lisp-use-insert-directory-program nil)
   (setq dired-listing-switches "-alhv"))
 
+;; Do not allow some commands to operate on the region when it is inactive
+(setq mark-even-if-inactive nil)
+
 ;; Isearch show match count (Emacs 27+)
 (setq isearch-lazy-count t)
 
@@ -460,12 +463,6 @@ the new file name."
   (kill-ring-save (point-min) (point-max))
   (message "Buffer copied to kill ring"))
 
-(defun kill-active-region ()
-  "Invoke `kill-region' only if region is active."
-  (interactive)
-  (when (use-region-p)
-    (call-interactively #'kill-region)))
-
 (defun json-pretty-print-dwim ()
   "Prettify JSON in region if it is active, otherwise on whole buffer."
   (interactive)
@@ -538,7 +535,6 @@ window line 0."
 
 (global-set-key (kbd "C-h a") 'apropos)
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
-(global-set-key (kbd "C-w") 'kill-active-region)
 (global-set-key (kbd "C-;") 'comment-line)
 (global-set-key (kbd "C-<") 'scroll-right)
 (global-set-key (kbd "C->") 'scroll-left)
