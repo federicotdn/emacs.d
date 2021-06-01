@@ -334,7 +334,7 @@
 (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
 
 ;; Eglot
-(setq pyls-binary "~/Applications/bin/pyls")
+(setq pylsp-binary "~/Applications/bin/pylsp")
 
 (defun python-contact-venv (interactive?)
   "Custom Eglot LSP server contact function for Python + virtual environments."
@@ -345,7 +345,7 @@
                                    pyvenv-virtual-env))
         (user-error "Operation cancelled by user"))
     (call-interactively #'pyvenv-activate))
-  (list pyls-binary))
+  (list pylsp-binary))
 
 (require 'eglot)
 (add-to-list 'eglot-server-programs '(python-mode . python-contact-venv))
