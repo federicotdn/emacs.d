@@ -64,6 +64,9 @@
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
+;; Disable lock files
+(setq create-lockfiles nil)
+
 ;; Show matching parenthesis
 (show-paren-mode)
 
