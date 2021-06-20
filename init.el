@@ -36,6 +36,9 @@
 (setq initial-scratch-message nil)
 (setq initial-major-mode 'fundamental-mode)
 
+;; Use vertical completions
+(setq completions-format 'vertical)
+
 ;; IDO
 (ido-mode)
 (setq ido-everywhere t)
