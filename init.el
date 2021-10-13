@@ -356,8 +356,15 @@
     (call-interactively #'pyvenv-activate))
   (list pylsp-binary))
 
+(defun typescript-contact (interactive?)
+  "Custom Eglot LSP server contact function for TypeScript."
+  (unless interactive?
+    (user-error "Contact function can only be used interactively"))
+  (list (read-file-name "Path to TS language server binary: ") "--stdio"))
+
 (require 'eglot)
 (add-to-list 'eglot-server-programs '(python-mode . python-contact-venv))
+(add-to-list 'eglot-server-programs '(typescript-mode . typescript-contact))
 
 ;; Set default env name for pyvenv
 (setq pyvenv-default-virtual-env-name "env")
