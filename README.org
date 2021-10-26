@@ -110,7 +110,7 @@ C-x h: mark the whole buffer
 
 C-x n n: narrow to region
 C-x n d: narrow to defun
-C-x n w: disable narrow to region
+C-x n w: disable narrow to region (widen)
 
 C-x =: display character information of character after point
 C-x <spc>: activate rectangle region mode
@@ -345,6 +345,7 @@ C-x 4 a: Add change log entry on another window
 ** Gnus
 Group buffer:
 #+begin_src
+A A: List all groups that are available from the server
 <ret>: select current group
 C-u <ret>: select current group, fetch old articles
 m: compose a new message (mail)

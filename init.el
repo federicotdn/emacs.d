@@ -262,6 +262,9 @@
 ;; Enable So Long mode (Emacs 27+)
 (global-so-long-mode 1)
 
+;; Enable narrow-to-region
+(put 'narrow-to-region 'disabled nil)
+
 ;;----------------------------------------------------------------------------
 ;; Org Mode
 ;;----------------------------------------------------------------------------
