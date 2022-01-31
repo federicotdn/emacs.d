@@ -10,7 +10,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(typescript-mode go-mode highlight-indentation verb dockerfile-mode eglot company pyvenv spotify flymake-shellcheck yaml-mode debbugs magit monokai-theme projectile markdown-mode)))
+   '(rg typescript-mode go-mode highlight-indentation verb dockerfile-mode eglot company pyvenv spotify flymake-shellcheck yaml-mode debbugs magit monokai-theme projectile markdown-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

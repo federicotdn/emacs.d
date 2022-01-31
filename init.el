@@ -628,6 +628,7 @@ window line 0."
 (define-key org-mode-map (kbd "C-c [") nil)
 (define-key org-mode-map (kbd "C-'") nil)
 (define-key python-mode-map (kbd "C-c C-c") nil)
+(define-key python-mode-map (kbd "C-c C-p") nil)
 (define-key c-mode-map (kbd "M-j") nil)
 
 ;;----------------------------------------------------------------------------
