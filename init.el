@@ -26,14 +26,10 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
-;; More extensive apropos searches
-(setq apropos-do-all t)
-
 ;; Show column number
 (column-number-mode)
 
 ;; Customize scratch buffer
-(setq initial-scratch-message nil)
 (setq initial-major-mode 'fundamental-mode)
 
 ;; Use vertical completions
@@ -81,12 +77,6 @@
 
 ;; Save position in buffer
 (save-place-mode)
-
-;; Visual line mode when editing Markdown files
-(add-hook 'markdown-mode-hook 'visual-line-mode)
-
-;; Use markdown-mode for MDX
-(add-to-list 'auto-mode-alist '("\\.mdx\\'" . markdown-mode))
 
 ;; Dired
 (setq dired-listing-switches "-alhv --group-directories-first")
@@ -230,23 +220,8 @@
 ;; Disable bell
 (setq ring-bell-function 'ignore)
 
-;; Setup stuff on macOS
-(when (eq system-type 'darwin)
-  ;; Change behavior of left command key
-  (setq mac-command-modifier 'meta)
-
-  ;; Add brew binaries to PATH
-  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-  (add-to-list 'exec-path "/usr/local/bin")
-
-  ;; Setup ispell
-  (setq ispell-program-name "/usr/local/bin/aspell")
-
-  ;; Fix GPG problem
-  (setq epa-pinentry-mode 'loopback))
-
-;; Setup stuff on macOS and Windows
-(when (member system-type '(darwin windows-nt))
+;; Setup stuff on Windows
+(when (eq system-type 'windows-nt)
   ;; Better dired
   (require 'ls-lisp)
   (setq ls-lisp-dirs-first t
@@ -316,6 +291,9 @@
 ;;----------------------------------------------------------------------------
 ;; Package Initialization
 ;;----------------------------------------------------------------------------
+
+;; Visual line mode when editing Markdown files
+(add-hook 'markdown-mode-hook 'visual-line-mode)
 
 ;; Set theme, but make comments a bit brighter (original value: #75715E)
 (setq monokai-comments "#908E80")
