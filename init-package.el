@@ -25,8 +25,4 @@
 ;; Configure package sources
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
-	("melpa" . "https://melpa.org/packages/")))
-
-;; Call package-initialize on version 26 only
-(when (< emacs-major-version 27)
-  (package-initialize))
+	    ("melpa" . "https://melpa.org/packages/")))
