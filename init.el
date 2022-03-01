@@ -490,11 +490,9 @@ window line 0."
   (recenter-top-bottom 0))
 
 (defun lock-screen ()
-  "Lock the OS screen."
+  "Lock the screen on Gnome Desktop."
   (interactive)
-  (if (eq system-type 'darwin)
-      (call-process "pmset" nil nil nil "displaysleepnow")
-    (call-process "gnome-screensaver-command" nil nil nil "--lock")))
+  (call-process "gnome-screensaver-command" nil nil nil "--lock"))
 
 (defun pytest-run-test ()
   "Run a Python test using pytest and `compilation-mode'."
@@ -547,8 +545,6 @@ window line 0."
 (global-set-key (kbd "M-j") 'mode-line-other-buffer)
 (global-set-key (kbd "M-<backspace>") 'goto-last-edit)
 (global-set-key (kbd "M-'") iso-transl-ctl-x-8-map)
-(when (eq system-type 'darwin)
-  (global-set-key (kbd "M-`") 'other-frame))
 
 (global-set-key (kbd "C-c d") 'duplicate-line)
 (global-set-key (kbd "C-c f") 'flymake-mode)
