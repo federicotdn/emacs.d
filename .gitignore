@@ -33,6 +33,7 @@ ac-comphist.dat
 .lsp-session-v1
 eshell/
 /server/
+projects
 
 # per-PC configuration file
 local.el
