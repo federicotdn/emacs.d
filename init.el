@@ -92,7 +92,7 @@
 ;; Highlight long lines in python-mode
 (require 'whitespace)
 (setq-default whitespace-style '(face tabs lines-tail trailing)
-              whitespace-line-column 88)
+              whitespace-line-column 100)
 
 (add-hook 'python-mode-hook 'whitespace-mode)
 (add-hook 'python-mode-hook 'highlight-indentation-mode)
@@ -231,14 +231,21 @@
 ;; Do not allow some commands to operate on the region when it is inactive
 (setq mark-even-if-inactive nil)
 
-;; Isearch show match count (Emacs 27+)
+;; Isearch show match count
 (setq isearch-lazy-count t)
 
-;; Enable So Long mode (Emacs 27+)
+;; Enable So Long mode
 (global-so-long-mode 1)
+(setq so-long-threshold 500)
 
 ;; Enable narrow-to-region
 (put 'narrow-to-region 'disabled nil)
+
+;; Goto-line history local to buffer
+(setq goto-line-history-local t)
+
+;; Avoid creating too many Dired buffers
+(setq dired-kill-when-opening-new-dired-buffer t)
 
 ;;----------------------------------------------------------------------------
 ;; Org Mode
@@ -604,6 +611,7 @@ window line 0."
 (define-key python-mode-map (kbd "C-c C-c") nil)
 (define-key python-mode-map (kbd "C-c C-p") nil)
 (define-key c-mode-map (kbd "M-j") nil)
+(define-key ibuffer-mode-map (kbd "M-j") nil)
 
 ;;----------------------------------------------------------------------------
 ;; Per-PC configuration file
