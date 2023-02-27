@@ -236,7 +236,7 @@
 
 ;; Enable So Long mode
 (global-so-long-mode 1)
-(setq so-long-threshold 500)
+(setq so-long-threshold 5000)
 
 ;; Enable narrow-to-region
 (put 'narrow-to-region 'disabled nil)
@@ -344,15 +344,10 @@
     (call-interactively #'pyvenv-activate))
   (list pylsp-binary))
 
-(defun typescript-contact (interactive?)
-  "Custom Eglot LSP server contact function for TypeScript."
-  (unless interactive?
-    (user-error "Contact function can only be used interactively"))
-  (list (read-file-name "Path to TS language server binary: ") "--stdio"))
-
 (require 'eglot)
+(add-to-list 'eglot-server-programs '(go-mode . ("localhost" 8888)))
+(add-to-list 'eglot-server-programs '(tiltfile-mode . ("localhost" 6666)))
 (add-to-list 'eglot-server-programs '(python-mode . python-contact-venv))
-(add-to-list 'eglot-server-programs '(typescript-mode . typescript-contact))
 
 ;; Set default env name for pyvenv
 (setq pyvenv-default-virtual-env-name "env")
@@ -501,21 +496,6 @@ window line 0."
   (interactive)
   (call-process "gnome-screensaver-command" nil nil nil "--lock"))
 
-(defun pytest-run-test ()
-  "Run a Python test using pytest and `compilation-mode'."
-  (interactive)
-  (let* ((buffer-name (format "*pytest %s*"
-                              (projectile-project-name)))
-         (function-name (which-function))
-         (buf (compile (format "pytest -s -vvv %s%s"
-                               (buffer-file-name)
-                               (if function-name
-                                   (format "::%s" function-name)
-                                 "")))))
-    (ignore-errors (kill-buffer buffer-name))
-    (with-current-buffer buf
-      (rename-buffer buffer-name))))
-
 (defun black-format-file ()
   "Format a Python file using black."
   (interactive)
@@ -528,7 +508,10 @@ window line 0."
 ;; Keybindings
 ;;----------------------------------------------------------------------------
 
-(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "s-b") 'previous-buffer)
+(global-set-key (kbd "s-f") 'next-buffer)
+
+(global-set-key (kbd "C-x C-g") 'magit-status)
 (global-set-key (kbd "C-x s") 'save-buffer)
 (global-set-key (kbd "C-x C-d") 'dired-jump)
 
@@ -546,8 +529,8 @@ window line 0."
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)
-(global-set-key (kbd "M-n") 'forward-paragraph)
-(global-set-key (kbd "M-p") 'backward-paragraph)
+(global-set-key (kbd "M-n") (kbd "C-u 5 C-v"))
+(global-set-key (kbd "M-p") (kbd "C-u 5 M-v"))
 (global-set-key (kbd "M-i") 'imenu)
 (global-set-key (kbd "M-j") 'mode-line-other-buffer)
 (global-set-key (kbd "M-<backspace>") 'goto-last-edit)
@@ -565,7 +548,6 @@ window line 0."
 (global-set-key (kbd "C-c e p") 'print-buffer-file-name)
 (global-set-key (kbd "C-c e l") 'lock-screen)
 (global-set-key (kbd "C-c y r") 'eglot-rename)
-(global-set-key (kbd "C-c y t") 'pytest-run-test)
 (global-set-key (kbd "C-c y b") 'black-format-file)
 (global-set-key (kbd "C-c q") 'quick-calc)
 (global-set-key (kbd "C-c m") 'kill-ring-save-whole-buffer)
