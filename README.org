@@ -1,4 +1,4 @@
 * Emacs Configuration
-Emacs configuration files.
+Emacs (28.1+) configuration files. First commit: June 2018.
 
-First commit: June 2018
+Running =make reinstall= will re-install all packages listed in =package-selected-packages=, and create a backup of the old ones inside the =elpa-backups= directory.
