@@ -1,6 +1,6 @@
 (package-initialize) ; %package
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t) ; %package
-(setq package-selected-packages '(monokai-theme verb magit company markdown-mode eglot pyvenv go-mode)) ; %package
+(setq package-selected-packages '(monokai-theme verb magit company markdown-mode eglot pyvenv go-mode yaml-mode)) ; %package
 (set-face-attribute 'default nil :height 185)
 (load-theme 'monokai t)
 (tool-bar-mode -1)
@@ -35,7 +35,7 @@ If the current line is empty, call `backward-delete-char'."
         (delete-region (point) point-after-bw)))))
 
 (defun duplicate-line ()
-  "Duplicate a line, and move point to it, maintaining the current column."
+  "Duplicate the current line and move point to it maintaining column position."
   (interactive)
   (let ((col (current-column)))
     (move-end-of-line nil)
