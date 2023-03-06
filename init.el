@@ -7,7 +7,7 @@
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-(fido-mode)
+(fido-mode) ; icomplete-fido-exit: M-j
 (fido-vertical-mode)
 (delete-selection-mode)
 (save-place-mode)
@@ -24,7 +24,10 @@
       magit-slow-confirm t
       icomplete-compute-delay 0
       require-final-newline t
-      uniquify-buffer-name-style 'forward)
+      uniquify-buffer-name-style 'forward
+      verb-auto-kill-response-buffers t)
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 (defun backward-delete-word ()
   "Delete (at most) a word backwards without changing the current line.
