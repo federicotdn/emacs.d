@@ -1,6 +1,6 @@
 (package-initialize) ; %package
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t) ; %package
-(setq package-selected-packages '(monokai-theme verb magit company markdown-mode eglot pyvenv go-mode yaml-mode)) ; %package
+(setq package-selected-packages '(monokai-theme verb magit company markdown-mode eglot pyvenv go-mode yaml-mode exec-path-from-shell)) ; %package
 (set-face-attribute 'default nil :height 185)
 (load-theme 'monokai t)
 (tool-bar-mode -1)
@@ -14,6 +14,8 @@
 (electric-pair-mode)
 (global-company-mode)
 (column-number-mode)
+(global-auto-revert-mode)
+(when window-system (exec-path-from-shell-initialize))
 (setq confirm-kill-emacs 'yes-or-no-p
       make-backup-files nil
       dired-listing-switches "-alhv --group-directories-first"
@@ -21,7 +23,8 @@
       dired-kill-when-opening-new-dired-buffer t
       magit-slow-confirm t
       icomplete-compute-delay 0
-      require-final-newline t)
+      require-final-newline t
+      uniquify-buffer-name-style 'forward)
 
 (defun backward-delete-word ()
   "Delete (at most) a word backwards without changing the current line.
