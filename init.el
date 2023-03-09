@@ -25,7 +25,8 @@
       icomplete-compute-delay 0
       require-final-newline t
       uniquify-buffer-name-style 'forward
-      verb-auto-kill-response-buffers t)
+      verb-auto-kill-response-buffers t
+      isearch-lazy-count t)
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
