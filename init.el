@@ -1,6 +1,6 @@
 (package-initialize) ; %package
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t) ; %package
-(setq package-selected-packages '(monokai-theme verb magit company markdown-mode eglot pyvenv go-mode yaml-mode exec-path-from-shell)) ; %package
+(setq package-selected-packages '(monokai-theme verb magit company markdown-mode eglot pyvenv go-mode yaml-mode exec-path-from-shell dockerfile-mode)) ; %package
 (set-face-attribute 'default nil :height 185)
 (load-theme 'monokai t)
 (tool-bar-mode -1)
