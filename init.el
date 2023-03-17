@@ -26,7 +26,8 @@
       require-final-newline t
       uniquify-buffer-name-style 'forward
       verb-auto-kill-response-buffers t
-      isearch-lazy-count t)
+      isearch-lazy-count t
+      create-lockfiles nil)
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
