@@ -15,6 +15,7 @@
 (global-company-mode)
 (column-number-mode)
 (global-auto-revert-mode)
+(load "~/.emacs.d/local.el" t t)
 (when window-system (exec-path-from-shell-initialize))
 (setq confirm-kill-emacs 'yes-or-no-p
       make-backup-files nil
