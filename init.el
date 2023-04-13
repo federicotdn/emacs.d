@@ -28,7 +28,8 @@
       uniquify-buffer-name-style 'forward
       verb-auto-kill-response-buffers t
       isearch-lazy-count t
-      create-lockfiles nil)
+      create-lockfiles nil
+      mark-even-if-inactive nil)
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
@@ -68,4 +69,6 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c p s g") 'project-find-regexp)
 (global-set-key (kbd "C-c o d") (lambda () (interactive) (find-file "~/Dropbox/org/notes.org")))
 (global-set-key (kbd "C-c e i") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
+(global-set-key (kbd "C-c e p") (lambda () (interactive) (eval-expression '(buffer-file-name))))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
+(global-unset-key (kbd "M-k"))
