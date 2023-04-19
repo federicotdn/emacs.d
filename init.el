@@ -1,13 +1,12 @@
 (package-initialize) ; %package
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t) ; %package
 (setq package-selected-packages '(monokai-theme verb magit company markdown-mode eglot pyvenv go-mode yaml-mode exec-path-from-shell dockerfile-mode)) ; %package
-(set-face-attribute 'default nil :height 185)
 (load-theme 'monokai t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-(fido-mode) ; icomplete-fido-exit: M-j
+(fido-mode)
 (fido-vertical-mode)
 (delete-selection-mode)
 (save-place-mode)
@@ -15,7 +14,7 @@
 (global-company-mode)
 (column-number-mode)
 (global-auto-revert-mode)
-(load "~/.emacs.d/local.el" t t)
+(load "~/.emacs.d/local.el" t t) ; per-PC configuration
 (when window-system (exec-path-from-shell-initialize))
 (setq confirm-kill-emacs 'yes-or-no-p
       make-backup-files nil
