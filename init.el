@@ -68,6 +68,6 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c p s g") 'project-find-regexp)
 (global-set-key (kbd "C-c o d") (lambda () (interactive) (find-file "~/Dropbox/org/notes.org")))
 (global-set-key (kbd "C-c e i") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
-(global-set-key (kbd "C-c e p") (lambda () (interactive) (eval-expression '(buffer-file-name))))
+(global-set-key (kbd "C-c e p") (lambda () (interactive) (message "%s" (buffer-file-name))))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 (global-unset-key (kbd "M-k"))
