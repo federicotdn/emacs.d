@@ -25,7 +25,7 @@
       icomplete-compute-delay 0
       require-final-newline t
       uniquify-buffer-name-style 'forward
-      verb-auto-kill-response-buffers t
+      verb-auto-kill-response-buffers 2
       isearch-lazy-count t
       create-lockfiles nil
       mark-even-if-inactive nil)
@@ -53,6 +53,7 @@ If the current line is empty, call `backward-delete-char'."
     (move-to-column col)))
 
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
+(global-set-key (kbd "M-_") 'negative-argument)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-l") 'switch-to-buffer)
 (global-set-key (kbd "M-j") 'mode-line-other-buffer)
