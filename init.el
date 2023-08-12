@@ -29,8 +29,6 @@
       isearch-lazy-count t
       create-lockfiles nil
       mark-even-if-inactive nil)
-(with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 (defun backward-delete-word ()
   "Delete (at most) a word backwards without changing the current line.
@@ -55,8 +53,9 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 (global-set-key (kbd "M-_") 'negative-argument)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "M-l") 'switch-to-buffer)
 (global-set-key (kbd "M-j") 'mode-line-other-buffer)
+(global-set-key (kbd "M-k") 'ibuffer)
+(global-set-key (kbd "M-l") 'switch-to-buffer)
 (global-set-key (kbd "M-'") iso-transl-ctl-x-8-map)
 (global-set-key (kbd "C-;") 'comment-line)
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
@@ -71,4 +70,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c e i") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "C-c e p") (lambda () (interactive) (message "%s" (buffer-file-name))))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
-(global-unset-key (kbd "M-k"))
+(with-eval-after-load 'ibuffer
+  (define-key ibuffer-mode-map (kbd "M-j") nil))
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
