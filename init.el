@@ -28,7 +28,8 @@
       verb-auto-kill-response-buffers 2
       isearch-lazy-count t
       create-lockfiles nil
-      mark-even-if-inactive nil)
+      mark-even-if-inactive nil
+      project-vc-extra-root-markers '(".project"))
 
 (defun backward-delete-word ()
   "Delete (at most) a word backwards without changing the current line.
