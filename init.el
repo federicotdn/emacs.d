@@ -1,6 +1,6 @@
 (package-initialize) ; %package
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t) ; %package
-(setq package-selected-packages '(monokai-theme verb magit company markdown-mode eglot pyvenv go-mode yaml-mode exec-path-from-shell dockerfile-mode)) ; %package
+(setq package-selected-packages '(monokai-theme verb magit company markdown-mode pyvenv go-mode yaml-mode exec-path-from-shell dockerfile-mode)) ; %package
 (load-theme 'monokai t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -14,6 +14,7 @@
 (global-company-mode)
 (column-number-mode)
 (global-auto-revert-mode)
+(pixel-scroll-precision-mode)
 (load "~/.emacs.d/local.el" t t) ; per-PC configuration
 (when window-system (exec-path-from-shell-initialize))
 (setq confirm-kill-emacs 'yes-or-no-p
@@ -29,7 +30,8 @@
       isearch-lazy-count t
       create-lockfiles nil
       mark-even-if-inactive nil
-      project-vc-extra-root-markers '(".project"))
+      project-vc-extra-root-markers '(".project")
+      duplicate-line-final-position 1)
 
 (defun backward-delete-word ()
   "Delete (at most) a word backwards without changing the current line.
@@ -41,15 +43,6 @@ If the current line is empty, call `backward-delete-char'."
       (if (< (count-lines 1 point-after-bw) (count-lines 1 (point)))
           (delete-region (line-beginning-position) (point))
         (delete-region (point) point-after-bw)))))
-
-(defun duplicate-line ()
-  "Duplicate the current line and move point to it maintaining column position."
-  (interactive)
-  (let ((col (current-column)))
-    (move-end-of-line nil)
-    (newline)
-    (insert (buffer-substring (line-beginning-position 0) (line-end-position 0)))
-    (move-to-column col)))
 
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 (global-set-key (kbd "M-_") 'negative-argument)
@@ -63,7 +56,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-x C-d") 'dired-jump)
 (global-set-key (kbd "C-c k") 'kill-this-buffer)
 (global-set-key (kbd "C-c c") 'project-find-file)
-(global-set-key (kbd "C-c d") 'duplicate-line)
+(global-set-key (kbd "C-c d") 'duplicate-dwim)
 (global-set-key (kbd "C-c m") (lambda () (interactive) (kill-ring-save (point-min) (point-max))))
 (global-set-key (kbd "C-c p p") 'project-switch-project)
 (global-set-key (kbd "C-c p s g") 'project-find-regexp)
@@ -72,6 +65,6 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c e p") (lambda () (interactive) (message "%s" (buffer-file-name))))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 (with-eval-after-load 'ibuffer
-  (define-key ibuffer-mode-map (kbd "M-j") nil))
+  (define-key ibuffer-mode-map (kbd "M-j") nil t))
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))

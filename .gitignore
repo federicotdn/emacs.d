@@ -34,6 +34,7 @@ ac-comphist.dat
 eshell/
 /server/
 projects
+/eln-cache/
 
 # per-PC configuration file
 local.el
