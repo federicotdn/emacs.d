@@ -67,4 +67,5 @@ If the current line is empty, call `backward-delete-char'."
 (with-eval-after-load 'ibuffer
   (define-key ibuffer-mode-map (kbd "M-j") nil t))
 (with-eval-after-load 'org
+  (require 'org-tempo) ; restore <s-TAB
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
