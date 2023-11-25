@@ -32,6 +32,7 @@
       mark-even-if-inactive nil
       project-vc-extra-root-markers '(".project")
       duplicate-line-final-position 1)
+(setq-default show-trailing-whitespace t)
 
 (defun backward-delete-word ()
   "Delete (at most) a word backwards without changing the current line.
@@ -64,8 +65,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c e i") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "C-c e p") (lambda () (interactive) (message "%s" (buffer-file-name))))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
-(with-eval-after-load 'ibuffer
-  (define-key ibuffer-mode-map (kbd "M-j") nil t))
+(with-eval-after-load 'ibuffer (define-key ibuffer-mode-map (kbd "M-j") nil t))
 (with-eval-after-load 'org
   (require 'org-tempo) ; restore <s-TAB
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
