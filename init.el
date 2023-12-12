@@ -31,7 +31,8 @@
       create-lockfiles nil
       mark-even-if-inactive nil
       project-vc-extra-root-markers '(".project")
-      duplicate-line-final-position 1)
+      duplicate-line-final-position 1
+      eglot-report-progress nil)
 (setq-default show-trailing-whitespace t)
 
 (defun backward-delete-word ()
