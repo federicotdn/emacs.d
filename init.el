@@ -33,7 +33,9 @@
       project-vc-extra-root-markers '(".project")
       duplicate-line-final-position 1
       eglot-report-progress nil)
-(setq-default show-trailing-whitespace t)
+(setq-default show-trailing-whitespace t
+              indent-tabs-mode nil
+              tab-width 4)
 
 (defun backward-delete-word ()
   "Delete (at most) a word backwards without changing the current line.
