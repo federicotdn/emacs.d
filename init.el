@@ -68,6 +68,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c e i") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "C-c e p") (lambda () (interactive) (message "%s" (buffer-file-name))))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
+(with-eval-after-load 'eglot (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename))
 (with-eval-after-load 'ibuffer (define-key ibuffer-mode-map (kbd "M-j") nil t))
 (with-eval-after-load 'org
   (require 'org-tempo) ; restore <s-TAB
