@@ -32,7 +32,8 @@
       mark-even-if-inactive nil
       project-vc-extra-root-markers '(".project")
       duplicate-line-final-position 1
-      eglot-report-progress nil)
+      eglot-report-progress nil
+      warning-minimum-level :error)
 (setq-default show-trailing-whitespace t
               indent-tabs-mode nil
               tab-width 4)
