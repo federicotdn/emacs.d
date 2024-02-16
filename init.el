@@ -78,6 +78,6 @@ If the current line is empty, call `backward-delete-char'."
 (defun pyvenv-activate-poetry ()
   "Activate the venv created by Poetry."
   (interactive)
-  (let ((path (shell-command-to-string "poetry env info --path")))
+  (let ((path (string-trim (shell-command-to-string "poetry env info --path"))))
     (pyvenv-activate path)
-    (message "activated: %s" (string-trim path))))
+    (message "activated: %s" path)))
