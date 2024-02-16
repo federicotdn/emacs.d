@@ -36,7 +36,8 @@
       warning-minimum-level :error)
 (setq-default show-trailing-whitespace t
               indent-tabs-mode nil
-              tab-width 4)
+              tab-width 4
+              mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
 
 (defun backward-delete-word ()
   "Delete (at most) a word backwards without changing the current line.
