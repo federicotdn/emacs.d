@@ -34,7 +34,8 @@
       duplicate-line-final-position 1
       eglot-report-progress nil
       warning-minimum-level :error
-      org-use-property-inheritance t)
+      org-use-property-inheritance t
+      custom-file null-device)
 (setq-default show-trailing-whitespace t
               indent-tabs-mode nil
               tab-width 4
