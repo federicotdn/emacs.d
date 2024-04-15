@@ -63,6 +63,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-x C-d") 'dired-jump)
 (global-set-key (kbd "C-c k") 'kill-this-buffer)
+(global-set-key (kbd "C-c i") 'indent-region)
 (global-set-key (kbd "C-c c") 'project-find-file)
 (global-set-key (kbd "C-c d") 'duplicate-dwim)
 (global-set-key (kbd "C-c m") (lambda () (interactive) (kill-ring-save (point-min) (point-max))))
@@ -72,8 +73,11 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c e i") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "C-c e p") (lambda () (interactive) (message "%s" (buffer-file-name))))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
+(global-unset-key (kbd "C-t"))
 (with-eval-after-load 'eglot (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename))
-(with-eval-after-load 'ibuffer (define-key ibuffer-mode-map (kbd "M-j") nil t))
+(with-eval-after-load 'ibuffer
+  (define-key ibuffer-mode-map (kbd "M-j") nil t)
+  (define-key ibuffer-mode-map (kbd "M-o") nil t))
 (with-eval-after-load 'org
   (require 'org-tempo) ; restore <s-TAB
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
@@ -83,7 +87,6 @@ If the current line is empty, call `backward-delete-char'."
   (interactive)
   (let ((default-directory (project-root (project-current)))
         (path (string-trim
-               (shell-command-to-string
-                "env -u VIRTUAL_ENV poetry env info --path"))))
+               (shell-command-to-string "env -u VIRTUAL_ENV poetry env info --path"))))
     (pyvenv-activate path)
     (message "project: %s\nactivated: %s" default-directory path)))
