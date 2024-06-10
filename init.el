@@ -15,7 +15,7 @@
 (column-number-mode)
 (global-auto-revert-mode)
 (pixel-scroll-precision-mode)
-(load "~/.emacs.d/local.el" t t) ; per-PC configuration
+(load "~/.dotfiles/local.el" t t) ; per-PC configuration
 (when window-system (exec-path-from-shell-initialize))
 (setq confirm-kill-emacs 'yes-or-no-p
       make-backup-files nil
