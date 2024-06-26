@@ -72,6 +72,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c o d") (lambda () (interactive) (find-file "~/Dropbox/org/notes.org")))
 (global-set-key (kbd "C-c e i") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "C-c e p") (lambda () (interactive) (message "%s" (buffer-file-name))))
+(global-set-key (kbd "M-<backspace>") (lambda () (interactive) (undo) (undo-redo)))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 (global-unset-key (kbd "C-t"))
 (with-eval-after-load 'eglot (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename))
