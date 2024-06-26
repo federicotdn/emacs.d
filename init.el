@@ -52,6 +52,15 @@ If the current line is empty, call `backward-delete-char'."
           (delete-region (line-beginning-position) (point))
         (delete-region (point) point-after-bw)))))
 
+(defun pyvenv-activate-poetry ()
+  "Activate the venv created by Poetry."
+  (interactive)
+  (let ((default-directory (project-root (project-current)))
+        (path (string-trim
+               (shell-command-to-string "env -u VIRTUAL_ENV poetry env info --path"))))
+    (pyvenv-activate path)
+    (message "project: %s\nactivated: %s" default-directory path)))
+
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 (global-set-key (kbd "M-_") 'negative-argument)
 (global-set-key (kbd "M-o") 'other-window)
@@ -82,12 +91,3 @@ If the current line is empty, call `backward-delete-char'."
 (with-eval-after-load 'org
   (require 'org-tempo) ; restore <s-TAB
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
-
-(defun pyvenv-activate-poetry ()
-  "Activate the venv created by Poetry."
-  (interactive)
-  (let ((default-directory (project-root (project-current)))
-        (path (string-trim
-               (shell-command-to-string "env -u VIRTUAL_ENV poetry env info --path"))))
-    (pyvenv-activate path)
-    (message "project: %s\nactivated: %s" default-directory path)))
