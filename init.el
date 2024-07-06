@@ -85,7 +85,9 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "M-<backspace>") (lambda () (interactive) (undo) (undo-redo)))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 (global-unset-key (kbd "C-t"))
-(with-eval-after-load 'eglot (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename))
+(with-eval-after-load 'eglot
+  (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
+  (define-key eglot-mode-map (kbd "C-c e c") 'eglot-reconnect))
 (with-eval-after-load 'ibuffer
   (define-key ibuffer-mode-map (kbd "M-j") nil t)
   (define-key ibuffer-mode-map (kbd "M-o") nil t))
