@@ -38,3 +38,6 @@ projects
 
 # per-PC configuration file
 local.el
+
+# customize
+custom.el

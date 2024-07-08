@@ -36,7 +36,8 @@
       eglot-report-progress nil
       warning-minimum-level :error
       org-use-property-inheritance t
-      custom-file null-device)
+      custom-file (concat user-emacs-directory "custom.el")
+      source-directory "~/Workspace/emacs")
 (setq-default show-trailing-whitespace t
               indent-tabs-mode nil
               tab-width 4
