@@ -38,6 +38,7 @@
       org-use-property-inheritance t
       custom-file (concat user-emacs-directory "custom.el")
       source-directory "~/Workspace/emacs")
+(load custom-file)
 (setq-default show-trailing-whitespace t
               indent-tabs-mode nil
               tab-width 4
