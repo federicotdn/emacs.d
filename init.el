@@ -15,7 +15,6 @@
 (column-number-mode)
 (global-auto-revert-mode)
 (pixel-scroll-precision-mode)
-(load "~/.dotfiles/local.el" t t) ; per-PC configuration
 (when window-system (exec-path-from-shell-initialize))
 (setq confirm-kill-emacs 'yes-or-no-p
       make-backup-files nil
@@ -38,11 +37,12 @@
       org-use-property-inheritance t
       custom-file (concat user-emacs-directory "custom.el")
       source-directory "~/Workspace/emacs")
-(load custom-file)
 (setq-default show-trailing-whitespace t
               indent-tabs-mode nil
               tab-width 4
               mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
+(load "~/.dotfiles/local.el" t t) ; per-PC configuration
+(load custom-file)
 
 (defun backward-delete-word ()
   "Delete (at most) a word backwards without changing the current line.
@@ -68,7 +68,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "M-_") 'negative-argument)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-j") 'mode-line-other-buffer)
-(global-set-key (kbd "M-k") 'ibuffer)
+(global-set-key (kbd "M-k") '(lambda () (interactive) (list-buffers t)))
 (global-set-key (kbd "M-l") 'switch-to-buffer)
 (global-set-key (kbd "M-'") iso-transl-ctl-x-8-map)
 (global-set-key (kbd "C-;") 'comment-line)
@@ -90,9 +90,6 @@ If the current line is empty, call `backward-delete-char'."
 (with-eval-after-load 'eglot
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
   (define-key eglot-mode-map (kbd "C-c e c") 'eglot-reconnect))
-(with-eval-after-load 'ibuffer
-  (define-key ibuffer-mode-map (kbd "M-j") nil t)
-  (define-key ibuffer-mode-map (kbd "M-o") nil t))
 (with-eval-after-load 'org
   (require 'org-tempo) ; restore <s-TAB
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
