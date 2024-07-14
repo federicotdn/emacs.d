@@ -48,12 +48,9 @@
   "Delete (at most) a word backwards without changing the current line.
 If the current line is empty, call `backward-delete-char'."
   (interactive)
-  (if (zerop (current-column))
-      (call-interactively #'backward-delete-char)
-    (let ((point-after-bw (save-excursion (backward-word) (point))))
-      (if (< (count-lines 1 point-after-bw) (count-lines 1 (point)))
-          (delete-region (line-beginning-position) (point))
-        (delete-region (point) point-after-bw)))))
+  (if (zerop (current-column)) (call-interactively #'backward-delete-char)
+    (with-restriction (line-beginning-position) (point)
+      (delete-region (progn (backward-word) (point)) (point-max)))))
 
 (defun pyvenv-activate-poetry ()
   "Activate the venv created by Poetry."
