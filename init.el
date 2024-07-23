@@ -35,6 +35,7 @@
       eglot-report-progress nil
       warning-minimum-level :error
       org-use-property-inheritance t
+      xref-search-program 'ripgrep
       custom-file (concat user-emacs-directory "custom.el")
       source-directory "~/Workspace/emacs")
 (setq-default show-trailing-whitespace t
