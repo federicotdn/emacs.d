@@ -41,3 +41,6 @@ local.el
 
 # customize
 custom.el
+
+# multisession
+multisession
