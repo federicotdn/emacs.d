@@ -17,18 +17,12 @@
 (pixel-scroll-precision-mode)
 (when window-system (exec-path-from-shell-initialize))
 (setq confirm-kill-emacs 'yes-or-no-p
-      make-backup-files nil
-      auto-save-default nil
-      dired-listing-switches "-alhv --group-directories-first"
-      dired-auto-revert-buffer t
-      dired-kill-when-opening-new-dired-buffer t
-      magit-slow-confirm t
+      make-backup-files nil auto-save-default nil create-lockfiles nil
+      dired-listing-switches "-alhv --group-directories-first" dired-auto-revert-buffer t dired-kill-when-opening-new-dired-buffer t
       icomplete-compute-delay 0
       require-final-newline t
       uniquify-buffer-name-style 'forward
-      verb-auto-kill-response-buffers 2
       isearch-lazy-count t
-      create-lockfiles nil
       mark-even-if-inactive nil
       project-vc-extra-root-markers '(".project")
       duplicate-line-final-position 1
@@ -38,10 +32,10 @@
       xref-search-program 'ripgrep
       custom-file (concat user-emacs-directory "custom.el")
       source-directory "~/Workspace/emacs"
-      eldoc-echo-area-use-multiline-p 5)
-(setq-default show-trailing-whitespace t
-              indent-tabs-mode nil
-              tab-width 4
+      eldoc-echo-area-use-multiline-p 5
+      magit-slow-confirm t
+      verb-auto-kill-response-buffers 2)
+(setq-default show-trailing-whitespace t indent-tabs-mode nil tab-width 4
               mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
 (load "~/.dotfiles/local.el" t t) ; per-PC configuration
 (load custom-file)
