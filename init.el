@@ -37,7 +37,8 @@
       org-use-property-inheritance t
       xref-search-program 'ripgrep
       custom-file (concat user-emacs-directory "custom.el")
-      source-directory "~/Workspace/emacs")
+      source-directory "~/Workspace/emacs"
+      eldoc-echo-area-use-multiline-p 5)
 (setq-default show-trailing-whitespace t
               indent-tabs-mode nil
               tab-width 4
