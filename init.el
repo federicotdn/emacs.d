@@ -32,6 +32,7 @@
       xref-search-program 'ripgrep
       custom-file (concat user-emacs-directory "custom.el")
       source-directory "~/Workspace/emacs"
+      compilation-scroll-output t
       eldoc-echo-area-use-multiline-p 5
       magit-slow-confirm t
       verb-auto-kill-response-buffers 2)
