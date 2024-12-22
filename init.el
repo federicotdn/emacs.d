@@ -15,6 +15,7 @@
 (column-number-mode)
 (global-auto-revert-mode)
 (pixel-scroll-precision-mode)
+(when window-system (exec-path-from-shell-initialize))
 (setq confirm-kill-emacs 'yes-or-no-p
       make-backup-files nil auto-save-default nil create-lockfiles nil
       dired-listing-switches "-alhv --group-directories-first" dired-auto-revert-buffer t dired-kill-when-opening-new-dired-buffer t
@@ -35,7 +36,6 @@
       eldoc-echo-area-use-multiline-p 5
       magit-slow-confirm t
       verb-auto-kill-response-buffers 2)
-(when window-system (exec-path-from-shell-initialize))
 (setq-default show-trailing-whitespace t indent-tabs-mode nil tab-width 4
               mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
 (load "~/.dotfiles/local.el" t t) ; per-PC configuration
