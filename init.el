@@ -34,9 +34,8 @@
       compilation-scroll-output t
       eldoc-echo-area-use-multiline-p 5
       magit-slow-confirm t
-      verb-auto-kill-response-buffers 2
-      exec-path-from-shell-variables '("PATH" "MANPATH" "RIPGREP_CONFIG_PATH"))
-(when window-system (exec-path-from-shell-initialize))
+      verb-auto-kill-response-buffers 2)
+(when window-system (exec-path-from-shell-copy-envs '("PATH" "MANPATH" "RIPGREP_CONFIG_PATH")))
 (setq-default show-trailing-whitespace t indent-tabs-mode nil tab-width 4
               mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
 (load "~/.dotfiles/local.el" t t) ; per-PC configuration
