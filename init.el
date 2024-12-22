@@ -1,6 +1,6 @@
 (package-initialize) ; %package
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t) ; %package
-(setq package-selected-packages '(monokai-theme verb magit company markdown-mode pyvenv go-mode yaml-mode exec-path-from-shell dockerfile-mode jsonnet-mode lua-mode debbugs)) ; %package
+(setq package-selected-packages '(monokai-theme verb magit company markdown-mode pyvenv go-mode yaml-mode exec-path-from-shell dockerfile-mode jsonnet-mode lua-mode debbugs rg)) ; %package
 (load-theme 'monokai t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -74,7 +74,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c d") 'duplicate-dwim)
 (global-set-key (kbd "C-c m") (lambda () (interactive) (kill-ring-save (point-min) (point-max))))
 (global-set-key (kbd "C-c p p") 'project-switch-project)
-(global-set-key (kbd "C-c p s g") 'project-find-regexp)
+(global-set-key (kbd "C-c p s g") (lambda () (interactive) (rg (read-regexp "Find regexp: ") "*" ".")))
 (global-set-key (kbd "C-c o d") (lambda () (interactive) (find-file "~/Dropbox/org/notes.org")))
 (global-set-key (kbd "C-c e i") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "C-c e p") (lambda () (interactive) (message "%s" (buffer-file-name))))
