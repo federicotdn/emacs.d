@@ -36,11 +36,12 @@ eshell/
 projects
 /eln-cache/
 
-# per-PC configuration file
-local.el
-
 # customize
 custom.el
 
 # multisession
 multisession
+
+# misc.
+tutorial/
+ielm-history.eld

@@ -1,6 +1,6 @@
 (package-initialize) ; %package
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t) ; %package
-(setq package-selected-packages '(monokai-theme verb magit company markdown-mode pyvenv go-mode yaml-mode exec-path-from-shell dockerfile-mode jsonnet-mode lua-mode debbugs vterm)) ; %package
+(setq package-selected-packages '(monokai-theme verb magit company markdown-mode pyvenv go-mode yaml-mode exec-path-from-shell dockerfile-mode jsonnet-mode lua-mode debbugs)) ; %package
 (load-theme 'monokai t)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -15,7 +15,6 @@
 (column-number-mode)
 (global-auto-revert-mode)
 (pixel-scroll-precision-mode)
-(when window-system (exec-path-from-shell-initialize))
 (setq confirm-kill-emacs 'yes-or-no-p
       make-backup-files nil auto-save-default nil create-lockfiles nil
       dired-listing-switches "-alhv --group-directories-first" dired-auto-revert-buffer t dired-kill-when-opening-new-dired-buffer t
@@ -36,7 +35,8 @@
       eldoc-echo-area-use-multiline-p 5
       magit-slow-confirm t
       verb-auto-kill-response-buffers 2
-      vterm-kill-buffer-on-exit nil)
+      exec-path-from-shell-variables '("PATH" "MANPATH" "RIPGREP_CONFIG_PATH"))
+(when window-system (exec-path-from-shell-initialize))
 (setq-default show-trailing-whitespace t indent-tabs-mode nil tab-width 4
               mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
 (load "~/.dotfiles/local.el" t t) ; per-PC configuration
@@ -82,9 +82,6 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "M-<backspace>") (lambda () (interactive) (undo) (undo-redo)))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 (global-unset-key (kbd "C-t"))
-(with-eval-after-load 'vterm
-  (dolist (key '("M-j" "M-l" "M-o" "C-x 1" "C-x 3")) (define-key vterm-mode-map (kbd key) nil t))
-  (add-hook 'vterm-mode-hook (lambda () (setq show-trailing-whitespace nil))))
 (with-eval-after-load 'eglot
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
   (define-key eglot-mode-map (kbd "C-c e c") 'eglot-reconnect))
