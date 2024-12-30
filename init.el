@@ -49,6 +49,11 @@ If the current line is empty, call `backward-delete-char'."
     (with-restriction (line-beginning-position) (point)
       (delete-region (progn (backward-word) (point)) (point-max)))))
 
+(defun search-in-project (regexp)
+  "Find all matches for REGEXP in the current project's roots using ripgrep."
+  (interactive (list (project--read-regexp)))
+  (rg regexp "*" (project-root (project-current))))
+
 (defun pyvenv-activate-poetry ()
   "Activate the venv created by Poetry."
   (interactive)
@@ -74,7 +79,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c d") 'duplicate-dwim)
 (global-set-key (kbd "C-c m") (lambda () (interactive) (kill-ring-save (point-min) (point-max))))
 (global-set-key (kbd "C-c p p") 'project-switch-project)
-(global-set-key (kbd "C-c p s g") (lambda () (interactive) (rg (read-regexp "Find regexp: ") "*" ".")))
+(global-set-key (kbd "C-c p s g") 'search-in-project)
 (global-set-key (kbd "C-c o d") (lambda () (interactive) (find-file "~/Dropbox/org/notes.org")))
 (global-set-key (kbd "C-c e i") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "C-c e p") (lambda () (interactive) (message "%s" (buffer-file-name))))
