@@ -27,6 +27,7 @@
       project-vc-extra-root-markers '(".project")
       duplicate-line-final-position 1
       eglot-report-progress nil
+      eglot-ignored-server-capabilities '(:inlayHintProvider)
       warning-minimum-level :error
       org-use-property-inheritance t
       xref-search-program 'ripgrep
