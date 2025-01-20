@@ -17,6 +17,7 @@
 (pixel-scroll-precision-mode)
 (when window-system (exec-path-from-shell-initialize))
 (setq confirm-kill-emacs 'yes-or-no-p
+      ring-bell-function 'ignore
       make-backup-files nil auto-save-default nil create-lockfiles nil
       dired-listing-switches "-alhv --group-directories-first" dired-auto-revert-buffer t dired-kill-when-opening-new-dired-buffer t
       icomplete-compute-delay 0
