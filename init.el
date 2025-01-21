@@ -31,13 +31,12 @@
       eglot-events-buffer-size 0
       warning-minimum-level :error
       org-use-property-inheritance t
-      xref-search-program 'ripgrep
       custom-file (concat user-emacs-directory "custom.el")
-      source-directory "~/Workspace/emacs"
       compilation-scroll-output t
       eldoc-echo-area-use-multiline-p 5
       magit-slow-confirm t
-      verb-auto-kill-response-buffers 2)
+      verb-auto-kill-response-buffers 2
+      rg-command-line-flags '("--sort=path"))
 (setq-default show-trailing-whitespace t indent-tabs-mode nil tab-width 4
               mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
 (load "~/.dotfiles/local.el" t t) ; per-PC configuration
