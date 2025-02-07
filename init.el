@@ -37,7 +37,7 @@
       eldoc-echo-area-use-multiline-p 5
       magit-slow-confirm t
       verb-auto-kill-response-buffers 2
-      rg-command-line-flags '("--sort=path"))
+      rg-command-line-flags '("--sort=path" "--no-messages"))
 (setq-default show-trailing-whitespace t indent-tabs-mode nil tab-width 4
               mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
 (load "~/.dotfiles/local.el" t t) ; per-PC configuration
