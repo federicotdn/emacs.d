@@ -75,7 +75,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-;") 'comment-line)
 (global-set-key (kbd "C-o") 'flymake-goto-next-error)
 (global-set-key (kbd "C-x C-d") 'dired-jump)
-(global-set-key (kbd "C-c k") 'kill-this-buffer)
+(global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c i") 'indent-region)
 (global-set-key (kbd "C-c c") 'project-find-file)
 (global-set-key (kbd "C-c d") 'duplicate-dwim)
