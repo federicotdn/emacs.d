@@ -56,15 +56,6 @@ If the current line is empty, call `backward-delete-char'."
   (interactive (list (project--read-regexp)))
   (rg regexp "*" (project-root (project-current))))
 
-(defun pyvenv-activate-poetry ()
-  "Activate the venv created by Poetry."
-  (interactive)
-  (let ((default-directory (project-root (project-current)))
-        (path (string-trim
-               (shell-command-to-string "env -u VIRTUAL_ENV poetry env info --path"))))
-    (pyvenv-activate path)
-    (message "project: %s\nactivated: %s" default-directory path)))
-
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 (global-set-key (kbd "M-_") 'negative-argument)
 (global-set-key (kbd "M-o") 'other-window)
@@ -91,6 +82,8 @@ If the current line is empty, call `backward-delete-char'."
 (with-eval-after-load 'eglot
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
   (define-key eglot-mode-map (kbd "C-c e c") 'eglot-reconnect))
+(with-eval-after-load 'python
+  (define-key python-mode-map (kbd "C-c C-p") nil))
 (with-eval-after-load 'org
   (require 'org-tempo) ; restore <s-TAB
   (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
