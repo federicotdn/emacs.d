@@ -24,6 +24,7 @@
       require-final-newline t
       uniquify-buffer-name-style 'forward
       isearch-lazy-count t
+      initial-scratch-message nil
       mark-even-if-inactive nil
       project-vc-extra-root-markers '(".project")
       duplicate-line-final-position 1
@@ -68,6 +69,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-x C-d") 'dired-jump)
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c i") 'indent-region)
+(global-set-key (kbd "C-c a") 'eval-buffer)
 (global-set-key (kbd "C-c c") 'project-find-file)
 (global-set-key (kbd "C-c d") 'duplicate-dwim)
 (global-set-key (kbd "C-c m") (lambda () (interactive) (kill-ring-save (point-min) (point-max))))
