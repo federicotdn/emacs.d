@@ -29,7 +29,7 @@
       project-vc-extra-root-markers '(".project")
       duplicate-line-final-position 1
       eglot-report-progress nil eglot-ignored-server-capabilities '(:inlayHintProvider :documentOnTypeFormattingProvider)
-      eglot-events-buffer-size 0
+      eglot-events-buffer-config '(:size 0 :format full)
       warning-minimum-level :error
       org-use-property-inheritance t
       custom-file (concat user-emacs-directory "custom.el")
