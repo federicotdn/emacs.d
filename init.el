@@ -55,7 +55,7 @@ If the current line is empty, call `backward-delete-char'."
 
 (defun search-in-project (regexp)
   "Find all matches for REGEXP in the current project's roots using ripgrep."
-  (interactive (list (project--read-regexp)))
+  (interactive (list (read-regexp "Find regexp" nil project-regexp-history-variable)))
   (rg regexp "*" (project-root (project-current))))
 
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
