@@ -49,7 +49,7 @@
   "Delete (at most) a word backwards without changing the current line.
 If the current line is empty, call `backward-delete-char'."
   (interactive)
-  (if (zerop (current-column)) (call-interactively #'backward-delete-char)
+  (if (bolp) (backward-delete-char 1)
     (with-restriction (line-beginning-position) (point)
       (delete-region (progn (backward-word) (point)) (point-max)))))
 
