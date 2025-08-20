@@ -46,3 +46,5 @@ multisession
 tutorial/
 ielm-history.eld
 tree-sitter/
+.org-id-locations
+session.*
