@@ -73,6 +73,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c i") 'indent-region)
 (global-set-key (kbd "C-c c") 'project-find-file)
 (global-set-key (kbd "C-c d") 'duplicate-dwim)
+(global-set-key (kbd "C-c C-n") (lambda () (interactive) (hs-minor-mode) (call-interactively #'hs-toggle-hiding)))
 (global-set-key (kbd "C-c m") (lambda () (interactive) (kill-ring-save (point-min) (point-max))))
 (global-set-key (kbd "C-c p p") 'project-switch-project)
 (global-set-key (kbd "C-c p s g") 'search-in-project)
