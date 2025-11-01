@@ -82,7 +82,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c e p") (lambda () (interactive) (message "%s" (buffer-file-name))))
 (global-set-key (kbd "M-<backspace>") (lambda () (interactive) (undo) (undo-redo)))
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
-(dolist (k '("C-t" "C-z")) (global-unset-key (kbd k)))
+(dolist (k '("C-t" "C-z" "s-x" "M-c" "M-z" "C-x C-c")) (global-unset-key (kbd k))) ; accidental presses
 (with-eval-after-load 'eglot
   (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
   (define-key eglot-mode-map (kbd "C-c e c") 'eglot-reconnect))
