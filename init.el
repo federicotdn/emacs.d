@@ -27,7 +27,7 @@
       isearch-lazy-count t
       initial-scratch-message nil
       mark-even-if-inactive nil
-      project-vc-extra-root-markers '(".project")
+      project-vc-extra-root-markers '(".gitignore" ".project")
       duplicate-line-final-position 1
       eglot-report-progress nil eglot-ignored-server-capabilities '(:inlayHintProvider :documentOnTypeFormattingProvider)
       eglot-events-buffer-config '(:size 0 :format full)
