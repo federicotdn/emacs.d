@@ -1,6 +1,6 @@
 (package-initialize)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(setq package-selected-packages '(monokai-theme verb magit company markdown-mode pyvenv go-mode yaml-mode exec-path-from-shell dockerfile-mode jsonnet-mode lua-mode debbugs rg terraform-mode))
+(setq package-selected-packages '(monokai-theme verb magit company markdown-mode pyvenv go-mode yaml-mode exec-path-from-shell dockerfile-mode jsonnet-mode lua-mode debbugs rg terraform-mode haskell-mode))
 (package-install-selected-packages t)
 (load-theme 'monokai t)
 (tool-bar-mode -1)
