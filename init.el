@@ -44,7 +44,7 @@
 (setq-default show-trailing-whitespace t indent-tabs-mode nil tab-width 4
               mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
 (load "~/.dotfiles/local.el" t t) ; per-PC configuration
-(load custom-file)
+(load custom-file t)
 
 (defun backward-delete-word ()
   "Delete (at most) a word backwards without changing the current line.
