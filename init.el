@@ -16,7 +16,7 @@
 (column-number-mode)
 (global-auto-revert-mode)
 (pixel-scroll-precision-mode)
-(when window-system (exec-path-from-shell-initialize))
+(when (and window-system (eq system-type 'gnu/linux)) (exec-path-from-shell-initialize))
 (setq confirm-kill-emacs 'yes-or-no-p
       ring-bell-function 'ignore
       make-backup-files nil auto-save-default nil create-lockfiles nil
