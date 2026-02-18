@@ -63,7 +63,7 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "M-_") 'negative-argument)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-j") 'mode-line-other-buffer)
-(global-set-key (kbd "M-k") '(lambda () (interactive) (list-buffers t)))
+(global-set-key (kbd "M-k") (lambda () (interactive) (list-buffers t)))
 (global-set-key (kbd "M-l") 'switch-to-buffer)
 (global-set-key (kbd "M-'") iso-transl-ctl-x-8-map)
 (global-set-key (kbd "C-;") 'comment-line)
