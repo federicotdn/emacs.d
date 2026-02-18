@@ -73,14 +73,13 @@ If the current line is empty, call `backward-delete-char'."
 (global-set-key (kbd "C-c i") 'indent-region)
 (global-set-key (kbd "C-c c") 'project-find-file)
 (global-set-key (kbd "C-c d") 'duplicate-dwim)
-(global-set-key (kbd "C-c C-n") (lambda () (interactive) (hs-minor-mode) (call-interactively #'hs-toggle-hiding)))
 (global-set-key (kbd "C-c m") (lambda () (interactive) (kill-ring-save (point-min) (point-max))))
 (global-set-key (kbd "C-c p p") 'project-switch-project)
 (global-set-key (kbd "C-c p s g") 'search-in-project)
 (global-set-key (kbd "C-c o d") (lambda () (interactive) (find-file "~/Dropbox/org/notes.org")))
 (global-set-key (kbd "C-c e i") (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (global-set-key (kbd "C-c e p") (lambda () (interactive) (message "%s" (buffer-file-name))))
-(global-set-key (kbd "M-<backspace>") (lambda () (interactive) (undo) (undo-redo)))
+(global-set-key (kbd "M-<backspace>") (lambda () (interactive) (undo) (undo-redo))) ; go to last edit
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 (dolist (k '("C-t" "C-z" "s-x" "M-c" "M-z" "C-x C-c")) (global-unset-key (kbd k))) ; accidental presses
 (with-eval-after-load 'eglot
